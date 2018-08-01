@@ -16,7 +16,8 @@ class Forms extends CI_Model
 				cate.NOMBRE AS CATE_NOMBRE,						
 				grup.NOMBRE AS GRUP_NOMBRE,
 				tida.NOMBRE AS TIDA_NOMBRE,						
-				valo.NOMBRE AS VALO_NOMBRE,						
+				valo.NOMBRE AS VALO_NOMBRE,	
+								
 				valo.ORDEN										
 				FROM
 				frm_formularios form, 
@@ -78,7 +79,7 @@ class Forms extends CI_Model
 						valo.VALO_ID AS idValor,	
 						valo.VALOR_DEFECTO,
 						valo.LONGITUD,
-						valo.OBLIGATORIO,
+						valo.OBLIGATORIO as obligatorio,
 						valo.PISTA						
 						FROM
 						frm_formularios form, 
