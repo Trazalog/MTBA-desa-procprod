@@ -53,7 +53,7 @@
 										<input type="text" id="patente" class="form-control" readonly/>
 									</div>
 								</div>
-                <div class="col-xs-12 col-sm-4">
+								<div class="col-xs-12 col-sm-4">
 									<div class="form-group">
 										<label style="margin-top: 7px;">N° de Motor: </label>
 										<input type="text" id="num_motor" class="form-control" readonly/>
@@ -70,37 +70,14 @@
 										<label style="margin-top: 7px;">Motor: </label>
 										<input type="text" id="motor" class="form-control" readonly/>
 									</div>
-								</div>						
+								</div>
 								<div class="col-xs-12 col-sm-4">
 									<div class="form-group">
 										<label style="margin-top: 7px;">N° de Chásis: </label>
 										<input type="text" id="num_chasis" class="form-control" readonly/>
 									</div>
 								</div>
-								<div class="col-xs-2">
-									<label style="margin-top: 7px;">Subfamilia: </label>
-								</div>
-								<div class="col-xs-2">
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios1" value="Armado" disabled/> Armado
-										</label>
-									</div>
-								</div>
-								<div class="col-xs-2">
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios2" value="Semi-Armado" disabled/> Semi-Armado
-										</label>
-									</div>
-								</div>
-								<div class="col-xs-2">
-									<div class="radio">
-										<label>
-											<input type="radio" name="optionsRadios" id="optionsRadios3" value="Desarmado" disabled/> Desarmado
-										</label>
-									</div>
-								</div>
+								
 							</div>
 						</div>
 						<!-- /.box-body -->
@@ -125,7 +102,7 @@
 	$('#pedidos').change(function() {
 		console.log("Pedido Seleccionado..." + this.selectedIndex);
 		var id = this.selectedIndex - 1;
-		listaPedidos = <?php echo json_encode($list); ?> ;
+		listaPedidos = <?php echo json_encode($list);?> ;
 		id_pedido_seleccionado = listaPedidos[id]['petr_id'];
 
 		$('#parte').val(listaPedidos[id]['parte_vehiculo']);
@@ -134,7 +111,7 @@
 		$('#motor').val(listaPedidos[id]['motor']);
 		$('#num_motor').val(listaPedidos[id]['num_motor']);
 		$('#num_chasis').val(listaPedidos[id]['num_chasis']);
-    $('input[name="optionsRadios"][value="'+listaPedidos[id]['entrega_servicio']+'"]').prop('checked', true);
+		$('input[name="optionsRadios"][value="' + listaPedidos[id]['entrega_servicio'] + '"]').prop('checked', true);
 
 		// box.hasClass("")
 		if ($('#collapseDiv').hasClass('collapsed-box')) {

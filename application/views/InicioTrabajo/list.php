@@ -104,7 +104,7 @@
 								<div class="form-group">
 									<label style="margin-top: 7px;">Indice
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="indice" class="form-control" />
+									<input type="text" id="indice" class="form-control" placeholder="Buscar Indice..." />
 								</div>
 							</div>
 
@@ -209,48 +209,7 @@
 							<textarea id="observacion" class="form-control"></textarea>
 						</div>
 
-						<div class="row">
-							<div class="col-xs-12 col-sm-10">
-								<br>
-								<div class="form-group">
-									<div class="row">
-
-										<div class="col-xs-3">
-											<label style="margin-top: 7px;">Entrega del Servicio:
-												<strong style="color: #dd4b39">*</strong>: </label>
-										</div>
-										<div class="col-xs-2">
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionEntregaSevicio" id="optionsRadios1" value="C/Banco" /> C/Banco
-												</label>
-											</div>
-										</div>
-										<div class="col-xs-2">
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionEntregaSevicio" id="optionsRadios2" value="Armado" /> Armado
-												</label>
-											</div>
-										</div>
-										<div class="col-xs-3">
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionEntregaSevicio" id="optionsRadios3" value="Semi-Armado" /> Semi-Armado
-												</label>
-											</div>
-										</div>
-										<div class="col-xs-2">
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionEntregaSevicio" id="optionsRadios3" value="Desarmado" /> Desarmado
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+					
 
 
 						<button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()">Guardar</button>
@@ -278,16 +237,23 @@
 			autoclose: true
 		});
 
-		var currencies = <?php echo json_encode($listaIndices); ?> ;
-		console.log(currencies);
+		var sourceArray = <?php echo json_encode($listaIndices); ?>
 
-		$('#indice').autocomplete({
-
-			source: currencies,
-			select: function(event, ui) {
-				$('#motor').val(ui.item.data);
-			}
-		});
+			$('#indice').autocomplete({
+				source: function(request, response) {
+					// filter array to only entries you want to display limited to 10
+					var outputArray = new Array();
+					for (var i = 0; i < sourceArray.length; i++) {
+						if (sourceArray[i].label.match(request.term)) {
+							outputArray.push(sourceArray[i]);
+						}
+					}
+					response(outputArray.slice(0, 10));
+				},
+				select: function(event, ui) {
+					$('#motor').val(ui.item.data);
+				}
+			});
 
 	});
 
@@ -331,7 +297,7 @@
 		var subfamilia = $('#subfamilia option:selected').text();
 		var observacion = $('#observacion').val();
 		var clie_id = id_cliente_seleccionado;
-		var entrega_servicio = $('input[name="optionEntregaSevicio"]:checked').val();
+	
 
 		console.log(parte_vehiculo);
 		console.log(patente);
@@ -344,8 +310,6 @@
 		console.log(familia);
 		console.log(subfamilia);
 		console.log(observacion);
-		console.log(clie_id);
-		console.log(entrega_servicio);
 
 
 		$.ajax({
@@ -363,7 +327,6 @@
 				"observacion": observacion,
 				"familia_producto": familia,
 				"subfamilia": subfamilia,
-				"entrega_servicio": entrega_servicio,
 				"clie_id": clie_id
 			},
 			url: 'index.php/InicioTrabajo/Guardar_Pedido',
