@@ -74,61 +74,61 @@
 						<!-- /.box-body -->
 					</div>
 					<div class="form-group">
-								<label style="margin-top: 7px;">Código de Interno:
-									<strong style="color: #dd4b39">*</strong>: </label>
-								<select id="codigo_interno" class="form-control" style="width:30%;">
-									<option value="0" selected="selected">Seleccionar...</option>
-									<option value='AL'> AL - arbol de leva </option>
-									<option value='BI'> BI - Bomba Inyectora </option>
-									<option value='BIE'> BIE - Biela </option>
-									<option value='CA'> CA - cardan </option>
-									<option value='CI'> CI - Cigüeñal </option>
-									<option value='COM'> COM -  compresor </option>
-									<option value='IT'> IT - intercambiadores </option>
-									<option value='PS'> PS - piezas sueltas </option>
-									<option value='RA'> RA - Radiadores de Aceite </option>
-									<option value='TC'> TC - Tapa Cilindro </option>
-									<option value='TV'> TV - turbo </option>
-								</select>
-							</div>
-					<form class="registerForm">
+						<label style="margin-top: 7px;">Código de Interno:
+							<strong style="color: #dd4b39">*</strong>: </label>
+						<select id="codigo_interno" class="form-control" style="width:30%;">
+							<option value="0" selected="selected">Seleccionar...</option>
+							<option value='AL'> AL - arbol de leva </option>
+							<option value='BI'> BI - Bomba Inyectora </option>
+							<option value='BIE'> BIE - Biela </option>
+							<option value='CA'> CA - cardan </option>
+							<option value='CI'> CI - Cigüeñal </option>
+							<option value='COM'> COM - compresor </option>
+							<option value='IT'> IT - intercambiadores </option>
+							<option value='PS'> PS - piezas sueltas </option>
+							<option value='RA'> RA - Radiadores de Aceite </option>
+							<option value='TC'> TC - Tapa Cilindro </option>
+							<option value='TV'> TV - turbo </option>
+						</select>
+					</div>
+					<form id="form">
 						<div class="row">
-							
+
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label style="margin-top: 7px;">Parte / Vehículo
+									<label>Parte / Vehículo
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="parte" class="form-control" />
+									<input type="text" id="parte" class="form-control obligatorio" />
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label style="margin-top: 7px;">Patente: </label>
+									<label>Patente: </label>
 									<input type="text" id="patente" class="form-control" />
 								</div>
 							</div>
 
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label style="margin-top: 7px;">N° de Motor
+									<label>N° de Motor
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="num_motor" class="form-control" />
+									<input type="text" id="num_motor" class="form-control obligatorio" />
 								</div>
 							</div>
 
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label style="margin-top: 7px;">Indice
+									<label>Indice
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="indice" class="form-control" placeholder="Buscar Indice..." />
+									<input type="text" id="indice" class="form-control obligatorio" placeholder="Buscar Indice..." />
 								</div>
 							</div>
 
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label style="margin-top: 7px;">Motor
+									<label>Motor
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="motor" class="form-control" />
+									<input type="text" id="motor" class="form-control obligatorio" />
 								</div>
 							</div>
 
@@ -261,7 +261,37 @@
 				}
 			});
 
+		$('#form').bootstrapValidator({ //VALIDADOR
+			message: 'This value is not valid',
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				obligatorio: {
+					message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+					selector: '.obligatorio',
+					validators: {
+						notEmpty: {
+							message: 'Los campos obligatorios(*) deben estar completos'
+						}
+					}
+				},
+				optionsRadios: {
+					validators: {
+						notEmpty: {
+							message: 'Alguna de las opciones debe estar seleccionada'
+						}
+					}
+				}
+			}
+		});
+
 	});
+
+
+
 
 
 
@@ -318,6 +348,9 @@
 		console.log(subfamilia);
 		console.log(observacion);
 
+		if (!ValidarCampos()) {
+			return
+		}
 
 		$.ajax({
 			type: 'POST',
@@ -383,13 +416,6 @@
 	function ValidarCampos() {
 
 		var codigoI = $('#codigo_interno').prop('selectedIndex');
-		var parte_vehiculo = $('#parte').val();
-		var patente = $('#patente').val();
-		var indice = $('#indice').val();
-		var motor = $('#motor').val();
-		var num_motor = $('#num_motor').val();
-		var num_chasis = $('#num_chasis').val();
-		var condicion = $('input[name="optionsRadios"]:checked').val();
 		var cliente = $('#clientes').prop('selectedIndex');
 		var familia = $('#familia_productos').prop('selectedIndex');
 		var subfamilia = $('#subfamilia').prop('selectedIndex');
@@ -407,14 +433,6 @@
 		}
 		if (subfamilia == 0) {
 			alert("Se debe seleccionar Subfamilia de Productos");
-			return false;
-		}
-		if (condicion == null) {
-			alert("Se debe seleccionar una Condición");
-			return false;
-		}
-		if (parte == '' || indice == '' || motor == '' || num_motor) { //||num_motor==''||num_chasis==''){
-			alert("Los campos obligatorios(*) deben estar completos");
 			return false;
 		}
 
