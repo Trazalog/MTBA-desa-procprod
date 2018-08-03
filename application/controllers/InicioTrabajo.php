@@ -20,10 +20,10 @@ class InicioTrabajo extends CI_Controller {
 
 	public function Guardar_Pedido(){
 		$data = $this->input->post();
+		$data['cod_interno'] = $data['cod_interno'].$this->InicioTrabajos->Obtener_Correlativo();
 		$result = $this->InicioTrabajos->Guardar($data);
 		echo json_encode($result);
 
 	}
-	
 }
 ?>

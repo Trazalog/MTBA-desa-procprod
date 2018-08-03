@@ -1,4 +1,4 @@
-<input type="hidden" id="permission" value="<?php echo $permission; ?>">
+<input type="hidden" id="permission" value="<?php echo $permission;?>">
 <section class="content">
 	<div class="row">
 		<div class="col-xs-12">
@@ -10,22 +10,20 @@
 
 					<br>
 					<div class="row">
-
 						<div class="col-xs-3">
 							<select id="clientes" class="form-control">
 								<option selected="selected">Seleccionar Cliente...</option>
 								<?php 
-            foreach ($list as $f) {
-              echo '<option value="' . $f['cliId'] . '">' . $f['cliName'] . '</option>';
-            }
-            ?>
+									foreach ($list as $f) {
+									echo '<option value="' . $f['cliId'] . '">' . $f['cliName'] . '</option>';
+									}
+								?>
 							</select>
 						</div>
 						<div class="col-xs-3">
 							<button class="btn btn-success" data-toggle="modal" data-target="#modaleditar" onclick="rellenarModal()">
 								<i class="fa fa-fw fa-pencil" style="color: #00000; cursor: pointer;" title="Editar"></i> Editar</button>
 						</div>
-
 
 					</div>
 				</div>
@@ -75,8 +73,27 @@
 						</div>
 						<!-- /.box-body -->
 					</div>
+					<div class="form-group">
+								<label style="margin-top: 7px;">Código de Interno:
+									<strong style="color: #dd4b39">*</strong>: </label>
+								<select id="codigo_interno" class="form-control" style="width:30%;">
+									<option value="0" selected="selected">Seleccionar...</option>
+									<option value='AL'> AL - arbol de leva </option>
+									<option value='BI'> BI - Bomba Inyectora </option>
+									<option value='BIE'> BIE - Biela </option>
+									<option value='CA'> CA - cardan </option>
+									<option value='CI'> CI - Cigüeñal </option>
+									<option value='COM'> COM -  compresor </option>
+									<option value='IT'> IT - intercambiadores </option>
+									<option value='PS'> PS - piezas sueltas </option>
+									<option value='RA'> RA - Radiadores de Aceite </option>
+									<option value='TC'> TC - Tapa Cilindro </option>
+									<option value='TV'> TV - turbo </option>
+								</select>
+							</div>
 					<form class="registerForm">
 						<div class="row">
+							
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
 									<label style="margin-top: 7px;">Parte / Vehículo
@@ -86,8 +103,7 @@
 							</div>
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label style="margin-top: 7px;">Patente
-										<strong style="color: #dd4b39">*</strong>: </label>
+									<label style="margin-top: 7px;">Patente: </label>
 									<input type="text" id="patente" class="form-control" />
 								</div>
 							</div>
@@ -118,8 +134,7 @@
 
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label style="margin-top: 7px;">N° de Chásis
-										<strong style="color: #dd4b39">*</strong>: </label>
+									<label style="margin-top: 7px;">N° de Chásis: </label>
 									<input type="text" id="num_chasis" class="form-control" />
 								</div>
 							</div>
@@ -209,7 +224,7 @@
 							<textarea id="observacion" class="form-control"></textarea>
 						</div>
 
-					
+
 
 
 						<button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()">Guardar</button>
@@ -240,16 +255,7 @@
 		var sourceArray = <?php echo json_encode($listaIndices); ?>
 
 			$('#indice').autocomplete({
-				source: function(request, response) {
-					// filter array to only entries you want to display limited to 10
-					var outputArray = new Array();
-					for (var i = 0; i < sourceArray.length; i++) {
-						if (sourceArray[i].label.match(request.term)) {
-							outputArray.push(sourceArray[i]);
-						}
-					}
-					response(outputArray.slice(0, 10));
-				},
+				source: sourceArray,
 				select: function(event, ui) {
 					$('#motor').val(ui.item.data);
 				}
@@ -284,6 +290,7 @@
 	});
 
 	function guardarPedido() {
+		var codigoI = $('#codigo_interno option:selected').val();
 		var parte_vehiculo = $('#parte').val();
 		var patente = $('#patente').val();
 		var indice = $('#indice').val();
@@ -297,8 +304,8 @@
 		var subfamilia = $('#subfamilia option:selected').text();
 		var observacion = $('#observacion').val();
 		var clie_id = id_cliente_seleccionado;
-	
 
+		console.log(codigoI);
 		console.log(parte_vehiculo);
 		console.log(patente);
 		console.log(indice);
@@ -327,6 +334,7 @@
 				"observacion": observacion,
 				"familia_producto": familia,
 				"subfamilia": subfamilia,
+				"cod_interno": codigoI,
 				"clie_id": clie_id
 			},
 			url: 'index.php/InicioTrabajo/Guardar_Pedido',
@@ -374,6 +382,7 @@
 
 	function ValidarCampos() {
 
+		var codigoI = $('#codigo_interno').prop('selectedIndex');
 		var parte_vehiculo = $('#parte').val();
 		var patente = $('#patente').val();
 		var indice = $('#indice').val();
@@ -384,7 +393,10 @@
 		var cliente = $('#clientes').prop('selectedIndex');
 		var familia = $('#familia_productos').prop('selectedIndex');
 		var subfamilia = $('#subfamilia').prop('selectedIndex');
-
+		if (codigoI == 0) {
+			alert("Se debe seleccionar el Codigo de Interno");
+			return false;
+		}
 		if (cliente == 0) {
 			alert("Se debe seleccionar un cliente");
 			return false;
@@ -401,7 +413,7 @@
 			alert("Se debe seleccionar una Condición");
 			return false;
 		}
-		if (parte == '' || patente == '' || indice == '' || motor == '') { //||num_motor==''||num_chasis==''){
+		if (parte == '' || indice == '' || motor == '' || num_motor) { //||num_motor==''||num_chasis==''){
 			alert("Los campos obligatorios(*) deben estar completos");
 			return false;
 		}
