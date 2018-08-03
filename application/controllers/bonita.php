@@ -8,7 +8,7 @@ class Bonita extends CI_Controller {
 		$this->load->model('Bonitas');
 	}
 
-	public function conexion(){		
+	public function conexion($metodo){		
 
 		$param = $this->Bonitas->conexiones();
 		if (isset($param)) {
@@ -18,7 +18,14 @@ class Bonita extends CI_Controller {
 		}
 	}
 
-
+	public function entornoPut(){
+		$param = $this->Bonitas->entornoPut();
+		if (isset($param)) {
+			return $param;
+		}else{
+			return false;
+		}
+	}
 
 
 }	

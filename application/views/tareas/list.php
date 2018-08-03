@@ -20,6 +20,7 @@
                 <th>Nro:</th>
                 <th>Descripcion:</th>
                 <th>Fecha:</th>
+                <th>id tarea bonit</th>
                 <!-- <th>Estado:</th> -->     
               </tr>
             </thead>
@@ -27,22 +28,27 @@
               <?php
 
                 $lista = json_decode($list,true);
-
+                // echo "<pre>";
+                // var_dump($lista);
                 foreach($lista as $f)
                 {
                   $id=$f["id"];
 
                   echo '<tr id="'.$id.'" class="'.$id.'" >';
                   echo '<td>';
-                  if (strpos($permission,'Del') !== false) 
-                  {
-                  echo '<button type="button" id="btncolor" class="btn btn-success" data-toggle="modal" data-target="#finalizar">
-                          <span class="glyphicon glyphicon-ok"></span>  </button> ';
-                  }
+                    if (strpos($permission,'Del') !== false){
+                    echo '<button type="button" id="btncolor" class="btn btn-success" data-toggle="modal" data-target="#finalizar">
+                            <span class="glyphicon glyphicon-ok"></span>  </button> ';
+                    }
                   echo '</td>';
                   echo '<td class="celda" style="text-align: left">'.$f['processId'].'</td>';
                   echo '<td class="celda" style="text-align: left">'.$f['displayName'].'</td>';
                   echo '<td class="celda" style="text-align: left">'.$f['reached_state_date'].'</td>';
+                  
+                  // id de tarea en bonita
+                  //echo '<td class="celda" style="text-align: left">'.$f['id'].'</td>';
+
+                  echo '<td class="celda" style="text-align: left">'.$f['id'].'</td>';
                   // echo '<td class="celda" style="text-align: left">'.($f['estado'] == 'TE' ? '<small class="label pull-left bg-orange">Parcial</small>' : ($f['estado'] == 'C' ? '<small class="label pull-left bg-green">Iniciada</small>' : ($f['estado'] == 'P' ? '<small class="label pull-left bg-blue">Pedido</small>' : ($f['estado'] == 'As' ? '<small class="label pull-left bg-yellow">Asignado</small>' : '<small class="label pull-left bg-red">Entregado</small>')))).'</td>';
                   
                   echo '</tr>';
@@ -62,26 +68,90 @@
 <script>
   
      var idfin="";
+var id_tarea = "";
+//Tomo valor de la celda y carga detalle de la tarea
+  $('.celda').click( function () {
+    //console.log("num orden");
+    // tomar de aca id de orden e id de tarea para bonita
+    // var id_orden = $(this).parents('tr').find('td').eq(1).html();
+    
+    //var idTarBonita = $(this).parents('tr').find('td').eq(1).html();
+    var idTarBonita = $(this).parents('tr').find('td').eq(4).html();
+    console.log('id tarea INTERNO de bonita: ');
+    console.log(idTarBonita);
+    
+    var id_orden = 17;
+    getIdTareaTraJobs(idTarBonita,id_orden);
 
-    //Tomo valor de la celda y carga detalle de la tarea
-      $('.celda').click( function () {
-        console.log("num orden");
-        var id_orden= $(this).parents('tr').find('td').eq(1).html();
-        idfin = id_orden;
-        console.log(idfin);
-        WaitingOpen();
-        // $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + idfin);
-        $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/");
-        WaitingClose();
-      });
+    idfin = id_orden;
+    //console.log(idfin);
+    
+  });
 
-      // boton terminar tarea  
-      $('.btn').click( function () {
-        console.log("num orden");
-        var id_orden= $(this).parents('tr').find('td').eq(1).html();
-        idfin = id_orden;
-        console.log(idfin);
+  function verTarea(id_orden,idTJobs,idTarBonita){
+    WaitingOpen();    
+    $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + id_orden + "/" + idTJobs + "/" + idTarBonita+ "/");
+    WaitingClose();
+  }
+
+  function getIdTareaTraJobs(idTarBonita,id_orden){
+    var idTJobs = "";
+    $.ajax({
+            type: 'POST',
+            data: { idTarBonita: idTarBonita},
+            url: 'index.php/Tarea/getIdTareaTraJobs', 
+            success:function(data){
+                    
+                    console.log('value en lista: ');
+                    console.table(data);
+                    idTJobs = data['value'];    
+                    verTarea(id_orden,idTJobs,idTarBonita);                    
+                  },
+              
+            error: function(result){
+                  console.log(result);
+                },
+            dataType: 'json'
+        });
+  }
+
+
+  // boton terminar tarea  
+  $('.btn').click( function () {
+    console.log("num orden");
+    var id_orden= $(this).parents('tr').find('td').eq(1).html();
+    idfin = id_orden;
+    console.log(idfin);
+  });
+
+      // Datatable
+  $(function () {
+      
+      $('#sector').DataTable({
+          "paging": true,
+          "lengthChange": true,
+          "searching": true,
+          "ordering": true,
+          "info": true,
+          "autoWidth": true,
+          "language": {
+                "lengthMenu": "Ver _MENU_ filas por página",
+                "zeroRecords": "No hay registros",
+                "info": "Mostrando pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "No hay registros disponibles",
+                "infoFiltered": "(filtrando de un total de _MAX_ registros)",
+                "sSearch": "Buscar:  ",
+                "oPaginate": {
+                    "sNext": "Sig.",
+                    "sPrevious": "Ant."
+                  }
+          }
       });
+    });
+
+
+
+
 
 /*
 
@@ -151,37 +221,8 @@
       }
 
 */
-  // Datatable
-  $(function () {
-      
-      $('#sector').DataTable({
-          "paging": true,
-          "lengthChange": true,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": true,
-          "language": {
-                "lengthMenu": "Ver _MENU_ filas por página",
-                "zeroRecords": "No hay registros",
-                "info": "Mostrando pagina _PAGE_ de _PAGES_",
-                "infoEmpty": "No hay registros disponibles",
-                "infoFiltered": "(filtrando de un total de _MAX_ registros)",
-                "sSearch": "Buscar:  ",
-                "oPaginate": {
-                    "sNext": "Sig.",
-                    "sPrevious": "Ant."
-                  }
-          }
-      });
-    });
 
 
-  // function regresa(){ 
-  //   $('.content').empty();
-  //   WaitingClose();
-  //   $(".content").load("<?php echo base_url(); ?>index.php/Taller/index/<?php echo $permission; ?>");
-  // }  
 
   
 </script>

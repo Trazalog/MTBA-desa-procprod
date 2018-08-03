@@ -62,9 +62,31 @@ class Forms extends CI_Model
         $response = $this->db->insert_batch('frm_formularios_completados', $dat);       
 	}
 
-	// Trae form para dibujar pantalla (agregar where de id de form)
-	function get_form(){
+	// Trae form asoc a id de tarea
+	function getFormTarea($id_tarea){
 		
+		$this->db->select('tareas.form_asoc');
+		$this->db->from('tareas');		
+		$this->db->where('tareas.id_tarea', $id_tarea);
+		
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->result();	
+	 	}else{	
+	 		return false;
+	 	}
+	}
+
+	// Trae form para dibujar pantalla (agregar where de id de form)
+	function get_form($id_tarea = null){
+		
+		$idForm = $this->getFormTarea($id_tarea);
+
+		// para buscar buscar por id de form agregar:
+		//AND form.form_id = $idForm
+
+
 		$sql = "SELECT	form.form_id,
 						form.nombre,
 						form.habilitado,
@@ -89,7 +111,10 @@ class Forms extends CI_Model
 						where FORM.FORM_ID = CATE.FORM_ID 
 						AND CATE.CATE_ID = GRUP.CATE_ID 
 						AND GRUP.GRUP_ID = VALO.GRUP_ID 
-						AND TIDA.TIDA_ID = VALO.TIDA_ID						
+						AND TIDA.TIDA_ID = VALO.TIDA_ID	
+
+						
+
 						ORDER BY cate.ORDEN,grup.ORDEN,valo.ORDEN";
 						//ORDER BY idCategoria,nomGrupo,VALO_ID";	
 

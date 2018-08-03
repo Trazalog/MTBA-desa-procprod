@@ -18,6 +18,11 @@ class Form extends CI_Controller {
 	    $this->load->view('form/view_', $data);
 	}
 
+	// Devuelve formulario asociado a la Tarea por id
+	public function formTarea(){
+		$data['form'] = $this->Forms->get_form($id_tarea);
+	}
+
 	// trae valores validos para llenar componentes
 	public function getValValido(){
 
@@ -28,7 +33,7 @@ class Form extends CI_Controller {
 
 	// guarda  form commpletado (revisar no funciona bien)
 	public function guardar(){
-		
+		//  array con id de dato->valor
 		$datos = $this->input->post();
 
 		dump_exit($datos);
@@ -37,18 +42,20 @@ class Form extends CI_Controller {
         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado
 
         $i = 1;// para guardar el orden de categorias, grupos y valores
-		foreach ($datos as $key => $value) {			
+		foreach ($datos as $key => $value) {	
+			//trae array con info de dato por id		
 			$data = $this->Forms->getDatos($key);
 			$data['USUARIO'] = $usrId;
 			$data['ORDEN'] = $i;
 			// echo "  key: ";
 			// echo($key);
 			// echo "---------------------------";
-			//dump_exit($data);
+			dump_exit($data);
 
-			$this->Forms->setForm($data);
+			//$this->Forms->setForm($data);
 			$i++;
 		}
+
 		
 		//echo json_encode(true);	usala para el alburo nomas
 	}
