@@ -1,5 +1,0 @@
-<?php 
-
-    $vistaHead;
-    $vistaForm;
-?>
