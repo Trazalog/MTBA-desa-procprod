@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = '';
+$config['base_url'] = 'http://localhost/trazalog/MTBA-desa-procprod/';
 
 /*
 |--------------------------------------------------------------------------
@@ -467,6 +467,8 @@ $config['compress_output'] = FALSE;
 |
 */
 $config['time_reference'] = 'local';
+date_default_timezone_set('America/Argentina/San_Juan');
+//date_default_timezone_set('Europe/Berlin');
 
 /*
 |--------------------------------------------------------------------------
