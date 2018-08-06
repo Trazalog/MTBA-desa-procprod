@@ -1,21 +1,38 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+	<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * group Class
+ * Clase para el manejo de grupos, y el menú del sistema
+ * que extiende de la clase CI_Model.
+ */
+class Groups extends CI_Model {
 
-class Groups extends CI_Model
-{
+	/**
+	 * Clase constructora
+	 * Método constructor de la clase Groups.
+	 *
+	 * @return	void
+	 */
 	function __construct()
 	{
 		parent::__construct();
 	}
-	
-	function Group_List(){
 
+	/**
+     * group::index()
+     *
+     * Trae el listado de grupos de usuarios de la base de datos.
+     *
+     * @return	Array|false 	Listado de grupo de usuarios.
+     */
+	function Group_List()
+	{
 		$query= $this->db->get('sisgroups');
-		//var_dump($query);
-		
+
 		if ($query->num_rows()!=0)
 		{
-			return $query->result_array();	
+			return $query->result_array();
 		}
 		else
 		{
@@ -23,7 +40,117 @@ class Groups extends CI_Model
 		}
 	}
 
-	function getMenu($data = null){
+
+	/**
+	 * Trae todos los elementos del menu.
+	 *
+	 * @return	array 	arreglo con los elementos del menú
+	 */
+	public function mnuAll()
+	{
+		$userdata = $this->session->userdata('user_data');
+		$grpId = $userdata[0]['grpId'];
+		//$grpId = 4;
+
+		$query = $this->db->get("sismenu");
+		$all_menu = $query->result_array();
+
+		$this->db->select('sismenu.*, sisgroups.grpId');
+		$this->db->from('sisgroups');
+		$this->db->join('sisgroupsactions', 'sisgroupsactions.grpId = sisgroups.grpId', 'inner');
+		$this->db->join('sismenuactions', 'sismenuactions.menuAccId = sisgroupsactions.menuAccId', 'inner');
+		$this->db->join('sismenu', 'sismenu.id = sismenuactions.menuId', 'inner');
+		$this->db->where('sisgroups.grpId', $grpId);
+		$this->db->group_by('sismenu.name');
+		$this->db->order_by("sismenu.id", "asc");
+		$this->db->order_by("sismenu.parent", "asc");
+		$query = $this->db->get();
+
+		$menu = $query->result_array();
+
+		$main_menu = array();
+		foreach ($menu as $m) {
+			if($m['parent'] != null){
+				if( array_search($m['parent'], array_column($all_menu, 'id')) !== false)
+				{
+				    $mnuParent = $this->db->get_where("sismenu", array('id' => $m['parent']) )->result_array();
+				    //array_push($mnuParent[0], $grpId);
+				    $mnuParent[0] += ['grpId' => $grpId];
+					$main_menu[] = $mnuParent[0];
+				}
+			}
+			$main_menu[] = $m;
+
+		}
+		//dump_exit($main_menu);
+		return $main_menu;
+	}
+
+	/**
+	 * Devuelve el controlador del dash, dado un id de grupo de usuario.
+	 *
+	 * @param  int 		$grpId 	Id del grupo de usuarios.
+     * @return array 			Nombre del controlador por defecto del escritorio.
+	 */
+	function grpDash($grpId)
+	{
+		$this->db->select('grpDash');
+		$this->db->from('sisgroups');
+		$this->db->where('grpId', $grpId);
+
+		$query = $this->db->get();
+
+		$row = $query->row();
+		if (isset($row))
+		{
+			return $row->grpDash;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	/**
+	 * Devuelve el permiso del item de menú.
+	 *
+	 * @param  int 		$mnuId 	Id del menú.
+	 * @return array 	Permisos
+	 */
+	function mnuPermisos($mnuId, $grpId)
+	{
+		$this->db->select('sisactions.actDescription');
+		$this->db->from('sismenuactions');
+		$this->db->join('sisactions', 'sismenuactions.actId = sisactions.actId', 'inner');
+		$this->db->join('sisgroupsactions', 'sismenuactions.menuAccId = sisgroupsactions.menuAccId', 'left');
+		$this->db->where(array('sismenuactions.menuId' => $mnuId, 'sisgroupsactions.grpId' => $grpId));
+
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0)
+		{
+			return $query->result_array();
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+
+
+
+
+
+
+	/**
+	 * Devuelve items de menú con sus respectivos permisos.
+	 *
+	 * @param  array	$data 		Id del grupo y acción.
+	 * @return array 				Items del menu con sus permisos
+	 */
+	function getMenu($data = null)
+	{
 		if($data == null)
 		{
 			return false;
@@ -33,14 +160,18 @@ class Groups extends CI_Model
 			$action = $data['act'];
 			$idGrp = $data['id'];
 
+
 			if($idGrp == 0){
 				$name = "";
+				$dash = "";
 			} else {
 				$query= $this->db->get_where('sisgroups',array('grpId'=>$idGrp));
-				if ($query->num_rows() != 0) {				
+				if ($query->num_rows() != 0) {
 					$name = $query->row('grpName');
+					$dash = $query->row('grpDash');
 				} else {
 					$name = "";
+					$dash = "";
 				}
 			}
 
@@ -51,28 +182,30 @@ class Groups extends CI_Model
 			$menu = array();
 			$menu['read'] = $readonly;
 			$menu['name'] = $name;
+			$menu['dash'] = $dash;
 			$menu['list'] = array();
 
-			$query= $this->db->get_where('sismenu',array('menuFather'=>null));
+			$query= $this->db->get_where('sismenu',array('parent'=>null));
 			if ($query->num_rows() != 0)
 			{
 				foreach($query->result() as $items)
 				{
 					//ver si tiene hijos
-					$querySon= $this->db->get_where('sismenu',array('menuFather'=>$items->menuId));
+					$querySon= $this->db->get_where('sismenu',array('parent'=>$items->id));
+
 					if($querySon->num_rows() != 0)
 					{
 						//Añadir los hijos
 						$items->childrens = $querySon->result();
 						foreach ($items->childrens as $son) {
-							$this->db->select('sismenuactions.*, sisactions.actDescriptionSpanish as actDescription, sisgroupsactions.grpactId ');
+							$this->db->select('sismenuactions.*, sisactions.actDescriptionSpanish as actDescription, sisgroupsactions.grpactId');
 							$this->db->from('sismenuactions');
 							$this->db->join('sisactions', 'sisactions.actId = sismenuactions.actId');
 							$this->db->join('sisgroupsactions', ' sismenuactions.menuAccId = sisgroupsactions.menuAccId And sisgroupsactions.grpId = '.$idGrp.'', 'left');
-							$this->db->where(array('menuId'=>$son->menuId));
+							$this->db->where(array('menuId'=>$son->id));
 
 							$queryActions= $this->db->get();
-							$son->actions = $queryActions->result_array();	
+							$son->actions = $queryActions->result_array();
 							$son->childrens = array();
 						}
 						$items->actions = array();
@@ -86,7 +219,7 @@ class Groups extends CI_Model
 						$this->db->from('sismenuactions');
 						$this->db->join('sisactions', 'sisactions.actId = sismenuactions.actId');
 						$this->db->join('sisgroupsactions', ' sismenuactions.menuAccId = sisgroupsactions.menuAccId And sisgroupsactions.grpId = '.$idGrp.'', 'left');
-						$this->db->where(array('menuId'=>$items->menuId));
+						$this->db->where(array('menuId'=>$items->id));
 
 						$queryActions= $this->db->get();
 						$items->actions = $queryActions->result_array();
@@ -95,13 +228,17 @@ class Groups extends CI_Model
 
 				}
 
-				return $menu;	
+				return $menu;
 			}
+
 			return $data;
 		}
 	}
 
-	function setMenu($data = null){
+
+
+	function setGrupo($data = null)
+	{
 		if($data == null)
 		{
 			return false;
@@ -111,15 +248,17 @@ class Groups extends CI_Model
 			$id = $data['id'];
 			$act = $data['act'];
 			$name = $data['name'];
+			$dash = $data['dash'];
 			$options = $data['options'];
 
 			$data = array(
-					   'grpName' => $name
+					   'grpName' => $name,
+					   'grpDash' => $dash
 					);
 
 			switch($act){
 				case 'Add':
-					//Agregar grupo 
+					//Agregar grupo
 					if($this->db->insert('sisgroups', $data) == false) {
 						return false;
 					}else{
@@ -158,7 +297,7 @@ class Groups extends CI_Model
 						if($this->db->insert('sisgroupsactions', $data) == false) {
 							return false;
 						}
-					}	
+					}
 					break;
 
 				case 'Del':
@@ -171,7 +310,7 @@ class Groups extends CI_Model
 					if($this->db->delete('sisgroups', $data, array('grpId'=>$id)) == false) {
 						return false;
 					}
-					
+
 					break;
 			}
 
@@ -180,67 +319,6 @@ class Groups extends CI_Model
 		}
 	}
 
-	function buildMenu(){
-		$userdata = $this->session->userdata('user_data');
-		$grpId = $userdata[0]['grpId'];
 
 
-		$this->db->select('sismenu.*');
-		$this->db->from('sisgroups');
-		$this->db->join('sisgroupsactions', 'sisgroupsactions.grpId = sisgroups.grpId');
-		$this->db->join('sismenuactions', 'sismenuactions.menuAccId = sisgroupsactions.menuAccId');
-		$this->db->join('sismenu', 'sismenu.menuId = sismenuactions.menuId');
-		$this->db->where('sisgroups.grpId', $grpId);
-		$this->db->group_by('sismenu.menuName');
-		$this->db->order_by("sismenu.menuId", "asc");
-		$this->db->order_by("sismenu.menuFather", "asc");
-		$query = $this->db->get();
-		
-		$menu = $query->result_array();
-
-		$main_menu = array();
-		$father = 0;
-		foreach ($menu as $m) {
-			if($m['menuFather'] != null){
-				if($father != $m['menuFather']) { 
-					$father = $m['menuFather'];
-					$son = $m;
-					$item = $this->db->get_where('sismenu',array('menuId'=>$m['menuFather']));
-					$m = $item->result_array();
-					$m['actions'] = array();
-					foreach($menu as $s) {
-						if($s['menuFather'] == $father) {
-							$this->db->select('sismenuactions.*, sisactions.actDescription, sisgroupsactions.grpactId ');
-							$this->db->from('sismenuactions');
-							$this->db->join('sisactions', 'sisactions.actId = sismenuactions.actId');
-							$this->db->join('sisgroupsactions', ' sismenuactions.menuAccId = sisgroupsactions.menuAccId And sisgroupsactions.grpId = '.$grpId.'', 'left');
-							$this->db->where(array('menuId'=>$s['menuId']));
-
-							$queryActions= $this->db->get();
-							$s['actions'] = $queryActions->result_array();
-
-							$m['childrens'][] =	$s;
-						}
-					}
-
-					$main_menu[] = $m;					
-				}
-			} else {
-				$this->db->select('sismenuactions.*, sisactions.actDescription, sisgroupsactions.grpactId ');
-				$this->db->from('sismenuactions');
-				$this->db->join('sisactions', 'sisactions.actId = sismenuactions.actId');
-				$this->db->join('sisgroupsactions', ' sismenuactions.menuAccId = sisgroupsactions.menuAccId And sisgroupsactions.grpId = '.$grpId.'', 'left');
-				$this->db->where(array('menuId'=>$m['menuId']));
-
-				$queryActions= $this->db->get();
-				$m['actions'] = $queryActions->result_array();	
-				$m['childrens'] = array();
-
-				$main_menu[] = $m;
-			}		
-		}
-		
-		return $main_menu;
-	}
 }
-?>

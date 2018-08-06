@@ -30,7 +30,9 @@
 
 
               <h4><div class="col-sm-8">Nueva Tarea:
-              <input type="text" class="form-control" id="tarea"  name="tarea" placeholder="Ingrese descripcion de tarea...">
+              <select type="text" class="form-control" id="tareas"  name="tarea" >
+                <option value="0" selected="selected">Seleccionar Tarea....</option>
+              </select>
               </div></h4>
               <div class="col-xs-4">
                 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<input type="hidden"  id="numord" name="numord" value="<?php echo $id_plantilla;?>"> </input>
@@ -65,7 +67,7 @@
                           $id=$a['id_detaplantilla'];
                           echo '<tr id="'.$id.'" class="'.$id.'">';
                           echo '<td style="text-align: left; display:none">'.$a['id_detaplantilla'].'</td>';
-                          echo '<td style="text-align: left">'.$a['descripcion_deta'].'</td>';
+                          echo '<td style="text-align: left">'.$a['descripcion'].'</td>';
                           echo '<td>';
 
                           if (strpos($permission,'Del') !== false)
@@ -88,18 +90,41 @@
 </section>
 
 <script>
+(function() {
+   // your page initialization code here
+   // the DOM will be available here
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        data: '',
+        url: 'index.php/Plantilla/ObtenerTareas',
+        success: function(result){
+          var selectorA = $('#tareas');
+          for(var x=0;x<result.length;x++){
+            var opt="<option value="+result[x]['id_tarea']+">"+result[x]['descripcion']+"</option>";
+            selectorA.append(opt);
+                
+          }  
+          console.log("Cargando Tareas...OK");
+        },
+        error: function(result){
+              
+          alert("No se pudo realizar la operación");
+        }   
+    }); 
+
+})();
 
 
 //Agregar la tarea de una plantilla
 $('#agregar').click(function (e) {
     console.log("Funcion Agregar");
      WaitingOpen();
-        var descripcion=$('#tarea').val(); 
-        console.log(descripcion);
+        var idTarea=$('#tareas').val();
         var idPlantilla=$('#numord').val();
         $.ajax({
             type: 'POST',
-            data:{"descripcion":descripcion,"idPlantilla":idPlantilla},
+            data:{"id_tarea":idTarea,"id_Plantilla":idPlantilla},
             url: 'index.php/Plantilla/agregar_tarea', 
             success: function(data){
                 alert("Tarea Guardada");

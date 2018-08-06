@@ -9,15 +9,10 @@ class plantilla extends CI_Controller {
 		$this->load->model('Plantillas');
 	}
 
-	// public function agregar_tarea(){
-
-	  
-	//     $datos=$_POST['parametros'];
-	//     $result = $this->Plantillas->agregar_tareas($datos);
-	//    	if($result)
-	//       		echo $this->db->insert_id();
-	//       	else echo 0;	 
- 	//  	}
+	public function ObtenerTareas(){
+		$result = $this->Plantillas->ObtenerTareas();
+		echo json_encode($result);
+	}
 
 	public function agregar_tarea(){
 	  
