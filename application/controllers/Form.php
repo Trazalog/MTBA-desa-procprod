@@ -35,7 +35,7 @@ class Form extends CI_Controller {
 	public function guardar(){
 		//  array con id de dato->valor
 		$datos = $this->input->post();
-
+		echo "datos desde formuario: ";
 		dump_exit($datos);
 
 		$userdata = $this->session->userdata('user_data');
@@ -50,7 +50,7 @@ class Form extends CI_Controller {
 			// echo "  key: ";
 			// echo($key);
 			// echo "---------------------------";
-			dump_exit($data);
+			//dump_exit($data);
 
 			//$this->Forms->setForm($data);
 			$i++;

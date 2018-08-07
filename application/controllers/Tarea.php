@@ -37,9 +37,42 @@ class Tarea extends CI_Controller {
 		echo $idTJobs;
 	}
 
+	// verifica que el form tenga todos los campos validado en 1 
+	public function validarFormGuardado(){
+		
+		$id_listarea = $this->input->post('id_listarea');
+		$response = $this->Tareas->validarFormGuardado($id_listarea);
+		echo json_encode($response);
+	}
+
+	// Termina tarea en BPM  CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
+	public function terminarTarea(){
+		
+		// PONER EL ID DE USUARIO DINAMICO!!!!!!
+		$idTarBonita = $this->input->post('idTarBonita');
+		$estado = array (
+		  "assigned_id"	=>	5,
+		  "state"=> "completed"
+		);
+		
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "PUT";	
+		$parametros["http"]["content"] = json_encode($estado);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$response = $this->Tareas->terminarTarea($idTarBonita,$param);
+		echo json_encode($response);		
+	}
+
 	// Usr Toma tarea en BPM   CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
 	public function tomarTarea(){	
 		
+		// PONER EL ID DE USUARIO DINAMICO!!!!!!
+
 		$idTarBonita = $this->input->post('idTarBonita');
 		
 		$estado = array (
@@ -56,7 +89,6 @@ class Tarea extends CI_Controller {
 		// Variable tipo resource referencia a un recurso externo.
 		$param = stream_context_create($parametros);
 		$response = $this->Tareas->tomarTarea($idTarBonita,$param);
-
 	}
 
 	// Usr Toma tarea en BPM   CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
@@ -78,30 +110,32 @@ class Tarea extends CI_Controller {
 		// Variable tipo resource referencia a un recurso externo.
 		$param = stream_context_create($parametros);
 		$response = $this->Tareas->soltarTarea($idTarBonita,$param);
-
-	}
-
-	
+	}	
 
 	// trae datos para llenar notificaion estandar y formulario asociado
-	public function detaTarea($permission,$id_orden,$id_listarea, $idTarBonita){
+	public function detaTarea($permission,$id_orden,$id_listarea, $idTarBonita,$estadoTarea){
+		// trae id de form asociado a tarea std.
+		$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);		
+		$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd);
 		
 		$data['permission'] = $permission;
 		// datos de la tarea 
 		$data['datos'] = $this->Tareas->detaTareas($id_orden,$id_listarea);
 		$data['idTarBonita'] = $idTarBonita;
+		$data['estadoTarea']= $estadoTarea;
+		$data['idForm']	= $idForm;	
+		
 		// confirma si hay form guardado de esa listarea		
 		if ($this->Tareas->getEstadoForm($id_listarea)) {
-			echo "hay form guardado";
+			//echo "hay form guardado";
 		}else{
-			echo "no hay form guradado";
+			//echo "no hay form guradado";
 			// guarda form inicial vacio
 			$this->Tareas->setFormInicial($id_listarea);
 		}
 			
 		// carga el formulario para modal
 		$data['form'] = $this->Tareas->get_form($id_listarea);
-		//dump_exit($data);
 		$this->load->view('tareas/view_', $data);
 	}
 

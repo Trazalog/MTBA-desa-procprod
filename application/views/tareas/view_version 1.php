@@ -10,36 +10,26 @@
             <div class="col-sm-12 col-md-12">
              <div role="tabpanel" class="tab-pane">
               <div class="form-group">
-
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                  <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Tareas</a></li>
-                  <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Comentarios</a></li>
-                  <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Vista Global</a></li>    
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-
-                  <div role="tabpanel" class="tab-pane active" id="home">
-                    <!-- <h4 class="panel-heading">Tarea</h4> -->
+              
+                  <div class="panel panel-default">
+                    <h4 class="panel-heading">Tarea</h4>
                     <div class="panel-body">
-
-                      <?php
                       
-                      echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
-                      //if ($estadoTarea == "noasignado") {
-                      echo "<button class='btn btn-block btn-info' style='width: 100px; margin-top: 10px;' onclick='tomarTarea()'>Tomar tarea</button>";
-                      //}else{
-                      echo "<button class='btn btn-block btn-warning' style='width: 100px; margin-top: 10px;' onclick='soltarTarea()'>Soltar tarea</button>";
-                      //}    
+                      <?php
+                        if ($estadoTarea == "noasignado") {
+                          echo "<button class='btn btn-block btn-info' style='width: 100px; margin-top: 10px;' onclick='tomarTarea()'>Tomar tarea</button>";
+                        }else{
+                          echo "<button class='btn btn-block btn-warning' style='width: 100px; margin-top: 10px;' onclick='soltarTarea()'>Soltar tarea</button>";
+                        }    
 
-                      echo "<br>";
+                        echo "<br>";
 
-                      $userdata = $this->session->userdata('user_data');
-                      $usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
+                        $userdata = $this->session->userdata('user_data');
+                        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado  
                       ?>
 
+                      <!-- Modal formulario tarea -->
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="getformulario()">Completar Formulario</button>
 
                       <form>
                         <div class="form-group">
@@ -47,8 +37,7 @@
                             <label for="tarea">Tarea</label>
                             <input type="text" class="form-control" id="tarea" placeholder="" value="<?php echo $datos[0]['tareadescrip']  ?>" disabled>
                             <!-- id de listarea --> 
-                            <input type="text" class="" id="tbl_listarea" value="<?php echo $datos[0]['id_listarea'] ?>" >
-                            <input type="text" class="" id="idform" value="<?php echo $idForm ?>" >
+                            <input type="text" class="hidden" id="tbl_listarea" value="<?php echo $datos[0]['id_listarea'] ?>" > 
                             <!-- id de task en bonita -->
                             <input type="text" class="hidden" id="idTarBonita" value="<?php echo $idTarBonita ?>" >
                           </div>
@@ -72,21 +61,11 @@
                         <div class="form-group">
                           <div class="col-sm-12 col-md-12">
                             <label for="detalle">Detalle</label>
-                            <textarea class="form-control" id="detalle" rows="3" disabled></textarea>
+                            <textarea class="form-control" id="detalle" rows="3"></textarea>
                           </div>
-                        </div>
-
+                        </div><br>
                         <div class="form-group">
                           <div class="col-sm-12 col-md-12">
-                            <br>
-                            <!-- Modal formulario tarea -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="getformulario()">Completar Formulario</button>                          
-                          </div>  
-                        </div>  
-
-                        <div class="form-group">
-                          <div class="col-sm-12 col-md-12">
-                            <br>
                             <label for="observaciones">Observaciones</label>
                             <textarea class="form-control" id="observaciones" rows="3"></textarea>
                           </div>
@@ -95,39 +74,26 @@
 
                     </div>
                   </div>
-
-                  <div role="tabpanel" class="tab-pane" id="profile">
-                    <div class="panel-body">
-
-                    </div>
-                  </div>
-
-                  <div role="tabpanel" class="tab-pane" id="messages">
-
-                    <div class="panel-body"></div>
-                  </div>
-
-                </div>
-
               </div>
-            </div>
+             </div>
           </div>
-
+        
           <div class="modal-footer">
-            <button type="button" id="" class="btn btn-primary" onclick="">Cerrar</button>            
+            <button type="button" id="" class="btn btn-success" onclick="">Aprobar</button>
+            <button type="button" id="rechazar" class="btn btn-danger" onclick="">Rechazar</button>
             <button type="button" class="btn btn-success" onclick="">Hecho</button>
           </div>  <!-- /.modal footer -->
 
 
-        </div><!-- /.row -->       
+        </div>       
 
+        
 
-
-      </div><!-- /.box body -->
-    </div> <!-- /.box  -->
-  </div><!-- /.col -->
-</div><!-- /.row -->
+      </div><!-- /.box -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
 </section><!-- /.content -->
+
 
 
 
@@ -141,39 +107,41 @@
    // $("#genericForm").submit();
   });
 
-  // Envia formulario de tarea
-  $('#genericForm').on("submit", function (event){
-        event.preventDefault();
-        //var formData = new FormData($("#genericForm")[0]);
-        var formSerial = $("#genericForm").serializeArray();
-        //var formData = new FormData(document.getElementById("formSerial"));
+//$(document).ready(function(){
+  $("#genericForm").submit(function (event){
+  //$(document).on("submit", "#genericForm", function (event){
+      event.preventDefault();
+      var formData = new FormData($("#genericForm")[0]);
+      //var formData = new FormData(document.getElementById("genericForm"));
+      console.table(formData);
+      $.ajax({
+        url:$("form").attr("action"),
+        type:$("form").attr("method"),
+        data:formData,
+        cache:false,
+        contentType:false,
+        processData:false,
         
-        console.table(formSerial);
-        $.ajax({
-          url:$("form").attr("action"),
-          type:$("form").attr("method"),
-          data:formSerial,
-          cache:false,
-          contentType:false,
-          processData:false,
-          
-          success:function(respuesta){
-            if (respuesta==="exito") {
-              alert("Los datos han sido guardados correctamente");
-              //$("#msg-error").hide();
-              //$("#form-create-empleado")[0].reset();
-            }
-            else if(respuesta==="error"){
-              alert("Los datos no se han podido guardar");
-            }
-            else{
-              //$("#msg-error").show();
-              //$(".list-errors").html(respuesta);
-              alert("Los datos no se han podido guardar");
-            }
+        success:function(respuesta){
+          if (respuesta==="exito") {
+            alert("Los datos han sido guardados correctamente");
+            $("#msg-error").hide();
+            $("#form-create-empleado")[0].reset();
           }
-        });
+          else if(respuesta==="error"){
+            alert("Los datos no se han podido guardar");
+          }
+          else{
+            $("#msg-error").show();
+            $(".list-errors").html(respuesta);
+          }
+        }
+      });
   });
+//});
+  
+
+
 
 
 
@@ -203,11 +171,11 @@
            });           
   });  
   // validacion de campo observacion para btn rechazar
-  // $('#rechazar').click(function(e){
-  //   if ($('#observaciones').val() == ""){
-  //     alert('Campo Detalle vacio');
-  //   }
-  // }); 
+  $('#rechazar').click(function(e){
+    if ($('#observaciones').val() == ""){
+      alert('Campo Detalle vacio');
+    }
+  }); 
 
   // Toma tarea en BPM
   function tomarTarea(){
@@ -227,9 +195,10 @@
                 },
             dataType: 'json'
     });
+
   }
 
-  // Soltar tarea en BPM
+   // Soltar tarea en BPM
   function soltarTarea(){
     
     var idTarBonita = $('#idTarBonita').val();
@@ -247,16 +216,14 @@
                 },
             dataType: 'json'
     });
+
   }
 
   // trae valores validos para llenar form asoc.
-  
-  function getformulario(event) {    
+  $(document).ready(function(event) {    
     
-    var estadoTarea = $('#estadoTarea').val();
-    // toma id de form asociado a listarea en TJS
-    var idForm = $('#idform').val();
-    console.log('id de form: ');
+    // toma id de form asociado
+    var idForm = $('#idForm').val();
     console.log(idForm);
 
     idForm = 1;
@@ -267,8 +234,7 @@
             data: { idForm: idForm},
             url: 'index.php/Tarea/getValValido', 
             success: function(data){               
-                    //console.log('valores de componentes: ');
-                    //console.table(data);                   
+                    //console.log(data);                   
                     //$(tr).remove();
                     llenaComp(data);
                   },              
@@ -278,32 +244,32 @@
                 },
             dataType: 'json'
     });
+
+    // llena los componentes de form asoc con valores validos
+    function llenaComp(data){
+     
+      $.each(data,function( index ) {
+        //$( "#" + i ).append(  );
+        var idSelect = data[index]['idValor'];        
+        //console.log('idvalor: '+ data[index]['idValor'] + '-- valor: ' + data[index]['VALOR']);
+        var i = 0;
+        var valor = "";
+        var valorSig = "";      
+
+        $('#'+idSelect).append($('<option />', 
+          { value: data[index]['VALOR'], text: data[index]['VALOR'] }));
+
+        valor = data[index]['idValor'];     
+        valorSig = data[index]['idValor'];  
+      });
+    }
+
+
+  });  
+
+  function getformulario(){
+      //console.log('get form funcion');
   }
-
-  // llena los componentes de form asoc con valores validos
-  function llenaComp(data){
-   
-    $.each(data,function( index ) {
-      //$( "#" + i ).append(  );
-      var idSelect = data[index]['idValor'];        
-      //console.log('idvalor: '+ data[index]['idValor'] + '-- valor: ' + data[index]['VALOR']);
-      var i = 0;
-      var valor = "";
-      var valorSig = "";      
-
-      $('#'+idSelect).append($('<option />', 
-        { value: data[index]['VALOR'], text: data[index]['VALOR'] }));
-
-      valor = data[index]['idValor'];     
-      valorSig = data[index]['idValor'];  
-    });
-  }
-
-
-  //}
-  //);  
-
-
 
 </script>
 

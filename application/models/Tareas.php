@@ -15,6 +15,28 @@ class Tareas extends CI_Model
 		return $tareas;		
 	}
 
+	// Terminar Tarea
+	function terminarTarea($idTarBonita,$param){
+
+		// en 35 poner el id de tarea dinamico!!!!
+
+		// try {
+		//     $content = file_get_contents('https://en.wikipedia.org/wiki/Cat#/media/File:Large_Siamese_cat_tosses_a_mouse.jpg');
+
+		//     if ($content === false) {
+		//         // Handle the error
+		//     }
+		// } catch (Exception $e) {
+		//     // Handle exception
+		// }
+
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/44', false, $param);
+		return $response;
+
+		// echo "response: ";
+		// var_dump($response);
+	}
+
 	// Tomar Tareas 
 	function tomarTarea($idTarBonita,$param){
 
@@ -62,6 +84,28 @@ class Tareas extends CI_Model
 		
 		return $idTJobs;
 	}
+
+	// verifica que el form tenga todos los campos validado en 1 
+	function validarFormGuardado(){		
+
+		$sql ="SELECT
+		COUNT(*) as novalidos
+		FROM
+		frm_formularios_completados
+		WHERE
+		frm_formularios_completados.LITA_ID = 255 AND
+		VALIDADO = 0";
+
+		$query = $this->db->query($sql);
+
+		if( $query->row('novalidos') > 0 ){
+	    	
+	    	return false;
+	    }
+	    else{
+	    	return true;
+	    }
+	} 
 
 	// devuelve detalle de tareas para notificacion standart
 	function detaTareas($id_orden,$id_tarea){	
@@ -152,6 +196,21 @@ class Tareas extends CI_Model
 
 		if ($query->num_rows()!=0){
 	 		return $query->row('id_tarea');	
+	 	}else{	
+	 		return false;
+	 	}
+	}
+
+	// Devuelve form asociado a una tarea std
+	function getIdFormPorIdTareaSTD($idTareaStd){		
+
+		$this->db->select('tareas.form_asoc');
+		$this->db->from('tareas');
+		$this->db->where('tareas.id_tarea', $idTareaStd);
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->row('form_asoc');	
 	 	}else{	
 	 		return false;
 	 	}
