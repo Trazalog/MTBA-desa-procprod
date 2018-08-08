@@ -144,15 +144,13 @@
   // Envia formulario de tarea
   $('#genericForm').on("submit", function (event){
         event.preventDefault();
-        //var formData = new FormData($("#genericForm")[0]);
-        var formSerial = $("#genericForm").serializeArray();
-        //var formData = new FormData(document.getElementById("formSerial"));
-        
-        console.table(formSerial);
+        var formData = new FormData($("#genericForm")[0]);
+      
+        console.table(formData);
         $.ajax({
-          url:$("form").attr("action"),
-          type:$("form").attr("method"),
-          data:formSerial,
+          url:'index.php/Form/guardar',
+          type:'POST',
+          data:formData,
           cache:false,
           contentType:false,
           processData:false,
@@ -169,7 +167,7 @@
             else{
               //$("#msg-error").show();
               //$(".list-errors").html(respuesta);
-              alert("Los datos no se han podido guardar");
+              alert("Los datos no se han guardado");
             }
           }
         });
@@ -283,6 +281,10 @@
   // llena los componentes de form asoc con valores validos
   function llenaComp(data){
    
+    var id_listarea = $('#tbl_listarea').val();
+    $('#id_listarea').val(id_listarea);
+
+
     $.each(data,function( index ) {
       //$( "#" + i ).append(  );
       var idSelect = data[index]['idValor'];        
@@ -319,6 +321,7 @@
             <div class="box-body">
               <div class="row" >
                 <div class="col-sm-12 col-md-12">
+                  
                   <?php
                   cargarFormulario($form);
                   ?>

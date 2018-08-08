@@ -116,8 +116,8 @@
             url: 'index.php/Tarea/getIdTareaTraJobs', 
             success:function(data){
                     
-                    console.log('value en lista: ');
-                    console.table(data);
+                    //console.log('value en lista: ');
+                    //console.table(data);
                     idTJobs = data['value'];    
                     verTarea(id_orden,idTJobs,idTarBonita,estadoTarea);                    
                   },
@@ -150,8 +150,8 @@
             url: 'index.php/Tarea/getIdTareaTraJobs', 
             success:function(data){
 
-                    console.log('value en lista: ');
-                    console.log(data['value']);
+                   // console.log('value en lista: ');
+                   // console.log(data['value']);
                     idTJobs = data['value'];
                     validarFormGuardado(idTJobs);                       
                   },

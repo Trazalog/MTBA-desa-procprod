@@ -35,11 +35,25 @@ class Form extends CI_Controller {
 	public function guardar(){
 		//  array con id de dato->valor
 		$datos = $this->input->post();
-		echo "datos desde formuario: ";
-		dump_exit($datos);
+		$data = json_encode($datos);
+		//echo "datos desde formuario: ";
+		//dump_exit($data);
 
 		$userdata = $this->session->userdata('user_data');
         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado
+
+		$id_listarea = array_shift($datos);
+		$response = $this->Forms->deleteFormComp($id_listarea)
+		if ($response) {
+			echo "respuesta de delete: ";
+			echo $response;
+		}
+		//echo "listarea: ";
+		//var_dump($id_listarea);
+		//echo "demas datos: ";
+		//dump_exit($datos);
+
+
 
         $i = 1;// para guardar el orden de categorias, grupos y valores
 		foreach ($datos as $key => $value) {	
@@ -52,7 +66,7 @@ class Form extends CI_Controller {
 			// echo "---------------------------";
 			//dump_exit($data);
 
-			//$this->Forms->setForm($data);
+			$this->Forms->setForm($data);
 			$i++;
 		}
 

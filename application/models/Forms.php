@@ -155,10 +155,22 @@ class Forms extends CI_Model
 	    }				
 	}
 
+
+	// borra datso de form anterior
+	function deleteFormComp($id_listarea){
+		$response = $this->db->delete('frm_formularios_completados', array('LITA_ID' => $id_listarea));
+		return $response;
+	}
+
 	// Inserta datos de Form en frm_formularios_completados
 	function setForm($datos){
-		//dump_exit($datos);
-		$response = $this->db->insert('frm_formularios_completados', $datos);
+		
+
+		
+		
+		//$response = 
+		$this->db->insert('frm_formularios_completados', $datos);
+
 		return $response;
 	}
 
