@@ -8,8 +8,8 @@ class Bonita extends CI_Controller {
 		$this->load->model('Bonitas');
 	}
 
-	public function conexion(){		
-
+	public function conexion()
+	{		
 		$param = $this->Bonitas->conexiones();
 		if (isset($param)) {
 			return $param;
@@ -17,8 +17,5 @@ class Bonita extends CI_Controller {
 			return false;
 		}
 	}
-
-
-
 
 }	
