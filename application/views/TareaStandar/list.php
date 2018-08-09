@@ -5,7 +5,7 @@
       <div class="box">
         <div class="box-header">
           <center>
-          <h2> Tareas </h2>  
+          <h2>Tareas Standard</h2>  
           </center>
           <?php
           if (strpos($permission,'Add') !== false) {
@@ -17,10 +17,10 @@
           <table id="Tarea" class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th width="20%">Acciones</th>
-                <th>id_tarea</th>
-                <th>descripcion</th>
-                <th>duracion_std</th>
+                <th width="20%">Acciones:</th>
+                <th>Id:</th>
+                <th>Descripcion:</th>
+                <th>Duracion:</th>
               </tr>
             </thead>
             <tbody>
@@ -38,9 +38,7 @@
                   if (strpos($permission,'Del') !== false) {
                    echo '<i class="fa fa-trash" style="color: #8eb29a; cursor: pointer; margin-left: 15px;" title="Eliminar Tarea" ></i>';
                   }
-                  if (strpos($permission,'View') !== false) {
-                    echo '<i class="fa fa-eye" style="color: #8eb29a; cursor: pointer; margin-left: 15px;" title="Ver Detalles" ></i>';
-                  }
+                  
                   echo '</td>';
                   echo '<td style="text-align: left">'.$f['id_tarea'].'</td>';
                   echo '<td style="text-align: left">'.$f['descripcion'].'</td>';
@@ -73,7 +71,8 @@
       $('#error').fadeIn('slow');
       return;
     }
-    $('#error').fadeOut('slow');          $.ajax({
+    $('#error').fadeOut('slow');          
+    $.ajax({
              type: 'POST',
              data: {    "descripcion":descripcion,  "duracion_std":duracion_std },
              url: 'index.php/Tareaest/Guardar_Tarea', 
@@ -104,7 +103,7 @@
        '</div>'+
           '<div class="row">'+
             '<div class="col-xs-4">'+
-               ' <label style="margin-top: 7px;">descripcion <strong style="color: #dd4b39">*</strong>: </label>'+
+               ' <label style="margin-top: 7px;">Descripcion: <strong style="color: #dd4b39">*</strong>: </label>'+
             '</div>'+
             '<div class="col-xs-5">'+
                 '<input type="text" class="form-control"  id="descripcionE" value="'+descripcion+'" >'+
@@ -112,7 +111,7 @@
         '</div><br>'+
           '<div class="row">'+
             '<div class="col-xs-4">'+
-               ' <label style="margin-top: 7px;">duracion_std <strong style="color: #dd4b39">*</strong>: </label>'+
+               ' <label style="margin-top: 7px;">Duracion: <strong style="color: #dd4b39">*</strong>: </label>'+
             '</div>'+
             '<div class="col-xs-5">'+
                 '<input type="text" class="form-control"  id="duracion_stdE" value="'+duracion_std+'" >'+
@@ -202,8 +201,9 @@
                   }
           }
       });
-    });</script>
-<<div class="modal" id="modalAgregar">
+    });
+</script>
+<div class="modal" id="modalAgregar">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -222,7 +222,7 @@
 
         <div class="row"> 
         <div class="col-xs-4">
-                        <label style="margin-top: 7px;">descripcion <strong style="color: #dd4b39">*</strong>: </label>
+                        <label style="margin-top: 7px;">Descripcion: <strong style="color: #dd4b39">*</strong>: </label>
                         </div>
                         <div class="col-xs-5">
                         <input type="text" class="form-control"  id="descripcion" >
@@ -230,7 +230,7 @@
 </div><br>
         <div class="row"> 
         <div class="col-xs-4">
-                        <label style="margin-top: 7px;">duracion_std <strong style="color: #dd4b39">*</strong>: </label>
+                        <label style="margin-top: 7px;">Duracion: <strong style="color: #dd4b39">*</strong>: </label>
                         </div>
                         <div class="col-xs-5">
                         <input type="text" class="form-control"  id="duracion_std" >

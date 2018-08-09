@@ -7,18 +7,16 @@
 					<center>
 						<h2> Nota de Pedido </h2>
 					</center>
-
-					<br>
 					<div class="row">
 
 						<div class="col-xs-3">
 							<select id="clientes" class="form-control">
 								<option selected="selected">Seleccionar Cliente...</option>
 								<?php 
-            foreach ($list as $f) {
-              echo '<option value="' . $f['cliId'] . '">' . $f['cliName'] . '</option>';
-            }
-            ?>
+									foreach ($list as $f) {
+									echo '<option value="' . $f['cliId'] . '">' . $f['cliName'] . '</option>';
+									}
+									?>
 							</select>
 						</div>
 						<div class="col-xs-3">
@@ -104,7 +102,7 @@
 								<div class="form-group">
 									<label style="margin-top: 7px;">Indice
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="indice" class="form-control" />
+									<input type="text" id="indice" class="form-control" placeholder="Buscar Indice..." />
 								</div>
 							</div>
 
@@ -209,48 +207,7 @@
 							<textarea id="observacion" class="form-control"></textarea>
 						</div>
 
-						<div class="row">
-							<div class="col-xs-12 col-sm-10">
-								<br>
-								<div class="form-group">
-									<div class="row">
 
-										<div class="col-xs-3">
-											<label style="margin-top: 7px;">Entrega del Servicio:
-												<strong style="color: #dd4b39">*</strong>: </label>
-										</div>
-										<div class="col-xs-2">
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionEntregaSevicio" id="optionsRadios1" value="C/Banco" /> C/Banco
-												</label>
-											</div>
-										</div>
-										<div class="col-xs-2">
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionEntregaSevicio" id="optionsRadios2" value="Armado" /> Armado
-												</label>
-											</div>
-										</div>
-										<div class="col-xs-3">
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionEntregaSevicio" id="optionsRadios3" value="Semi-Armado" /> Semi-Armado
-												</label>
-											</div>
-										</div>
-										<div class="col-xs-2">
-											<div class="radio">
-												<label>
-													<input type="radio" name="optionEntregaSevicio" id="optionsRadios3" value="Desarmado" /> Desarmado
-												</label>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 
 
 						<button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()">Guardar</button>
@@ -278,16 +235,23 @@
 			autoclose: true
 		});
 
-		var currencies = <?php echo json_encode($listaIndices); ?> ;
-		console.log(currencies);
+		var sourceArray = <?php echo json_encode($listaIndices); ?>
 
-		$('#indice').autocomplete({
-
-			source: currencies,
-			select: function(event, ui) {
-				$('#motor').val(ui.item.data);
-			}
-		});
+			$('#indice').autocomplete({
+				source: function(request, response) {
+					// filter array to only entries you want to display limited to 10
+					var outputArray = new Array();
+					for (var i = 0; i < sourceArray.length; i++) {
+						if (sourceArray[i].label.match(request.term)) {
+							outputArray.push(sourceArray[i]);
+						}
+					}
+					response(outputArray.slice(0, 10));
+				},
+				select: function(event, ui) {
+					$('#motor').val(ui.item.data);
+				}
+			});
 
 	});
 
@@ -331,7 +295,7 @@
 		var subfamilia = $('#subfamilia option:selected').text();
 		var observacion = $('#observacion').val();
 		var clie_id = id_cliente_seleccionado;
-		var entrega_servicio = $('input[name="optionEntregaSevicio"]:checked').val();
+
 
 		console.log(parte_vehiculo);
 		console.log(patente);
@@ -344,8 +308,6 @@
 		console.log(familia);
 		console.log(subfamilia);
 		console.log(observacion);
-		console.log(clie_id);
-		console.log(entrega_servicio);
 
 
 		$.ajax({
@@ -363,7 +325,6 @@
 				"observacion": observacion,
 				"familia_producto": familia,
 				"subfamilia": subfamilia,
-				"entrega_servicio": entrega_servicio,
 				"clie_id": clie_id
 			},
 			url: 'index.php/InicioTrabajo/Guardar_Pedido',
@@ -561,7 +522,7 @@
 
 <!-- Modal editar-->
 <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog modal-lg" role="document" style="width: 40%">
+	<div class="modal-dialog modal-md" role="document" style="width: 100">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -572,88 +533,88 @@
 			</div>
 			<div class="modal-body input-group ui-widget" id="modalBodyArticle">
 				<div class="row">
-					<div class="col-sm-12 col-md-12">
+					<div class="col-md-12 col-md-10">
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Nombre
 									<strong style="color: #dd4b39">*</strong>: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="Nombre" id="nombre1" name="nombreE">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Apellido
 									<strong style="color: #dd4b39">*</strong>: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="Apellido" id="Apellido1" name="Apellido1">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Dni
 									<strong style="color: #dd4b39">*</strong>: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="12345678" id="dni1" name="dni1" maxlength="8">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Fec. Nacimiento
 									<strong style="color: #dd4b39">*</strong>: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="date" class="form-control" id="fecha1" name="fecha1" placeholder="dd-mm-aaaa">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Domicilio: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="input" class="form-control" placeholder="ej: Barrio Los Olivos M/E Casa/23" id="dom1" name="dom1">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Teléfono: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="0264 - 4961020" id="tel1" name="tel1">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Celular: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="0264 - 155095888" id="cel" name="cel">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Mail: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="claudia.perez@hotmail.com" id="mail" name="mail">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Zona: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<select class="form-control" id="zona" name="zona" value="">
 
 								</select>
@@ -661,10 +622,10 @@
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Días proxímo cobro: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<select class="form-control" id="dia1" name="dia1">
 									<?php 
                   for ($i = 1; $i < 31; $i++) {

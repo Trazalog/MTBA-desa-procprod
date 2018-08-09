@@ -1,27 +1,13 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
+
 <section class="content">
-
-<?php
-	
-	if($selectorFormulario=='on'){
-	echo '<select id="formularios">';
-	echo  '<option>Seleccionar...</option>';
-		
-		foreach($forms as $f){
-		echo '<option value="'.$f['form_id'].'">'.$f['nombre'].'</option>';
-		}
-	
-
-	echo '</select>';}
-	?>
 	<div class="row">
 		<div class="col-md-12">
 			<div class="box">
 				<div class="box-header">
 					<Center>
 						<h2 class="title ">
-							<?php 
-							echo $list[0]['nombre']; ?>
+							<?php echo $list[0]['nombre']; ?>
 						</h2>
 					</Center>
 
@@ -29,12 +15,11 @@
           // if (strpos($permission,'Add') !== false) {
           //   echo '<button class="btn btn-block btn-success" style="width: 100px; margin-top: 10px;" id="listado">Ver Listado</button>';
           // }
-		  ?>
-		
-		</div>
+          ?>
+				</div>
 				<!-- /.box-header -->
 				<div class="box-body">
-					<form class="form-horizontal" style="padding:20px 20px;" role="form" action="<?php base_url();?>Form/guardar"
+					<form id="form" class="form-horizontal" style="padding:20px 20px;" role="form" action="<?php base_url();?>Form/guardar"
 					 method="POST">
 						<div class="row">
 
@@ -53,7 +38,7 @@
                     foreach($list as $a){
                       
                       // Muestra categoria
-                      if(strlen($a["nomCategoria"])>0){
+                     
                     
                           $regCat = $a['nomCategoria'];
                           if ($categ != $regCat) {
@@ -67,7 +52,7 @@
                             //echo "<br>";
                             $categ = $a['nomCategoria'];
                           }                        
-						}
+                    
                         
                       if(strlen($a["nomGrupo"])>0){
 
@@ -93,9 +78,7 @@
                             //echo "<br>";
                           }
                                               
-					  }
-					  
-					
+                      }
                      
                       // Muestra el nombre del dato  
                       echo "<tr>";
@@ -104,10 +87,11 @@
                         $etiqueta = $a["nomTipoDatos"]; 
                       //echo $a["nomValor"];
 
-                        echo "<h4 style='margin-left: 60px'; for='".$a['idValor']."' > ".$a["nomValor"]."</h4>";
+                        echo "<h4 ' style='margin-left: 60px'; for='".$a['idValor']."' > ".$a["nomValor"]."</h4>";
 
                         echo "</td>"; 
                         echo "<td>";  
+                        echo "<div class='form-group'>";
                                          
                         // muestra el componente a llenar o el select  
                           switch ($etiqueta) {
@@ -116,16 +100,26 @@
                                   <option value= '-1'>Selecciona...</option>
                                 </select>";
                                     break;
-                                case "input":
-                                    echo "<input type='text' class='form-control inp' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 100%';'>";
+                                case "input_texto":
+                                    echo "<input type='text' class='form-control inp texto ".($a['obligatorio']?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 100%';'>";
                                     break;
+                                case "input_numerico":
+                                    echo "<input type='text' class='form-control inp numerico ".($a['obligatorio']?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 100%';'>";
+                                    break;
+                                case "input_fecha":
+                                    echo "<input type='text' class='form-control inp fecha ".($a['obligatorio']?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 100%';'>";
+                                    break;
+                                case "input_archivo":
+                                    echo "<input type='file' class='inp archivo ".($a['obligatorio']?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 100%';'>";
+                                    break;                                         
                                 case "checkbox":                                    
-                                    echo "<input type='checkbox' style='transform: scale(1.4);' value='' name='".$a['idValor']."';'>";
+                                    echo "<input class='".($a['obligatorio']?"obligatorio":"")."' type='checkbox' style='transform: scale(1.4);' value='' name='".$a['idValor']."';'>";
                                     break; 
                                 case "textarea":
-                                    echo "<textarea class='form-control' name='".$a['idValor']."' id='".$a['idValor']."' rows='2'></textarea>";
+                                    echo "<textarea class='form-control ".($a['obligatorio']?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' rows='2'></textarea>";
                                     break;                                 
                           }
+                          echo "</div>";
                           echo "</td>";
                           echo "</tr>"; 
                           
@@ -148,39 +142,29 @@
 
 							<input type="button" id="btn" class="btn" value="IMPRIMIR" onclick="javascript:print()">
 
-							<!-- <button type="button" id=""class="btn btn-success" onclick="">Aprobar</button>
-            <button type="button" class="btn btn-danger" onclick="">Rechazar</button> -->
-							<!-- <button type="submit" class="btn btn-success" >Guardar</button>
-          </div>  
-
-          </form>  
-          
-          <!-- /.modal footer -->
-
+							<!-- <button type="button" id=""class="btn btn-success" onclick="">Aprobar</button> -->
+							<!-- <button type="button" class="btn btn-danger" onclick="">Rechazar</button>  -->
+							<button class="btn btn-primary" onclick="validarCampos()">Validar</button>
+							<button type="submit" id="guardar" class="btn btn-success" disabled="disabled">Guardar</button>
 						</div>
-						<!-- /.box-body -->
+
+					</form>
+
+					<!-- /.modal footer -->
+
 				</div>
-				<!-- /.box -->
+				<!-- /.box-body -->
 			</div>
-			<!-- /.col-xs-12 -->
+			<!-- /.box -->
 		</div>
-		<!-- /.row -->
+		<!-- /.col-xs-12 -->
+	</div>
+	<!-- /.row -->
 </section>
 <!-- /.content -->
 
+
 <script>
-
-$('#formularios').change(function(){
-  var idForm = this.value;
-  ActualizarPagina(idForm);
-});
-
-function ActualizarPagina($idForm){
-  $('#content').empty();
-  $('#content').load("<?php echo base_url(); ?>index.php/Form/index/<?php echo $permission; ?>"+"/"+$idForm);
-}
-
-
 	$(document).ready(function(event) {
 
 		var idForm = $('#idForm').val();
@@ -203,6 +187,41 @@ function ActualizarPagina($idForm){
 				console.log(result);
 			},
 			dataType: 'json'
+		});
+
+		$('.fecha').datepicker({
+			autoclose: true
+		})
+
+		$('#form').bootstrapValidator({ //VALIDADOR
+			message: 'This value is not valid',
+			feedbackIcons: {
+				valid: 'glyphicon glyphicon-ok',
+				invalid: 'glyphicon glyphicon-remove',
+				validating: 'glyphicon glyphicon-refresh'
+			},
+			fields: {
+				numerico: {
+					message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+					selector: '.numerico',
+					validators: {
+						regexp: {
+							regexp: /^[0-9_]+$/,
+							message: 'Solo valores numéricos *'
+						}
+					}
+				},
+				fecha: {
+					message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+					selector: '.fecha',
+					validators: {
+						date: {
+							format: 'DD-MM-YYYY',
+							message: 'Formato de Fecha Incorrecto *'
+						}
+					}
+				}
+			}
 		});
 
 
@@ -230,31 +249,21 @@ function ActualizarPagina($idForm){
 		}
 	});
 
-	// function guardar(){
+	function validarCampos() {
+		console.log("Validando Campos Vacíos...");
+		var nodes = document.querySelectorAll("#form input[type=text]");
+		for (var i = 0; i < nodes.length; i++)
+			if (nodes[i].value == "") {
+				alert("Campos Incompletos");
+				return;
+
+			}
+		console.log("Validación...OK");
+		// $('#Guardar')
 
 
-	//     var datos = $("#formulario").serializeArray();
+	}
 
-
-	//     //console.log(tabla);
-
-	//     $.ajax({
-	//           type: 'POST',
-	//           data: datos,
-	//           url: 'index.php/Form/guardar', 
-	//           success: function(data){               
-	//                   console.log(data);                  
-
-	//                 },
-
-	//           error: function(result){
-
-	//                 console.log(result);
-	//               },
-	//           dataType: 'json'
-	//     });
-
-	//   }
 
 
 	$("#formulario").submit(function(event) {
@@ -264,20 +273,6 @@ function ActualizarPagina($idForm){
 
 			console.log('tilde');
 		});
-
-
-		// $("input:checkbox").each(function (index) {  
-		//  if($(this).prop('checked')){
-		//    console.log('tilde');
-
-		//   alert('hola');
-		//     //listaCompras += '*'+$(this).val()+'\n';
-		//     $(this).attr("value","tilde");
-		//  }else{
-		//   console.log('notilde');
-		//     $(this).attr("value","notilde");
-		//  }
-		// });
 
 		event.preventDefault();
 
