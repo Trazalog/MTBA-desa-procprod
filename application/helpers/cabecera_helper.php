@@ -18,13 +18,7 @@ if(!function_exists('cargarCabecera')){
             if($query->num_rows() > 0){
                 $result = $query->row_array();
             }
-            echo '<section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                    <div class="box">
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
+            echo '
         
                             <div id="collapseDivCli" class="box box-default collapsed-box box-solid">
                                 <div class="box-header with-border">
@@ -155,23 +149,7 @@ if(!function_exists('cargarCabecera')){
                             </div>
                             <!-- /.box-body -->
                         </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-                <!-- /.box -->
-            </div>
-            <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </section>
-        <!-- /.content -->
-        
-        <script>
-        
-           
-        
-        </script>';
+                        <!-- /.box-body -->';
 } } 
 
 ?>
