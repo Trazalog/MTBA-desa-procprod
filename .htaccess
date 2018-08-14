@@ -8,3 +8,4 @@ RewriteRule ^(.*)$ /trazalog/MTBA-desa-procprod/index.php/$1 [L]
 <IfModule !mod_rewrite.c>
 ErrorDocument 404 /trazalog/MTBA-desa-procprod/index.php
 </IfModule>
+#Header set Access-Control-Allow-Origin "http://localhost"

@@ -20,7 +20,8 @@
                 <th>Nro:</th>
                 <th>Descripcion:</th>
                 <th>Fecha:</th>
-                <th>id tarea bonit</th>
+                <th>Estado:</th>
+                <th>id tarea bonit</th> 
                 <!-- <th>Estado:</th> -->     
               </tr>
             </thead>
@@ -28,26 +29,36 @@
               <?php
 
                 $lista = json_decode($list,true);
-
+                // echo "<pre>";
+                // var_dump($lista);
                 foreach($lista as $f)
                 {
                   $id=$f["id"];
-
+                  $asig = $f['assigned_id']; 
                   echo '<tr id="'.$id.'" class="'.$id.'" >';
-                  echo '<td>';
+                  echo '<td>';                     
                     if (strpos($permission,'Del') !== false){
-                    echo '<button type="button" id="btncolor" class="btn btn-success" data-toggle="modal" data-target="#finalizar">
+                      if ($asig != "") {
+                        echo '<button type="button" id="btncolor" class="btn btnFin btn-success" data-toggle="modal">
                             <span class="glyphicon glyphicon-ok"></span>  </button> ';
-                    }
+                      }else{
+                        echo '<button type="button" id="btncolor" class="btn btn-success" data-toggle="modal" data-target="#finalizar" disabled>
+                            <span class="glyphicon glyphicon-ok"></span>  </button> ';
+                      }      
+                    }                  
                   echo '</td>';
                   echo '<td class="celda" style="text-align: left">'.$f['processId'].'</td>';
                   echo '<td class="celda" style="text-align: left">'.$f['displayName'].'</td>';
                   echo '<td class="celda" style="text-align: left">'.$f['reached_state_date'].'</td>';
-                  
-                  // id de tarea en bonita
-                  //echo '<td class="celda" style="text-align: left">'.$f['id'].'</td>';
+                  if ( $asig != "")  {
+                    echo '<td class="celda" style="text-align: left"><i class="fa fa-user" style="color: #A9A9A9 ; cursor: pointer;"" title="Asignado" data-toggle="modal" data-target="#modalSale"></i></td>';
+                  }else{
 
+                      echo '<td class="celda" style="text-align: left"></td>';
+                  }
+                  // id de tarea en bonita
                   echo '<td class="celda" style="text-align: left">'.$f['id'].'</td>';
+                  echo '<td class="celda hidden" style="text-align: left">'.$f['assigned_id'].'</td>';
                   // echo '<td class="celda" style="text-align: left">'.($f['estado'] == 'TE' ? '<small class="label pull-left bg-orange">Parcial</small>' : ($f['estado'] == 'C' ? '<small class="label pull-left bg-green">Iniciada</small>' : ($f['estado'] == 'P' ? '<small class="label pull-left bg-blue">Pedido</small>' : ($f['estado'] == 'As' ? '<small class="label pull-left bg-yellow">Asignado</small>' : '<small class="label pull-left bg-red">Entregado</small>')))).'</td>';
                   
                   echo '</tr>';
@@ -66,34 +77,145 @@
 
 <script>
   
-     var idfin="";
-
+    var idfin="";
+    var id_tarea = "";
 //Tomo valor de la celda y carga detalle de la tarea
   $('.celda').click( function () {
-    console.log("num orden");
-
-    // tomar de aca id de orden e id de tarea para bonita
-    // var id_orden = $(this).parents('tr').find('td').eq(1).html();
-    // var idTarea = $(this).parents('tr').find('td').eq(1).html();
-
-    var id_orden = 17;
-    var id_tarea = 256; // id_listarea desde bonita
-
+   
+    var idTarBonita = $(this).parents('tr').find('td').eq(5).html();
+    console.log('id tarea INTERNO de bonita: ');
+    console.log(idTarBonita);
+    
+    var id_orden = 17;  
+    var estado = $(this).parents('tr').find('td').eq(6).html();
+    var estadoTarea = "";
+    if (estado!="") {
+      estadoTarea ="asignado";
+    }else{
+      estadoTarea ="noasignado";
+    }
+    getIdTareaTraJobs(idTarBonita,id_orden,estadoTarea);
     idfin = id_orden;
-    console.log(idfin);
-    WaitingOpen();
-    // $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + idfin);
-    $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + id_orden + "/" + id_tarea);
-    WaitingClose();
+    //console.log(idfin);
+    
   });
+
+  // Carga para cargar notif strandar
+  function verTarea(id_orden,idTJobs,idTarBonita,estadoTarea){
+    WaitingOpen();    
+    $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + id_orden + "/" + idTJobs + "/" + idTarBonita+ "/"+ estadoTarea+ "/");
+    WaitingClose();
+  }
+
+  // Trae id_listarea desde bonita y llama verTarea()
+  function getIdTareaTraJobs(idTarBonita,id_orden,estadoTarea){
+    var idTJobs = "";
+    $.ajax({
+            type: 'POST',
+            data: { idTarBonita: idTarBonita},
+            url: 'index.php/Tarea/getIdTareaTraJobs', 
+            success:function(data){
+                    
+                    //console.log('value en lista: ');
+                    //console.table(data);
+                    idTJobs = data['value'];    
+                    verTarea(id_orden,idTJobs,idTarBonita,estadoTarea);                    
+                  },
+              
+            error: function(result){
+                  console.log(result);
+                },
+            dataType: 'json'
+        });
+  }
+
+
+
+/////////// TERMINAR TAREA   ///////
 
   // boton terminar tarea  
-  $('.btn').click( function () {
-    console.log("num orden");
+  $('.btnFin').click( function () {
+
     var id_orden= $(this).parents('tr').find('td').eq(1).html();
-    idfin = id_orden;
-    console.log(idfin);
+    var idTarBonita = $(this).parents('tr').find('td').eq(5).html();
+    validarRelacTareaForm(idTarBonita);
   });
+
+  // Trae id de listarea desde BPM y llama a func validarFormGuardado();
+  function validarRelacTareaForm(idTarBonita,id_orden){
+    var idTJobs = "";
+    $.ajax({
+            type: 'POST',
+            data: { idTarBonita: idTarBonita},
+            url: 'index.php/Tarea/getIdTareaTraJobs', 
+            success:function(data){
+
+                   // console.log('value en lista: ');
+                   // console.log(data['value']);
+                    idTJobs = data['value'];
+                    validarFormGuardado(idTJobs);                       
+                  },
+              
+            error: function(result){
+                  console.log(result);
+                },
+            dataType: 'json'
+        });
+  }
+
+
+  function validarFormGuardado(id_listarea){
+  
+    $.ajax({
+            type: 'POST',
+            data: { id_listarea: id_listarea},
+            url: 'index.php/Tarea/validarFormGuardado', 
+            success:function(data){
+                    //alert('Validado puede guardar');
+                    console.log(data);
+                    // si no hay campos no validados finaliza la tarea
+                    if (data) {
+                      finalizarTarea(id_listarea);
+                    }else{
+                      // si hay campos sin validar
+                      $('#finalizar').modal('show');
+                    }            
+                  },
+              
+            error: function(result){
+                  console.log(result);
+                  alert('complete el formulario asociado');
+                },
+            dataType: 'json'
+        });
+  }
+
+  function finalizarTarea(id_listarea){
+    $.ajax({
+            type: 'POST',
+            data: { id_listarea: id_listarea},
+            url: 'index.php/Tarea/terminarTarea', 
+            success:function(data){                    
+                    console.log(data);                    
+                  },
+              
+            error: function(result){
+                  console.log(result);
+                  recargar();
+                  alert('complete el formulario asociado');
+                },
+            dataType: 'json'
+        });
+  }
+
+  // Recargar vista
+  function recargar(){
+    WaitingOpen();    
+    $(".content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>/");
+    WaitingClose();
+  }
+
+
 
       // Datatable
   $(function () {
@@ -119,6 +241,10 @@
           }
       });
     });
+
+
+
+
 
 /*
 
@@ -189,11 +315,7 @@
 
 */
 
-// function regresa(){ 
-//   $('.content').empty();
-//   WaitingClose();
-//   $(".content").load("<?php echo base_url(); ?>index.php/Taller/index/<?php echo $permission; ?>");
-// }  
+
 
   
 </script>
@@ -207,11 +329,11 @@
           <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="glyphicon glyphicon-check btncolor " style="color: #6aa61b" > </span> Finalización </h4>
         </div> 
         <center>
-        <div>Elija la opción:</div>
+        <div>Debe completar el formulario asociado a esta tarea para terminarla</div>
         </center>
         <div class="modal-footer">
-          <button  type="button" class="btn btn-success" data-dismiss="modal" onclick="guardarparcial()"> PARCIAL</button>     
-          <button  type="button" class="btn btn-success" data-dismiss="modal" onclick="guardartotal()" >TOTAL</button> 
+          <!-- <button  type="button" class="btn btn-success" data-dismiss="modal" onclick=""> PARCIAL</button>  -->    
+          <button  type="button" class="btn btn-success" data-dismiss="modal" onclick="" >Aceptar</button> 
         </div>   
     </div>  
   </div>
