@@ -24,7 +24,7 @@ class Bonitas extends CI_Model
 		// Abre el fichero usando las cabeceras HTTP establecidas arriba
 			// file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);
 
-			file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);	
+			file_get_contents('http://192.168.100.112:8080/bonita/loginservice?username=ernesto.clavel&password=bpm&redirect=false', false, $contexto);	
 
 			$cookies = array();
 			foreach ($http_response_header as $hdr) {
@@ -52,7 +52,9 @@ class Bonitas extends CI_Model
 			    "Cookie: JSESSIONID=".$idsesion."\r\n".
 			    			"X-Bonita-API-Token=".$apiToken."\r\n".
 			    			"bonita_tenant=".$bonita_tenant."\r\n".
-			    			"Content-Type: application/json"."\r\n"		    					
+							"Content-Type: application/json"."\r\n"
+							
+					
 			  )
 			);
 
@@ -135,4 +137,4 @@ class Bonitas extends CI_Model
 
 
 
-}	
+}
