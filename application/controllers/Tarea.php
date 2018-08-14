@@ -22,6 +22,21 @@ class Tarea extends CI_Controller {
 		$this->load->view('tareas/list', $data);
 	}
 
+	public function GuardarComentario(){
+		$comentario = $this->input->post();
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "POST";	
+		$parametros["http"]["content"] = json_encode($comentario);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$response = $this->Tareas->GuardarComentarioBPM($param);
+		echo json_encode($response);
+	}
+
 	// Trae id de tarea de trazajobs segun id de tarea bonita
 	public function getIdTareaTraJobs(){
 
@@ -136,6 +151,13 @@ class Tarea extends CI_Controller {
 			
 		// carga el formulario para modal
 		$data['form'] = $this->Tareas->get_form($id_listarea);
+		//FLEIVA COMENTARIOS
+		$metodo = "POST";
+
+		$parametros = $this->Bonitas->conexiones();
+		$param = stream_context_create($parametros);
+		
+		$data['comentarios'] = $this->Tareas->ObtenerComentarios($param);
 		$this->load->view('tareas/view_', $data);
 	}
 
