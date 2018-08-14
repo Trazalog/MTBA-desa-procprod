@@ -60,7 +60,7 @@ class Sistema extends CI_Controller {
           //$this->Sistemas->  ($this->input->post());
     }
 
-     public function guardar(){
+    public function guardar(){
 		//El metodo is_ajax_request() de la libreria input permite verificar
 		//si se esta accediendo mediante el metodo AJAX 
 		if ($this->input->is_ajax_request()) {

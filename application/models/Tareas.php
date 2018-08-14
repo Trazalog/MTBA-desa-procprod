@@ -7,6 +7,16 @@ class Tareas extends CI_Model
 
 		parent::__construct();
 	}	
+	//obtener Comentarios
+	function ObtenerComentarios($param){
+		$comentarios = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
+		return json_decode($comentarios,true);
+	}
+	//Guardar Comentarios
+	function GuardarComentarioBPM($param){
+		$respuesta = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment',false,$param);
+		return $respuesta;
+	}
 	// trae tareas de BPM
 	function getTareas($param){
 		
@@ -34,7 +44,7 @@ class Tareas extends CI_Model
 		return $response;
 
 		// echo "response: ";
-		// var_dump($response);
+		// var_dump($response);processInstanceId=5615296745389165959
 	}
 
 	// Tomar Tareas 
@@ -52,7 +62,7 @@ class Tareas extends CI_Model
 		//     // Handle exception
 		// }
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/35', false, $param);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
 		echo "response: ";
 		var_dump($response);
 	}
@@ -72,7 +82,7 @@ class Tareas extends CI_Model
 		//     // Handle exception
 		// }
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/35', false, $param);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
 		echo "response: ";
 		var_dump($response);
 	}
@@ -83,7 +93,29 @@ class Tareas extends CI_Model
 		$idTJobs = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/activityVariable/54/trazajobsTaskId', false, $param);
 		
 		return $idTJobs;
-	}	 
+	}
+
+	// verifica que el form tenga todos los campos validado en 1 
+	function validarFormGuardado(){		
+
+		$sql ="SELECT
+		COUNT(*) as novalidos
+		FROM
+		frm_formularios_completados
+		WHERE
+		frm_formularios_completados.LITA_ID = 255 AND
+		VALIDADO = 0";
+
+		$query = $this->db->query($sql);
+
+		if( $query->row('novalidos') > 0 ){
+	    	
+	    	return false;
+	    }
+	    else{
+	    	return true;
+	    }
+	} 
 
 	// devuelve detalle de tareas para notificacion standart
 	function detaTareas($id_orden,$id_tarea){	
@@ -219,6 +251,21 @@ class Tareas extends CI_Model
 	 	}
 	}
 
+	// Devuelve form asociado a una tarea std
+	function getIdFormPorIdTareaSTD($idTareaStd){		
+
+		$this->db->select('tareas.form_asoc');
+		$this->db->from('tareas');
+		$this->db->where('tareas.id_tarea', $idTareaStd);
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->row('form_asoc');	
+	 	}else{	
+	 		return false;
+	 	}
+	}
+
 	// Trae form para dibujar pantalla (agregar where de id de form)
 	function get_form($id_listarea){
 		echo "id listarea en tareas get form: ";
@@ -233,31 +280,7 @@ class Tareas extends CI_Model
 		echo "id form: ";
 		var_dump($idForm);
 
-		// $sql = "SELECT	form.form_id,
-			// 				form.nombre,
-			// 				form.habilitado,
-			// 				form.fec_creacion,
-			// 				cate.NOMBRE AS nomCategoria,
-			// 				cate.CATE_ID AS idCategoria,
-			// 				grup.NOMBRE AS nomGrupo,
-			// 				tida.NOMBRE AS nomTipoDatos,
-			// 				grup.GRUP_ID AS idGrupo,
-			// 				valo.NOMBRE AS nomValor,
-			// 				valo.VALO_ID AS idValor,	
-			// 				valo.VALOR_DEFECTO,
-			// 				valo.LONGITUD,
-			// 				valo.OBLIGATORIO,
-			// 				valo.PISTA						
-			// 				FROM
-			// 				frm_formularios form, 
-			// 				frm_categorias cate, 
-			// 				frm_grupos grup ,  
-			// 				frm_tipos_dato tida,
-			// 				frm_valores valo
-			// 				where FORM.FORM_ID = CATE.FORM_ID 
-			// 				AND CATE.CATE_ID = GRUP.CATE_ID 
-			// 				AND GRUP.GRUP_ID = VALO.GRUP_ID 
-			// 				AND TIDA.TIDA_ID = VALO.TIDA_ID	
+						AND form.form_id = 1
 
 			// 				AND form.form_id = $idForm
 
@@ -356,7 +379,7 @@ class Tareas extends CI_Model
 				AND CATE.CATE_ID = GRUP.CATE_ID 
 				AND GRUP.GRUP_ID = VALO.GRUP_ID 
 				AND TIDA.TIDA_ID = VALO.TIDA_ID	
-				AND form.form_id = $idFormAsoc 					
+				AND form.form_id = 1 					
 				ORDER BY cate.ORDEN,grup.ORDEN,valo.ORDEN";
 
 		$query= $this->db->query($sql);
