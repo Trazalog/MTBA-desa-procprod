@@ -2,7 +2,7 @@
 --
 -- Host: 127.0.0.1    Database: mtba-desa-procprod
 -- ------------------------------------------------------
--- Server version   5.6.31
+-- Server version	5.6.31
 
 
 --
@@ -10,9 +10,12 @@
 --
 
 CREATE TABLE `sisgroups` (
-  `grpId` int(11) NOT NULL,
-  `grpName` varchar(20) COLLATE utf8_spanish_ci NOT NULL
+  `grpId` int(11) NOT NULL AUTO_INCREMENT,
+  `grpName` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `grpDash` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`grpId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
 
 --
 -- Dumping data for table `sisgroups`
