@@ -62,7 +62,7 @@
                           </div>  
                           <div class="col-xs-6">
 <!----------listado en calendario----------->
-                            <table id="orden" class="table table-bordered table-hover tbCalendario">
+                            <table id="calendarList" class="table table-bordered table-hover tbCalendario">
                               <thead>
                                 <tr>
                                   <th width="2%"></th> <!-- icono -->
@@ -99,6 +99,8 @@
                                     echo '</td>';
                                     }
 
+                                    echo '<td  class="hidden idTareaTrazajobs" style="text-align: left">'.$a['id_listarea'].'</td>';
+
                                     echo '<td style="text-align: left">'.$a['tareadescrip'].'</td>';
 
                                     if($a['usrLastName']!= null){
@@ -132,7 +134,9 @@
                                     echo '</td>';                                   
 
                                       // duracion standar de tarea
-                                    echo '<td class="hidden" style="text-align: left">'.$a['duracion_std'].'</td>';
+                                    echo '<td class="hidden duracionStd" style="text-align: left">'.$a['duracion_std'].'</td>';
+                                      // id de usuario asignado
+                                    echo '<td class="hidden id_usuario" style="text-align: left">'.$a['id_usuario'].'</td>';
 
                                     echo '</tr>';
                                     } 
@@ -308,6 +312,7 @@ $('#tabCalend').click(function(e){
   regresa1();
 });
 
+// Valida que no hayan tareas sin asignar ni sin programar 
 function validarInicio(){
   var contCeldas = 0;
   var programadas = 0;
@@ -349,11 +354,70 @@ function validarInicio(){
     alert('falta asignar');
   }else{
     //alert(contCeldas +' '+ asignadas);
-    console.log('Se puede iniciar el Proceso...')
+    console.log('Se puede iniciar el Proceso...');
+    guardarInfo();
   }
 }
 
+// Arma objeto con tareas para guardar
+function guardarInfo(){
+  var tabla = $('.tbCalendario tbody tr');
+  var usuarioAsignado = "";
+  var idTareaTrazajobs = "";
+  var duracionStd = "";
+  var input = {};
+  //console.table(tabla);
+  $(tabla).each(function(){          
+      
+      usuarioAsignado = $(this).find('td.id_usuario').html();
+      idTareaTrazajobs = $(this).find('td.idTareaTrazajobs').html();
+      duracionStd = $(this).find('td.duracionStd').html();
 
+      console.log('usuario: ');
+      console.log(usuarioAsignado);
+      console.log('idTareaTrazajobs: ');
+      console.log(idTareaTrazajobs);
+
+      {
+        "inputs": [],
+        "type": "TEXT",
+        "description": null,
+        "name": "nombre",
+        "multiple": false
+      },
+      {
+       "inputs": [],
+       "type": "TEXT",
+       "description": null,
+       "name": "usuarioCoordinador",
+       "multiple": false
+     },
+     {
+       "inputs": [],
+       "type": "TEXT",
+       "description": null,
+       "name": "usuarioAsignado",
+       "multiple": false
+     },
+     {
+       "inputs": [],
+       "type": "TEXT",
+       "description": null,
+       "name": "idTareaTrazajobs",
+       "multiple": false
+     },
+     {
+       "inputs": [],
+       "type": "DECIMAL",
+       "description": null,
+       "name": "duracionStd",    // ESTO VA EN MILISEGUNDOS
+       "multiple": false
+     }
+
+
+
+  });
+}
 
 
 
@@ -1083,8 +1147,8 @@ function validarInicio(){
                   "<td>"+tarea1+"</td>"+
                   "<td></td>"+
                   "<td></td>"+
-                  "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
-                  "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i> <i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+
+                  // "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
+                  "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i> <i class=' fa fa-user' style='color: #A9A9A9; margin-left:7px'; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+
                   /*"<td><i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+*/
                   // "<td  ><i class='fa fa-cogs' style='color: #A9A9A9    '; cursor: 'pointer' title='Fecha' data-toggle='modal' data-target='#modalAsignaEquipo'></i></td>"+
                 "</tr>";          

@@ -14,15 +14,18 @@
                   <div class="panel panel-default">
                     <h4 class="panel-heading">Tarea</h4>
                     <div class="panel-body">
-                      <button class="btn btn-block btn-info" style="width: 100px; margin-top: 10px;" onclick="">Tomar tarea</button>
-                      <br>
-
+                      
                       <?php
-                        // var_dump($datos);
-                        $userdata = $this->session->userdata('user_data');
-                        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
+                        if ($estadoTarea == "noasignado") {
+                          echo "<button class='btn btn-block btn-info' style='width: 100px; margin-top: 10px;' onclick='tomarTarea()'>Tomar tarea</button>";
+                        }else{
+                          echo "<button class='btn btn-block btn-warning' style='width: 100px; margin-top: 10px;' onclick='soltarTarea()'>Soltar tarea</button>";
+                        }    
 
-                        //dump_exit($form);
+                        echo "<br>";
+
+                        $userdata = $this->session->userdata('user_data');
+                        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado  
                       ?>
 
                       <!-- Modal formulario tarea -->
@@ -34,7 +37,9 @@
                             <label for="tarea">Tarea</label>
                             <input type="text" class="form-control" id="tarea" placeholder="" value="<?php echo $datos[0]['tareadescrip']  ?>" disabled>
                             <!-- id de listarea --> 
-                            <input type="text" class="hidden" id="tbl_listarea" value="<?php echo $datos[0]['id_listarea'] ?>" >                           
+                            <input type="text" class="hidden" id="tbl_listarea" value="<?php echo $datos[0]['id_listarea'] ?>" > 
+                            <!-- id de task en bonita -->
+                            <input type="text" class="hidden" id="idTarBonita" value="<?php echo $idTarBonita ?>" >
                           </div>
                         </div>
                         <div class="form-group">
@@ -66,6 +71,7 @@
                           </div>
                         </div>                        
                       </form>
+
                     </div>
                   </div>
               </div>
@@ -73,8 +79,8 @@
           </div>
         
           <div class="modal-footer">
-            <button type="button" id=""class="btn btn-success" onclick="">Aprobar</button>
-            <button type="button" class="btn btn-danger" onclick="">Rechazar</button>
+            <button type="button" id="" class="btn btn-success" onclick="">Aprobar</button>
+            <button type="button" id="rechazar" class="btn btn-danger" onclick="">Rechazar</button>
             <button type="button" class="btn btn-success" onclick="">Hecho</button>
           </div>  <!-- /.modal footer -->
 
@@ -163,7 +169,55 @@
                       refresca(id);
                  }
            });           
-  });   
+  });  
+  // validacion de campo observacion para btn rechazar
+  $('#rechazar').click(function(e){
+    if ($('#observaciones').val() == ""){
+      alert('Campo Detalle vacio');
+    }
+  }); 
+
+  // Toma tarea en BPM
+  function tomarTarea(){
+
+    var idTarBonita = $('#idTarBonita').val();
+    alert(idTarBonita);
+    $.ajax({
+            type: 'POST',
+            data: { idTarBonita: idTarBonita},
+            url: 'index.php/Tarea/tomarTarea', 
+            success: function(data){               
+                    
+                  },              
+            error: function(result){
+                  
+                  console.log(result);
+                },
+            dataType: 'json'
+    });
+
+  }
+
+   // Soltar tarea en BPM
+  function soltarTarea(){
+    
+    var idTarBonita = $('#idTarBonita').val();
+    alert(idTarBonita);
+    $.ajax({
+            type: 'POST',
+            data: { idTarBonita: idTarBonita},
+            url: 'index.php/Tarea/soltarTarea', 
+            success: function(data){               
+                    
+                  },              
+            error: function(result){
+                  
+                  console.log(result);
+                },
+            dataType: 'json'
+    });
+
+  }
 
   // trae valores validos para llenar form asoc.
   $(document).ready(function(event) {    
@@ -212,6 +266,7 @@
 
 
   });  
+
   function getformulario(){
       //console.log('get form funcion');
   }
@@ -238,8 +293,8 @@
             </div>
           </div>  
         </div>
-      </div>         
-
+      </div>  
+     
     </div>
   </div>
 </div>
