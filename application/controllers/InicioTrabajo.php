@@ -25,5 +25,13 @@ class InicioTrabajo extends CI_Controller {
 		echo json_encode($result);
 
 	}
+
+	public function ObtenerPedidoTrabajo(){
+		
+		$id = $this->input->post('id');
+		dump_exit($id);
+		$result = $this->InicioTrabajos->ObtenerPedido($id);
+		echo json_encode($result);
+	}
 }
 ?>

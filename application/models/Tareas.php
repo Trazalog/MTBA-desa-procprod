@@ -80,32 +80,10 @@ class Tareas extends CI_Model
 	// Devuelve el id de tareas de trazaj correspond al id_tarea bonita
 	function getIdTareaTraJobs($idBonita,$param){
 
-		$idTJobs = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/activityVariable/35/trazajobsTaskId', false, $param);
+		$idTJobs = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/activityVariable/54/trazajobsTaskId', false, $param);
 		
 		return $idTJobs;
-	}
-
-	// verifica que el form tenga todos los campos validado en 1 
-	function validarFormGuardado(){		
-
-		$sql ="SELECT
-		COUNT(*) as novalidos
-		FROM
-		frm_formularios_completados
-		WHERE
-		frm_formularios_completados.LITA_ID = 255 AND
-		VALIDADO = 0";
-
-		$query = $this->db->query($sql);
-
-		if( $query->row('novalidos') > 0 ){
-	    	
-	    	return false;
-	    }
-	    else{
-	    	return true;
-	    }
-	} 
+	}	 
 
 	// devuelve detalle de tareas para notificacion standart
 	function detaTareas($id_orden,$id_tarea){	
@@ -126,10 +104,10 @@ class Tareas extends CI_Model
 		// $query = $this->db->get();
 
 		// if ($query->num_rows()!=0){
-	 // 		return $query->result_array();	
-	 // 	}else{	
-	 // 		return false;
-	 // 	}
+		 // 		return $query->result_array();	
+		 // 	}else{	
+		 // 		return false;
+		 // 	}
 
 	 	$this->db->select('tbl_listarea.id_listarea,
 						tbl_listarea.id_orden,
@@ -154,6 +132,60 @@ class Tareas extends CI_Model
 	 	}else{	
 	 		return false;
 	 	}
+	}
+
+	//devuelve el id de tarea estandar asociada a listarea
+	function getTarea_idListarea($id_listarea){
+		
+		$this->db->select('tbl_listarea.id_tarea');
+		$this->db->from('tbl_listarea');
+		$this->db->where('tbl_listarea.id_listarea', $id_listarea);
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->row('id_tarea');	
+	 	}else{	
+	 		return false;
+	 	}
+	}
+
+
+//////////////  form dinamico  //////////////////
+
+	// verifica que el form tenga todos los campos validado en 1 
+	function validarFormGuardado($idValor,$id_listarea){		
+
+		$this->db->select('frm_formularios_completados.VALO_ID');
+		$this->db->from('frm_formularios_completados');
+		$this->db->where('frm_formularios_completados.VALIDADO', 0);	// no validado 
+		$this->db->where('frm_formularios_completados.VALO_ID', $idValor);
+		$this->db->where('frm_formularios_completados.LITA_ID', $id_listarea);
+		$query = $this->db->get();
+
+	 	if ($query->num_rows() > 0){
+	 		return $query->row('VALO_ID');	
+	 	}else{	
+	 		return 0;
+	 	}
+
+
+		// $sql ="SELECT
+		// COUNT(*) as novalidos
+		// FROM
+		// frm_formularios_completados
+		// WHERE
+		// frm_formularios_completados.LITA_ID = 255 AND
+		// VALIDADO = 0";
+
+		// $query = $this->db->query($sql);
+
+		// if( $query->row('novalidos') > 0 ){
+	    	
+	 //    	return false;
+	 //    }
+	 //    else{
+	 //    	return true;
+	 //    }
 	}
 
 	// Comprueba si hay form guardado asoc a id de orden y de tarea
@@ -186,21 +218,6 @@ class Tareas extends CI_Model
 	 	}
 	}
 
-	//devuelve el id de tarea estandar asociada a listarea
-	function getTarea_idListarea($id_listarea){
-		
-		$this->db->select('tbl_listarea.id_tarea');
-		$this->db->from('tbl_listarea');
-		$this->db->where('tbl_listarea.id_listarea', $id_listarea);
-		$query = $this->db->get();
-
-		if ($query->num_rows()!=0){
-	 		return $query->row('id_tarea');	
-	 	}else{	
-	 		return false;
-	 	}
-	}
-
 	// Devuelve form asociado a una tarea std
 	function getIdFormPorIdTareaSTD($idTareaStd){		
 
@@ -218,47 +235,72 @@ class Tareas extends CI_Model
 
 	// Trae form para dibujar pantalla (agregar where de id de form)
 	function get_form($id_listarea){
-		//echo "id listarea: ";
-		//var_dump($id_listarea);
+		echo "id listarea en tareas get form: ";
+		var_dump($id_listarea);
 		// con id listarea traigo el id de tarea estandar
 		$id_tarea = $this->getTarea_idListarea($id_listarea);
-		//echo "id tarea: ";
-		//var_dump($id_tarea);
+		echo "id tarea: ";
+		var_dump($id_tarea);
 
 		// con id de tarea estandar traigo form asociado
 		$idForm = $this->getFormTarea($id_tarea);
-		//echo "id form: ";
-		//var_dump($idForm);
-		$sql = "SELECT	form.form_id,
-						form.nombre,
-						form.habilitado,
-						form.fec_creacion,
-						cate.NOMBRE AS nomCategoria,
-						cate.CATE_ID AS idCategoria,
-						grup.NOMBRE AS nomGrupo,
-						tida.NOMBRE AS nomTipoDatos,
-						grup.GRUP_ID AS idGrupo,
-						valo.NOMBRE AS nomValor,
-						valo.VALO_ID AS idValor,	
-						valo.VALOR_DEFECTO,
-						valo.LONGITUD,
-						valo.OBLIGATORIO,
-						valo.PISTA						
-						FROM
-						frm_formularios form, 
-						frm_categorias cate, 
-						frm_grupos grup ,  
-						frm_tipos_dato tida,
-						frm_valores valo
-						where FORM.FORM_ID = CATE.FORM_ID 
-						AND CATE.CATE_ID = GRUP.CATE_ID 
-						AND GRUP.GRUP_ID = VALO.GRUP_ID 
-						AND TIDA.TIDA_ID = VALO.TIDA_ID	
+		echo "id form: ";
+		var_dump($idForm);
 
-						AND form.form_id = $idForm
+		// $sql = "SELECT	form.form_id,
+			// 				form.nombre,
+			// 				form.habilitado,
+			// 				form.fec_creacion,
+			// 				cate.NOMBRE AS nomCategoria,
+			// 				cate.CATE_ID AS idCategoria,
+			// 				grup.NOMBRE AS nomGrupo,
+			// 				tida.NOMBRE AS nomTipoDatos,
+			// 				grup.GRUP_ID AS idGrupo,
+			// 				valo.NOMBRE AS nomValor,
+			// 				valo.VALO_ID AS idValor,	
+			// 				valo.VALOR_DEFECTO,
+			// 				valo.LONGITUD,
+			// 				valo.OBLIGATORIO,
+			// 				valo.PISTA						
+			// 				FROM
+			// 				frm_formularios form, 
+			// 				frm_categorias cate, 
+			// 				frm_grupos grup ,  
+			// 				frm_tipos_dato tida,
+			// 				frm_valores valo
+			// 				where FORM.FORM_ID = CATE.FORM_ID 
+			// 				AND CATE.CATE_ID = GRUP.CATE_ID 
+			// 				AND GRUP.GRUP_ID = VALO.GRUP_ID 
+			// 				AND TIDA.TIDA_ID = VALO.TIDA_ID	
 
-						ORDER BY cate.ORDEN,grup.ORDEN,valo.ORDEN";
-						//ORDER BY idCategoria,nomGrupo,VALO_ID";	
+			// 				AND form.form_id = $idForm
+
+			// 				ORDER BY cate.ORDEN,grup.ORDEN,valo.ORDEN";
+			// 				//ORDER BY idCategoria,nomGrupo,VALO_ID";	
+
+		$sql = "SELECT
+				frm_formularios_completados.FOCO_ID,
+				frm_formularios_completados.FORM_NOMBRE AS nombre,
+				frm_formularios_completados.CATE_NOMBRE AS nomCategoria,
+				frm_formularios_completados.GRUP_NOMBRE AS nomGrupo,
+				frm_formularios_completados.VALO_NOMBRE AS nomValor,
+				frm_formularios_completados.TIDA_NOMBRE AS nomTipoDatos,
+				frm_formularios_completados.VALOR AS valDefecto,
+				frm_formularios_completados.VALO_ID AS idValor,
+				frm_formularios_completados.FORM_ID AS form_id,
+				frm_formularios_completados.REFERENCIA,
+				frm_formularios_completados.FEC_CREACION,
+				frm_formularios_completados.USUARIO,
+				frm_formularios_completados.ORDEN,
+				frm_formularios_completados.LITA_ID,
+				frm_formularios_completados.VALIDADO,
+				frm_valores.OBLIGATORIO AS obligatorio
+				FROM
+				frm_formularios_completados
+				INNER JOIN frm_valores ON frm_valores.VALO_ID = frm_formularios_completados.VALO_ID
+				WHERE frm_formularios_completados.FORM_ID = $idForm
+				ORDER BY ORDEN";				
+			
 
 		$query= $this->db->query($sql);
 
@@ -297,6 +339,27 @@ class Tareas extends CI_Model
 	    }				
 	}
 
+	// devuelve array con id de valor y url de la imag
+	function getImgValor(){
+		$sql ="SELECT
+				frm_formularios_completados.VALO_ID AS valoid,
+				frm_formularios_completados.VALOR As valor
+				FROM
+				frm_formularios_completados
+				WHERE
+				frm_formularios_completados.FORM_ID = 1 AND
+				frm_formularios_completados.TIDA_NOMBRE = 'input_archivo'
+				";
+		$query= $this->db->query($sql);
+
+		if($query->num_rows()>0){
+	    	return $query->result_array();
+	    }
+	    else{
+	    	return false;
+	    }		
+	}
+
 	// Trae configuracion de form inicial para guardar en frm_frm_completados
 	function getFormInicial($id_listarea){
 		// trae i de tarea estandar por id listarea
@@ -304,15 +367,20 @@ class Tareas extends CI_Model
 		// trae id de form asociado a tarea
 		$idFormAsoc = $this->getFormTarea($id_tarea);
 
+
 		$sql = "SELECT	
 				form.form_id AS FORM_ID,
 				form.nombre AS FORM_NOMBRE,
 				form.fec_creacion AS FEC_CREACION,
 				cate.NOMBRE AS CATE_NOMBRE,						
 				grup.NOMBRE AS GRUP_NOMBRE,
-				tida.NOMBRE AS TIDA_NOMBRE,						
-				valo.NOMBRE AS VALO_NOMBRE,						
-				valo.ORDEN										
+				tida.NOMBRE AS TIDA_NOMBRE,	
+
+				tida.TIDA_ID AS TIDA_ID,						
+					
+				valo.NOMBRE AS VALO_NOMBRE,	
+				valo.VALO_ID AS VALO_ID				
+											
 				FROM
 				frm_formularios form, 
 				frm_categorias cate, 
@@ -356,27 +424,47 @@ class Tareas extends CI_Model
         	$dat[$i] =  $key;
         }
 
+        // echo "form inicial";
+        // dump_exit($dat);
+
+
         $response = $this->db->insert_batch('frm_formularios_completados', $dat);       
 	}
 
 	// Arma array p/ insertar en frm_formularios_completados por ID de Valor
 	function getDatos($idValor){
 
-		$sql ="SELECT
+		// $sql ="SELECT
+		// 		frm_formularios.form_id AS FORM_ID,
+		// 		frm_formularios.nombre AS FORM_NOMBRE,
+		// 		frm_categorias.NOMBRE AS CATE_NOMBRE,
+		// 		frm_grupos.NOMBRE AS GRUP_NOMBRE,
+		// 		frm_valores.NOMBRE VALO_NOMBRE,
+		// 		frm_tipos_dato.NOMBRE AS TIDA_NOMBRE,
+		// 		frm_valores_validos.VALOR As VALOR
+		// 		FROM
+		// 		frm_formularios
+		// 		INNER JOIN frm_categorias ON frm_categorias.FORM_ID = frm_formularios.form_id
+		// 		INNER JOIN frm_grupos ON frm_grupos.CATE_ID = frm_categorias.CATE_ID
+		// 		INNER JOIN frm_valores ON frm_valores.GRUP_ID = frm_grupos.GRUP_ID
+		// 		INNER JOIN frm_tipos_dato ON frm_valores.TIDA_ID = frm_tipos_dato.TIDA_ID
+		// 		INNER JOIN frm_valores_validos ON frm_valores_validos.VALO_ID = frm_valores.VALO_ID
+		// 		WHERE
+		// 		frm_valores.VALO_ID = $idValor";
+
+		$sql = "SELECT
 				frm_formularios.form_id AS FORM_ID,
 				frm_formularios.nombre AS FORM_NOMBRE,
 				frm_categorias.NOMBRE AS CATE_NOMBRE,
 				frm_grupos.NOMBRE AS GRUP_NOMBRE,
 				frm_valores.NOMBRE VALO_NOMBRE,
-				frm_tipos_dato.NOMBRE AS TIDA_NOMBRE,
-				frm_valores_validos.VALOR As VALOR
+				frm_tipos_dato.NOMBRE AS TIDA_NOMBRE				
 				FROM
 				frm_formularios
 				INNER JOIN frm_categorias ON frm_categorias.FORM_ID = frm_formularios.form_id
 				INNER JOIN frm_grupos ON frm_grupos.CATE_ID = frm_categorias.CATE_ID
 				INNER JOIN frm_valores ON frm_valores.GRUP_ID = frm_grupos.GRUP_ID
-				INNER JOIN frm_tipos_dato ON frm_valores.TIDA_ID = frm_tipos_dato.TIDA_ID
-				INNER JOIN frm_valores_validos ON frm_valores_validos.VALO_ID = frm_valores.VALO_ID
+				INNER JOIN frm_tipos_dato ON frm_valores.TIDA_ID = frm_tipos_dato.TIDA_ID	
 				WHERE
 				frm_valores.VALO_ID = $idValor";
 
@@ -391,18 +479,16 @@ class Tareas extends CI_Model
 	        $response['GRUP_NOMBRE'] = $row['GRUP_NOMBRE'];
 	        $response['VALO_NOMBRE'] = $row['VALO_NOMBRE'];
 	        $response['TIDA_NOMBRE'] = $row['TIDA_NOMBRE'];
-	        $response['VALOR'] = $row['VALOR'];
+	        //$response['VALOR'] 		 = $row['VALOR'];
 		}
 
 		return $response;	    					
 	}
 
 	// Inserta datos de Form en frm_formularios_completados
-	function UpdateForm($datos){
-		//dump_exit($datos);
-		//$response = $this->db->insert('frm_formularios_completados', $datos);
-		$ordenComponente = $datos["ORDEN"];
-		$this->db->where('ORDEN', $ordenComponente);
+	function UpdateForm($datos,$key){
+		
+		$this->db->where('VALO_ID', $key);	// $key = Id de valor
 		$response = $this->db->update('frm_formularios_completados', $datos);
 		return $response;
 	}
@@ -410,86 +496,7 @@ class Tareas extends CI_Model
 
 
 
-	//  //Cambia el estado A 'TE' la subtarea
-	//  function TareaRealizadas($id, $datos){
-
-	//        $this->db->where('id_listarea', $id);
-	//        $query = $this->db->update("tbl_listarea",$datos);
-	//        return $query;
-	//    }
-
-
-
-	// // Cambia a estado 'TE' (terminado parcial) a OT
-	// function CambioParcials($idor,$datos){
-    	
- //        $this->db->where('id_orden', $idor);
- //        $query = $this->db->update("orden_trabajo",$datos);
- //        return $query;
- //    }
-
- //    // Cambia a estado a C
-	// function Iniciars($idor,$datos){
-    	
- //        $this->db->where('id_orden', $idor);
- //        $query = $this->db->update("orden_trabajo",$datos);
- //        return $query;
- //    }
-
-
- //    // Cambia a estado 'T' (terminado) a OT
- //    function update_cambio($idequipo,$fecha){
-
- //    	$consulta= "UPDATE orden_trabajo SET estado='T',
- //    										fecha_terminada='$fecha'
-                               
-	// 			WHERE id_orden=$idequipo" ;
-
-	// 	$query= $this->db->query($consulta);
-        
-	// 	return $query;
- //    }
-
- //    // Trae tareas por id de orden
- //    function getlistTareasOTs($idfin){  
-
-	// 	$this->db->select('tbl_listarea.id_listarea,
-	// 						tbl_listarea.id_orden,
-	// 						tbl_listarea.tareadescrip,
-	// 						tbl_listarea.id_usuario,
-	// 						tbl_listarea.fecha,
-	// 						tbl_listarea.estado');
-	// 	$this->db->from('tbl_listarea');		
-	// 	$this->db->where('tbl_listarea.id_orden', $idfin);		
-	// 	$query= $this->db->get();
-		
-	// 	if ($query->num_rows()!=0)
-	// 	{
-	// 		return $query->result_array();	
-	// 	}
-	// 	else
-	// 	{	
-	// 		return false;
-	// 	}
- //    }
-
- //    // Trae datos de OT por id de orden
- //    function getDatosOT($idfin){
-    	
- //    	$this->db->select('orden_trabajo.*');
- //    	$this->db->from('orden_trabajo');
- //    	$this->db->where('orden_trabajo.id_orden', $idfin);	
-	// 	$query= $this->db->get();
-		
-	// 	if ($query->num_rows()!=0)
-	// 	{
-	// 		return $query->result_array();	
-	// 	}
-	// 	else
-	// 	{	
-	// 		return false;
-	// 	}
- //    }
+	
 
 }	
 

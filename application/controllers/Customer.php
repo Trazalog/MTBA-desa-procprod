@@ -22,6 +22,12 @@ class Customer extends CI_Controller {
 
 		echo json_encode($response);
 	}
+
+	public function ObtenerCliente(){
+		$id = $this->input->post('id');
+		$result = $this->Customers->ObtenerCliente($id);
+		echo json_encode($result);
+	}
 	
 	public function setCustomer(){
 		$data = $this->Customers->setCustomer($this->input->post());

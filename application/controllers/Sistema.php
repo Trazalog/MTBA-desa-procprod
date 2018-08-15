@@ -15,8 +15,8 @@ class Sistema extends CI_Controller {
 		dump_exit($data);
 	}
 
-	public function subirImagen(){
-		
+	public function subirImagen(){		
+
 		$config['upload_path'] = './assets/img/sistema';
         $config['allowed_types'] = 'gif|jpg|png';
         //$config['max_size'] = '2048';

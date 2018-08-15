@@ -184,8 +184,7 @@
                  }
            });           
   });  
-    
-  // validacion de campo observacion para btn rechazar
+    // validacion de campo observacion para btn rechazar
     // $('#rechazar').click(function(e){
     //   if ($('#observaciones').val() == ""){
     //     alert('Campo Detalle vacio');
@@ -248,7 +247,7 @@
     
     var formData = new FormData($("#genericForm")[0]);
 
-    /** subidad y resubida de imagenes **/
+    /* subidad y resubida de imagenes */
     // Tomo los inputs auxiliares cargados
     var aux = $('input.auxiliar');
     //console.log("aux");
@@ -303,7 +302,28 @@
 
   });
  
-    
+  //Trae valor de las imagenes
+  function getImgValor(){
+    var valores; 
+    // guarda el id form asoc a tarea std en modal para guardar
+    idForm =  $('#idformulario').val();
+    // trae valores validos para llenar componentes input files.
+    $.ajax({
+            type: 'POST',
+            data: { idForm: idForm},
+            url: 'index.php/Tarea/getImgValor', 
+            success: function(data){               
+                                       
+                    valores = data;
+                    llenarInputFile(valores);
+                  },              
+            error: function(result){
+                  
+                  console.log(result);
+                },
+            dataType: 'json'
+    });
+  }  
 
   // trae valores validos para llenar form asoc.  
   function getformulario(event) {    
@@ -363,30 +383,6 @@
 
       valor = data[index]['idValor'];     
       valorSig = data[index]['idValor'];
-    });
-  }
-
-  /** Imágenes **/
-  //Trae valor de las imagenes
-  function getImgValor(){
-    var valores; 
-    // guarda el id form asoc a tarea std en modal para guardar
-    idForm =  $('#idformulario').val();
-    // trae valores validos para llenar componentes input files.
-    $.ajax({
-            type: 'POST',
-            data: { idForm: idForm},
-            url: 'index.php/Tarea/getImgValor', 
-            success: function(data){               
-                                       
-                    valores = data;
-                    llenarInputFile(valores);
-                  },              
-            error: function(result){
-                  
-                  console.log(result);
-                },
-            dataType: 'json'
     });
   }
 
