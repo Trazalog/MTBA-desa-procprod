@@ -16,8 +16,7 @@ class InicioTrabajos extends CI_Model
 		return $query->result_array();
 	}
 	public function Guardar($data)
-	{	
-		
+	{
 		$query = $this->db->insert('trj_pedido_trabajo',$data);
         return $query;
 
@@ -26,23 +25,6 @@ class InicioTrabajos extends CI_Model
 		$this->db->select('codigo as value,motor as data');
 		$query = $this->db->get('trj_nomenclador_motores');
 		return $query->result_array();
-	}
-
-	public function Obtener_Correlativo(){
-		$query = $this->db->get('mtb_num_interno')->result_array();
-		$año = $query[0]['año'];
-		$num = $query[0]['num_correlativo'];
-		if($año==date("Y")){//MISMO AÑO RETORNA NUMERO CORRELATIVO
-			$num = $num+1;
-			$this->db->set('num_correlativo',$num);
-			$this->db->update('mtb_num_interno');
-			return "-".($num<=9?"0".$num:$num)."-".substr($año,2,3);
-		}else{//DISTINTOS AÑO SETEA EL NUMERO CORRELATIVO EN 1;
-			$this->db->set('año',date("Y"));
-			$this->db->set('num_correlativo',1);
-			$this->db->update('mtb_num_interno');
-			return "-"."01"."-".substr(date("Y"),2,3);
-		}
 	}
 }
 ?>

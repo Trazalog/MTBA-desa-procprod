@@ -12,32 +12,256 @@ class Tarea extends CI_Controller {
 
 	// Carga lista de OT
 	public function index($permission){
-		
-		$param = $this->Bonitas->conexiones();
+		$metodo = "POST";
+
+		$parametros = $this->Bonitas->conexiones();
+		$param = stream_context_create($parametros);
+
 		$data['list'] = $this->Tareas->getTareas($param);
 		$data['permission'] = $permission;
 		$this->load->view('tareas/list', $data);
 	}
 
+
+
+		public function ObtenerTareaBPM(){	
+		
+		// PONER EL ID DE USUARIO DINAMICO!!!!!!
+
+		$idTarBonita = $this->input->post('idTarBonita');
+		
+		$estado = array (
+		  "assigned_id"	=>	5
+		);
+		
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "GET";	
+		$parametros["http"]["content"] = json_encode($estado);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$response = $this->Tareas->tomarTarea($idTarBonita,$param);
+		return $response;
+	}
+
+
+
+
+
+	// Estado cuenta BOTON HECHO
+	public function estadoCuenta(){	
+	
+		$idTarBonita = $this->input->post('idTarBonita');
+		$valor = $this->input->post('estado');
+		$estado = array (
+		  //"estadoCuentaClienteOk"	=>	"$valor"
+		);
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "POST";	
+		//$parametros["http"]["content"] = json_encode($estado);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$result = $this->Tareas->estadoCuenta($idTarBonita,$param);
+		echo json_encode($result);
+	}	
+
+
+
+	// Estado cuenta
+	public function estadoCuentaOk(){	
+	
+		$idTarBonita = $this->input->post('idTarBonita');
+		$valor = $this->input->post('estado');
+		$estado = array (
+		  "estadoCuentaClienteOk"	=>	"$valor"
+		);
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "POST";	
+		$parametros["http"]["content"] = json_encode($estado);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$result = $this->Tareas->estadoCuentaOk($idTarBonita,$param);
+		echo json_encode($result);
+	}	
+
+
+
+	// Esperando Regularizacion
+	public function esperandoRegularizacion(){	
+	
+		$idTarBonita = $this->input->post('idTarBonita');
+		$valor = $this->input->post('espera');
+		$espera = array (
+		  "seguirEsperandoRegularizacion"	=>	"$valor"
+		);
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "POST";	
+		$parametros["http"]["content"] = json_encode($espera);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$result = $this->Tareas->esperandoRegularizacion($idTarBonita,$param);
+		echo json_encode($result);
+	}	
+
+	
+
+	// Precisa Anticipo
+	public function precisaAnticipo(){	
+	
+		$idTarBonita = $this->input->post('idTarBonita');
+		$valor = $this->input->post('precisa');
+		$precisa = array (
+		  "precisaAnticipo"	=>	"$valor"
+		);
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "POST";	
+		$parametros["http"]["content"] = json_encode($precisa);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$result = $this->Tareas->precisaAnticipo($idTarBonita,$param);
+		echo json_encode($result);
+	}
+
+
+
+
+
+	// Trae id de tarea de trazajobs segun id de tarea bonita
+	public function getIdTareaTraJobs(){
+
+		$metodo = "POST";
+
+		$idBonita = $this->input->post();
+		$parametros = $this->Bonitas->conexiones();
+		$param = stream_context_create($parametros);
+		$idTJobs = $this->Tareas->getIdTareaTraJobs($idBonita,$param);
+		//echo "id de bonita";
+		//dump_exit($idTJobs);
+		echo $idTJobs;
+	}
+
+	// verifica que el form tenga todos los campos validado en 1 
+	public function validarFormGuardado(){
+		
+		$id_listarea = $this->input->post('id_listarea');
+		$response = $this->Tareas->validarFormGuardado($id_listarea);
+		echo json_encode($response);
+	}
+
+	// Termina tarea en BPM  CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
+	public function terminarTarea(){
+		
+		// PONER EL ID DE USUARIO DINAMICO!!!!!!
+		$idTarBonita = $this->input->post('idTarBonita');
+		$estado = array (
+		  "assigned_id"	=>	5,
+		  "state"=> "completed"
+		);
+		
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "PUT";	
+		$parametros["http"]["content"] = json_encode($estado);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$response = $this->Tareas->terminarTarea($idTarBonita,$param);
+		echo json_encode($response);		
+	}
+
+	// Usr Toma tarea en BPM   CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
+	public function tomarTarea(){	
+		
+		// PONER EL ID DE USUARIO DINAMICO!!!!!!
+
+		$idTarBonita = $this->input->post('idTarBonita');
+		
+		$estado = array (
+		  "assigned_id"	=>	5
+		);
+		
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "PUT";	
+		$parametros["http"]["content"] = json_encode($estado);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$response = $this->Tareas->tomarTarea($idTarBonita,$param);
+	}
+
+	// Usr Toma tarea en BPM   CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
+	public function soltarTarea(){	
+		
+		$idTarBonita = $this->input->post('idTarBonita');
+		
+		$estado = array (
+		  "assigned_id"	=>	""
+		);
+		
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "PUT";	
+		$parametros["http"]["content"] = json_encode($estado);	
+
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$response = $this->Tareas->soltarTarea($idTarBonita,$param);
+	}	
+
 	// trae datos para llenar notificaion estandar y formulario asociado
-	public function detaTarea($permission,$id_orden,$id_listarea){
+	public function detaTarea($permission,$id_orden,$id_listarea, $idTarBonita,$estadoTarea){
+		// trae id de form asociado a tarea std.
+		$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);		
+		$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd);
 		
 		$data['permission'] = $permission;
 		// datos de la tarea 
 		$data['datos'] = $this->Tareas->detaTareas($id_orden,$id_listarea);
+		$data['idTarBonita'] = $idTarBonita;
+		$data['estadoTarea']= $estadoTarea;
+		$data['idForm']	= $idForm;	
+
+		//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
+		$data['TareaBPM'] = json_decode($this->ObtenerTareaBPM(),true);
 		
 		// confirma si hay form guardado de esa listarea		
 		if ($this->Tareas->getEstadoForm($id_listarea)) {
-			echo "hay form guardado";
-		}else{
-			echo "no hay form guradado";
+			//echo "hay form guardado";
+		}
+		else{
+			//echo "no hay form guradado";
 			// guarda form inicial vacio
 			$this->Tareas->setFormInicial($id_listarea);
 		}
 			
 		// carga el formulario para modal
 		$data['form'] = $this->Tareas->get_form($id_listarea);
-		//dump_exit($data);
 		$this->load->view('tareas/view_', $data);
 	}
 

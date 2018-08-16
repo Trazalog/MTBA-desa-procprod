@@ -117,14 +117,40 @@
                                                     <div class="form-group">
                                                         <div class="col-sm-12 col-md-12">
                                                             <!-- Modal formulario tarea -->
-                                                           <?php if($idForm !=''){echo '<button type="button" class="btn btn-primary" data-toggle="modal"
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal"
                                                                 data-target=".bs-example-modal-lg" onclick="getformulario()">Completar
                                                                 Formulario
-                                                            </button>';}?>
+                                                            </button>
                                                         </div>
                                                     </div>
 
 
+                                                    <!-- Plazo de espera(inline) -->
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            <center>
+                                                                <label class="control-label">El plazo de espera para
+                                                                    que
+                                                                    el cliente regularice su situación ha caducado.
+                                                                </label>
+                                                                </br>
+                                                                <label class="control-label">
+                                                                    ¿Desea seguir esperando?
+                                                                </label>
+                                                                </br>
+                                                                <div class="col-md-12">
+                                                                    <label class="radio-inline" for="radios-0">
+                                                                        <input type="radio" name="espera" id="radios-0"
+                                                                            value="true" checked="checked"> Si
+                                                                    </label>
+                                                                    <label class="radio-inline" for="radios-1">
+                                                                        <input type="radio" name="espera" id="radios-1"
+                                                                            value="false" checked="checked"> No
+                                                                    </label>
+                                                                </div>
+                                                            </center>
+                                                        </div>
+                                                    </div>
 
                                                     <div class="form-group">
                                                         <div class="col-sm-12 col-md-12">
@@ -163,7 +189,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
-                                <button type="button" class="btn btn-success" onclick="estado()">Hecho</button>
+                                <button type="button" class="btn btn-success" onclick="esperandoRegu()">Hecho</button>
                             </div> <!-- /.modal footer -->
 
                     </div><!-- /.box body -->
@@ -258,19 +284,19 @@
     // }); 
 
 
-    // Boton Hecho generico
-    function estado() {
+    // Espera de regularizacion
+    function esperandoRegu() {
 
         var idTarBonita = $('#idTarBonita').val();
-
+        var $espera = $('input[name="espera"]:checked').val();
 
         $.ajax({
             type: 'POST',
             data: {
                 'idTarBonita': idTarBonita,
-
+                'espera': $espera
             },
-            url: 'index.php/Tarea/estadoCuenta',
+            url: 'index.php/Tarea/esperandoRegularizacion',
             success: function(result) {
                 console.log(result);
                 alert("SII");
@@ -290,7 +316,7 @@
     function tomarTarea() {
 
         var idTarBonita = $('#idTarBonita').val();
-        //alert(idTarBonita);
+        alert(idTarBonita);
         $.ajax({
             type: 'POST',
             data: {
@@ -312,7 +338,7 @@
     function soltarTarea() {
 
         var idTarBonita = $('#idTarBonita').val();
-        //alert(idTarBonita);
+        alert(idTarBonita);
         $.ajax({
             type: 'POST',
             data: {
@@ -361,9 +387,6 @@
             dataType: 'json'
         });
     }
-
-
-
 
     // llena los componentes de form asoc con valores validos
     function llenaComp(data) {

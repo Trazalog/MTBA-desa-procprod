@@ -1,4 +1,4 @@
-<input type="hidden" id="permission" value="<?php echo $permission;?>">
+<input type="hidden" id="permission" value="<?php echo $permission; ?>">
 <section class="content">
 	<div class="row">
 		<div class="col-xs-12">
@@ -7,9 +7,8 @@
 					<center>
 						<h2> Nota de Pedido </h2>
 					</center>
-
-					<br>
 					<div class="row">
+
 						<div class="col-xs-3">
 							<select id="clientes" class="form-control">
 								<option selected="selected">Seleccionar Cliente...</option>
@@ -17,13 +16,14 @@
 									foreach ($list as $f) {
 									echo '<option value="' . $f['cliId'] . '">' . $f['cliName'] . '</option>';
 									}
-								?>
+									?>
 							</select>
 						</div>
 						<div class="col-xs-3">
 							<button class="btn btn-success" data-toggle="modal" data-target="#modaleditar" onclick="rellenarModal()">
 								<i class="fa fa-fw fa-pencil" style="color: #00000; cursor: pointer;" title="Editar"></i> Editar</button>
 						</div>
+
 
 					</div>
 				</div>
@@ -73,68 +73,51 @@
 						</div>
 						<!-- /.box-body -->
 					</div>
-					<div class="form-group">
-						<label style="margin-top: 7px;">Código de Interno:
-							<strong style="color: #dd4b39">*</strong>: </label>
-						<select id="codigo_interno" class="form-control" style="width:30%;">
-							<option value="0" selected="selected">Seleccionar...</option>
-							<option value='AL'> AL - arbol de leva </option>
-							<option value='BI'> BI - Bomba Inyectora </option>
-							<option value='BIE'> BIE - Biela </option>
-							<option value='CA'> CA - cardan </option>
-							<option value='CI'> CI - Cigüeñal </option>
-							<option value='COM'> COM - compresor </option>
-							<option value='IT'> IT - intercambiadores </option>
-							<option value='PS'> PS - piezas sueltas </option>
-							<option value='RA'> RA - Radiadores de Aceite </option>
-							<option value='TC'> TC - Tapa Cilindro </option>
-							<option value='TV'> TV - turbo </option>
-						</select>
-					</div>
-					<form id="form">
+					<form class="registerForm">
 						<div class="row">
-
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label>Parte / Vehículo
+									<label style="margin-top: 7px;">Parte / Vehículo
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="parte" class="form-control obligatorio" />
+									<input type="text" id="parte" class="form-control" />
 								</div>
 							</div>
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label>Patente: </label>
+									<label style="margin-top: 7px;">Patente
+										<strong style="color: #dd4b39">*</strong>: </label>
 									<input type="text" id="patente" class="form-control" />
 								</div>
 							</div>
 
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label>N° de Motor
+									<label style="margin-top: 7px;">N° de Motor
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="num_motor" class="form-control obligatorio" />
+									<input type="text" id="num_motor" class="form-control" />
 								</div>
 							</div>
 
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label>Indice
+									<label style="margin-top: 7px;">Indice
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="indice" class="form-control obligatorio" placeholder="Buscar Indice..." />
+									<input type="text" id="indice" class="form-control" placeholder="Buscar Indice..." />
 								</div>
 							</div>
 
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label>Motor
+									<label style="margin-top: 7px;">Motor
 										<strong style="color: #dd4b39">*</strong>: </label>
-									<input type="text" id="motor" class="form-control obligatorio" />
+									<input type="text" id="motor" class="form-control" />
 								</div>
 							</div>
 
 							<div class="col-xs-12 col-sm-4">
 								<div class="form-group">
-									<label style="margin-top: 7px;">N° de Chásis: </label>
+									<label style="margin-top: 7px;">N° de Chásis
+										<strong style="color: #dd4b39">*</strong>: </label>
 									<input type="text" id="num_chasis" class="form-control" />
 								</div>
 							</div>
@@ -255,43 +238,22 @@
 		var sourceArray = <?php echo json_encode($listaIndices); ?>
 
 			$('#indice').autocomplete({
-				source: sourceArray,
+				source: function(request, response) {
+					// filter array to only entries you want to display limited to 10
+					var outputArray = new Array();
+					for (var i = 0; i < sourceArray.length; i++) {
+						if (sourceArray[i].label.match(request.term)) {
+							outputArray.push(sourceArray[i]);
+						}
+					}
+					response(outputArray.slice(0, 10));
+				},
 				select: function(event, ui) {
 					$('#motor').val(ui.item.data);
 				}
 			});
 
-		$('#form').bootstrapValidator({ //VALIDADOR
-			message: 'This value is not valid',
-			feedbackIcons: {
-				valid: 'glyphicon glyphicon-ok',
-				invalid: 'glyphicon glyphicon-remove',
-				validating: 'glyphicon glyphicon-refresh'
-			},
-			fields: {
-				obligatorio: {
-					message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
-					selector: '.obligatorio',
-					validators: {
-						notEmpty: {
-							message: 'Los campos obligatorios(*) deben estar completos'
-						}
-					}
-				},
-				optionsRadios: {
-					validators: {
-						notEmpty: {
-							message: 'Alguna de las opciones debe estar seleccionada'
-						}
-					}
-				}
-			}
-		});
-
 	});
-
-
-
 
 
 
@@ -320,7 +282,6 @@
 	});
 
 	function guardarPedido() {
-		var codigoI = $('#codigo_interno option:selected').val();
 		var parte_vehiculo = $('#parte').val();
 		var patente = $('#patente').val();
 		var indice = $('#indice').val();
@@ -335,7 +296,7 @@
 		var observacion = $('#observacion').val();
 		var clie_id = id_cliente_seleccionado;
 
-		console.log(codigoI);
+
 		console.log(parte_vehiculo);
 		console.log(patente);
 		console.log(indice);
@@ -348,9 +309,6 @@
 		console.log(subfamilia);
 		console.log(observacion);
 
-		if (!ValidarCampos()) {
-			return
-		}
 
 		$.ajax({
 			type: 'POST',
@@ -367,7 +325,6 @@
 				"observacion": observacion,
 				"familia_producto": familia,
 				"subfamilia": subfamilia,
-				"cod_interno": codigoI,
 				"clie_id": clie_id
 			},
 			url: 'index.php/InicioTrabajo/Guardar_Pedido',
@@ -415,14 +372,17 @@
 
 	function ValidarCampos() {
 
-		var codigoI = $('#codigo_interno').prop('selectedIndex');
+		var parte_vehiculo = $('#parte').val();
+		var patente = $('#patente').val();
+		var indice = $('#indice').val();
+		var motor = $('#motor').val();
+		var num_motor = $('#num_motor').val();
+		var num_chasis = $('#num_chasis').val();
+		var condicion = $('input[name="optionsRadios"]:checked').val();
 		var cliente = $('#clientes').prop('selectedIndex');
 		var familia = $('#familia_productos').prop('selectedIndex');
 		var subfamilia = $('#subfamilia').prop('selectedIndex');
-		if (codigoI == 0) {
-			alert("Se debe seleccionar el Codigo de Interno");
-			return false;
-		}
+
 		if (cliente == 0) {
 			alert("Se debe seleccionar un cliente");
 			return false;
@@ -433,6 +393,14 @@
 		}
 		if (subfamilia == 0) {
 			alert("Se debe seleccionar Subfamilia de Productos");
+			return false;
+		}
+		if (condicion == null) {
+			alert("Se debe seleccionar una Condición");
+			return false;
+		}
+		if (parte == '' || patente == '' || indice == '' || motor == '') { //||num_motor==''||num_chasis==''){
+			alert("Los campos obligatorios(*) deben estar completos");
 			return false;
 		}
 
@@ -554,7 +522,7 @@
 
 <!-- Modal editar-->
 <div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-	<div class="modal-dialog modal-lg" role="document" style="width: 40%">
+	<div class="modal-dialog modal-md" role="document" style="width: 100">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -565,88 +533,88 @@
 			</div>
 			<div class="modal-body input-group ui-widget" id="modalBodyArticle">
 				<div class="row">
-					<div class="col-sm-12 col-md-12">
+					<div class="col-md-12 col-md-10">
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Nombre
 									<strong style="color: #dd4b39">*</strong>: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="Nombre" id="nombre1" name="nombreE">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Apellido
 									<strong style="color: #dd4b39">*</strong>: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="Apellido" id="Apellido1" name="Apellido1">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Dni
 									<strong style="color: #dd4b39">*</strong>: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="12345678" id="dni1" name="dni1" maxlength="8">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Fec. Nacimiento
 									<strong style="color: #dd4b39">*</strong>: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="date" class="form-control" id="fecha1" name="fecha1" placeholder="dd-mm-aaaa">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Domicilio: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="input" class="form-control" placeholder="ej: Barrio Los Olivos M/E Casa/23" id="dom1" name="dom1">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Teléfono: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="0264 - 4961020" id="tel1" name="tel1">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Celular: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="0264 - 155095888" id="cel" name="cel">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Mail: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<input type="text" class="form-control" placeholder="claudia.perez@hotmail.com" id="mail" name="mail">
 							</div>
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Zona: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<select class="form-control" id="zona" name="zona" value="">
 
 								</select>
@@ -654,10 +622,10 @@
 						</div>
 						<br>
 						<div class="row">
-							<div class="col-xs-4">
+							<div class="col-md-6">
 								<label style="margin-top: 7px;">Días proxímo cobro: </label>
 							</div>
-							<div class="col-xs-8">
+							<div class="col-md-10">
 								<select class="form-control" id="dia1" name="dia1">
 									<?php 
                   for ($i = 1; $i < 31; $i++) {

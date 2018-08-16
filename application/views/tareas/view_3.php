@@ -117,13 +117,34 @@
                                                     <div class="form-group">
                                                         <div class="col-sm-12 col-md-12">
                                                             <!-- Modal formulario tarea -->
-                                                           <?php if($idForm !=''){echo '<button type="button" class="btn btn-primary" data-toggle="modal"
+                                                            <button type="button" class="btn btn-primary" data-toggle="modal"
                                                                 data-target=".bs-example-modal-lg" onclick="getformulario()">Completar
                                                                 Formulario
-                                                            </button>';}?>
+                                                            </button>
                                                         </div>
                                                     </div>
 
+                                                    <!-- Precisa Anticipo(inline) -->
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12 col-md-12">
+                                                            <center>
+                                                                <label class="control-label">
+                                                                    ¿Precisa anticipo?
+                                                                </label>
+                                                                </br>
+                                                                <div class="col-md-12">
+                                                                    <label class="radio-inline" for="radios-0">
+                                                                        <input type="radio" name="precisa" id="radios-0"
+                                                                            value="true" checked="checked"> Si
+                                                                    </label>
+                                                                    <label class="radio-inline" for="radios-1">
+                                                                        <input type="radio" name="precisa" id="radios-1"
+                                                                            value="false" checked="checked"> No
+                                                                    </label>
+                                                                </div>
+                                                            </center>
+                                                        </div>
+                                                    </div>
 
 
                                                     <div class="form-group">
@@ -158,12 +179,9 @@
 
                         </div><!-- /.row -->
 
-
-
-
                             <div class="modal-footer">
                                 <button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
-                                <button type="button" class="btn btn-success" onclick="estado()">Hecho</button>
+                                <button type="button" class="btn btn-success" onclick="precisaAnti()">Hecho</button>
                             </div> <!-- /.modal footer -->
 
                     </div><!-- /.box body -->
@@ -220,6 +238,32 @@
         $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
         WaitingClose();
     });
+
+    // Precisa Anticipo
+    function precisaAnti() {
+
+        var idTarBonita = $('#idTarBonita').val();
+        var $precisa = $('input[name="precisa"]:checked').val();
+
+        $.ajax({
+            type: 'POST',
+            data: {
+                'idTarBonita': idTarBonita,
+                'precisa': $precisa
+            },
+            url: 'index.php/Tarea/precisaAnticipo',
+            success: function(result) {
+                console.log(result);
+                alert("SII");
+
+            },
+            error: function(result) {
+                alert("Noo");
+                console.log(result);
+            },
+            dataType: 'json'
+        });
+    }
 
 
     //Ckeck Tarea realizada
@@ -290,7 +334,7 @@
     function tomarTarea() {
 
         var idTarBonita = $('#idTarBonita').val();
-        //alert(idTarBonita);
+        alert(idTarBonita);
         $.ajax({
             type: 'POST',
             data: {
@@ -312,7 +356,7 @@
     function soltarTarea() {
 
         var idTarBonita = $('#idTarBonita').val();
-        //alert(idTarBonita);
+        alert(idTarBonita);
         $.ajax({
             type: 'POST',
             data: {
@@ -361,9 +405,6 @@
             dataType: 'json'
         });
     }
-
-
-
 
     // llena los componentes de form asoc con valores validos
     function llenaComp(data) {
