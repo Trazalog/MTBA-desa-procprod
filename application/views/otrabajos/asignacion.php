@@ -134,7 +134,7 @@
                                     echo '</td>';                                   
 
                                       // duracion standar de tarea
-                                    echo '<td class="hidden duracionStd" style="text-align: left">'.$a['duracion_std'].'</td>';
+                                    echo '<td class=" duracionStd" style="text-align: left">'.$a['duracion_std'].'</td>';
                                       // id de usuario asignado
                                     echo '<td class="hidden id_usuario" style="text-align: left">'.$a['id_usuario'].'</td>';
 
@@ -378,41 +378,41 @@ function guardarInfo(){
       console.log('idTareaTrazajobs: ');
       console.log(idTareaTrazajobs);
 
-      {
-        "inputs": [],
-        "type": "TEXT",
-        "description": null,
-        "name": "nombre",
-        "multiple": false
-      },
-      {
-       "inputs": [],
-       "type": "TEXT",
-       "description": null,
-       "name": "usuarioCoordinador",
-       "multiple": false
-     },
-     {
-       "inputs": [],
-       "type": "TEXT",
-       "description": null,
-       "name": "usuarioAsignado",
-       "multiple": false
-     },
-     {
-       "inputs": [],
-       "type": "TEXT",
-       "description": null,
-       "name": "idTareaTrazajobs",
-       "multiple": false
-     },
-     {
-       "inputs": [],
-       "type": "DECIMAL",
-       "description": null,
-       "name": "duracionStd",    // ESTO VA EN MILISEGUNDOS
-       "multiple": false
-     }
+     //  {
+     //    "inputs": [],
+     //    "type": "TEXT",
+     //    "description": null,
+     //    "name": "nombre",
+     //    "multiple": false
+     //  },
+     //  {
+     //   "inputs": [],
+     //   "type": "TEXT",
+     //   "description": null,
+     //   "name": "usuarioCoordinador",
+     //   "multiple": false
+     // },
+     // {
+     //   "inputs": [],
+     //   "type": "TEXT",
+     //   "description": null,
+     //   "name": "usuarioAsignado",
+     //   "multiple": false
+     // },
+     // {
+     //   "inputs": [],
+     //   "type": "TEXT",
+     //   "description": null,
+     //   "name": "idTareaTrazajobs",
+     //   "multiple": false
+     // },
+     // {
+     //   "inputs": [],
+     //   "type": "DECIMAL",
+     //   "description": null,
+     //   "name": "duracionStd",    // ESTO VA EN MILISEGUNDOS
+     //   "multiple": false
+     // }
 
 
 
@@ -1009,7 +1009,7 @@ function guardarInfo(){
               "<td>"+data[i]['descripcion']+"</td>"+
               "<td></td>"+
               "<td></td>"+             
-              "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
+              //"<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
               // "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i> <i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+  
 
 
@@ -1096,11 +1096,11 @@ function guardarInfo(){
             console.log('id equipo: ');
             console.log(idEquipo);
 
-            var descTar = $(this).parents("tr").find("td").eq(1).html();
+            var descTar = $(this).parents("tr").find("td").eq(2).html();
             var text ='<h5>'+ descTar + '</h5>';
             $('#descTareaModal').append(text);
 
-            var duracion = $(this).parents("tr").find("td").eq(6).html();     
+            var duracion = $(this).parents("tr").find("td").eq(7).html();     
             $('#duracion').val(duracion);    
 
     });
@@ -1241,9 +1241,7 @@ function guardarInfo(){
                       console.log(result);
                     }
       });
-    });
-
-    
+    });    
 
     //ASIGNAR USUARIO
     $(".fa-user").click(function (e) { 
@@ -1267,7 +1265,6 @@ function guardarInfo(){
         changeMonth: true,
         changeYear: true
     });
-
 
 });
 
@@ -1394,11 +1391,10 @@ function regresa1(){
   //WaitingClose();
 }
 
-// cargo plugin DateTimePicker
-  $('#fechaProgNueva, #fecha-tomo, #libroFecha').datetimepicker({
-    format: 'YYYY-MM-DD H:mm:ss',
-    locale: 'es',
-  });
+$('#fechaProgNueva').datetimepicker(
+  {format: 'YYYY-MM-DD H:mm:ss',
+    locale: 'es'});
+
 
 </script>
 
@@ -1513,6 +1509,7 @@ function regresa1(){
         <div class="form-group">
           <label for="fechaProgNueva">Fecha *</label>
           <input type='text' class="form-control input-md" id="fechaProgNueva" value="<?php echo date("Y-m-d H:i:s") ?>">
+          <!-- <input type='text' class="form-control input-md" id="fechaProgNueva" value=""> -->
         </div>
 
         <div class="form-group">

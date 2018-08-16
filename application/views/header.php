@@ -5,7 +5,7 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <title>asset PLANNER</title>
+    <title>traza JOBS</title>
 
     <link rel="shortcut icon" href="<?php echo base_url();?>assets/img/favicon.png" type="image/x-icon">
     <!-- Bootstrap 3.3.7 -->
@@ -25,7 +25,7 @@
     <!-- DataTables 1.10.7 -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugin/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrapValidator.min.css"/>
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css">
+    <!-- <link rel="stylesheet" href="<?php //echo base_url();?>assets/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css"> -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css">
     <!-- Bootstrap datetimepicker -->
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -81,10 +81,10 @@
 
     <!-- Select2 - ->
     <link rel="stylesheet" href="<?php  echo base_url();?>assets/plugin/select2/select2.css">
-    <!-- Select2 - ->
+    <!- - Select2 - ->
     <script src="<?php  echo base_url();?>assets/plugin/select2/select2.js"></script>
 
-     <!-- VALIDADOR -->
+     <!- - VALIDADOR -->
      <script src="<?php  echo base_url();?>assets/js/bootstrapValidator.min.js"></script>
 
     <!--
@@ -103,8 +103,11 @@
     <!-- <script src="<?php  //echo base_url();?>ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="<?php  //echo base_url();?>ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.js"></script>- ->
 
-    <!-- Jasny Bootstrap -->
+    <!- - Jasny Bootstrap -->
     <script src="<?php echo base_url();?>assets/plugin/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+    <!-- Bootstrap datetimepicker -->
+    <script src="<?php echo base_url();?>assets/plugin/moment/moment-with-locales.min.js"></script>
+    <script src="<?php echo base_url();?>assets/plugin/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
 </head>
 
 
