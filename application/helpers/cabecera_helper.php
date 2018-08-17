@@ -1,6 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if(!function_exists('cargarCabecera')){
+    // id de pedido es el petr_id de la tabla trj_pedido_trabajo se obtiene con el bpm_id de esa tabla
     function cargarCabecera($idPedido){
                     //get main CodeIgniter object
             $ci =& get_instance();
