@@ -124,7 +124,7 @@ $('#agregar').click(function (e) {
         var idPlantilla=$('#numord').val();
         $.ajax({
             type: 'POST',
-            data:{"id_tarea":idTarea,"id_Plantilla":idPlantilla},
+            data:{"id_tarea":idTarea,"id_plantilla":idPlantilla},
             url: 'index.php/Plantilla/agregar_tarea', 
             success: function(data){
                 alert("Tarea Guardada");
@@ -132,8 +132,10 @@ $('#agregar').click(function (e) {
             },
             error: function(result){
                 console.log("Error al guardar tarea");
-            }    
+            },
+            dataType: 'json'    
         });
+
      WaitingClose();
   });
 

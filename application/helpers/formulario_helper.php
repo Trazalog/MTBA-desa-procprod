@@ -2,24 +2,39 @@
 
 if (!function_exists('cargarFormulario')) {
   
-//1533655132539
+
 
   function cargarFormulario ($form){
       
+    echo '<div class="row">
+            <div class="col-xs-12">
+              <div class="alert alert-danger alert-dismissable" id="error" style="display: none">
+                <h4><i class="icon fa fa-ban"></i>Exiten campos sin completar...</h4>
+                Por favor revise que todos los campos obligatorios esten completos
+              </div>
+            </div>
+          </div>';
+
+
+    echo '<div class="modal-footer">              
+              <button class="btn btn-primary" onclick="validarFormGuardado()">Validar</button>
+              <button class="btn btn-success" type="button" data-dismiss="modal">Guardar</button>
+            </div>';    
+
     echo'<form enctype="multipart/form-data" id="genericForm" class="form-horizontal" style="padding:0px 15px;" role="form" action="" method="" >';   
         
         
         // guarda el id_listarea para actualizarla tabla frm formcompletados
-        echo "<input type='text' class='' name='id_listarea' id='id_listarea' style='width: 100%'>";
-        echo "id form";
-        echo "<input type='text' class='' name='idformulario' id='idformulario' style='width: 100%'>";    
+        echo "<input type='text' class='hidden' name='id_listarea' id='id_listarea' style='width: 100%'>";
+        //echo "id form";
+        echo "<input type='text' class='hidden' name='idformulario' id='idformulario' style='width: 100%'>";    
         
         echo "<table id='tabla' class='table table-bordered table-hover'>";                   
           echo "<tbody>";
             $categ = "";
             $grup = "";
             foreach($form as $a){
-               //echo "formuario: ";
+              //echo "formuario: ";
               //dump_exit($form);        
               // Muestra categoria
              
@@ -27,41 +42,31 @@ if (!function_exists('cargarFormulario')) {
                   $regCat = $a['nomCategoria'];
                   if ($categ != $regCat) {
                     echo "<tr>"; 
-                    echo "<td colspan ='2'>";
-
-                    echo "<h3 align='center'>".$a['nomCategoria']."</h3>";
-                    echo "</td>";
+                      echo "<td colspan ='2'>";
+                        echo "<h3 align='center'>".$a['nomCategoria']."</h3>";
+                      echo "</td>";
                     echo "</tr>";  
                     // echo "<input type='hidden' class='nomCategoria' id='categoria' name='' value='".$a['nomCategoria']."'>";
                     //echo "<br>";
                     $categ = $a['nomCategoria'];
                   }                        
             
-                
+              // Muestra grupo  
               if(strlen($a["nomGrupo"])>0){
-
-              // Muestra grupo
-                
                   
                   $regGrupo = $a["nomGrupo"];
-                  if(strcmp($grup, $regGrupo) == 0){  //cadenas iguales
-                    $grup = $a["nomGrupo"];
-                    
-                  }
-                  
+                  if(strcmp($grup, $regGrupo) == 0){  //cadenas iguales                    
+                    $grup = $a["nomGrupo"];                    
+                  } 
                   else{                             //cadenas distintas
                     //echo "entre por if";
                     echo "<tr>"; 
                     echo "<td colspan ='2'>";  
                     echo "<h4>".$a["nomGrupo"]."</h4>";
                     echo "</td>";
-                    echo "</tr>";
-                    //echo "<input type='hidden' class='nomGrupo' id='grupo' name='".$a["nomGrupo"]."' value='".$a["nomGrupo"]."'>";
-                    
+                    echo "</tr>";                    
                     $grup = $a["nomGrupo"];
-                    //echo "<br>";
-                  }
-                                      
+                  }                                      
               }
              
               // Muestra el nombre del dato  
@@ -69,8 +74,8 @@ if (!function_exists('cargarFormulario')) {
                 echo "<td>" ;              
                  
                 $etiqueta = $a["nomTipoDatos"];
-
-                echo "<h4 ' style='margin-left: 60px'> ".$a["nomValor"]."</h4>";
+                // si el campo es oblligatorio añade * para señalar
+                echo "<h4 ' style='margin-left: 60px'> ".($a['obligatorio']?"* ":"").$a["nomValor"]."</h4>";
 
                 echo "</td>"; 
                 echo "<td><div class='form-group'>";  
@@ -78,37 +83,46 @@ if (!function_exists('cargarFormulario')) {
                 // muestra el componente a llenar o el select  
                   switch ($etiqueta) {
                         case "select":
-                        echo "<select class='form-control sel' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 100%'>
-                          <option value= '-1' >".$a['valDefecto']."</option>
-                        </select>";
+                            echo "<select class='form-control sel ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 80%'>
+                              <option value= '-1' >".$a['valDefecto']."</option>
+                            </select>";
                             break;
-
-                        // case "input":
-                        //     echo "<input type='text' class='form-control inp' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 100%'>";
-                        //     break;
                         case "input_texto":
-                            echo "<input type='text' class='form-control inp texto ".($a['obligatorio']?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 100%'>";
+                            echo "<input type='text' class='form-control inp texto ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             //echo "hay input";
-                            break;
-                        
+                            break;                        
                         case "input_numerico":
-                            echo "<input type='text' class='form-control inp numerico ".($a['obligatorio']?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 100%'>";
+                            echo "<input type='text' class='form-control inp numerico ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             break;
                         case "input_fecha":
-                            echo "<input type='text' class='form-control inp fecha ".($a['obligatorio']?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 100%'>";
+                            echo "<input type='text' class='form-control inp fecha ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             break;
+                        
                         case "input_archivo":
-                            echo "<input type='file' class='inp archivo ".($a['obligatorio']?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 100%'>";
-                            break; 
-                                        
+                            // campo auxiliar guarda ultima img en BD
+                            echo "<input type='text' class='auxiliar hidden' name='' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
+                            // input tipo file
+                            echo "<input type='file' class='inp archivo ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
+                            // link para ver la imagen cargada anteriormente
+                            if($a['valDefecto'] == ""){
+                              break;
+                            }else{
+                              echo '<a href="'.base_url().$a['valDefecto'].'" target="_blank" '.($a['valDefecto'] == '' ? "disabled" : "").'  ><i class="fa fa-picture-o" style="color: #A4A4A4; cursor: pointer; margin-left: 15px;" title="Imagen" data-imagen =" data-toggle="" data-target="" ></i></a> '; 
+                            break;
+                            }
+                            echo '<a href="'.base_url().$a['valDefecto'].'" target="_blank" '.($a['valDefecto'] == '' ? "disabled" : "").'  ><i class="fa fa-picture-o" style="color: #A4A4A4; cursor: pointer; margin-left: 15px;" title="Imagen" data-imagen =" data-toggle="" data-target="" ></i></a> '; 
+                            break;                                          
+                       /*  case "checkbox":         
+                             echo "<input class='check ".($a['obligatorio']?"requerido":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";
+                            break; */ 
                         case "checkbox":         
-                             echo "<input class='".($a['obligatorio']?"obligatorio":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";
+                             echo "<input class='check ".($a['obligatorio']?"requerido":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";
                             break; 
                         case "textarea":
-                            echo "<textarea class='form-control ".($a['obligatorio'] == 1 ?"obligatorio":"")."' name='".$a['idValor']."' id='".$a['idValor']."' rows='2'></textarea>";
+                            echo "<textarea class='form-control ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' rows='2'></textarea>";
                             break;
                         // case "inputFile":
-                        //     echo "<input type='file' class='inp' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 100%'>";
+                        //     echo "<input type='file' class='inp' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 80%'>";
                         //     break;                                     
                   }
                   echo "</div></td>";
@@ -120,8 +134,7 @@ if (!function_exists('cargarFormulario')) {
         echo "</table>";            
 
     echo '<div class="modal-footer">              
-              <button class="btn btn-primary" onclick="validarCampos()">Validar</button>
-              <button type="submit" class="btn btn-success" >Guardar</button>
+              
             </div>
 
           </form> ';

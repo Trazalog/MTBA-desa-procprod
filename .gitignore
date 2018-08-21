@@ -17,3 +17,7 @@ application/config/config\.php
 *.stTheme.cache
 *.sublime-workspace
 *.sublime-project
+
+application/models/bonitas\.php
+
+application/config/conexion\.php
