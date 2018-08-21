@@ -100,7 +100,7 @@ if (!function_exists('cargarFormulario')) {
                         
                         case "input_archivo":
                             // campo auxiliar guarda ultima img en BD
-                            echo "<input type='text' class='auxiliar' name='' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
+                            echo "<input type='text' class='auxiliar hidden' name='' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             // input tipo file
                             echo "<input type='file' class='inp archivo ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             // link para ver la imagen cargada anteriormente
