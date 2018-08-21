@@ -10,7 +10,6 @@ class dash extends CI_Controller {
 		$this->load->model('Groups');
 		$this->load->model('Customers');
 		$this->load->model('Calendar');
-
 		$this->_init_Menu();	// Inicializa el menu
 		//$this->output->enable_profiler(true);	
 	}
@@ -22,11 +21,9 @@ class dash extends CI_Controller {
 	 */
 	private function _init_Menu() {
 		// Ejecuta la consulta y obtiene el arreglo de datos
-		$items = $this->Groups->mnuAll();
-		//dump_exit($items);
+		$items       = $this->Groups->mnuAll();
 		//agrego los permisos de ejecucion al menu
 		$this->items = $this->addPermisosItemsMenu($items);
-		//dump_exit($this->items);
 		// Carga la librería y pasa el arreglo de datos
 		$this->load->library("multi_menu");
 		$this->multi_menu->set_items($this->items);
@@ -36,7 +33,6 @@ class dash extends CI_Controller {
 	{
 		$this->load->view('header');
 		$userdata = $this->session->userdata('user_data');
-
 		if( !$userdata )
 		{
 			redirect( base_url() );
