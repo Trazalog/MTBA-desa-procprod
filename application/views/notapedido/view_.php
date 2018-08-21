@@ -74,9 +74,10 @@
                                   <input type="text" class="decripInsumo form-control" id="decripInsumo" value="" placeholder="Descripción">
                                   <input type="hidden" name="" class="id-artOrdIns form-control" id="id-artOrdIns" value="" disabled>
                                 </div>
-                                <div class="col-xs-4"><label>Proveedor</label> <strong style="color: #dd4b39">*</strong> :  
+                                <!-- <div class="col-xs-4"><label>Proveedor</label> <strong style="color: #dd4b39">*</strong> :  
                                     <select  id="proveedor" name="" class="form-control" />
-                                </div>
+                                </div> -->
+                                <input class="hidden" type="text" id="proveedor" name="proveedor" value="1">
                                 <br>  
                               </div> <br>
 
@@ -110,11 +111,11 @@
                                       <table class="table table-bordered tabModInsum" id="tabModInsum" border="1px">
                                         <thead>
                                            <tr>   
-                                            <th width="2%"></th>                   
+                                            <th width="2%">Eliminar</th>                   
                                             <th width="3%">Ord. Trab.</th>
                                             <th width="3%">Artículos</th>
                                             <th width="3%">Cantidad</th>
-                                            <th width="5%">Proveedor</th>
+                                            <!-- <th width="5%">Proveedor</th> -->
                                             <th width="3%">Fecha Entrega</th>
                                             <th width="2%">Medida</th>                                            
                                           </tr>
@@ -251,7 +252,8 @@
         var $id_Insumo = $("#id_articulo").val();      
         var $cantOrdInsum = $("#cantidad").val();    
         var $proveedor = $("select#proveedor option:selected").html();
-        var $id_proveedor = $("select#proveedor option:selected").val();      
+        var $id_proveedor = $("select#proveedor option:selected").val();  
+        var $id_proveedor = $("input#proveedor").val();     
         var $fecha = $("#fechaEnt").val();  
         var $medida = $("#medida").val();    
         
@@ -267,7 +269,7 @@ $(".tabModInsum tbody").append(
        
        '<td class="cant_insumos" id="cant_insumos"><input type="text" name="cant_insumos'+ '['+ regInsum+']' +'" class="celda cant_insumos" id="cant_insumos" value=" '+ $cantOrdInsum +' " placeholder=""></td>'+
        
-       '<td class="nom_prov" id="nom_prov"><input type="text" class="celda nom_proveed" id="nom_proveed" value=" '+ $proveedor +' " placeholder=""></td>'+
+       '<td class="hidden nom_prov" id="nom_prov"><input type="text" class="celda nom_proveed" id="nom_proveed" value=" '+ $proveedor +' " placeholder=""></td>'+
 
        '<td class="hidden id_prov" id="id_prov"><input type="text" name="proveedid'+ '['+ regInsum+']' +'" class="celda proveedid" id="proveedid" value=" '+ $id_proveedor +' " placeholder=""></td>'+
 

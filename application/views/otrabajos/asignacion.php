@@ -62,7 +62,7 @@
                           </div>  
                           <div class="col-xs-6">
 <!----------listado en calendario----------->
-                            <table id="orden" class="table table-bordered table-hover tbCalendario">
+                            <table id="calendarList" class="table table-bordered table-hover tbCalendario">
                               <thead>
                                 <tr>
                                   <th width="2%"></th> <!-- icono -->
@@ -99,6 +99,8 @@
                                     echo '</td>';
                                     }
 
+                                    echo '<td  class="hidden idTareaTrazajobs" style="text-align: left">'.$a['id_listarea'].'</td>';
+
                                     echo '<td style="text-align: left">'.$a['tareadescrip'].'</td>';
 
                                     if($a['usrLastName']!= null){
@@ -132,7 +134,9 @@
                                     echo '</td>';                                   
 
                                       // duracion standar de tarea
-                                    echo '<td class="hidden" style="text-align: left">'.$a['duracion_std'].'</td>';
+                                    echo '<td class=" duracionStd" style="text-align: left">'.$a['duracion_std'].'</td>';
+                                      // id de usuario asignado
+                                    echo '<td class="hidden id_usuario" style="text-align: left">'.$a['id_usuario'].'</td>';
 
                                     echo '</tr>';
                                     } 
@@ -308,6 +312,7 @@ $('#tabCalend').click(function(e){
   regresa1();
 });
 
+// Valida que no hayan tareas sin asignar ni sin programar 
 function validarInicio(){
   var contCeldas = 0;
   var programadas = 0;
@@ -349,11 +354,70 @@ function validarInicio(){
     alert('falta asignar');
   }else{
     //alert(contCeldas +' '+ asignadas);
-    console.log('Se puede iniciar el Proceso...')
+    console.log('Se puede iniciar el Proceso...');
+    guardarInfo();
   }
 }
 
+// Arma objeto con tareas para guardar
+function guardarInfo(){
+  var tabla = $('.tbCalendario tbody tr');
+  var usuarioAsignado = "";
+  var idTareaTrazajobs = "";
+  var duracionStd = "";
+  var input = {};
+  //console.table(tabla);
+  $(tabla).each(function(){          
+      
+      usuarioAsignado = $(this).find('td.id_usuario').html();
+      idTareaTrazajobs = $(this).find('td.idTareaTrazajobs').html();
+      duracionStd = $(this).find('td.duracionStd').html();
 
+      console.log('usuario: ');
+      console.log(usuarioAsignado);
+      console.log('idTareaTrazajobs: ');
+      console.log(idTareaTrazajobs);
+
+     //  {
+     //    "inputs": [],
+     //    "type": "TEXT",
+     //    "description": null,
+     //    "name": "nombre",
+     //    "multiple": false
+     //  },
+     //  {
+     //   "inputs": [],
+     //   "type": "TEXT",
+     //   "description": null,
+     //   "name": "usuarioCoordinador",
+     //   "multiple": false
+     // },
+     // {
+     //   "inputs": [],
+     //   "type": "TEXT",
+     //   "description": null,
+     //   "name": "usuarioAsignado",
+     //   "multiple": false
+     // },
+     // {
+     //   "inputs": [],
+     //   "type": "TEXT",
+     //   "description": null,
+     //   "name": "idTareaTrazajobs",
+     //   "multiple": false
+     // },
+     // {
+     //   "inputs": [],
+     //   "type": "DECIMAL",
+     //   "description": null,
+     //   "name": "duracionStd",    // ESTO VA EN MILISEGUNDOS
+     //   "multiple": false
+     // }
+
+
+
+  });
+}
 
 
 
@@ -945,7 +1009,7 @@ function validarInicio(){
               "<td>"+data[i]['descripcion']+"</td>"+
               "<td></td>"+
               "<td></td>"+             
-              "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
+              //"<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
               // "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i> <i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+  
 
 
@@ -1032,11 +1096,11 @@ function validarInicio(){
             console.log('id equipo: ');
             console.log(idEquipo);
 
-            var descTar = $(this).parents("tr").find("td").eq(1).html();
+            var descTar = $(this).parents("tr").find("td").eq(2).html();
             var text ='<h5>'+ descTar + '</h5>';
             $('#descTareaModal').append(text);
 
-            var duracion = $(this).parents("tr").find("td").eq(6).html();     
+            var duracion = $(this).parents("tr").find("td").eq(7).html();     
             $('#duracion').val(duracion);    
 
     });
@@ -1083,8 +1147,8 @@ function validarInicio(){
                   "<td>"+tarea1+"</td>"+
                   "<td></td>"+
                   "<td></td>"+
-                  "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
-                  "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i> <i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+
+                  // "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
+                  "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i> <i class=' fa fa-user' style='color: #A9A9A9; margin-left:7px'; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+
                   /*"<td><i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+*/
                   // "<td  ><i class='fa fa-cogs' style='color: #A9A9A9    '; cursor: 'pointer' title='Fecha' data-toggle='modal' data-target='#modalAsignaEquipo'></i></td>"+
                 "</tr>";          
@@ -1177,9 +1241,7 @@ function validarInicio(){
                       console.log(result);
                     }
       });
-    });
-
-    
+    });    
 
     //ASIGNAR USUARIO
     $(".fa-user").click(function (e) { 
@@ -1203,7 +1265,6 @@ function validarInicio(){
         changeMonth: true,
         changeYear: true
     });
-
 
 });
 
@@ -1330,11 +1391,10 @@ function regresa1(){
   //WaitingClose();
 }
 
-// cargo plugin DateTimePicker
-  $('#fechaProgNueva, #fecha-tomo, #libroFecha').datetimepicker({
-    format: 'YYYY-MM-DD H:mm:ss',
-    locale: 'es',
-  });
+$('#fechaProgNueva').datetimepicker(
+  {format: 'YYYY-MM-DD H:mm:ss',
+    locale: 'es'});
+
 
 </script>
 
@@ -1449,6 +1509,7 @@ function regresa1(){
         <div class="form-group">
           <label for="fechaProgNueva">Fecha *</label>
           <input type='text' class="form-control input-md" id="fechaProgNueva" value="<?php echo date("Y-m-d H:i:s") ?>">
+          <!-- <input type='text' class="form-control input-md" id="fechaProgNueva" value=""> -->
         </div>
 
         <div class="form-group">
