@@ -310,9 +310,7 @@
       }
     });
 
-  });
- 
-    
+  });    
 
   // trae valores validos para llenar form asoc.  
   function getformulario(event) {    

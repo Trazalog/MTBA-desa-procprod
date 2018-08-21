@@ -85,7 +85,8 @@
     <script src="<?php  echo base_url();?>assets/plugin/select2/select2.js"></script>
 
      <!- - VALIDADOR -->
-     <script src="<?php  echo base_url();?>assets/js/bootstrapValidator.min.js"></script>
+     <!-- <script src="<?php  echo base_url();?>assets/js/bootstrapValidator.min.js"></script> -->
+    
 
     <!--
     <script src="<?php  echo base_url();?>assets/plugin/input-mask/jquery.inputmask.js"></script>

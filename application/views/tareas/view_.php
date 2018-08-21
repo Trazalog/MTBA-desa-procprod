@@ -32,7 +32,8 @@
                                                     <div class="panel-body">
 
                                                         <?php
-
+                                    //echo"id de form: ";
+                                    //dump_exit($idForm);
                                                         //echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
                                                     //if ($estadoTarea == "noasignado") {´
 
@@ -47,7 +48,7 @@
                                                         echo "</br>"; 
 
                                                         $userdata = $this->session->userdata('user_data');
-                                                    $usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
+                                                        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
                                                     ?>
 
                                                     <form>
@@ -113,7 +114,7 @@
                                                         <div class="form-group">
                                                             <div class="col-sm-12 col-md-12">
                                                                 <!-- Modal formulario tarea -->
-                                                                <?php if($idForm !=''){echo '<button type="button" class="btn btn-primary" data-toggle="modal"
+                                                                <?php if($idForm !=''){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
                                                                 data-target=".bs-example-modal-lg" onclick="getformulario()">Completar
                                                                 Formulario
                                                                 </button>';}?>
@@ -199,7 +200,7 @@
         $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
         WaitingClose();
     });
-    
+    /* Funciones BPM */
     //Ckeck Tarea realizada
     $('.btncolor').click(function(e) {
         //var id = <?php //echo $idorden?>; //tomo valor de id_orden
@@ -225,13 +226,14 @@
         });
     });
     
-    // validacion de campo observacion para btn rechazar
-    // $('#rechazar').click(function(e){
-    //   if ($('#observaciones').val() == ""){
-    //     alert('Campo Detalle vacio');
-    //   }
-    // }); 
-   
+        // validacion de campo observacion para btn rechazar
+            // $('#rechazar').click(function(e){
+            //   if ($('#observaciones').val() == ""){
+            //     alert('Campo Detalle vacio');
+            //   }
+            // }); 
+    
+    
     // Boton Hecho generico
     function estado() {
         var idTarBonita = $('#idTarBonita').val();
@@ -309,11 +311,106 @@
         });
     }
     
-		/** Formulario **/ 
-     // trae valores validos para llenar form asoc.  
-	  function getformulario(event) {    
+    /** Formulario **/ 
+    
+    var click = 0; 
+    $('#formulario').click(function(){
+        click = 1;
+    });
+
+    // evento de cierre de modal guarda parcialmente los datos
+    $('#modalForm').on('hidden.bs.modal', function (e) {   
+        
+        $('#error').fadeOut('slow');
+        // toma  el valor de todos los input file 
+        var imgs = $('input.archivo');
+        
+        var formData = new FormData($("#genericForm")[0]);
+
+        /** subidad y resubida de imagenes **/
+        // Tomo los inputs auxiliares cargados
+        var aux = $('input.auxiliar');
+        
+        var auxArray = [];
+        aux.each(function() {
+            auxArray.push($(this).val());
+        });
+        //console.table(aux);
+        for (var i = 0; i < imgs.length; i++){
+        
+            var inpValor = $(imgs[i]).val();
+            var idValor = $(imgs[i]).attr('name');
+            //console.log("idValor: "+idValor);
+            // si tiene algun valor (antes de subir img)
+            if (inpValor != "") {
+                //al subir primera img
+                formData.append(idValor, inpValor);
+            }else{
+                // sino sube img guarda la del auxiliar         
+                inpValor = auxArray[i]; //valor del input auxiliar
+                //console.table(inpValor);
+                formData.append(idValor, inpValor);
+            }      
+        }   
+
+        /* text tipo check */
+        var check = $('input.check');
+        //console.log("aux");
+        //console.table(aux);
+        var checkArray = [];
+        // check.each(function() {
+        //     checkArray.push($(this).val());
+        // });
+        //console.log('array de chech: ');
+        //console.table(checkArray);
+        
+        for (var i = 0; i < check.length; i++){
+            //var chekValor = $(check[i]).val();
+            var idCheckValor = $(check[i]).attr('name');
+            console.log('valor: ');
+            console.log(idCheckValor);
+            if ($(check[i]).is(':checked')){
+                chekValor = 'tilde';
+            }else{
+                chekValor = 'notilde';
+            }
+            formData.append(idCheckValor,chekValor);
+        }
+        // console.log('array de chech: ');
+        // console.table(check);
+    
+        /* Ajax de Grabado en BD */
+        $.ajax({
+        url:'index.php/Tarea/guardarForm',
+        type:'POST',
+        data:formData,
+        cache:false,
+        contentType:false,
+        processData:false,
+        
+        success:function(respuesta){
+            
+
+            if (respuesta ==="exito") {
+                
+            }
+            else if(respuesta==="error"){
+                alert("Los datos no se han podido guardar");
+            }
+            else{
+                //$("#msg-error").show();
+                //$(".list-errors").html(respuesta);
+                //alert("Los datos no se han guardado");
+            }
+        }
+        });
+
+    });
+
+    // trae valores validos para llenar form asoc.  
+	function getformulario(event) {    
 	    
-	    // trae valor de imagenes.
+	    // trae valor de imagenes y llena inputs.
 	    getImgValor();
 
 	    // llena form una sola vez al primer click
@@ -336,7 +433,7 @@
 	              success: function(data){               
 	                      //console.log('valores de componentes: ');
 	                      //console.table(data);                   
-	                      //$(tr).remove();
+	                     
 	                      llenaComp(data);
 	                    },              
 	              error: function(result){
@@ -346,10 +443,10 @@
 	              dataType: 'json'
 	      });
 	    }
-	  }
+	}
 
     // llena los componentes de form asoc con valores validos
-	  function llenaComp(data){
+	function llenaComp(data){
 	   
 	    var id_listarea = $('#tbl_listarea').val();
 	    $('#id_listarea').val(id_listarea);
@@ -369,13 +466,13 @@
 	      valor = data[index]['idValor'];     
 	      valorSig = data[index]['idValor'];
 	    });
-	  }
+	}
 
-	  //Trae valor de las imagenes
-	  function getImgValor(){
+	//Trae valor de las imagenes
+	function getImgValor(){
 	    var valores; 
 	    // guarda el id form asoc a tarea std en modal para guardar
-	    idForm =  $('#idformulario').val();
+	    idForm =  $('#idform').val();
 	    // trae valores validos para llenar componentes input files.
 	    $.ajax({
 	            type: 'POST',
@@ -392,10 +489,10 @@
 	                },
 	            dataType: 'json'
 	    });
-	  }
+	}
 
-	  // carga inputs auxiliares con url de imagen desde BD
-	  function llenarInputFile(data){
+	// carga inputs auxiliares con url de imagen desde BD
+	function llenarInputFile(data){
 	    var id_listarea = $('inptut.archivo').val();
 
 	    $.each(data,function( index ) {
@@ -404,11 +501,12 @@
 	      var valor = data[index]['valor'];
 	      //carga el valor que viene de DB
 	      $("."+data[index]['valoid']).val(valor);
+          //$("#"+data[index]['valoid']).val(valor);
 	    });
-	  }
+	}
 
-	  // Validacion de campos obligatorios y vacios
-	  function validarFormGuardado() {   
+	// Validacion de campos obligatorios y vacios
+	function validarFormGuardado() {   
    
 	    var id_listarea = $('#id_listarea').val();
 
@@ -421,27 +519,25 @@
 	    });
 	    //console.log('obligatorios: ');
 	    //console.log(obligArray),
-
-
-
 	    $.ajax({
 	              type: 'POST',
 	              data: { obligArrayIds: obligArrayIds,
 	                      id_listarea:id_listarea},
 	              url: 'index.php/Tarea/validarFormGuardado', 
 	              success: function(data){               
-	                      console.log('validado: ');
+	                      console.log('por sucess: ');
 	                      console.log(data);                   
-	                       if (data == false) {
-	                         $('#error').fadeIn('slow');
-	                       }
-	                       else{
-	                         $('#error').fadeOut('slow');
-	                       }
+	                      if (data == false) {
+	                        $('#error').fadeIn('slow');
+	                      }
+	                      else{
+	                        $('#error').fadeOut('slow');
+	                      }
 	                      
 	                    },              
 	              error: function(result){
-	                    
+                    console.log('por error: ');
+	                      console.log(data);
 	                    console.log(result);
 	                  },
 	              dataType: 'json'
@@ -451,8 +547,9 @@
   	$('.fecha').datepicker({
         autoclose: true
   	});
-    //}
-    //);
+
+
+
 </script>
 
 

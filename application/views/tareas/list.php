@@ -44,7 +44,7 @@
                   echo '<td>';                     
                     if (strpos($permission,'Del') !== false){
                       if ($asig != "") {
-                        echo '<button type="button" id="btncolor" class="btn btnFin btn-success" data-toggle="modal">
+                        echo '<button type="button" id="btncolor" class="btn btnFin btn-success" >
                             <span class="glyphicon glyphicon-ok"></span>  </button> ';
                       }else{
                         echo '<button type="button" id="btncolor" class="btn btn-success" data-toggle="modal" data-target="#finalizar" disabled>
@@ -91,6 +91,23 @@
   </div><!-- /.row -->
 </section><!-- /.content -->
 
+<div class="modal fade" id="finalizar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">         
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="glyphicon glyphicon-check btncolor " style="color: #6aa61b" > </span> Finalización </h4>
+        </div> 
+        <center>
+        <div>Debe completar el formulario asociado a esta tarea para terminarla</div>
+        </center>
+        <div class="modal-footer">
+          <!-- <button  type="button" class="btn btn-success" data-dismiss="modal" onclick=""> PARCIAL</button>  -->    
+          <button  type="button" class="btn btn-success" data-dismiss="modal" onclick="" >Aceptar</button> 
+        </div>   
+    </div>  
+  </div>
+</div>
 
 <script>
   
@@ -131,7 +148,7 @@
       estadoTarea ="noasignado";
     }
     //getIdTareaTraJobs(idTarBonita,id_orden,estadoTarea);
-    verTarea(idTarBonita,estadoTarea,nomTarea,tareaDesc,fechaCreacion);
+    verTarea(idTarBonita);
     //idfin = id_orden;
     //console.log(idfin);
     
@@ -140,45 +157,13 @@
 
   // Carga para cargar notif strandar
     
-  function verTarea(idTarBonita,estadoTarea,nomTarea,tareaDesc,fechaCreacion){
+  function verTarea(idTarBonita){
 
     WaitingOpen();    
-    // $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + id_orden + "/" + idTJobs + "/" + idTarBonita+ "/"+ estadoTarea+ "/"+ nomTarea+ "/"+ tareaDesc+ "/"+ fechaCreacion+ "/"  );
-
+    
     $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + idTarBonita+ "/"  );
     WaitingClose();
   }
-
-  // function verTarea(id_orden,idTJobs,idTarBonita,estadoTarea){
-
-    //   WaitingOpen();    
-    //   $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + id_orden + "/" + idTJobs + "/" + idTarBonita+ "/"+ estadoTarea+ "/");
-    //   WaitingClose();
-    // }
-
-    // Trae id_listarea desde bonita y llama verTarea()
-    // function getIdTareaTraJobs(idTarBonita,id_orden,estadoTarea){
-    //   var idTJobs = "";
-    //   $.ajax({
-    //           type: 'POST',
-    //           data: { idTarBonita: idTarBonita},
-    //           url: 'index.php/Tarea/getIdTareaTraJobs', 
-    //           success:function(data){
-                      
-    //                   //console.log('value en lista: ');
-    //                   //console.table(data);
-    //                   idTJobs = data['value'];    
-    //                   verTarea(id_orden,idTJobs,idTarBonita,estadoTarea);                    
-    //                 },
-                
-    //           error: function(result){
-    //                 console.log(result);
-    //               },
-    //           dataType: 'json'
-    //       });
-    // }
-
-
 
 /////////// TERMINAR TAREA   ///////
 
@@ -186,7 +171,7 @@
   $('.btnFin').click( function () {
 
     //var id_orden= $(this).parents('tr').find('td').eq(1).html();
-    var idTarBonita = $(this).parents('tr').find('td').eq(5).html();
+    var idTarBonita = $(this).parents('tr').find('td').eq(8).html();
     //validarRelacTareaForm(idTarBonita);
   });
 ////////REVISAR TODO ESTO
@@ -295,23 +280,7 @@
 </script>
       
 
-<div class="modal fade" id="finalizar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">         
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="glyphicon glyphicon-check btncolor " style="color: #6aa61b" > </span> Finalización </h4>
-        </div> 
-        <center>
-        <div>Debe completar el formulario asociado a esta tarea para terminarla</div>
-        </center>
-        <div class="modal-footer">
-          <!-- <button  type="button" class="btn btn-success" data-dismiss="modal" onclick=""> PARCIAL</button>  -->    
-          <button  type="button" class="btn btn-success" data-dismiss="modal" onclick="" >Aceptar</button> 
-        </div>   
-    </div>  
-  </div>
-</div>
+
 
 
 

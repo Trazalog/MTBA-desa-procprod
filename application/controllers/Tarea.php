@@ -8,13 +8,16 @@ class Tarea extends CI_Controller {
 	}
 	// Carga lista de OT
 	public function index($permission){
+		
 		$metodo = "POST";
 		$parametros = $this->Bonitas->conexiones();
 		$param = stream_context_create($parametros);
 		$data['list'] = $this->Tareas->getTareas($param);
 		$data['permission'] = $permission;
+
 		$this->load->view('tareas/list', $data);
 	}
+
 	public function ObtenerTareaBPM(){	
 	
 		// PONER EL ID DE USUARIO DINAMICO!!!!!!
@@ -40,7 +43,6 @@ class Tarea extends CI_Controller {
 	// Trae datos de BPM para notif estandar
 	public function getDatosBPM($idTarBonita){		
 		
-		//$idTarBonita = 54;
 		// trae la cabecera
 		$parametros = $this->Bonitas->conexiones();
 		
@@ -132,6 +134,7 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->precisaAnticipo($idTarBonita,$param);
 		echo json_encode($result);
 	}
+
 	public function GuardarComentario(){
 		$comentario = $this->input->post();
 		// trae la cabecera
@@ -159,10 +162,11 @@ class Tarea extends CI_Controller {
 	// verifica que el form tenga todos los campos validado en 1 
 	// public function validarFormGuardado(){
 		
-	// 	$id_listarea = $this->input->post('id_listarea');
-	// 	$response = $this->Tareas->validarFormGuardado($id_listarea);
-	// 	echo json_encode($response);
-	// }
+		// 	$id_listarea = $this->input->post('id_listarea');
+		// 	$response = $this->Tareas->validarFormGuardado($id_listarea);
+		// 	echo json_encode($response);
+		// }
+	
 	// Termina tarea en BPM  CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
 	public function terminarTarea(){
 		
@@ -184,6 +188,7 @@ class Tarea extends CI_Controller {
 		$response = $this->Tareas->terminarTarea($idTarBonita,$param);
 		echo json_encode($response);		
 	}
+
 	// Usr Toma tarea en BPM   CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
 	public function tomarTarea(){	
 		
@@ -222,7 +227,8 @@ class Tarea extends CI_Controller {
 		// Variable tipo resource referencia a un recurso externo.
 		$param = stream_context_create($parametros);
 		$response = $this->Tareas->soltarTarea($idTarBonita,$param);
-	}	
+	}
+
 	// trae datos para llenar notificaion estandar y formulario asociado
 	public function detaTarea($permission,$idTarBonita){
 		
@@ -231,7 +237,7 @@ class Tarea extends CI_Controller {
 		// trae id de form asociado a tarea std.
 		$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);		
 		$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd);	// si es 0 no hay form asociado			
-
+		//dump_exit($idForm);
 		$data['permission'] = $permission;
 
 		//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
@@ -336,24 +342,46 @@ class Tarea extends CI_Controller {
 	}
 
 	// verifica que el form tenga todos los campos validado en 1 
+	// public function validarFormGuardado(){
+		
+	// 	$response = true;
+	// 	$obligArrayIds = $this->input->post('obligArrayIds');
+	// 	$id_listarea = $this->input->post('id_listarea');
+		
+	// 	foreach ($obligArrayIds as $idValor) {
+			
+	// 		$result = $this->Tareas->validarFormGuardado($idValor,$id_listarea);
+			
+	// 		if ($result == $idValor) {	
+	// 			//echo "valor validado";
+	// 		}else{
+	// 			$response = $result;
+	// 		}
+	// 	}
+	// 	echo json_encode($response);
+	// }
+	// verifica que el form tenga todos los campos validado en 1 
 	public function validarFormGuardado(){
 		
-		$response = true;
+		$cont = 0;
 		$obligArrayIds = $this->input->post('obligArrayIds');
 		$id_listarea = $this->input->post('id_listarea');
 		
 		foreach ($obligArrayIds as $idValor) {
-			
-			$result = $this->Tareas->validarFormGuardado($idValor,$id_listarea);
-			
-			if ($result == $idValor) {	
-				//echo "valor validado";
-			}else{
-				$response = $result;
-			}
+
+			$result = $this->Tareas->validarFormGuardado($idValor,$id_listarea);			
+			if(!$result){
+				$cont++;
+			}	
+		}
+		if($cont>0){
+			$response = false;
+		}else{
+			$response = true;
 		}
 		echo json_encode($response);
 	}
+
 
 	// guarda  form commpletado (revisar no funciona bien)
 	public function guardarForm(){
@@ -375,7 +403,13 @@ class Tarea extends CI_Controller {
 			// Si no son los primeros dos campos id listarea e id formulario
 			if (($key != 'id_listarea') && ($key != 'idformulario')) {				
 				//trae array con info de dato por id
-				$data = $this->Tareas->getDatos($key);				
+				// $data = $this->Tareas->getDatos($key);				
+				$data = $this->Tareas->getDatos($key);
+				// echo "data 18: ";
+				// var_dump($data);
+				// echo "data 18: ";
+				// var_dump($data);
+
 				// Agrego datos adicionales al formulario
 				$data['USUARIO'] = $usrId;
 				//$data['ORDEN'] = $i;
@@ -385,9 +419,15 @@ class Tarea extends CI_Controller {
 					
 					$data['VALOR'] = $value;
 				}
-								
-				// Si un componente viene "" o -1 guarda 0 (no validado)
-				if( ($value == "") || ($value == -1) )  {
+				// si el valor es -1 guarda Seleccione..
+				if (($value == -1) ) {
+					
+					$data['VALOR'] = 'Seleccione...';
+				}
+
+				
+				// Si un componente viene "" o -1  o"notide" guarda 0 (no validado)
+				if( ($value == "") || ($value == -1) || ($value == "notilde") )  {
 					$data['VALIDADO'] = 0;
 				}else{
 					$data['VALIDADO'] = 1;

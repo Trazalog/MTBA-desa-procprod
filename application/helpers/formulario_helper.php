@@ -18,16 +18,16 @@ if (!function_exists('cargarFormulario')) {
 
     echo '<div class="modal-footer">              
               <button class="btn btn-primary" onclick="validarFormGuardado()">Validar</button>
-              <button type="submit" class="btn btn-success" >Guardar</button>
-            </div>';
+              <button class="btn btn-success" type="button" data-dismiss="modal">Guardar</button>
+            </div>';    
 
     echo'<form enctype="multipart/form-data" id="genericForm" class="form-horizontal" style="padding:0px 15px;" role="form" action="" method="" >';   
         
         
         // guarda el id_listarea para actualizarla tabla frm formcompletados
         echo "<input type='text' class='hidden' name='id_listarea' id='id_listarea' style='width: 100%'>";
-        echo "id form";
-        echo "<input type='text' class='' name='idformulario' id='idformulario' style='width: 100%'>";    
+        //echo "id form";
+        echo "<input type='text' class='hidden' name='idformulario' id='idformulario' style='width: 100%'>";    
         
         echo "<table id='tabla' class='table table-bordered table-hover'>";                   
           echo "<tbody>";
@@ -83,9 +83,9 @@ if (!function_exists('cargarFormulario')) {
                 // muestra el componente a llenar o el select  
                   switch ($etiqueta) {
                         case "select":
-                        echo "<select class='form-control sel ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 80%'>
-                          <option value= '-1' >".$a['valDefecto']."</option>
-                        </select>";
+                            echo "<select class='form-control sel ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 80%'>
+                              <option value= '-1' >".$a['valDefecto']."</option>
+                            </select>";
                             break;
                         case "input_texto":
                             echo "<input type='text' class='form-control inp texto ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
@@ -104,10 +104,19 @@ if (!function_exists('cargarFormulario')) {
                             // input tipo file
                             echo "<input type='file' class='inp archivo ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             // link para ver la imagen cargada anteriormente
-                            echo '<a href="'.base_url().$a['valDefecto'].'" target="_blank"><i class="fa fa-picture-o" style="color: #A4A4A4; cursor: pointer; margin-left: 15px;" title="Imagen" data-imagen =" data-toggle="" data-target="" ></i></a> '; 
+                            if($a['valDefecto'] == ""){
+                              break;
+                            }else{
+                              echo '<a href="'.base_url().$a['valDefecto'].'" target="_blank" '.($a['valDefecto'] == '' ? "disabled" : "").'  ><i class="fa fa-picture-o" style="color: #A4A4A4; cursor: pointer; margin-left: 15px;" title="Imagen" data-imagen =" data-toggle="" data-target="" ></i></a> '; 
+                            break;
+                            }
+                            echo '<a href="'.base_url().$a['valDefecto'].'" target="_blank" '.($a['valDefecto'] == '' ? "disabled" : "").'  ><i class="fa fa-picture-o" style="color: #A4A4A4; cursor: pointer; margin-left: 15px;" title="Imagen" data-imagen =" data-toggle="" data-target="" ></i></a> '; 
                             break;                                          
+                       /*  case "checkbox":         
+                             echo "<input class='check ".($a['obligatorio']?"requerido":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";
+                            break; */ 
                         case "checkbox":         
-                             echo "<input class='".($a['obligatorio']?"requerido":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";
+                             echo "<input class='check ".($a['obligatorio']?"requerido":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";
                             break; 
                         case "textarea":
                             echo "<textarea class='form-control ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' rows='2'></textarea>";

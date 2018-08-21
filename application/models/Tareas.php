@@ -45,7 +45,7 @@ class Tareas extends CI_Model
 	
 	// Terminar Tarea
 	function terminarTarea($idTarBonita,$param){
-
+		
 		// en 35 poner el id de tarea dinamico!!!!
 
 		// try {
@@ -200,37 +200,37 @@ class Tareas extends CI_Model
 	// verifica que el form tenga todos los campos validado en 1 
 	function validarFormGuardado($idValor,$id_listarea){		
 
-		$this->db->select('frm_formularios_completados.VALO_ID');
-		$this->db->from('frm_formularios_completados');
-		$this->db->where('frm_formularios_completados.VALIDADO', 0);	// no validado 
-		$this->db->where('frm_formularios_completados.VALO_ID', $idValor);
-		$this->db->where('frm_formularios_completados.LITA_ID', $id_listarea);
-		$query = $this->db->get();
+		// $this->db->select('frm_formularios_completados.VALO_ID');
+		// $this->db->from('frm_formularios_completados');
+		// $this->db->where('frm_formularios_completados.VALIDADO', 0);	// no validado 
+		// $this->db->where('frm_formularios_completados.VALO_ID', $idValor);
+		// $this->db->where('frm_formularios_completados.LITA_ID', $id_listarea);
+		// $query = $this->db->get();
 
-	 	if ($query->num_rows() > 0){
-	 		return $query->row('VALO_ID');	
-	 	}else{	
-	 		return 0;
-	 	}
+	 	// if ($query->num_rows() > 0){
+	 	// 	return $query->row('VALO_ID');	
+	 	// }else{	
+	 	// 	return 0;
+	 	// }
 
+		// cuenta los campos que estan en 0 y son obligatorios	
+		 $sql ="SELECT
+		 COUNT(*) as novalidos
+		 FROM
+		 frm_formularios_completados
+		 WHERE
+		 frm_formularios_completados.LITA_ID = $id_listarea AND
+		 VALIDADO = 0";
 
-		// $sql ="SELECT
-		// COUNT(*) as novalidos
-		// FROM
-		// frm_formularios_completados
-		// WHERE
-		// frm_formularios_completados.LITA_ID = 255 AND
-		// VALIDADO = 0";
+		 $query = $this->db->query($sql);
 
-		// $query = $this->db->query($sql);
-
-		// if( $query->row('novalidos') > 0 ){
+		 if( $query->row('novalidos') > 0 ){
 	    	
-	 //    	return false;
-	 //    }
-	 //    else{
-	 //    	return true;
-	 //    }
+	     	return false;
+	     }
+	     else{
+	     	return true;
+	     }
 	}
 
 	// Comprueba si hay form guardado asoc a id de orden y de tarea
