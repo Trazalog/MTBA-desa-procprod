@@ -8,7 +8,37 @@ class Calendario extends CI_Controller {
 		$this->load->model('Calendarios');
 	}	
 
-	public function indexpred($permission){
+	///////////// Hugo
+
+	public function indexot($permission){
+
+		$data['permission'] = $permission;
+		$this->load->view('calendar/calendar1', $data);
+	}
+
+	// Cambio de dia nuevo de programacion
+   	public function updateDiaProg(){
+
+   			  $id = $this->input->post('id');
+   		$diaNuevo = $this->input->post('prog');
+   		$response = $this->Calendarios->updateDiaProgramacion($id, $diaNuevo);
+
+		echo json_encode($response);
+   	}
+
+   	public function getcalendarot(){
+		$data = $this->Calendarios->getot($this->input->post());
+		if($data  == false)
+		{
+			echo json_encode(false);
+		}
+		else
+		{
+			echo json_encode($data);
+		}
+	}
+
+/*	public function indexpred($permission){
 
 		$this->load->view('calendar/calendar2');
 	}
@@ -41,17 +71,7 @@ class Calendario extends CI_Controller {
 		}
 	}
 
-	public function getcalendarot(){
-		$data = $this->Calendarios->getot($this->input->post());
-		if($data  == false)
-		{
-			echo json_encode(false);
-		}
-		else
-		{
-			echo json_encode($data);
-		}
-	}
+	
 
 	public function getbacklog(){
 		$data = $this->Calendarios->getbacklog($this->input->post());
@@ -76,30 +96,19 @@ class Calendario extends CI_Controller {
 			echo json_encode($data);
 		}
 	}
+*/
 
 
-//////////// Hugo
-
-	// vista calendario
-	public function indexot($permission){
-
-		$data['permission'] = $permission;
-		$this->load->view('calendar/calendar1', $data);
-	}
-
+/*
 	public function getTablas(){
 		
 		$mes = $this->input->post('mes');
 		$permission = $this->input->post('permission');
-
-		//$data['list'] = $this->Calendarios->getPreventivosHoras($mes);
-		$data['list1'] = $this->Calendarios->getpredlist($mes); 	//listo
-		$data['list2'] = $this->Calendarios->getbacklog($mes);		//listo
-		$data['list3'] = $this->Calendarios->getPreventivos($mes);  // listo 
-		$data['list4'] = $this->Calendarios->getsservicio($mes);	//listo
+		$data['list'] = $this->Calendarios->otrabajos_List();
+		
+		//dump_exit($data);
 		$data['permission'] = $permission;
 		$response['html'] = $this->load->view('calendar/tablas', $data);
-		//dump_exit($data['list3']);
 		echo json_encode($response);
 	}
 
@@ -210,7 +219,6 @@ class Calendario extends CI_Controller {
 
 		$userdata = $this->session->userdata('user_data');
         $usrId= $userdata[0]['usrId'];
-        $empId = $userdata[0]['id_empresa'];
 
 	    if($_POST) {
 	    	
@@ -257,8 +265,7 @@ class Calendario extends CI_Controller {
 				    		'tipo' => $tipo,						// tipo solicitud (prev-correct-back-predict)
 				    		'id_equipo' => $equipo,
 				    		'duracion' => $duracion,
-				    		'id_tareapadre'=> $id_solicitud,		// solic que genera la 1º OT y las repetitivas
-				    		'id_empresa' => $empId
+				    		'id_tareapadre'=> $id_solicitud			// solicitud que genera la 1º OT y las repetitivas
 			        		);
 	    	
 	    	if ($event_tipo == '1') {		// si el evento es unico lo guarda
@@ -282,7 +289,7 @@ class Calendario extends CI_Controller {
 	    }
   	}
 
-  	// arma conjunto de OT para su insercion en la BD
+  	// arama conjunto de OT para su insercion en la BD
    	function armar_batch($fecha_limite, $fec_programacion, $diasFrecuencia, $datos2){
    		
   		$data[] = $datos2;
@@ -302,17 +309,9 @@ class Calendario extends CI_Controller {
 
 		$this->Calendarios->setOTbatch($data); 		
    	}
-
-   	// Cambio de dia nuevo de programacion
-   	public function updateDiaProg(){
-
-   		$id = $this->input->post('id');
-   		$diaNuevo = $this->input->post('prog');
-   		$response = $this->Calendarios->updateDiaProgramacion($id, $diaNuevo);
-
-		echo json_encode($response);
-   	}
-
+*/
+   	
+/*
    	// Devuelve duracion de tarea de acuerdo a un id de OT
    	function getDuracionOTrabajo($id){
 
@@ -326,19 +325,14 @@ class Calendario extends CI_Controller {
 
    	public function updateDuracion(){
 
-   		$id = $this->input->post('id');
+   			  $id = $this->input->post('id');
    		$duracion = $this->input->post('duracion');		// duracion adicional
    		
-   		$nueva = $this->getDuracionOTrabajo($id, $duracion);
-   		$nueva = $nueva + $duracion;		
+   		   $nueva = $this->getDuracionOTrabajo($id, $duracion);
+   		   $nueva = $nueva + $duracion;		
 
    		$response = $this->Calendarios->updateDuraciones($id, $nueva);
 		echo json_encode($response);
    	}
-
-
-
-
-   	
-
+*/
 }

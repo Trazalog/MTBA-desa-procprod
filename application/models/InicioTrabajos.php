@@ -22,6 +22,12 @@ class InicioTrabajos extends CI_Model
 		$query = $this->db->get();
 		return $query->result_array();
 	}
+
+	public function ObtenerPedido($id){
+		$this->db->where('petr_id',$id);
+		$query = $this->db->get('trj_pedido_trabajo');
+		return $query->result_array();
+	}
 	public function Guardar($data)
 	{
 

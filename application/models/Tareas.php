@@ -7,6 +7,31 @@ class Tareas extends CI_Model
 
 		parent::__construct();
 	}	
+	// trae tareas de BPM
+	function getTareas($param){
+		$tareas = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);
+		return $tareas;	
+	}
+	// Estado GENERICO
+	function estadocuenta($idTarBonita,$param){
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		return $response;
+	}
+	// Estado de cuenta 
+	function estadocuentaOk($idTarBonita,$param){
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		return $response;
+	}
+	//Espera regularizacion
+	function esperandoRegularizacion($idTarBonita,$param){
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		return $response;
+	}
+	//Precisa Anticipo
+	function precisaAnticipo($idTarBonita,$param){
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		return $response;
+	}
 	//obtener Comentarios
 	function ObtenerComentarios($param){
 		$comentarios = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
@@ -17,17 +42,10 @@ class Tareas extends CI_Model
 		$respuesta = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment',false,$param);
 		return $respuesta;
 	}
-	// trae tareas de BPM
-	function getTareas($param){
-		
-		$tareas = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);
-		
-		return $tareas;		
-	}
-
+	
 	// Terminar Tarea
 	function terminarTarea($idTarBonita,$param){
-
+		
 		// en 35 poner el id de tarea dinamico!!!!
 
 		// try {
@@ -64,7 +82,7 @@ class Tareas extends CI_Model
 
 		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
 		echo "response: ";
-		var_dump($response);
+		//var_dump($response);
 	}
 
 	// Soltar Tareas 
@@ -87,76 +105,33 @@ class Tareas extends CI_Model
 		var_dump($response);
 	}
 
-	// Devuelve el id de tareas de trazaj correspond al id_tarea bonita
+	// Devuelve el id de tareas de trazaj correspond al id_tarea bonita para detatareas
+	// NO TOCAR
 	function getIdTareaTraJobs($idBonita,$param){
-
-		$idTJobs = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/activityVariable/54/trazajobsTaskId', false, $param);
 		
-		return $idTJobs;
-	}
+		$urlResource = 'http://35.239.41.196:8080/bonita/API/bpm/activityVariable/';
+		$idListEnBPM = '/trazajobsTaskId';
+		$idTJ = file_get_contents($urlResource.$idBonita.$idListEnBPM , false, $param);
+		$idTJobs = json_decode($idTJ,true); //sin true no se puede acceder		
+		$id_listarea = $idTJobs["value"];
+		
+		return $id_listarea;
+	}	 
 
-	// verifica que el form tenga todos los campos validado en 1 
-	function validarFormGuardado(){		
-
-		$sql ="SELECT
-		COUNT(*) as novalidos
-		FROM
-		frm_formularios_completados
-		WHERE
-		frm_formularios_completados.LITA_ID = 255 AND
-		VALIDADO = 0";
-
-		$query = $this->db->query($sql);
-
-		if( $query->row('novalidos') > 0 ){
-	    	
-	    	return false;
-	    }
-	    else{
-	    	return true;
-	    }
-	} 
-
-	// devuelve detalle de tareas para notificacion standart
-	function detaTareas($id_orden,$id_tarea){	
-		// id_orden (id de ot)
-		// id_tarea (id_listarea)
-
-		// $this->db->select('tbl_listarea.id_listarea,
-		// 				tbl_listarea.id_orden,
-		// 				tbl_listarea.id_tarea,
-		// 				tbl_listarea.fecha,
-		// 				tareas.descripcion,
-		// 				tareas.duracion_std,
-		// 				tareas.form_asoc');
-		// $this->db->from('tbl_listarea');
-		// $this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
-		// $this->db->where('tbl_listarea.id_orden', $id_orden);
-		// $this->db->where('tbl_listarea.id_tarea', $id_tarea);
-		// $query = $this->db->get();
-
-		// if ($query->num_rows()!=0){
-		 // 		return $query->result_array();	
-		 // 	}else{	
-		 // 		return false;
-		 // 	}
+	// devuelve detalle de tareas para notificacion standart a partir de id_listarea
+	function detaTareas($id_listarea){			
 
 	 	$this->db->select('tbl_listarea.id_listarea,
-						tbl_listarea.id_orden,
-						tbl_listarea.tareadescrip,
-						tbl_listarea.id_tarea,
-						tbl_listarea.id_usuario,
-						tbl_listarea.fecha,
-						tbl_listarea.tarea_realizada,
-						tbl_listarea.id_equipo,
-						tbl_listarea.fecha_inicio,
-						tbl_listarea.fecha_fin,
-						tbl_listarea.estado,
-						tbl_listarea.duracion_prog,
-						tareas.duracion_std');
+							tbl_listarea.id_orden,
+							tareas.duracion_std,
+							tbl_listarea.tareadescrip,
+							tbl_listarea.id_tarea,
+							tbl_listarea.id_usuario,
+							tbl_listarea.estado,
+							tbl_listarea.fecha');
 	 	$this->db->from('tbl_listarea');
 		$this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
-		$this->db->where('tbl_listarea.id_listarea', $id_tarea);
+		$this->db->where('tbl_listarea.id_listarea', $id_listarea);
 		$query = $this->db->get();
 
 		if ($query->num_rows()!=0){
@@ -164,6 +139,30 @@ class Tareas extends CI_Model
 	 	}else{	
 	 		return false;
 	 	}
+	}
+
+	function getOtNroyDurStdTarea($id_listarea){
+		
+
+		$this->db->select('tbl_listarea.id_listarea,
+							tbl_listarea.id_orden,
+							tbl_listarea.id_tarea,
+							tbl_listarea.duracion_prog,
+							orden_trabajo.nro AS nroOT,
+							tareas.duracion_std');
+		$this->db->from('tbl_listarea');
+		$this->db->join('orden_trabajo', 'orden_trabajo.id_orden = tbl_listarea.id_orden');
+		$this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
+
+		$this->db->where('tbl_listarea.id_listarea',$id_listarea);
+		$query = $this->db->get();
+
+		if($query->num_rows()>0){
+	    	return $query->result_array();
+	    }
+	    else{
+	    	return false;
+	    }
 	}
 
 	//devuelve el id de tarea estandar asociada a listarea
@@ -182,28 +181,56 @@ class Tareas extends CI_Model
 	}
 
 
+	function getDatosBPM($idTarBonita,$param){
+
+		// $response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
+		// echo "response: ";
+		// return $response;
+
+		$urlResource = 'http://35.239.41.196:8080/bonita/API/bpm/humanTask/';
+		
+		$data = file_get_contents($urlResource.$idTarBonita , false, $param);
+		
+		
+		return $data;
+	}
+
 //////////////  form dinamico  //////////////////
 
 	// verifica que el form tenga todos los campos validado en 1 
-	function validarFormGuardado(){		
+	function validarFormGuardado($idValor,$id_listarea){		
 
-		$sql ="SELECT
-		COUNT(*) as novalidos
-		FROM
-		frm_formularios_completados
-		WHERE
-		frm_formularios_completados.LITA_ID = 255 AND
-		VALIDADO = 0";
+		// $this->db->select('frm_formularios_completados.VALO_ID');
+		// $this->db->from('frm_formularios_completados');
+		// $this->db->where('frm_formularios_completados.VALIDADO', 0);	// no validado 
+		// $this->db->where('frm_formularios_completados.VALO_ID', $idValor);
+		// $this->db->where('frm_formularios_completados.LITA_ID', $id_listarea);
+		// $query = $this->db->get();
 
-		$query = $this->db->query($sql);
+	 	// if ($query->num_rows() > 0){
+	 	// 	return $query->row('VALO_ID');	
+	 	// }else{	
+	 	// 	return 0;
+	 	// }
 
-		if( $query->row('novalidos') > 0 ){
+		// cuenta los campos que estan en 0 y son obligatorios	
+		 $sql ="SELECT
+		 COUNT(*) as novalidos
+		 FROM
+		 frm_formularios_completados
+		 WHERE
+		 frm_formularios_completados.LITA_ID = $id_listarea AND
+		 VALIDADO = 0";
+
+		 $query = $this->db->query($sql);
+
+		 if( $query->row('novalidos') > 0 ){
 	    	
-	    	return false;
-	    }
-	    else{
-	    	return true;
-	    }
+	     	return false;
+	     }
+	     else{
+	     	return true;
+	     }
 	}
 
 	// Comprueba si hay form guardado asoc a id de orden y de tarea
@@ -247,40 +274,49 @@ class Tareas extends CI_Model
 		if ($query->num_rows()!=0){
 	 		return $query->row('form_asoc');	
 	 	}else{	
-	 		return false;
-	 	}
-	}
-
-	// Devuelve form asociado a una tarea std
-	function getIdFormPorIdTareaSTD($idTareaStd){		
-
-		$this->db->select('tareas.form_asoc');
-		$this->db->from('tareas');
-		$this->db->where('tareas.id_tarea', $idTareaStd);
-		$query = $this->db->get();
-
-		if ($query->num_rows()!=0){
-	 		return $query->row('form_asoc');	
-	 	}else{	
-	 		return false;
+	 		return 0;
 	 	}
 	}
 
 	// Trae form para dibujar pantalla (agregar where de id de form)
 	function get_form($id_listarea){
-		echo "id listarea en tareas get form: ";
-		var_dump($id_listarea);
+		//echo "id listarea en tareas get form: ";
+		//var_dump($id_listarea);
 		// con id listarea traigo el id de tarea estandar
 		$id_tarea = $this->getTarea_idListarea($id_listarea);
-		echo "id tarea: ";
-		var_dump($id_tarea);
+		//echo "id tarea: ";
+		//var_dump($id_tarea);
 
 		// con id de tarea estandar traigo form asociado
 		$idForm = $this->getFormTarea($id_tarea);
-		echo "id form: ";
-		var_dump($idForm);
+		//echo "id form: ";
+		//var_dump($idForm);
 
-						AND form.form_id = 1
+		// $sql = "SELECT	form.form_id,
+			// 				form.nombre,
+			// 				form.habilitado,
+			// 				form.fec_creacion,
+			// 				cate.NOMBRE AS nomCategoria,
+			// 				cate.CATE_ID AS idCategoria,
+			// 				grup.NOMBRE AS nomGrupo,
+			// 				tida.NOMBRE AS nomTipoDatos,
+			// 				grup.GRUP_ID AS idGrupo,
+			// 				valo.NOMBRE AS nomValor,
+			// 				valo.VALO_ID AS idValor,	
+			// 				valo.VALOR_DEFECTO,
+			// 				valo.LONGITUD,
+			// 				valo.OBLIGATORIO,
+			// 				valo.PISTA						
+			// 				FROM
+			// 				frm_formularios form, 
+			// 				frm_categorias cate, 
+			// 				frm_grupos grup ,  
+			// 				frm_tipos_dato tida,
+			// 				frm_valores valo
+			// 				where FORM.FORM_ID = CATE.FORM_ID 
+			// 				AND CATE.CATE_ID = GRUP.CATE_ID 
+			// 				AND GRUP.GRUP_ID = VALO.GRUP_ID 
+			// 				AND TIDA.TIDA_ID = VALO.TIDA_ID	
 
 			// 				AND form.form_id = $idForm
 
@@ -346,6 +382,27 @@ class Tareas extends CI_Model
 	    else{
 	    	return false;
 	    }				
+	}
+
+	// devuelve array con id de valor y url de la imag
+	function getImgValor(){
+		$sql ="SELECT
+				frm_formularios_completados.VALO_ID AS valoid,
+				frm_formularios_completados.VALOR As valor
+				FROM
+				frm_formularios_completados
+				WHERE
+				frm_formularios_completados.FORM_ID = 1 AND
+				frm_formularios_completados.TIDA_NOMBRE = 'input_archivo'
+				";
+		$query= $this->db->query($sql);
+
+		if($query->num_rows()>0){
+	    	return $query->result_array();
+	    }
+	    else{
+	    	return false;
+	    }		
 	}
 
 	// Trae configuracion de form inicial para guardar en frm_frm_completados
@@ -475,11 +532,8 @@ class Tareas extends CI_Model
 
 	// Inserta datos de Form en frm_formularios_completados
 	function UpdateForm($datos,$key){
-		//dump_exit($datos);
-		//$response = $this->db->insert('frm_formularios_completados', $datos);
-		//$ordenComponente = $datos["ORDEN"];
-		//$this->db->where('ORDEN', $ordenComponente);
-		$this->db->where('VALO_ID', $key);
+		
+		$this->db->where('VALO_ID', $key);	// $key = Id de valor
 		$response = $this->db->update('frm_formularios_completados', $datos);
 		return $response;
 	}

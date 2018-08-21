@@ -466,7 +466,7 @@ class Otrabajo extends CI_Controller {
 		$data['id_orden'] = $idglob; 
         $data['permission'] = $permission;
 
-//var_dump($data);
+		//var_dump($data);
 
         $this->load->view('otrabajos/asignacion',$data);  
     }

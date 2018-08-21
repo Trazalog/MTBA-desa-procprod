@@ -19,3 +19,5 @@ application/config/config\.php
 *.sublime-project
 
 application/models/bonitas\.php
+
+application/config/conexion\.php

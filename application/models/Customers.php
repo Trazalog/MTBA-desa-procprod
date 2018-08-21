@@ -342,6 +342,12 @@ class Customers extends CI_Model
 		}
 	}
 
+	function ObtenerCliente($id){
+		$this->db->where('cliId',$id);
+		$query = $this->db->get('admcustomers');
+		return $query->result_array();
+	}
+
 	/*function BajaClientes($data){
 
        	$this->db->where('cliId', $data);
