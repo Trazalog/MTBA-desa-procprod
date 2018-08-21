@@ -23,13 +23,6 @@
 
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
-                            <?php
-                            if( $usrimag != '' ) {
-                                $usrimag = 'data:image/jpg;base64,'.base64_encode($usrimag).'" ';
-                            } else {
-                                $usrimag = base_url()."assets/img/customers/avatar.png";
-                            }
-                            ?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="<?php echo $usrimag ?>" class="user-image" alt="User Image">
                                 <span class="hidden-xs"><?php echo $userName; ?></span>
