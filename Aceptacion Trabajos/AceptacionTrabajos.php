@@ -14,10 +14,7 @@ class AceptacionTrabajos extends CI_Model
     }
 
     public function TrabajoExecutionBPM($idTarea,$parametros){
-        //$result = file_get_contents('http://192.168.100.110:8080/bonita/API/bpm/userTask/'.$idTarea.'/execution',false,$parametros);
-
-        $result = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/'.$idTarea.'/execution',false,$parametros);
-        
+        $result = file_get_contents('http://192.168.100.110:8080/bonita/API/bpm/userTask/'.$idTarea.'/execution',false,$parametros);
         return $result;
     }
 

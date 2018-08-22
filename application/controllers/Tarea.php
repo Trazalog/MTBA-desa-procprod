@@ -270,21 +270,57 @@ class Tarea extends CI_Controller {
 		$data['comentarios'] = $this->Tareas->ObtenerComentarios($param);
 
 		// seguna actividad carga la vista correspondiente
+		// switch ($data['TareaBPM']['displayName']) {
+		// 	case 'Tarea1':
+		// 		$this->load->view('tareas/view_1', $data);
+		// 		break;
+
+		// 	case 'Tarea2':
+		// 		$this->load->view('tareas/view_2', $data);
+		// 		break;	
+
+		// 	// case 'Tarea3':
+		// 	// 	$this->load->view('tareas/view_3', $data);
+		// 	// 	break;
+				
+		// 	case 'Tarea3':
+		// 		$this->load->view('tareas/view_4', $data);
+		// 		break;	
+
+		// 	case 'Tarea4':
+		// 		$this->load->view('tareas/view_', $data);
+		// 		break;
+
+		// 	// sino encuentra ninguna carga la vista estandar	
+		// 	default:
+		// 		$this->load->view('tareas/view_', $data);
+		// 		break;		
+		// }
+
 		switch ($data['TareaBPM']['displayName']) {
-			case 'Tarea1':
+			
+			case 'Evaluación del estado de cuenta del cliente':
 				$this->load->view('tareas/view_1', $data);
 				break;
 
-			case 'Tarea2':
+			case 'Entender si seguir esperando':
 				$this->load->view('tareas/view_2', $data);
-				break;	
-
-			case 'Tarea3':
+				break;
+				
+			case 'Análisis financiero y emisión de reportes':
 				$this->load->view('tareas/view_3', $data);
+				break;
+			
+			case 'Solicitar ok al cliente para iniciar diagnóstico':
+				$this->load->view('tareas/view_4', $data);
+				break;
+
+			case 'Recepción de piezas':
+				$this->load->view('tareas/view_5', $data);
 				break;	
 
-			case 'Tarea4':
-				$this->load->view('tareas/view_', $data);
+			case 'Evalúa y envia presupuesto al cliente':
+				$this->load->view('tareas/view_6', $data);
 				break;
 
 			// sino encuentra ninguna carga la vista estandar	
@@ -292,6 +328,12 @@ class Tarea extends CI_Controller {
 				$this->load->view('tareas/view_', $data);
 				break;		
 		}
+
+
+
+
+
+
 		
 	}
 

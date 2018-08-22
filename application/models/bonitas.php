@@ -127,6 +127,9 @@ class Bonitas extends CI_Model
 
 	function conexiones(){	
 
+		$userdata = $this->session->userdata('user_data');
+		$usrNick= $userdata[0]["usrNick"];
+		//dump_exit($userdata);
 		// Array de parametros (cabecera HTTP)
 		$opciones = array(
 		  'http'=>array(
@@ -139,9 +142,19 @@ class Bonitas extends CI_Model
 		$contexto = stream_context_create($opciones);
 
 		// Abre el fichero usando las cabeceras HTTP establecidas arriba
-			 file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);
+			//  file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);
+			
+			 //file_get_contents('http://192.168.100.112:8080/bonita/loginservice?username=ernesto.clavel&password=bpm&redirect=false', false, $contexto);	
 
-			// file_get_contents('http://192.168.100.112:8080/bonita/loginservice?username=ernesto.clavel&password=bpm&redirect=false', false, $contexto);	
+			$data         = array(
+				'username'=>$usrNick,
+				'password'=>'bpm',
+				'redirect'=>'false'
+				);
+			$url = http_build_query( $data );
+			$url = BONITA_URL.'loginservice?'.$url;
+			file_get_contents($url, false, $contexto);	
+
 
 		$cookies = array();
 		foreach ($http_response_header as $hdr) {

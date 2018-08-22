@@ -187,6 +187,7 @@ class Users extends CI_Model
 				$user_data[0]['usrName']     = $response[0]->firstname;
 				$user_data[0]['usrLastName'] = $response[0]->lastname;
 				$user_data[0]['usrimag']     = $img;
+				$user_data[0]['usrPass']	 = $data['pas'];
 				
 				$url = BONITA_URL.'API/identity/membership?f=user_id='.$response[0]->id;
 				$response2 = file_get_contents($url, false, $parametros);

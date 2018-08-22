@@ -9,29 +9,62 @@ class Tareas extends CI_Model
 	}	
 	// trae tareas de BPM
 	function getTareas($param){
-		$tareas = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);
+		
+		$userdata = $this->session->userdata('user_data');
+		$usrId= $userdata[0]["usrId"];
+		//$tareas = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);		
+		$resource = 'API/bpm/humanTask?p=0&c=1000&f=user_id%3D';
+		$url = BONITA_URL.$resource.$usrId;
+		$tareas = file_get_contents($url, false, $param);
+
 		return $tareas;	
 	}
 	// Estado GENERICO
 	function estadocuenta($idTarBonita,$param){
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		
+		$resource = 'API/bpm/userTask/';
+		$com = '/execution';
+		$url = BONITA_URL.$resource.$idTarBonita.$com;		
+		// $response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		$response = file_get_contents($url,false, $param);
+
 		return $response;
 	}
 	// Estado de cuenta 
 	function estadocuentaOk($idTarBonita,$param){
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		
+		$resource = 'API/bpm/userTask/';
+		$com = '/execution';
+		$url = BONITA_URL.$resource.$idTarBonita.$com;	
+		$response = file_get_contents($url,false, $param);
+		
+		
+		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
 		return $response;
 	}
 	//Espera regularizacion
 	function esperandoRegularizacion($idTarBonita,$param){
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+
+		$resource = 'API/bpm/userTask/';
+		$com = '/execution';
+		$url = BONITA_URL.$resource.$idTarBonita.$com;	
+		$response = file_get_contents($url,false, $param);
+
 		return $response;
 	}
 	//Precisa Anticipo
 	function precisaAnticipo($idTarBonita,$param){
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+
+		$resource = 'API/bpm/userTask/';
+		$com = '/execution';
+		$url = BONITA_URL.$resource.$idTarBonita.$com;	
+		$response = file_get_contents($url,false, $param);
+
 		return $response;
 	}
+
 	//obtener Comentarios
 	function ObtenerComentarios($param){
 		$comentarios = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
@@ -46,19 +79,24 @@ class Tareas extends CI_Model
 	// Terminar Tarea
 	function terminarTarea($idTarBonita,$param){
 		
-		// en 35 poner el id de tarea dinamico!!!!
+			// en 35 poner el id de tarea dinamico!!!!
 
-		// try {
-		//     $content = file_get_contents('https://en.wikipedia.org/wiki/Cat#/media/File:Large_Siamese_cat_tosses_a_mouse.jpg');
+				// try {
+				//     $content = file_get_contents('https://en.wikipedia.org/wiki/Cat#/media/File:Large_Siamese_cat_tosses_a_mouse.jpg');
 
-		//     if ($content === false) {
-		//         // Handle the error
-		//     }
-		// } catch (Exception $e) {
-		//     // Handle exception
-		// }
+				//     if ($content === false) {
+				//         // Handle the error
+				//     }
+				// } catch (Exception $e) {
+				//     // Handle exception
+				// }
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/44', false, $param);
+		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/44', false, $param);
+
+		$resource = 'API/bpm/humanTask';
+		$url = BONITA_URL.$resource.$idTarBonita;
+		$response = file_get_contents($url, false, $param);			
+		
 		return $response;
 
 		// echo "response: ";
@@ -80,9 +118,11 @@ class Tareas extends CI_Model
 		//     // Handle exception
 		// }
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
-		echo "response: ";
-		//var_dump($response);
+		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
+		
+		$resource = 'API/bpm/humanTask';
+		$url = BONITA_URL.$resource.$idTarBonita;
+		$response = file_get_contents($url, false, $param);
 	}
 
 	// Soltar Tareas 
@@ -100,9 +140,11 @@ class Tareas extends CI_Model
 		//     // Handle exception
 		// }
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
-		echo "response: ";
-		var_dump($response);
+		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
+		
+		$resource = 'API/bpm/humanTask';
+		$url = BONITA_URL.$resource.$idTarBonita;
+		$response = file_get_contents($url, false, $param);
 	}
 
 	// Devuelve el id de tareas de trazaj correspond al id_tarea bonita para detatareas
