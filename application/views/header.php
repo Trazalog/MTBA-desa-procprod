@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/skins/_all-skins.min.css">
     <!--<link rel="stylesheet" href="<?php echo base_url();?>assets/css/skins/skin-green-light.min.css">-->
     <!-- Font Awesome 4.7.0 -->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="<?php echo base_url();?>assets/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <!-- Ionicons 2.0.1 -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/ionicons.min.css">
     <!-- Jquery UI 1.12.1 -->
