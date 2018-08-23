@@ -134,9 +134,10 @@
                                     echo '</td>';                                   
 
                                       // duracion standar de tarea
-                                    echo '<td class="hidden duracionStd" style="text-align: left">'.$a['duracion_std'].'</td>';
+                                    echo '<td class=" duracionStd" style="text-align: left">'.$a['duracion_std'].'</td>';
                                       // id de usuario asignado
                                     echo '<td class="hidden id_usuario" style="text-align: left">'.$a['id_usuario'].'</td>';
+                                    echo '<td class="hidden id_listarea" style="text-align: left">'.$a['id_listarea'].'</td>';
 
                                     echo '</tr>';
                                     } 
@@ -146,7 +147,7 @@
                     </tbody>
                   </table>
 
-<!------------------------listado en calendario------------------------------>
+<!------------------------ / listado en calendario------------------------------>
                 </div>
               </div>
               <!-- / tabpanel  Calendario -->  
@@ -291,6 +292,7 @@
 
 <div class="modal-footer">              
   <button type="button" id="guardar" class="botones btn btn-primary" onclick="validarInicio()">Terminar Planificacion</button>
+  <!-- <button type="button" id="guardar" class="botones btn btn-primary" onclick="guardarInfo()">Terminar Planificacion</button> -->
 </div>  <!-- /.modal footer -->            
 
 </div><!-- /.box-body -->
@@ -324,7 +326,7 @@ function validarInicio(){
       
       // cuenta programadas
       celFecha = $(this).find('td.fecha').html();
-      console.log('celda: ');
+      console.log('Validacion - fecha asignacion: ');
       console.log(celFecha);
       if(celFecha !== undefined){
         programadas ++;
@@ -332,7 +334,7 @@ function validarInicio(){
 
       // cuent asignadas
       celAsign = $(this).find('td.usrasign').html();
-      console.log('asignado: ');
+      console.log('Validacion - asignado: ');
       console.log(celAsign);
       if(celAsign !== undefined){
         asignadas ++;
@@ -340,7 +342,7 @@ function validarInicio(){
 
       // suma cantidad filas
       contCeldas++;
-      console.log(celFecha);
+      //console.log(celFecha);
   });
 
   if (contCeldas > programadas) {
@@ -359,65 +361,68 @@ function validarInicio(){
   }
 }
 
-// Arma objeto con tareas para guardar
-function guardarInfo(){
-  var tabla = $('.tbCalendario tbody tr');
+function  guardarInfo(){
+  //alert('guardar info');
+  var tabla = $('#calendarList tbody tr');
+  //console.table(tabla);
   var usuarioAsignado = "";
   var idTareaTrazajobs = "";
-  var duracionStd = "";
-  var input = {};
-  //console.table(tabla);
-  $(tabla).each(function(){          
-      
-      usuarioAsignado = $(this).find('td.id_usuario').html();
-      idTareaTrazajobs = $(this).find('td.idTareaTrazajobs').html();
-      duracionStd = $(this).find('td.duracionStd').html();
+  var duracion = 0;
+  var duracionStd = 0;
+  var tareadescrip = "";
+  var coordinador = "Duilio.Alcaraz";
+  var datos = [];
 
-      console.log('usuario: ');
-      console.log(usuarioAsignado);
-      console.log('idTareaTrazajobs: ');
-      console.log(idTareaTrazajobs);
+  $(tabla).each(function(){
+    usuarioAsignado = $(this).find('td.usrasign').html();
+    idTareaTrazajobs = $(this).find('td.id_listarea').html();
+    tareadescrip = $(this).find('td.tareadescrip').html();
+    
+    duracion = $(this).find('td.duracionStd').html();
+    duracionStd = duracion * 60000;
+    
+    datos['nombre'] = tareadescrip;
+    datos['usuarioCoordinador'] = coordinador;
+    datos['usuarioAsignado'] = usuarioAsignado;
+    datos['idTareaTrazajobs'] = idTareaTrazajobs;
+    datos['duracionStd'] = duracionStd;
 
-      {
-        "inputs": [],
-        "type": "TEXT",
-        "description": null,
-        "name": "nombre",
-        "multiple": false
-      },
-      {
-       "inputs": [],
-       "type": "TEXT",
-       "description": null,
-       "name": "usuarioCoordinador",
-       "multiple": false
-     },
-     {
-       "inputs": [],
-       "type": "TEXT",
-       "description": null,
-       "name": "usuarioAsignado",
-       "multiple": false
-     },
-     {
-       "inputs": [],
-       "type": "TEXT",
-       "description": null,
-       "name": "idTareaTrazajobs",
-       "multiple": false
-     },
-     {
-       "inputs": [],
-       "type": "DECIMAL",
-       "description": null,
-       "name": "duracionStd",    // ESTO VA EN MILISEGUNDOS
-       "multiple": false
-     }
-
-
+    //console
 
   });
+
+
+
 }
+
+
+
+
+
+
+
+// Arma objeto con tareas para guardar
+// function guardarInfo(){
+//   alert('guardar info');
+//   //var tabla = $('.tbCalendario tbody tr');
+//   var tabla = $('#calendarList tbody tr');
+//   var usuarioAsignado = "";
+//   var idTareaTrazajobs = "";
+//    var duracionStd = "";
+//    var input = {};
+//   console.table(tabla);
+//   // $(tabla).each(function(){          
+      
+//   //     usuarioAsignado = $(this).find('td.id_usuario').html();
+//   //     idTareaTrazajobs = $(this).find('td.idTareaTrazajobs').html();
+//   //     duracionStd = $(this).find('td.duracionStd').html();
+
+//   //     console.log('usuario: ');
+//   //     console.log(usuarioAsignado);
+//   //     console.log('idTareaTrazajobs: ');
+//   //     console.log(idTareaTrazajobs);
+//   // });
+// }
 
 
 
@@ -1009,7 +1014,7 @@ function guardarInfo(){
               "<td>"+data[i]['descripcion']+"</td>"+
               "<td></td>"+
               "<td></td>"+             
-              "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
+              //"<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
               // "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i> <i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+  
 
 
@@ -1096,11 +1101,11 @@ function guardarInfo(){
             console.log('id equipo: ');
             console.log(idEquipo);
 
-            var descTar = $(this).parents("tr").find("td").eq(1).html();
+            var descTar = $(this).parents("tr").find("td").eq(2).html();
             var text ='<h5>'+ descTar + '</h5>';
             $('#descTareaModal').append(text);
 
-            var duracion = $(this).parents("tr").find("td").eq(6).html();     
+            var duracion = $(this).parents("tr").find("td").eq(7).html();     
             $('#duracion').val(duracion);    
 
     });
@@ -1241,9 +1246,7 @@ function guardarInfo(){
                       console.log(result);
                     }
       });
-    });
-
-    
+    });    
 
     //ASIGNAR USUARIO
     $(".fa-user").click(function (e) { 
@@ -1267,7 +1270,6 @@ function guardarInfo(){
         changeMonth: true,
         changeYear: true
     });
-
 
 });
 
@@ -1394,11 +1396,10 @@ function regresa1(){
   //WaitingClose();
 }
 
-// cargo plugin DateTimePicker
-  $('#fechaProgNueva, #fecha-tomo, #libroFecha').datetimepicker({
-    format: 'YYYY-MM-DD H:mm:ss',
-    locale: 'es',
-  });
+$('#fechaProgNueva').datetimepicker(
+  {format: 'YYYY-MM-DD H:mm:ss',
+    locale: 'es'});
+
 
 </script>
 
@@ -1513,6 +1514,7 @@ function regresa1(){
         <div class="form-group">
           <label for="fechaProgNueva">Fecha *</label>
           <input type='text' class="form-control input-md" id="fechaProgNueva" value="<?php echo date("Y-m-d H:i:s") ?>">
+          <!-- <input type='text' class="form-control input-md" id="fechaProgNueva" value=""> -->
         </div>
 
         <div class="form-group">

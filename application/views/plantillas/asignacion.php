@@ -29,18 +29,15 @@
                             </br>
 
 
-                            <h4>
-                                <div class="col-sm-8">Nueva Tarea:
-                                    <select type="text" class="form-control" id="tareas" name="tarea">
-                                        <option value="0" selected="selected">Seleccionar Tarea....</option>
-                                    </select>
-                                </div>
-                            </h4>
-                            <div class="col-xs-4">
-                                &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<input type="hidden" id="numord"
-                                    name="numord" value="<?php echo $id_plantilla;?>"> </input>
-                            </div>
-                            </br>
+              <h4><div class="col-sm-8">Nueva Tarea:
+              <select type="text" class="form-control" id="tareas"  name="tarea" >
+                <option value="0" selected="selected">Seleccionar Tarea....</option>
+              </select>
+              </div></h4>
+              <div class="col-xs-4">
+                &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<input type="hidden"  id="numord" name="numord" value="<?php echo $id_plantilla;?>"> </input>
+              </div> 
+            </br>
 
                             <div class="col-xs-4">
                                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -94,56 +91,54 @@
 </section>
 
 <script>
-    (function() {
-        // your page initialization code here
-        // the DOM will be available here
+(function() {
+   // your page initialization code here
+   // the DOM will be available here
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        data: '',
+        url: 'index.php/Plantilla/ObtenerTareas',
+        success: function(result){
+          var selectorA = $('#tareas');
+          for(var x=0;x<result.length;x++){
+            var opt="<option value="+result[x]['id_tarea']+">"+result[x]['descripcion']+"</option>";
+            selectorA.append(opt);
+                
+          }  
+          console.log("Cargando Tareas...OK");
+        },
+        error: function(result){
+              
+          alert("No se pudo realizar la operación");
+        }   
+    }); 
+
+})();
+
+
+//Agregar la tarea de una plantilla
+$('#agregar').click(function (e) {
+    console.log("Funcion Agregar");
+     WaitingOpen();
+        var idTarea=$('#tareas').val();
+        var idPlantilla=$('#numord').val();
         $.ajax({
             type: 'POST',
-            dataType: 'json',
-            data: '',
-            url: 'index.php/Plantilla/ObtenerTareas',
-            success: function(result) {
-                var selectorA = $('#tareas');
-                for (var x = 0; x < result.length; x++) {
-                    var opt = "<option value=" + result[x]['id_tarea'] + ">" + result[x]['descripcion'] +
-                        "</option>";
-                    selectorA.append(opt);
-
-                }
-                console.log("Cargando Tareas...OK");
-            },
-            error: function(result) {
-
-                alert("No se pudo realizar la operación");
-            }
-        });
-
-    })();
-
-
-    //Agregar la tarea de una plantilla
-    $('#agregar').click(function(e) {
-        console.log("Funcion Agregar");
-        WaitingOpen();
-        var idTarea = $('#tareas').val();
-        var idPlantilla = $('#numord').val();
-        $.ajax({
-            type: 'POST',
-            data: {
-                "id_tarea": idTarea,
-                "id_Plantilla": idPlantilla
-            },
-            url: 'index.php/Plantilla/agregar_tarea',
-            success: function(data) {
+            data:{"id_tarea":idTarea,"id_plantilla":idPlantilla},
+            url: 'index.php/Plantilla/agregar_tarea', 
+            success: function(data){
                 alert("Tarea Guardada");
                 regresa1();
             },
             error: function(result) {
                 console.log("Error al guardar tarea");
-            }
+            },
+            dataType: 'json'    
         });
-        WaitingClose();
-    });
+
+     WaitingClose();
+  });
 
 
 

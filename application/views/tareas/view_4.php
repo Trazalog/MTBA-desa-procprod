@@ -231,7 +231,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button class="btn btn-primary " style="float: right;" onclick="guardarNo()">Guardar</button>
+                            <button id="guardarNo" class="hidden" onclick="guardarNo()"></button>
                         </div>
                     </div>
 
@@ -758,9 +758,15 @@
     
     $("#formSi").submit(function(event) {
 
+        
         event.preventDefault();
+
+        var idt = $('#idTarBonita').val();
+       alert(idt);
        
         var formData = new FormData($("#formSi")[0]);
+        formData.append('idtareabonita',idt);
+        
 
         $.ajax({
             url: $("#formSi").attr("action"),

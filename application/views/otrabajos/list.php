@@ -10,7 +10,6 @@
             echo '<button class="btn btn-block btn-success" style="width: 100px; margin-top: 10px;"  data-toggle="modal" data-target="#modalagregar" id="btnAdd">Agregar</button>'; 
           }
 
-
           //// USUARIO LOGUEADO Y GRUPO DE USUARIO
           $userdata = $this->session->userdata('user_data');
           $usrId = $userdata[0]['usrId'];     
@@ -32,15 +31,11 @@
                 <th>Solicita </th>
                 <th>Asignado </th>
                 <th>Estado </th>
-
               </tr>
             </thead>
             <tbody>
               <?php
-
-
                 if(count($list) > 0) { 
-
 
                   $userdata = $this->session->userdata('user_data');
                   $usrId= $userdata[0]['usrId']; 
@@ -51,7 +46,6 @@
                     //echo "grupo";
                     //echo $gr;
                     if($gr=='1') { 
-
                       
                     //if($a['id_usuario_a'] == $usrId  &&  (($a['grpId']==='1') || ($a['grpId']=== '5'))){ //$a['grpId']==1 //o el grupo es supervisor tarea//if($a['id_usuario_a'] == $usrId || $a['id_usuario_a']== 1){ 
                                          
@@ -88,8 +82,6 @@
                         }
                         if (strpos($permission,'Pedidos') !== false) {
                           echo '<i class="fa fa-truck" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;"  title="Mostrar Perdido " data-toggle="modal" data-target="#modallista"></i>';
-                                              
-                         
                         }
 
                         if(($a['estado'] == 'As' || $a['estado'] == 'P') && ($a['id_usuario_a'] == $usrId)){
@@ -108,10 +100,8 @@
                         echo '<td style="text-align: right">'.$a['usrName'].'</td>';
                         echo '<td style="text-align: right">'.$a['nombre'].'</td>';
                         echo '<td style="text-align: center">'.($a['estado'] == 'C' ? '<small class="label pull-left bg-green">Curso</small>' : ($a['estado'] == 'P' ? '<small class="label pull-left bg-red">Pedido</small>' : '<small class="label pull-left bg-yellow">Asignado</small>')).'</td>';
-      	                echo '</tr>';
-                      
+      	                echo '</tr>';                      
         		          }
-
                     }   
 
                    /* else {
@@ -184,7 +174,7 @@ var acArt = '';
 var i ="";
 var idord ="";
 var idfin= "";
-$(document).ready(function(event) {
+//$(document).ready(function(event) {
   
   //Al apretar la opcion asignar tareas , esto lleva a esa pantalla, esto es lo que hay q cambiar para subir
   $(".fa-check-square-o").click(function (e) { 
@@ -197,9 +187,10 @@ $(document).ready(function(event) {
     $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargartarea/<?php echo $permission; ?>/"+iort+"");
     WaitingClose();  
   });
+  
   //Asignar 
   $(".fa-thumb-tack").click(function (e) { 
-          
+    var datos = new Object();      
     $('#modalAsig').modal('show');
     var id_orden = $(this).parent('td').parent('tr').attr('id');      
     $.ajax({
@@ -488,7 +479,7 @@ $(document).ready(function(event) {
   });
 
 
-});
+//});
 
 // trae detaes de la OT para llenar en NOta de Pedidos
 function getnotaPedido(idOt){

@@ -7,7 +7,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini">T<b></b>JP</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Traza</b> Jobs</span>
+                <span class="logo-lg"><b>TRAZA</b> JOBS</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -23,13 +23,6 @@
 
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
-                            <?php
-                            if( $usrimag != '' ) {
-                                $usrimag = 'data:image/jpg;base64,'.base64_encode($usrimag).'" ';
-                            } else {
-                                $usrimag = base_url()."assets/img/customers/avatar.png";
-                            }
-                            ?>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="<?php echo $usrimag ?>" class="user-image" alt="User Image">
                                 <span class="hidden-xs"><?php echo $userName; ?></span>

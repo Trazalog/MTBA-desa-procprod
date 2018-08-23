@@ -12,15 +12,22 @@ class AceptacionTrabajo extends CI_Controller
 	{	
 		$data['permission'] = $permission;
 		$data['cotizacion'] = $this->AceptacionTrabajos->ObtenerCotizacion();
-		$this->load->view('AceptacionTrabajo/list', $data);
+		$this->load->view('aceptaciontrabajo/view_4', $data);
 	}
 
 	public function GuardarAceptacionTrabajoBPM(){
+
+		$datos = $this->input->post();
+		dump_exit($datos);
+
 		$entrega_servicio=$this->input->post('entrega_servicio');
 		$direccion_entrega=$this->input->post('direccion_entrega');
 		$tipo_cliente=$this->input->post('tipo_cliente');
 		$proveedor_repuesto=$this->input->post('proveedor_repuesto');
 		$fecha_entrega = $this->input->post('fec_entrega')."T00:00";
+		$id = $this->input->post('idtareabonita');
+		// echo" id ";
+		// dump_exit($id);
 
 		$cuerpoBPM = array(
 			"fecCompromisoEntrega"=>$fecha_entrega,
@@ -62,17 +69,7 @@ class AceptacionTrabajo extends CI_Controller
 	}
 	
 	function NoAceptaTrabajoBPM(){
-		$entrega_servicio = $this->input->post('estado');
-		$cuerpoBPM = array(
-			"fecCompromisoEntrega"=>'',
-			"tipoEntrega"=>$entrega_servicio,
-			"quienProveeRespuestos"=>'',
-			"presupuesto"=>''	
-		);
-		$dataBPM =array(
-			"clienteAceptaPresupuesto"=>"false",
-			"gNotaPedidoInput"=>$cuerpoBPM
-		);
+		$dataBPM = $this->input->post();
 		$parametros = $this->Bonitas->conexiones();
 		$parametros["http"]["method"] = "POST";	
 		$parametros["http"]["content"] = json_encode($dataBPM);

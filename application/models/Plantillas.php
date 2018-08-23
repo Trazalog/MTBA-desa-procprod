@@ -27,7 +27,13 @@ class plantillas extends CI_Model
 
 	    $query = $this->db->insert("tbl_listplantilla",$arre);
 	    return $query;
-	    }
+	}
+
+	function ObtenerTareas(){
+		$query = $this->db->get("tareas");
+		return $query->result_array();
+
+	}
 
 
 
@@ -48,11 +54,10 @@ class plantillas extends CI_Model
 
     function cargartareas($idglog){  
 
-		$this->db->select('tbl_listplantilla.id_detaplantilla,
-							tbl_listplantilla.id_plantilla,
-							tbl_listplantilla.descripcion_deta');
-		$this->db->from('tbl_listplantilla');		
-		$this->db->where('tbl_listplantilla.id_plantilla', $idglog);		
+		$this->db->select();
+		$this->db->from('tbl_listplantilla as A');	
+		$this->db->join('tareas as B',"A.id_tarea=B.id_tarea");	
+		$this->db->where('A.id_plantilla', $idglog);		
 		$query= $this->db->get();
 		
 		if ($query->num_rows()!=0)
