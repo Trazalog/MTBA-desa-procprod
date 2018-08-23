@@ -10,8 +10,9 @@ class Tarea extends CI_Controller {
 		$this->load->model('Bonitas');
 	}
 
-	// Carga lista de OT
-	public function index($permission){
+		// Carga lista de OT
+		public function index($permission){
+
 		$metodo = "POST";
 
 		$parametros = $this->Bonitas->conexiones();
@@ -71,6 +72,43 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->estadoCuenta($idTarBonita,$param);
 		echo json_encode($result);
 	}	
+
+	// Archivo
+	public function GuardarArchivoOC(){	
+		
+		$idTarBonita = $this->input->post('idTarBonita');
+		
+		$config = [
+			"upload_path" => "./assets/documentos/ordenes_compra",
+			'allowed_types' => "doc|pdf"
+		];
+
+		$this->load->library("upload",$config);
+		$this->upload->do_upload('orden');	
+		$documento = array("upload_data" => $this->upload->data());	
+		$data = array(						   
+			'scanMailCliente' =>  base_url().'assets/documentos/ordenes_compra'.$documento['upload_data']['file_name']	
+		);
+
+		echo json_encode($data);
+
+		// trae la cabecera
+		// $parametros = $this->Bonitas->conexiones();
+		
+		// // Cambio el metodo de la cabecera a "PUT"
+		// $parametros["http"]["method"] = "POST";	
+		// $parametros["http"]["content"] = json_encode($data);	
+
+		// // Variable tipo resource referencia a un recurso externo.
+		// $param = stream_context_create($parametros);
+		// $result = $this->Tareas->GuardarArchivoOC($idTarBonita,$param);
+		// if($result=== false)
+		// {
+		// return 'error';
+		// }
+		// else{ return 'exito';}
+		//echo json_encode($result);
+	}
 
 
 
@@ -141,7 +179,20 @@ class Tarea extends CI_Controller {
 		echo json_encode($result);
 	}
 
+	public function GuardarComentario(){
+		$comentario = $this->input->post();
+		// trae la cabecera
+		$parametros = $this->Bonitas->conexiones();
+		
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "POST";	
+		$parametros["http"]["content"] = json_encode($comentario);	
 
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$response = $this->Tareas->GuardarComentarioBPM($param);
+		echo json_encode($response);
+	}
 
 
 
@@ -262,7 +313,15 @@ class Tarea extends CI_Controller {
 			
 		// carga el formulario para modal
 		$data['form'] = $this->Tareas->get_form($id_listarea);
-		$this->load->view('tareas/view_', $data);
+		//FLEIVA COMENTARIOS
+		$metodo = "POST";
+
+		$parametros = $this->Bonitas->conexiones();
+		$param = stream_context_create($parametros);
+		
+		$data['comentarios'] = $this->Tareas->ObtenerComentarios($param);
+		$this->load->view('tareas/view_6', $data);
+		
 	}
 
 	// trae valores validos para llenar componentes del formulario

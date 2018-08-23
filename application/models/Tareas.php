@@ -14,17 +14,25 @@ class Tareas extends CI_Model
 		return $tareas;	
 	}
 
+
+	// Archivo url
+	function GuardarArchivoOC($idTarBonita,$param){
+
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/109/execution',false, $param);
+		return $response;
+	}
+
 	// Estado GENERICO
 	function estadocuenta($idTarBonita,$param){
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/102/execution',false, $param);
 		return $response;
 	}
 
 	// Estado de cuenta 
 	function estadocuentaOk($idTarBonita,$param){
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/102/execution',false, $param);
 		return $response;
 	}
 
@@ -32,18 +40,27 @@ class Tareas extends CI_Model
 	//Espera regularizacion
 	function esperandoRegularizacion($idTarBonita,$param){
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/102/execution',false, $param);
 		return $response;
 	}
 
 	//Precisa Anticipo
 	function precisaAnticipo($idTarBonita,$param){
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/102/execution',false, $param);
 		return $response;
 	}
 
-
+	//obtener Comentarios
+	function ObtenerComentarios($param){
+		$comentarios = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
+		return json_decode($comentarios,true);
+	}
+	//Guardar Comentarios
+	function GuardarComentarioBPM($param){
+		$respuesta = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment',false,$param);
+		return $respuesta;
+	}
 
 	// Terminar Tarea
 	function terminarTarea($idTarBonita,$param){
@@ -82,7 +99,7 @@ class Tareas extends CI_Model
 		//     // Handle exception
 		// }
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/78', false, $param);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/109', false, $param);
 		return $response;
 		//echo "response: ";
 		//var_dump($response);
@@ -103,7 +120,7 @@ class Tareas extends CI_Model
 		//     // Handle exception
 		// }
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/78', false, $param);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/104', false, $param);
 		echo "response: ";
 		var_dump($response);
 	}
@@ -111,12 +128,12 @@ class Tareas extends CI_Model
 	// Devuelve el id de tareas de trazaj correspond al id_tarea bonita
 	function getIdTareaTraJobs($idBonita,$param){
 
-		$idTJobs = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/activityVariable/78/trazajobsTaskId', false, $param);
+		$idTJobs = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/activityVariable/109/trazajobsTaskId', false, $param);
 		
 		return $idTJobs;
 	}
 
-	// verifica que el form tenga todos los campos validado en 1 
+	// verifica que el form tenga todos los campos validado en 1
 	function validarFormGuardado(){		
 
 		$sql ="SELECT
