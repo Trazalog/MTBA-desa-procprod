@@ -7,6 +7,50 @@ class Tareas extends CI_Model
 
 		parent::__construct();
 	}	
+	// trae tareas de BPM
+	function getTareas($param){
+		
+		$tareas = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);
+		return $tareas;	
+	}
+
+
+	// Archivo url
+	function GuardarArchivoOC($idTarBonita,$param){
+
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/62/execution',false, $param);
+		return $response;
+	}
+
+	// Estado GENERICO
+	function estadocuenta($idTarBonita,$param){
+
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/102/execution',false, $param);
+		return $response;
+	}
+
+	// Estado de cuenta 
+	function estadocuentaOk($idTarBonita,$param){
+
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/102/execution',false, $param);
+		return $response;
+	}
+
+
+	//Espera regularizacion
+	function esperandoRegularizacion($idTarBonita,$param){
+
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/102/execution',false, $param);
+		return $response;
+	}
+
+	//Precisa Anticipo
+	function precisaAnticipo($idTarBonita,$param){
+
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/102/execution',false, $param);
+		return $response;
+	}
+
 	//obtener Comentarios
 	function ObtenerComentarios($param){
 		$comentarios = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
@@ -16,13 +60,6 @@ class Tareas extends CI_Model
 	function GuardarComentarioBPM($param){
 		$respuesta = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment',false,$param);
 		return $respuesta;
-	}
-	// trae tareas de BPM
-	function getTareas($param){
-		
-		$tareas = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);
-		
-		return $tareas;		
 	}
 
 	// Terminar Tarea
@@ -44,7 +81,7 @@ class Tareas extends CI_Model
 		return $response;
 
 		// echo "response: ";
-		// var_dump($response);processInstanceId=5615296745389165959
+		// var_dump($response);
 	}
 
 	// Tomar Tareas 
@@ -62,9 +99,10 @@ class Tareas extends CI_Model
 		//     // Handle exception
 		// }
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
-		echo "response: ";
-		var_dump($response);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/110	', false, $param);
+		return $response;
+		//echo "response: ";
+		//var_dump($response);
 	}
 
 	// Soltar Tareas 
@@ -82,7 +120,7 @@ class Tareas extends CI_Model
 		//     // Handle exception
 		// }
 
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
+		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/104', false, $param);
 		echo "response: ";
 		var_dump($response);
 	}
@@ -90,7 +128,7 @@ class Tareas extends CI_Model
 	// Devuelve el id de tareas de trazaj correspond al id_tarea bonita
 	function getIdTareaTraJobs($idBonita,$param){
 
-		$idTJobs = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/activityVariable/54/trazajobsTaskId', false, $param);
+		$idTJobs = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/activityVariable/110/trazajobsTaskId', false, $param);
 		
 		return $idTJobs;
 	}
@@ -203,7 +241,6 @@ class Tareas extends CI_Model
 		$this->db->from('tbl_listarea');
 		$this->db->where('tbl_listarea.id_listarea', $id_listarea);
 		$query = $this->db->get();
-
 		if ($query->num_rows()!=0){
 	 		return $query->row('id_tarea');	
 	 	}else{	
@@ -265,7 +302,7 @@ class Tareas extends CI_Model
 						AND GRUP.GRUP_ID = VALO.GRUP_ID 
 						AND TIDA.TIDA_ID = VALO.TIDA_ID	
 
-						AND form.form_id = 1
+						AND form.form_id = $idForm
 
 						ORDER BY cate.ORDEN,grup.ORDEN,valo.ORDEN";
 						//ORDER BY idCategoria,nomGrupo,VALO_ID";	
@@ -333,7 +370,7 @@ class Tareas extends CI_Model
 				AND CATE.CATE_ID = GRUP.CATE_ID 
 				AND GRUP.GRUP_ID = VALO.GRUP_ID 
 				AND TIDA.TIDA_ID = VALO.TIDA_ID	
-				AND form.form_id = 1 					
+				AND form.form_id = $idFormAsoc 					
 				ORDER BY cate.ORDEN,grup.ORDEN,valo.ORDEN";
 
 		$query= $this->db->query($sql);

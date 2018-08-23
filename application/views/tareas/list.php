@@ -315,11 +315,6 @@
 
 */
 
-// function regresa(){ 
-//   $('.content').empty();
-//   WaitingClose();
-//   $(".content").load("<?php echo base_url(); ?>index.php/Taller/index/<?php echo $permission; ?>");
-// }  
 
 
   

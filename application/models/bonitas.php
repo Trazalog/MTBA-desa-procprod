@@ -24,7 +24,7 @@ class Bonitas extends CI_Model
 		// Abre el fichero usando las cabeceras HTTP establecidas arriba
 			// file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);
 
-			file_get_contents('http://192.168.100.112:8080/bonita/loginservice?username=ernesto.clavel&password=bpm&redirect=false', false, $contexto);	
+			file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);	
 
 			$cookies = array();
 			foreach ($http_response_header as $hdr) {
@@ -90,7 +90,7 @@ class Bonitas extends CI_Model
 			$contexto = stream_context_create($opciones);
 
 		// Abre el fichero usando las cabeceras HTTP establecidas arriba
-			file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);	
+			file_get_contents('http://192.168.100.110:8080/bonita/loginservice?username=ernesto.clavel&password=bpm&redirect=false', false, $contexto);	
 
 			$cookies = array();
 			foreach ($http_response_header as $hdr) {
