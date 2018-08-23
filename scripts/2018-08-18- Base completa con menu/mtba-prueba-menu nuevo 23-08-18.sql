@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-08-2018 a las 16:11:49
+-- Tiempo de generación: 23-08-2018 a las 11:57:56
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `mtba-desa-procprod`
+-- Base de datos: `mtba-prueba`
 --
 
 -- --------------------------------------------------------
@@ -466,24 +466,204 @@ CREATE TABLE `frm_formularios_completados` (
 --
 
 INSERT INTO `frm_formularios_completados` (`FOCO_ID`, `FORM_NOMBRE`, `CATE_NOMBRE`, `GRUP_NOMBRE`, `VALO_NOMBRE`, `TIDA_NOMBRE`, `TIDA_ID`, `VALOR`, `FORM_ID`, `REFERENCIA`, `FEC_CREACION`, `USUARIO`, `ORDEN`, `LITA_ID`, `VALO_ID`, `VALIDADO`) VALUES
-(1, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '-1', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 3, 0),
-(2, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '-1', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 4, 0),
-(3, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '-1', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 5, 0),
-(4, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, 'ssss', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 6, 1),
-(5, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, 'asd', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 7, 1),
-(6, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, 'rep', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 8, 1),
-(7, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, 'cam', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 9, 1),
-(8, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '-1', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 10, 0),
-(9, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '-1', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 11, 0),
-(10, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '-1', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 12, 0),
-(11, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, 'aprovalidado', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 13, 1),
-(12, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 16, 0),
-(13, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, 'tilde', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 18, 1),
-(14, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, 'tilde', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 19, 1),
-(15, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 20, 0),
-(16, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, 'assets/imgformularios/17200986_1307488952679155_5807732853179821043_n2.jpg', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 21, 1),
+(1, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, 'Seleccione...', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 3, 0),
+(2, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, 'Seleccione...', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 4, 0),
+(3, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, 'Seleccione...', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 5, 0),
+(4, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '111', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 6, 1),
+(5, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 7, 0),
+(6, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 8, 0),
+(7, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 9, 0),
+(8, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, 'Seleccione...', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 10, 0),
+(9, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, 'Seleccione...', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 11, 0),
+(10, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, 'Seleccione...', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 12, 0),
+(11, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, 'asdads', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 13, 1),
+(12, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 16, 0),
+(13, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, 'tilde', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 18, 1),
+(14, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, 'notilde', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 19, 0),
+(15, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 20, 0),
+(16, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, 'assets/imgformularios/23722295_1005649316239485_2251431615481845955_n2.jpg', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 21, 1),
 (17, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 15, 0),
-(18, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, 'assets/imgformularios/20292672_1625706127441992_1957579478471037547_n1.jpg', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 255, 14, 1);
+(18, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '', NULL, 255, 14, 0),
+(19, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 3, 0),
+(20, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 4, 0),
+(21, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 5, 0),
+(22, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 6, 0),
+(23, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 7, 0),
+(24, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 8, 0),
+(25, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 9, 0),
+(26, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 10, 0),
+(27, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 11, 0),
+(28, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 12, 0),
+(29, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 13, 0),
+(30, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 16, 0),
+(31, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 18, 0),
+(32, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 19, 0),
+(33, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 20, 0),
+(34, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 21, 0),
+(35, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 15, 0),
+(36, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 14, 0),
+(37, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 3, 0),
+(38, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 4, 0),
+(39, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 5, 0),
+(40, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 6, 0),
+(41, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 7, 0),
+(42, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 8, 0),
+(43, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 9, 0),
+(44, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 10, 0),
+(45, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 11, 0),
+(46, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 12, 0),
+(47, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 13, 0),
+(48, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 16, 0),
+(49, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 18, 0),
+(50, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 19, 0),
+(51, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 20, 0),
+(52, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 21, 0),
+(53, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 15, 0),
+(54, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 14, 0),
+(55, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 3, 0),
+(56, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 4, 0),
+(57, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 5, 0),
+(58, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 6, 0),
+(59, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 7, 0),
+(60, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 8, 0),
+(61, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 9, 0),
+(62, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 10, 0),
+(63, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 11, 0),
+(64, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 12, 0),
+(65, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 13, 0),
+(66, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 16, 0),
+(67, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 18, 0),
+(68, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 19, 0),
+(69, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 20, 0),
+(70, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 21, 0),
+(71, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 15, 0),
+(72, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 14, 0),
+(73, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 3, 0),
+(74, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 4, 0),
+(75, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 5, 0),
+(76, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 6, 0),
+(77, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 7, 0),
+(78, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 8, 0),
+(79, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 9, 0),
+(80, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 10, 0),
+(81, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 11, 0),
+(82, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 12, 0),
+(83, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 13, 0),
+(84, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 16, 0),
+(85, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 18, 0),
+(86, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 19, 0),
+(87, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 20, 0),
+(88, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 21, 0),
+(89, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 15, 0),
+(90, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 14, 0),
+(91, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 3, 0),
+(92, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 4, 0),
+(93, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 5, 0),
+(94, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 6, 0),
+(95, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 7, 0),
+(96, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 8, 0),
+(97, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 9, 0),
+(98, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 10, 0),
+(99, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 11, 0),
+(100, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 12, 0),
+(101, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 13, 0),
+(102, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 16, 0),
+(103, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 18, 0),
+(104, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 19, 0),
+(105, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 20, 0),
+(106, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 21, 0),
+(107, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 15, 0),
+(108, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 14, 0),
+(109, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 3, 0),
+(110, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 4, 0),
+(111, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 5, 0),
+(112, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 6, 0),
+(113, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 7, 0),
+(114, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 8, 0),
+(115, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 9, 0),
+(116, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 10, 0),
+(117, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 11, 0),
+(118, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 12, 0),
+(119, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 13, 0),
+(120, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 16, 0),
+(121, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 18, 0),
+(122, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 19, 0),
+(123, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 20, 0),
+(124, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 21, 0),
+(125, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 15, 0),
+(126, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 14, 0),
+(127, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 3, 0),
+(128, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 4, 0),
+(129, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 5, 0),
+(130, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 6, 0),
+(131, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 7, 0),
+(132, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 8, 0),
+(133, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 9, 0),
+(134, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 10, 0),
+(135, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 11, 0),
+(136, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 12, 0),
+(137, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 13, 0),
+(138, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 16, 0),
+(139, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 18, 0),
+(140, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 19, 0),
+(141, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 20, 0),
+(142, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 21, 0),
+(143, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 15, 0),
+(144, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '1', NULL, 0, 14, 0),
+(145, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 3, 0),
+(146, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 4, 0),
+(147, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 5, 0),
+(148, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 6, 0),
+(149, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 7, 0),
+(150, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 8, 0),
+(151, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 9, 0),
+(152, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 10, 0),
+(153, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 11, 0),
+(154, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 12, 0),
+(155, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 13, 0),
+(156, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 16, 0),
+(157, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 18, 0),
+(158, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 19, 0),
+(159, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 20, 0),
+(160, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 21, 0),
+(161, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 15, 0),
+(162, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '59', NULL, 0, 14, 0),
+(163, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 3, 0),
+(164, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 4, 0),
+(165, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 5, 0),
+(166, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 6, 0),
+(167, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 7, 0),
+(168, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 8, 0),
+(169, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 9, 0),
+(170, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 10, 0),
+(171, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 11, 0),
+(172, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 12, 0),
+(173, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 13, 0),
+(174, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 16, 0),
+(175, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 18, 0),
+(176, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 19, 0),
+(177, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 20, 0),
+(178, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 21, 0),
+(179, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 15, 0),
+(180, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '28', NULL, 0, 14, 0),
+(181, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 3, 0),
+(182, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 4, 0),
+(183, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 5, 0),
+(184, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Aprobado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 6, 0),
+(185, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Rechazado', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 7, 0),
+(186, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Reparar:(*)', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 8, 0),
+(187, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '1-Tapa Valvulas', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 9, 0),
+(188, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Chapa', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 10, 0),
+(189, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aluminio', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 11, 0),
+(190, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Otro', 'select', 2, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 12, 0),
+(191, 'Registro de Diagnostico de piezas no mecanizadas', 'A-Tapas', '2-Tapa distribución', 'Aprobado:', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 13, 0),
+(192, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Cambiar', 'input_texto', 1, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 16, 0),
+(193, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 1', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 18, 0),
+(194, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'Ckeck test 2', 'checkbox', 3, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 19, 0),
+(195, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'textarea test', 'textarea', 4, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 20, 0),
+(196, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '1-Volante', 'SUBIR IMAGEN 1', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 21, 0),
+(197, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '2-Corona Arranque', 'Reparar:(*)', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 15, 0),
+(198, 'Registro de Diagnostico de piezas no mecanizadas', 'B-Piezas en Revolucion', '3-Polea cigûeñal', 'Rechazado', 'input_archivo', 7, '', 1, NULL, '2018-07-05 14:21:45', '53', NULL, 0, 14, 0);
 
 -- --------------------------------------------------------
 
@@ -575,7 +755,7 @@ INSERT INTO `frm_valores` (`VALO_ID`, `NOMBRE`, `PISTA`, `LONGITUD`, `VALOR_DEFE
 (14, 'Rechazado', NULL, NULL, NULL, 0, '2018-07-05 18:40:39', 7, 6, 12),
 (15, 'Reparar:(*)', NULL, NULL, NULL, 0, '2018-07-05 18:44:58', 7, 5, 13),
 (16, 'Cambiar', NULL, NULL, NULL, 0, '2018-07-05 18:45:39', 1, 4, 14),
-(18, 'Ckeck test 1', NULL, NULL, NULL, 0, '2018-07-08 22:46:00', 3, 4, 15),
+(18, 'Ckeck test 1', NULL, NULL, NULL, 1, '2018-07-08 22:46:00', 3, 4, 15),
 (19, 'Ckeck test 2', NULL, NULL, NULL, 0, '2018-07-08 22:50:35', 3, 4, 16),
 (20, 'textarea test', NULL, NULL, NULL, 0, '2018-07-08 22:51:07', 4, 4, 17),
 (21, 'SUBIR IMAGEN 1', NULL, NULL, NULL, 1, '2018-08-10 21:14:35', 7, 4, 18);
@@ -932,7 +1112,14 @@ INSERT INTO `sisgroups` (`grpId`, `grpName`, `grpDash`) VALUES
 (4, 'Taller', 'Otrabajo'),
 (5, 'Supervisor Taller', 'Otrabajo'),
 (6, 'Compras', 'Otrabajo'),
-(7, 'coordinador', 'Otrabajo');
+(7, 'coordinador', 'Otrabajo'),
+(14, 'Gerente', 'Tarea'),
+(15, 'Administrador', 'Tarea'),
+(18, 'Adm  y finanzas', 'Tarea'),
+(19, 'Produccion', 'Tarea'),
+(20, 'Abastecimiento', 'Tarea'),
+(21, 'Comercial', 'Tarea'),
+(35, 'Control de Gestion', 'Tarea');
 
 -- --------------------------------------------------------
 
@@ -943,6 +1130,7 @@ INSERT INTO `sisgroups` (`grpId`, `grpName`, `grpDash`) VALUES
 CREATE TABLE `sisgroupsactions` (
   `grpactId` int(11) NOT NULL,
   `grpId` int(11) NOT NULL,
+  `roleId` int(11) NOT NULL,
   `menuAccId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -950,197 +1138,31 @@ CREATE TABLE `sisgroupsactions` (
 -- Volcado de datos para la tabla `sisgroupsactions`
 --
 
-INSERT INTO `sisgroupsactions` (`grpactId`, `grpId`, `menuAccId`) VALUES
-(125, 2, 1),
-(126, 2, 4),
-(127, 2, 8),
-(128, 2, 13),
-(129, 2, 25),
-(130, 2, 28),
-(951, 4, 54),
-(952, 4, 55),
-(953, 4, 56),
-(954, 4, 57),
-(1103, 5, 1),
-(1104, 5, 2),
-(1105, 5, 4),
-(1106, 5, 5),
-(1107, 5, 6),
-(1108, 5, 8),
-(1109, 5, 25),
-(1110, 5, 26),
-(1111, 5, 27),
-(1112, 5, 28),
-(1113, 5, 29),
-(1114, 5, 30),
-(1115, 5, 31),
-(1116, 5, 32),
-(1117, 5, 33),
-(1118, 5, 34),
-(1119, 5, 35),
-(1120, 5, 36),
-(1121, 5, 41),
-(1122, 5, 42),
-(1123, 5, 43),
-(1124, 5, 53),
-(1125, 5, 54),
-(1126, 5, 55),
-(1127, 5, 56),
-(1128, 5, 57),
-(1129, 5, 61),
-(1130, 5, 62),
-(1131, 5, 63),
-(1132, 5, 70),
-(1133, 5, 71),
-(1134, 5, 72),
-(1135, 5, 73),
-(1136, 5, 74),
-(1137, 5, 75),
-(1138, 5, 76),
-(1139, 5, 77),
-(1140, 5, 78),
-(1141, 5, 79),
-(1142, 5, 80),
-(1143, 5, 81),
-(1144, 5, 82),
-(1145, 5, 83),
-(1146, 5, 84),
-(1147, 5, 85),
-(1148, 5, 86),
-(1149, 5, 87),
-(1150, 5, 88),
-(1151, 5, 89),
-(1228, 6, 70),
-(1229, 6, 71),
-(1230, 6, 72),
-(1231, 6, 73),
-(1232, 6, 74),
-(1233, 6, 75),
-(1234, 6, 76),
-(1235, 6, 77),
-(1236, 6, 78),
-(1237, 6, 79),
-(1238, 6, 80),
-(1239, 6, 81),
-(1240, 6, 94),
-(1241, 6, 95),
-(1242, 6, 96),
-(1243, 6, 97),
-(1848, 1, 1),
-(1849, 1, 2),
-(1850, 1, 4),
-(1851, 1, 5),
-(1852, 1, 6),
-(1853, 1, 8),
-(1854, 1, 17),
-(1855, 1, 18),
-(1856, 1, 19),
-(1857, 1, 20),
-(1858, 1, 21),
-(1859, 1, 22),
-(1860, 1, 23),
-(1861, 1, 24),
-(1862, 1, 25),
-(1863, 1, 26),
-(1864, 1, 27),
-(1865, 1, 28),
-(1866, 1, 29),
-(1867, 1, 30),
-(1868, 1, 31),
-(1869, 1, 32),
-(1870, 1, 33),
-(1871, 1, 34),
-(1872, 1, 35),
-(1873, 1, 36),
-(1874, 1, 36),
-(1875, 1, 39),
-(1876, 1, 41),
-(1877, 1, 42),
-(1878, 1, 43),
-(1879, 1, 53),
-(1880, 1, 54),
-(1881, 1, 55),
-(1882, 1, 56),
-(1883, 1, 57),
-(1884, 1, 44),
-(1885, 1, 45),
-(1886, 1, 46),
-(1887, 1, 47),
-(1888, 1, 48),
-(1889, 1, 49),
-(1890, 1, 61),
-(1891, 1, 62),
-(1892, 1, 63),
-(1893, 1, 64),
-(1894, 1, 65),
-(1895, 1, 66),
-(1896, 1, 67),
-(1897, 1, 90),
-(1898, 1, 91),
-(1899, 1, 92),
-(1900, 1, 93),
-(1901, 1, 70),
-(1902, 1, 71),
-(1903, 1, 72),
-(1904, 1, 73),
-(1905, 1, 74),
-(1906, 1, 75),
-(1907, 1, 76),
-(1908, 1, 77),
-(1909, 1, 78),
-(1910, 1, 79),
-(1911, 1, 80),
-(1912, 1, 81),
-(1913, 1, 82),
-(1914, 1, 83),
-(1915, 1, 84),
-(1916, 1, 85),
-(1917, 1, 86),
-(1918, 1, 87),
-(1919, 1, 88),
-(1920, 1, 89),
-(1921, 1, 94),
-(1922, 1, 95),
-(1923, 1, 96),
-(1924, 1, 97),
-(1925, 1, 98),
-(1926, 1, 99),
-(1927, 1, 100),
-(1928, 1, 101),
-(1929, 1, 102),
-(1930, 1, 103),
-(1931, 1, 104),
-(1932, 1, 105),
-(1933, 1, 106),
-(1934, 1, 107),
-(1935, 1, 108),
-(1936, 1, 109),
-(1937, 1, 110),
-(1938, 1, 111),
-(1939, 1, 112),
-(1940, 1, 113),
-(1941, 1, 114),
-(1942, 1, 115),
-(1943, 1, 116),
-(1944, 1, 117),
-(1945, 1, 118),
-(1946, 1, 119),
-(1947, 1, 120),
-(1948, 1, 121),
-(1950, 7, 53),
-(1951, 7, 57),
-(1952, 1, 122),
-(1953, 1, 123),
-(1954, 1, 124),
-(1955, 1, 125),
-(1957, 1, 126),
-(1958, 1, 127),
-(1959, 1, 128),
-(1960, 1, 129),
-(1961, 1, 130),
-(1962, 1, 131),
-(1963, 1, 132),
-(1964, 1, 133);
+INSERT INTO `sisgroupsactions` (`grpactId`, `grpId`, `roleId`, `menuAccId`) VALUES
+(13, 21, 38, 114),
+(14, 21, 38, 115),
+(15, 21, 38, 116),
+(16, 21, 38, 117),
+(17, 35, 43, 114),
+(18, 35, 43, 115),
+(19, 35, 43, 116),
+(20, 35, 43, 117),
+(21, 20, 33, 114),
+(22, 20, 33, 115),
+(23, 20, 33, 116),
+(24, 20, 33, 117),
+(25, 19, 10, 114),
+(26, 19, 10, 115),
+(27, 19, 10, 116),
+(28, 19, 10, 117),
+(29, 18, 6, 114),
+(30, 18, 6, 115),
+(31, 18, 6, 116),
+(32, 18, 6, 117),
+(33, 21, 38, 134),
+(34, 21, 38, 135),
+(35, 21, 38, 136),
+(36, 21, 38, 137);
 
 -- --------------------------------------------------------
 
@@ -1193,11 +1215,12 @@ INSERT INTO `sismenu` (`id`, `name`, `slug`, `icon`, `parent`, `number`) VALUES
 (35, 'ABM_Empresa', 'Sistema', 'fa fa-tasks', NULL, 12),
 (36, 'Plantilla', 'Plantilla', 'fa fa-calendar', NULL, 13),
 (37, 'Bonita', 'Bonita/conexion', '', NULL, 14),
-(38, 'Tareas', 'Tarea', '', NULL, 15),
+(38, 'Mis Tareas', 'Tarea', '', NULL, 15),
 (39, 'Formulario', 'Form', '', NULL, 16),
 (40, 'ABM Equipos', 'Equipo', 'fa fa-fw fa-cogs', NULL, 17),
 (41, 'ABM Subsectores', 'Subsector', 'fa fa-tasks', NULL, 18),
-(42, 'ABM Tareas Estandar', 'Tareaest', 'fa fa-tasks', NULL, 19);
+(42, 'ABM Tareas Estandar', 'Tareaest', 'fa fa-tasks', NULL, 19),
+(43, 'Crear Nueva Nota Pedido', 'InicioTrabajo', '', NULL, 20);
 
 -- --------------------------------------------------------
 
@@ -1339,7 +1362,11 @@ INSERT INTO `sismenuactions` (`menuAccId`, `menuId`, `actId`) VALUES
 (130, 42, 1),
 (131, 42, 2),
 (132, 42, 3),
-(133, 42, 4);
+(133, 42, 4),
+(134, 43, 1),
+(135, 43, 2),
+(136, 43, 3),
+(137, 43, 4);
 
 -- --------------------------------------------------------
 
@@ -1555,7 +1582,7 @@ CREATE TABLE `tbl_listarea` (
 --
 
 INSERT INTO `tbl_listarea` (`id_listarea`, `id_orden`, `tareadescrip`, `id_tarea`, `id_usuario`, `fecha`, `tarea_realizada`, `id_equipo`, `fecha_inicio`, `fecha_fin`, `estado`, `duracion_prog`) VALUES
-(0, 17, 'tarea 1  plantilla  4', 18, NULL, NULL, NULL, 0, NULL, NULL, 'IN', NULL),
+(4, 17, 'tarea 1  plantilla  4', 18, NULL, NULL, NULL, 0, NULL, NULL, 'IN', NULL),
 (255, 17, 'LIMPIE EL CUERPO DEL RADIADOR. UTILICE AIRE COMPRIMIDO.', 4, 5, '2018-07-24 11:06:53', NULL, 4, NULL, NULL, 'AS', 120),
 (256, 17, 'REVISE LA BOMBA DE AGUA', 5, 10, '2018-07-30 11:08:45', NULL, 3, NULL, NULL, 'AS', 60),
 (257, 17, 'LIMPIE EL FILTRO DE ADMISIÓN DE AIRE. SE PUEDE LIMPIAR COMO MÁXIMO 6 VECES, LUEGO CAMBIAR.', 6, NULL, NULL, NULL, 0, NULL, NULL, 'IN', 60),
@@ -2595,7 +2622,7 @@ ALTER TABLE `frm_formularios`
 -- AUTO_INCREMENT de la tabla `frm_formularios_completados`
 --
 ALTER TABLE `frm_formularios_completados`
-  MODIFY `FOCO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `FOCO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
 --
 -- AUTO_INCREMENT de la tabla `frm_grupos`
 --
@@ -2655,22 +2682,22 @@ ALTER TABLE `sisactions`
 -- AUTO_INCREMENT de la tabla `sisgroups`
 --
 ALTER TABLE `sisgroups`
-  MODIFY `grpId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `grpId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `sisgroupsactions`
 --
 ALTER TABLE `sisgroupsactions`
-  MODIFY `grpactId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1965;
+  MODIFY `grpactId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT de la tabla `sismenu`
 --
 ALTER TABLE `sismenu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT de la tabla `sismenuactions`
 --
 ALTER TABLE `sismenuactions`
-  MODIFY `menuAccId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `menuAccId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 --
 -- AUTO_INCREMENT de la tabla `sisusers`
 --
@@ -2685,7 +2712,7 @@ ALTER TABLE `sucursal`
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT de la tabla `tbl_detanotapedido`
 --
@@ -2710,7 +2737,7 @@ ALTER TABLE `tbl_listarea`
 -- AUTO_INCREMENT de la tabla `tbl_listplantilla`
 --
 ALTER TABLE `tbl_listplantilla`
-  MODIFY `id_detaplantilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_detaplantilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `tbl_lote`
 --
@@ -2725,7 +2752,7 @@ ALTER TABLE `tbl_notapedido`
 -- AUTO_INCREMENT de la tabla `tbl_subsector`
 --
 ALTER TABLE `tbl_subsector`
-  MODIFY `id_subsector` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_subsector` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT de la tabla `trj_nomenclador_motores`
 --
@@ -2841,12 +2868,6 @@ ALTER TABLE `tbl_equipos`
 ALTER TABLE `tbl_listplantilla`
   ADD CONSTRAINT `tbl_listplantilla_ibfk_1` FOREIGN KEY (`id_plantilla`) REFERENCES `plantilla` (`id_plantilla`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_listplantilla_ibfk_2` FOREIGN KEY (`id_tarea`) REFERENCES `tareas` (`id_tarea`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `trj_pedido_trabajo`
---
-ALTER TABLE `trj_pedido_trabajo`
-  ADD CONSTRAINT `cliente_fk` FOREIGN KEY (`clie_id`) REFERENCES `admcustomers` (`cliId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
