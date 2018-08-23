@@ -533,8 +533,7 @@ class Otrabajos extends CI_Model
 	function cargartareas($idglob){
 
 		// funcionando!!!!
-		$this->db->select('tbl_listarea.*,
-							
+		$this->db->select('tbl_listarea.*,							
 							sisgroups.grpId,
 							sisusers.usrName,
 							sisusers.usrLastName,
@@ -544,24 +543,7 @@ class Otrabajos extends CI_Model
 		$this->db->join('sisgroups', 'sisgroups.grpId = sisusers.grpId', 'left');
 		$this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
 		$this->db->where('tbl_listarea.id_orden',$idglob);
-		//$this->db->where('tbl_listarea.estado','C');
-		//$this->db->order_by('tbl_listarea.id_orden','ASC');
-
-
-		// $this->db->select('tbl_listarea.*,
-		// 							//tareas.id_tarea,
-		// 							tareas.duracion_std,
-		// 							sisusers.usrName,
-		// 							sisusers.usrLastName');
-		// 		$this->db->from('tbl_listarea');
-		// 		$this->db->join('sisusers', 'sisusers.usrId = tbl_listarea.id_usuario', 'left');
-		// 		//$this->db->join('sisgroups', 'sisgroups.grpId = sisusers.grpId');
-		// 		//$this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
-		// 		//$this->db->where('tbl_listarea.id_orden',$idglob);
-		// 		//$this->db->where('tbl_listarea.estado','C');
-		// 		$this->db->order_by('tbl_listarea.id_orden','ASC');	
-
-
+		
 		$query= $this->db->get();
 
 		if ($query->num_rows()!=0)

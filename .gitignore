@@ -1,8 +1,23 @@
-
+# System Files
+#-------------------------
 \.htaccess
 
 application/config/database\.php
-
 application/config/config\.php
 
-index\.php
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+
+application/models/bonitas\.php
+
+application/config/conexion\.php

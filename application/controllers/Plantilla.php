@@ -17,18 +17,19 @@ class plantilla extends CI_Controller {
 
 	public function agregar_tarea(){
 	  
-		$data=$this->input->post();
-		
-		$result = $this->Plantillas->agregar_tareas($data);
-		echo json_encode($result);
+	$data=$this->input->post();
+	
+	
+	$result = $this->Plantillas->agregar_tareas($data);
+	echo json_encode($result);
 	   
-	  }
-	  
-	public function EliminarTarea()
-	{
-		$id=$_POST['id_detaplantilla'];	
-		$result = $this->Plantillas->EliminarTareas($id);
-		echo json_encode($result);
+  	}
+	public function EliminarTarea(){
+	
+	$id=$_POST['id_detaplantilla'];	
+	$result = $this->Plantillas->EliminarTareas($id);
+	echo json_encode($result);
+	
 	}
 
 		//NUEVA

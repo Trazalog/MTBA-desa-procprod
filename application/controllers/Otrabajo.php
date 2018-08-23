@@ -462,12 +462,10 @@ class Otrabajo extends CI_Controller {
 
 	// Carga tareas en pantala asignacion por id de OT
 	public function cargartarea($permission,$idglob){ 
+		
 		$data['list'] = $this->Otrabajos->cargartareas($idglob);
 		$data['id_orden'] = $idglob; 
         $data['permission'] = $permission;
-
-//var_dump($data);
-
         $this->load->view('otrabajos/asignacion',$data);  
     }
 	

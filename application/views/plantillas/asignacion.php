@@ -132,8 +132,10 @@ $('#agregar').click(function (e) {
             },
             error: function(result){
                 console.log("Error al guardar tarea");
-            }    
+            },
+            dataType: 'json'    
         });
+
      WaitingClose();
   });
 
