@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-    <?php cargarCabecera(12);?>
+    <?php cargarCabecera($idPedTrabajo);?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -181,10 +181,13 @@
                     <div class="row">
                         <div class="col-xs-7 col-sm-6">
                             <h3> ¿El Cliente Acepta realizar el trabajo? </h3>
+                            <form id="formPresupuesto" role="form">
                             <div class="form-group">
-                                <label style="margin-top: 7px;"> Archivo Adjunto de Cotización: <a target="_blank" href="<?php //echo $cotizacion; ?>">Ver y Descargar</a></label>
-                                <input type='file' />
+                                <label style="margin-top: 7px;"> Archivo Adjunto de Presupuesto: <a id="linkPresupuesto" target="_blank" <?php echo ($presupuesto==''? '':'href="'.base_url().$presupuesto.'"');?>>Ver y Descargar</a></label>
+                                <input type='file' id="presupuesto" name="presupuesto"/><br/>
+                                <button type="submit" id="subirArchivo" class="btn btn-primary hidden" >Subir Archivo</button>
                             </div>
+                            </form>
                         </div>
                         <div class="col-xs-7 col-sm-1">
                             <button class="btn btn-success" style="margin-top:20px;width:80%;" onclick="mostrarPanelSi()">Si</button>
@@ -777,6 +780,7 @@
             processData: false,
             success: function(result) {
                // console.log(result);
+                $("#formSi")[0].reset();
                 alert("Formulario Guardados Correactamente");
             },
             error:function(result){
@@ -815,6 +819,38 @@
             $('#panelSi').click();
         }
     }
+
+      $('#presupuesto').on('change', function() {
+        $('#subirArchivo').removeClass('hidden');             
+     });
+
+     $("#formPresupuesto").submit(function(event) {     
+        event.preventDefault();
+        var formData = new FormData($("#formPresupuesto")[0]); 
+        //TODO:HARDCODE
+       // var $idPedTrabajo = 777;
+        var $idPedTrabajo= <?php echo $idPedTrabajo; ?>;
+        formData.append('idPedTrabajo',$idPedTrabajo);
+        $.ajax({
+            url:'index.php/AceptacionTrabajo/GuardarPresupuesto',
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(result) {
+             if(result=='error'){
+                 alert("No se pudo Guardar Archivo");
+             }else{
+                $("#formPresupuesto")[0].reset();
+                $('#subirArchivo').addClass("hidden");
+                $('#linkPresupuesto').attr("href",result);    
+                alert("Archivo Guardado");
+             }
+         
+            },
+        });
+    });
 </script>
 
 

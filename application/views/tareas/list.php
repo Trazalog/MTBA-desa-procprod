@@ -32,10 +32,10 @@
             <tbody>
               <?php
 
-                $lista = json_decode($list,true);
-                 //echo "<pre>";
-                 //var_dump($lista);
-                foreach($lista as $f)
+                //$lista = json_decode($list,true);
+                // echo "<pre>";
+                // var_dump($lista);
+                foreach($list as $f)
                 {
                   $id=$f["id"];
                   $asig = $f['assigned_id']; 
@@ -53,7 +53,7 @@
                     }                  
                   echo '</td>';
                   // td 1
-                  echo '<td class="celda" style="text-align: left">'.$f['caseId'].'</td>';
+                  echo '<td class="celda" style="text-align: left">'.$f['cod_interno'].'</td>';
                   // td 2
                   echo '<td class="celda nomTarea" style="text-align: left">'.$f['displayName'].'</td>';
                   // td 3
@@ -73,7 +73,7 @@
                   
                   // id de tarea en bonita
                   // td 7
-                  echo '<td class="celda" style="text-align: left">'.$f['id'].'</td>';
+                  echo '<td class="celda hidden" style="text-align: left">'.$f['id'].'</td>';
                   // td 8
                   echo '<td class="celda hidden" style="text-align: left">'.$f['assigned_id'].'</td>';
                   // echo '<td class="celda" style="text-align: left">'.($f['estado'] == 'TE' ? '<small class="label pull-left bg-orange">Parcial</small>' : ($f['estado'] == 'C' ? '<small class="label pull-left bg-green">Iniciada</small>' : ($f['estado'] == 'P' ? '<small class="label pull-left bg-blue">Pedido</small>' : ($f['estado'] == 'As' ? '<small class="label pull-left bg-yellow">Asignado</small>' : '<small class="label pull-left bg-red">Entregado</small>')))).'</td>';

@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-    <?php cargarCabecera(12);?>
+    <?php cargarCabecera($idPedTrabajo); ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -114,7 +114,7 @@
                                                         <div class="form-group">
                                                             <div class="col-sm-12 col-md-12">
                                                                 <!-- Modal formulario tarea -->
-                                                                <?php if($idForm !=''){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
+                                                                <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
                                                                 data-target=".bs-example-modal-lg" onclick="getformulario()">Completar
                                                                 Formulario
                                                                 </button>';}?>
@@ -179,7 +179,7 @@
 
         <div class="modal-footer">
             <button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
-            <button type="button" class="btn btn-success" onclick="estado()">Hecho</button>
+            <button type="button" class="btn btn-success" onclick="terminarTarea()">Hecho</button>
         </div> <!-- /.modal footer -->
 
     </div><!-- /.box body -->
@@ -232,6 +232,29 @@
             //     alert('Campo Detalle vacio');
             //   }
             // }); 
+
+
+
+    function terminarTarea(){
+        var idTarBonita = $('#idTarBonita').val();
+        alert(idTarBonita);
+        $.ajax({
+            type: 'POST',
+            data: {
+                'idTarBonita': idTarBonita,
+            },
+            url: 'index.php/Tarea/terminarTarea',
+            success: function(result) {
+                console.log(result);
+                //alert("SII");
+            },
+            error: function(result) {
+                //alert("Noo");
+                console.log(result);
+            },
+            dataType: 'json'
+        }); 
+    }        
     
     
     // Boton Hecho generico
@@ -565,7 +588,9 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12">
                                     <?php
-                                    cargarFormulario($form);
+                                    if($form != ''){
+                                        cargarFormulario($form);
+                                    }                                    
                                     ?>
                                 </div>
                             </div>
