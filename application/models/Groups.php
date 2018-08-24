@@ -1,8 +1,8 @@
-	<?php
+<?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * group Class
+ * groups Class
  * Clase para el manejo de grupos, y el menú del sistema
  * que extiende de la clase CI_Model.
  */
@@ -49,24 +49,43 @@ class Groups extends CI_Model {
 	public function mnuAll()
 	{
 		$userdata = $this->session->userdata('user_data');
-		$grpId = $userdata[0]['grpId'];
-		//$grpId = 4;
+		$grpId        = $userdata[0]['grpId'];
+		$rolId        = $userdata[0]['rolId'];
+		$grpArraySize = sizeof( $userdata[0]['grpId'] );
+		$menu         = array();
 
-		$query = $this->db->get("sismenu");
+		$query    = $this->db->get("sismenu");
 		$all_menu = $query->result_array();
 
-		$this->db->select('sismenu.*, sisgroups.grpId');
-		$this->db->from('sisgroups');
-		$this->db->join('sisgroupsactions', 'sisgroupsactions.grpId = sisgroups.grpId', 'inner');
-		$this->db->join('sismenuactions', 'sismenuactions.menuAccId = sisgroupsactions.menuAccId', 'inner');
-		$this->db->join('sismenu', 'sismenu.id = sismenuactions.menuId', 'inner');
-		$this->db->where('sisgroups.grpId', $grpId);
-		$this->db->group_by('sismenu.name');
-		$this->db->order_by("sismenu.id", "asc");
-		$this->db->order_by("sismenu.parent", "asc");
-		$query = $this->db->get();
-
-		$menu = $query->result_array();
+		//Traigo los menus de cada par grupo/rol
+		for($i=0; $i<$grpArraySize; $i++) 
+		{
+			$grpId = $userdata[0]['grpId'][$i];
+			$rolId = $userdata[0]['rolId'][$i];
+			$this->db->select('sismenu.*, sisgroups.grpId, sisgroupsactions.roleId');
+			$this->db->from('sisgroups');
+			$this->db->join('sisgroupsactions', 'sisgroupsactions.grpId = sisgroups.grpId', 'inner');
+			$this->db->join('sismenuactions', 'sismenuactions.menuAccId = sisgroupsactions.menuAccId', 'inner');
+			$this->db->join('sismenu', 'sismenu.id = sismenuactions.menuId', 'inner');
+			$this->db->where('sisgroupsactions.grpId', $grpId);
+			$this->db->where('sisgroupsactions.roleId', $rolId);
+			$this->db->group_by('sismenu.name');
+			$this->db->order_by("sismenu.id", "asc");		//si invierto el orden (primero parent, despues id) soluciono el que tenga que estar siempre primero el parent y despues el chil
+			$this->db->order_by("sismenu.parent", "asc");
+			$query = $this->db->get();
+			$menu = array_merge($menu, $query->result_array());
+			//$menuB[$i] =  $query->result_array();
+		}
+		/*$j=0;
+		foreach($menu as $m){
+			$menuB[$j] = $m[0];
+			dump($menuB[$j]);
+			$j++;
+		}
+		dump($menuB, 'MenuB');
+		$menu = $menuB;
+		*/
+		//dump_exit($menu, 'Menu');
 
 		$main_menu = array();
 		foreach ($menu as $m) {
@@ -82,7 +101,6 @@ class Groups extends CI_Model {
 			$main_menu[] = $m;
 
 		}
-		//dump_exit($main_menu);
 		return $main_menu;
 	}
 
@@ -96,7 +114,7 @@ class Groups extends CI_Model {
 	{
 		$this->db->select('grpDash');
 		$this->db->from('sisgroups');
-		$this->db->where('grpId', $grpId);
+		$this->db->where('grpId', $grpId[0]);
 
 		$query = $this->db->get();
 
@@ -123,7 +141,12 @@ class Groups extends CI_Model {
 		$this->db->from('sismenuactions');
 		$this->db->join('sisactions', 'sismenuactions.actId = sisactions.actId', 'inner');
 		$this->db->join('sisgroupsactions', 'sismenuactions.menuAccId = sisgroupsactions.menuAccId', 'left');
-		$this->db->where(array('sismenuactions.menuId' => $mnuId, 'sisgroupsactions.grpId' => $grpId));
+		$this->db->where(
+			array(
+				'sismenuactions.menuId'  => $mnuId, 
+				'sisgroupsactions.grpId' => $grpId
+			)
+		);
 
 		$query = $this->db->get();
 

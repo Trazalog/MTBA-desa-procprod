@@ -83,3 +83,23 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+/*
+|--------------------------------------------------------------------------
+| Bonita url
+|--------------------------------------------------------------------------
+|
+| Url base to Bonita
+|
+*/
+define('BONITA_URL', 'http://35.239.41.196:8080/bonita/');
+
+/*
+|--------------------------------------------------------------------------
+| Bonita Process ID ()
+|--------------------------------------------------------------------------
+|
+| Id de proceso productivo (se usa para lanzar proceso)
+|
+*/
+define('BPM_PROCESS_ID', '7386001426104564400');

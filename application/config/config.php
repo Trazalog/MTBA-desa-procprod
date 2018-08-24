@@ -210,8 +210,12 @@ $config['directory_trigger'] = 'd';
 | For a live site you'll usually only enable Errors (1) to be logged otherwise
 | your log files will fill up very fast.
 |
+| configuracion de error log
+| https://stackoverflow.com/questions/30698357/how-to-create-a-log-file-with-codeigniter-web-framework
 */
-$config['log_threshold'] = 0;
+$config['log_threshold']        = 4;
+$config['log_path']             = '';
+$config['log_date_format']      = 'Y-m-d H:i:s';
 
 /*
 |--------------------------------------------------------------------------

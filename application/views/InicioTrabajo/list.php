@@ -248,7 +248,7 @@
         event.preventDefault();
     });
 
-    $(document).ready(function() {
+    
         $('#fecha_entrega').datepicker({
             autoclose: true
         });
@@ -289,7 +289,7 @@
             }
         });
 
-    });
+    
 
 
 

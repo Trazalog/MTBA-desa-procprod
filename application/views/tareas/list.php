@@ -32,10 +32,10 @@
             <tbody>
               <?php
 
-                $lista = json_decode($list,true);
-                 //echo "<pre>";
-                 //var_dump($lista);
-                foreach($lista as $f)
+                //$lista = json_decode($list,true);
+                // echo "<pre>";
+                // var_dump($lista);
+                foreach($list as $f)
                 {
                   $id=$f["id"];
                   $asig = $f['assigned_id']; 
@@ -53,7 +53,7 @@
                     }                  
                   echo '</td>';
                   // td 1
-                  echo '<td class="celda" style="text-align: left">'.$f['caseId'].'</td>';
+                  echo '<td class="celda" style="text-align: left">'.$f['cod_interno'].'</td>';
                   // td 2
                   echo '<td class="celda nomTarea" style="text-align: left">'.$f['displayName'].'</td>';
                   // td 3
