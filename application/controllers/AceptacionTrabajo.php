@@ -11,8 +11,9 @@ class AceptacionTrabajo extends CI_Controller
     public function index($permission)
 	{	
 		$data['permission'] = $permission;
-		$data['cotizacion'] = $this->AceptacionTrabajos->ObtenerCotizacion();
-		$this->load->view('aceptaciontrabajo/view_4', $data);
+		$data['pedido_id'] = 12;
+		$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto();
+		$this->load->view('tareas/view_4', $data);
 	}
 
 	public function GuardarAceptacionTrabajoBPM(){
@@ -61,7 +62,7 @@ class AceptacionTrabajo extends CI_Controller
 				'direccion_entrega' => $direccion_entrega,
 				'tipo_cliente' => $tipo_cliente,
 				'proveedor_repuesto' => $proveedor_repuesto,
-				'orden_compra' =>  $documento['upload_data']['file_name']	
+				'orden_compra' =>  $documento['upload_data']['file_name']
 			);
 			$resultBD = $this->AceptacionTrabajos->Guardar(37,$data);
 		   	echo $result;

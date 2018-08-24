@@ -9,7 +9,7 @@ class InicioTrabajos extends CI_Model
 	}
 	public function LanzarProceso($parametros)
 	{
-		$result = file_get_contents("http://192.168.100.110:8080/bonita/API/bpm/process/6766469253598180543/instantiation", false, $parametros);
+		$result = file_get_contents("http://35.239.41.196:8080/bonita/API/bpm/process/".$id."/instantiation", false, $parametros);
 		return $result;
 	}
 	public function ObtenerTodas()

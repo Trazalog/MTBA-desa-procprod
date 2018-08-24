@@ -21,7 +21,7 @@ class AceptacionTrabajos extends CI_Model
         return $result;
     }
 
-    public function ObtenerCotizacion(){
+    public function ObtenerPresupuesto(){
         $result = base_url().'assets/documentosMTB/ordenes_compra/re.pdf';
         return $result;
     }

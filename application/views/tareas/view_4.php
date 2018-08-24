@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-    <?php cargarCabecera(12);?>
+    <?php cargarCabecera($pedido_id);?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -182,7 +182,7 @@
                         <div class="col-xs-7 col-sm-6">
                             <h3> ¿El Cliente Acepta realizar el trabajo? </h3>
                             <div class="form-group">
-                                <label style="margin-top: 7px;"> Archivo Adjunto de Cotización: <a target="_blank" href="<?php //echo $cotizacion; ?>">Ver y Descargar</a></label>
+                                <label style="margin-top: 7px;"> Archivo Adjunto de Presupuesto: <a target="_blank" href="<?php echo $presupuesto; ?>">Ver y Descargar</a></label>
                                 <input type='file' />
                             </div>
                         </div>

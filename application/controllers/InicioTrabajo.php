@@ -18,6 +18,7 @@ class InicioTrabajo extends CI_Controller
 		$data['listaIndices'] = $this->InicioTrabajos->Obtener_Indices();
 		$data['permission'] = $permission;
 		$this->load->view('InicioTrabajo/list', $data);
+		
 	}
 
 	public function Guardar_Pedido(){

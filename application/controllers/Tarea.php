@@ -268,6 +268,7 @@ class Tarea extends CI_Controller {
 		$parametros = $this->Bonitas->conexiones();
 		$param = stream_context_create($parametros);		
 		$data['comentarios'] = $this->Tareas->ObtenerComentarios($param);
+		$data['pedido_id'] = 12;
 
 		// seguna actividad carga la vista correspondiente
 		// switch ($data['TareaBPM']['displayName']) {
