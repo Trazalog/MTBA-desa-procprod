@@ -85,10 +85,9 @@ class Tareas extends CI_Model
 		$resource = 'API/bpm/userTask/';
 		$com = '/execution';
 		$url = BONITA_URL.$resource.$idTarBonita.$com;	
-		$response = file_get_contents($url,false, $param);
+		file_get_contents($url,false, $param);
+		$response = $this->parseHeaders( $http_response_header );
 		
-		
-		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
 		return $response;
 	}
 	//Espera regularizacion
@@ -128,77 +127,60 @@ class Tareas extends CI_Model
 	// Terminar Tarea
 	function terminarTarea($idTarBonita,$param){
 		
-			// en 35 poner el id de tarea dinamico!!!!
-
-				// try {
-				//     $content = file_get_contents('https://en.wikipedia.org/wiki/Cat#/media/File:Large_Siamese_cat_tosses_a_mouse.jpg');
-
-				//     if ($content === false) {
-				//         // Handle the error
-				//     }
-				// } catch (Exception $e) {
-				//     // Handle exception
-				// }
-
-		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/44', false, $param);
-$method = '/execution';
+		$method = '/execution';
 		$resource = 'API/bpm/userTask/';
 		$url = BONITA_URL.$resource.$idTarBonita.$method;
-		$response = file_get_contents($url, false, $param);			
-		//var_dump($http_response_header);
+		file_get_contents($url, false, $param);			
+		$response = $this->parseHeaders( $http_response_header );
 		return $response;
-
-		// echo "response: ";
-		// var_dump($response);processInstanceId=5615296745389165959
 	}
 
 	// Tomar Tareas 
 	function tomarTarea($idTarBonita,$param){
-
-		// en 35 poner el id de tarea dinamico!!!!
-
-		// try {
-		//     $content = file_get_contents('https://en.wikipedia.org/wiki/Cat#/media/File:Large_Siamese_cat_tosses_a_mouse.jpg');
-
-		//     if ($content === false) {
-		//         // Handle the error
-		//     }
-		// } catch (Exception $e) {
-		//     // Handle exception
-		// }
-
-		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
+	
 		try {
-			$resource = 'API/bpm/humanTask';
-			$url = BONITA_URL.$resource.$idTarBonita;
-			$response = file_get_contents($url, false, $param);
+			$resource = 'API/bpm/humanTask/';
+			$url = BONITA_URL.$resource.$idTarBonita;		
+
+			file_get_contents($url, false, $param);
+			$response = $this->parseHeaders( $http_response_header );
+			 
+			return $response;
 		}catch (Exception $e) {
 			var_dump($e->getMessage());
-		 }
-		dump_exit($response);
-	}
+		 }		
+	}	
 
 	// Soltar Tareas 
 	function soltarTarea($idTarBonita,$param){
 
-		// en 35 poner el id de tarea dinamico!!!!
-
-		// try {
-		//     $content = file_get_contents('https://en.wikipedia.org/wiki/Cat#/media/File:Large_Siamese_cat_tosses_a_mouse.jpg');
-
-		//     if ($content === false) {
-		//         // Handle the error
-		//     }
-		// } catch (Exception $e) {
-		//     // Handle exception
-		// }
-
-		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
-		
-		$resource = 'API/bpm/humanTask';
+		$resource = 'API/bpm/humanTask/';
 		$url = BONITA_URL.$resource.$idTarBonita;
-		$response = file_get_contents($url, false, $param);
+		file_get_contents($url, false, $param);
+		$response = $this->parseHeaders( $http_response_header );
+		return $response;
 	}
+
+	// toma la respuesta del server y devuelve el codigo de respuesta solo
+	function parseHeaders( $headers ){
+		$head = array();
+		foreach( $headers as $k=>$v ){
+			$t = explode( ':', $v, 2 );
+			if( isset( $t[1] ) )
+				$head[ trim($t[0]) ] = trim( $t[1] );
+			else{
+				$head[] = $v;
+				if( preg_match( "#HTTP/[0-9\.]+\s+([0-9]+)#",$v, $out ) )
+					$head['reponse_code'] = intval($out[1]);
+			}
+		}
+		return $head;
+	}
+
+
+
+
+
 
 	// Devuelve el id de tareas de trazaj correspond al id_tarea bonita para detatareas
 	// NO TOCAR
