@@ -86,7 +86,11 @@
     <script src="<?php  echo base_url();?>assets/plugin/select2/select2.js"></script>
 
      <!- - VALIDADOR -->
+<<<<<<< HEAD
       <script src="<?php  echo base_url();?>assets/js/bootstrapValidator.min.js"></script> 
+=======
+     <script src="<?php  echo base_url();?>assets/js/bootstrapValidator.min.js"></script>
+>>>>>>> develop
     
 
     <!--

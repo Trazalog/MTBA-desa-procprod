@@ -12,12 +12,12 @@ class Tarea extends CI_Controller {
 		$metodo = "POST";
 		$parametros = $this->Bonitas->conexiones();
 		$param = stream_context_create($parametros);
-		$data['list'] = $this->Tareas->getTareas($param);
+		$data['list'] = $this->Tareas->getTareas($param);		
 		$data['permission'] = $permission;
-
+		//dump_exit($data);
 		$this->load->view('tareas/list', $data);
 	}
-
+	// ver el usr dinamico
 	public function ObtenerTareaBPM(){	
 	
 		// PONER EL ID DE USUARIO DINAMICO!!!!!!
@@ -152,10 +152,15 @@ class Tarea extends CI_Controller {
 	// Trae id de tarea de trazajobs segun id de tarea bonita - NO TOCAR
 	public function getIdTareaTraJobs($idTarBonita){
 		
-		$metodo = "POST";		
-		$parametros = $this->Bonitas->conexiones();
-		$param = stream_context_create($parametros);
-		$idTJobs = $this->Tareas->getIdTareaTraJobs($idTarBonita,$param);
+		try {
+			$metodo = "POST";		
+			$parametros = $this->Bonitas->conexiones();
+			$param = stream_context_create($parametros);
+			$idTJobs = $this->Tareas->getIdTareaTraJobs($idTarBonita,$param);
+		} catch (Exception $e) {
+			$idTJobs = 0;
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+		} 
 		
 		return $idTJobs;
 	}
@@ -172,31 +177,37 @@ class Tarea extends CI_Controller {
 		
 		// PONER EL ID DE USUARIO DINAMICO!!!!!!
 		$idTarBonita = $this->input->post('idTarBonita');
-		$estado = array (
-		  "assigned_id"	=>	5,
-		  "state"=> "completed"
-		);
+		//dump_exit($idTarBonita);
+		
+		// $estado = array (
+		//   //"assigned_id"	=>	5,
+		//   //"state"=> "completed"
+		// );
 		
 		// trae la cabecera
 		$parametros = $this->Bonitas->conexiones();
 		
 		// Cambio el metodo de la cabecera a "PUT"
-		$parametros["http"]["method"] = "PUT";	
-		$parametros["http"]["content"] = json_encode($estado);	
+		$parametros["http"]["method"] = "POST";	
+		//$parametros["http"]["content"] = json_encode($estado);	
 		// Variable tipo resource referencia a un recurso externo.
 		$param = stream_context_create($parametros);
 		$response = $this->Tareas->terminarTarea($idTarBonita,$param);
+		
 		echo json_encode($response);		
 	}
 
 	// Usr Toma tarea en BPM   CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
 	public function tomarTarea(){	
 		
-		// PONER EL ID DE USUARIO DINAMICO!!!!!!
+		$userdata = $this->session->userdata('user_data');
+        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
+		
+		//dump_exit($usrId);
 		$idTarBonita = $this->input->post('idTarBonita');
 		
 		$estado = array (
-		  "assigned_id"	=>	5
+		  "assigned_id"	=>	$usrId
 		);
 		
 		// trae la cabecera
@@ -230,26 +241,36 @@ class Tarea extends CI_Controller {
 	}
 
 	// trae datos para llenar notificaion estandar y formulario asociado
-	public function detaTarea($permission,$idTarBonita){
-		
-		// Trae id de listarea de BPM 
-		$id_listarea = $this->getIdTareaTraJobs($idTarBonita);
-		// trae id de form asociado a tarea std.
-		$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);		
-		$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd);	// si es 0 no hay form asociado			
-		//dump_exit($idForm);
-		$data['permission'] = $permission;
+	public function detaTarea($permission,$idTarBonita){	
+			
 
-		//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
-		$data['TareaBPM'] = json_decode($this->getDatosBPM($idTarBonita),true);
+			//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
+			$data['TareaBPM'] = json_decode($this->getDatosBPM($idTarBonita),true);
 		//dump_exit($data['TareaBPM']);
-		// datos de la tarea TJobs
-		$data['datos'] = $this->Tareas->detaTareas($id_listarea);
-		$data['idForm']	= $idForm;
+			// Trae id_listarea desde BPM sino '0' si la tarea es solo de BPM(no form asociado)
+			$id_listarea = $this->getIdTareaTraJobs($idTarBonita);
+			
+			//si trae id_listarea (TJobs)
+			if($id_listarea != 0){				
+				// trae id de form asociado a tarea std (las tareas de BPM se cargaran para asociar a form).
+				$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);	
+				$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd); // si es 0 no hay form asociado
 
-		$data['idTarBonita'] = $idTarBonita;
-		//$data['estadoTarea']= $estadoTarea;		
+				// si hay id de formulario
+				if($idForm != 0){
+					// confirma si hay form guardado de esa listarea		
+					if ($this->Tareas->getEstadoForm($idTarBonita)) {
+						//echo "hay form guardado";
+					}
+					else{
+						//echo "no hay form guradado";
+						// guarda form inicial vacio
+						$this->Tareas->setFormInicial($idTarBonita,$idForm);
+					}
+				}	
 
+
+<<<<<<< HEAD
 		// confirma si hay form guardado de esa listarea		
 		if ($this->Tareas->getEstadoForm($id_listarea)) {
 			//echo "hay form guardado";
@@ -297,47 +318,112 @@ class Tarea extends CI_Controller {
 		// 		$this->load->view('tareas/view_', $data);
 		// 		break;		
 		// }
+=======
+>>>>>>> develop
 
-		switch ($data['TareaBPM']['displayName']) {
-			
-			case 'Evaluación del estado de cuenta del cliente':
-				$this->load->view('tareas/view_1', $data);
-				break;
+				// si hay formulario
+				if($idForm != 0){
+					$data['idForm']	= $idForm;
+					// carga datos del formulario para modal
+					$data['form'] = $this->Tareas->get_form($idTarBonita,$idForm);
+				}else{
+					$data['idForm'] = 0;
+				}				
 
-			case 'Entender si seguir esperando':
-				$this->load->view('tareas/view_2', $data);
-				break;
+			//solo tarea BPM con o sin formulario	
+			}else{
 				
-			case 'Análisis financiero y emisión de reportes':
-				$this->load->view('tareas/view_3', $data);
-				break;
+					$nomtarea = $data['TareaBPM']["displayName"];
+					$id = $this->Tareas->getidFormTareaBPM($nomtarea);					
+					
+					if($id){
+						$idForm = $id[0]['form_asoc'];
+						
+						// si hay id de formulario
+						if($idForm != 0){
+							// confirma si hay form guardado de esa listarea		
+							if ($this->Tareas->getEstadoForm($idTarBonita)) {
+								//echo "hay form guardado";
+							}
+							else{
+								//echo "no hay form guradado";
+								// guarda form inicial vacio
+								$this->Tareas->setFormInicial($idTarBonita,$idForm);
+							}
+						}	
+
+
+						$data['idForm'] = $id[0]['form_asoc'];
+						$data['form'] = $this->Tareas->get_form($idTarBonita,$idForm);
+
+					}else{
+						
+						$data['idForm'] = 0;
+						$idForm=0;	
+					}				
+				
+			}
+				// si es 0 no hay form asociado			
+			//dump_exit($idForm);
+			$data['permission'] = $permission;
+
 			
-			case 'Solicitar ok al cliente para iniciar diagnóstico':
-				$this->load->view('tareas/view_4', $data);
-				break;
+			//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
+			$data['TareaBPM'] = json_decode($this->getDatosBPM($idTarBonita),true);
+			$caseId = $data['TareaBPM']["caseId"];
+			//$caseId =75;
+			// trae id pedido de trabajo desde trj_pedido_trabajo
+			$pedTrab = $this->Tareas->getIdPedTrabajo($caseId);
+			//var_dump($pedTrab[0]['petr_id']);
+			$data['idPedTrabajo'] = $pedTrab[0]['petr_id'];
+			$data['codInterno'] = $pedTrab[0]['cod_interno'];
 
-			case 'Recepción de piezas':
-				$this->load->view('tareas/view_5', $data);
-				break;	
+			$data['datos'] = $this->Tareas->detaTareas($id_listarea);			
 
-			case 'Evalúa y envia presupuesto al cliente':
-				$this->load->view('tareas/view_6', $data);
-				break;
+			$data['idTarBonita'] = $idTarBonita;
+			//$data['estadoTarea']= $estadoTarea;		
 
-			// sino encuentra ninguna carga la vista estandar	
-			default:
-				$this->load->view('tareas/view_', $data);
-				break;		
-		}
-
-
-
+			
+			
+			//dump_exit($data);
 
 
 
-		
+			//FLEIVA COMENTARIOS
+			$metodo = "POST";
+			$parametros = $this->Bonitas->conexiones();
+			$param = stream_context_create($parametros);		
+			$data['comentarios'] = $this->Tareas->ObtenerComentarios($param);	
+
+			switch ($data['TareaBPM']['displayName']) {
+				
+				case 'Evaluación del estado de cuenta del cliente':
+					$this->load->view('tareas/view_1', $data);
+					break;
+
+				case 'Entender si seguir esperando':
+					$this->load->view('tareas/view_2', $data);
+					break;
+					
+				case 'Análisis financiero y emisión de reportes':
+					$this->load->view('tareas/view_3', $data);
+					break;
+				
+				case 'Solicita ok del cliente para iniciar diagnostico':
+					$this->load->view('tareas/view_4', $data);
+					break;
+
+				case 'Evalua y envia presupuesto al cliente':
+					$this->load->view('tareas/view_6', $data);
+					break;
+
+				// sino encuentra ninguna carga la vista estandar	
+				default:
+					$this->load->view('tareas/view_', $data);
+					break;		
+			}		
 	}
-
+//TODO: HACER AKGO
 	// trae valores validos para llenar componentes del formulario
 	// public function getValValido(){
 	// 	$idForm = $this->input->post('idForm');
@@ -432,8 +518,8 @@ class Tarea extends CI_Controller {
 		//  array con id de dato->valor
 		$datos = $this->input->post();	
 		//dump_exit($datos);
-		echo "array en funcion";
-		var_dump($datos);
+		//echo "array en funcion";
+		//var_dump($datos);
 
 		$userdata = $this->session->userdata('user_data');
         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado

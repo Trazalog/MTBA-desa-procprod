@@ -244,7 +244,11 @@
         event.preventDefault();
     });
 
+<<<<<<< HEAD
     //$(document).ready(function() {
+=======
+    
+>>>>>>> develop
         $('#fecha_entrega').datepicker({
             autoclose: true
         });
@@ -285,7 +289,15 @@
             }
         });
 
+<<<<<<< HEAD
     //});
+=======
+    
+
+
+
+
+>>>>>>> develop
 
 
     var id_cliente_seleccionado = '';
