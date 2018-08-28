@@ -48,9 +48,9 @@ class Preinformes extends CI_Model {
                         if($formularios[$i]['GRUP_NOMBRE'] == $grupo){
 
                             if($formularios[$i]['TIDA_NOMBRE'] == 'input_archivo'){
-                                $informe = $informe.'<p>'.$formularios[$i]['VALO_NOMBRE'].':<br><img src="'.base_url().$formularios[$i]['VALOR'].'" style="max-width:100%"></p>';
+                                $informe = $informe.'<p>'.$formularios[$i]['VALO_NOMBRE'].'<br><img src="'.base_url().$formularios[$i]['VALOR'].'" style="max-width:100%"></p>';
                             } else {
-                                $informe = $informe.'<p>'.$formularios[$i]['VALO_NOMBRE'].': '.$formularios[$i]['VALOR'].'</p>';
+                                $informe = $informe.'<p>'.$formularios[$i]['VALO_NOMBRE'].' '.$formularios[$i]['VALOR'].'</p>';
                             }
 
                         } else {
@@ -78,5 +78,17 @@ class Preinformes extends CI_Model {
             return false;
         }   
     }
-
+//FILTRAR POR ID DE PEDIDO
+    function ObtenerIdFormulariosCompletados($idPedTrabajo){
+        $this->db->select('FORM_ID');
+        $this->db->where('PETR_ID',$idPedTrabajo);
+        $this->db->where_in(unserialize (ID_FORMULARIOS));
+        $this->db->group_by('FORM_ID');
+        $query = $this->db->get('frm_formularios_completados')->result_array();
+        $result = array();
+        foreach ($query as $f) {
+            array_push($result,$f['FORM_ID']);
+        }
+        return $result;
+    }
 }

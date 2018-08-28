@@ -13,8 +13,9 @@
           Acá se elegirán los formularios a imprimir... Por ahora se eligen en el controlador Preinforme, método index.
           <br><br>
           <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Generar Preinforme</button>
+          <br><br>
+          <button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Informe Técnico</button>
         </div>
-
       </div>
     </div>
   </div>
@@ -38,7 +39,6 @@
     </div>
   </div>
 </div>
-
 
 <script>
 //genero el preinforme 

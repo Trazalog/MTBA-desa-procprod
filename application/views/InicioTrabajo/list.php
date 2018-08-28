@@ -4,7 +4,11 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
+
                     <h2> Crear Nota de Pedido </h2>
+
+
+
                     <div class="row">
                         <div class="col-xs-3">
                             <select id="clientes" class="form-control">
@@ -224,7 +228,7 @@
 
 
 
-                        <button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()" >Guardar</button>
+                        <button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()" disabled>Guardar</button>
                     </form>
                 </div>
                 <!-- /.box-body -->
@@ -244,11 +248,7 @@
         event.preventDefault();
     });
 
-<<<<<<< HEAD
-    //$(document).ready(function() {
-=======
     
->>>>>>> develop
         $('#fecha_entrega').datepicker({
             autoclose: true
         });
@@ -261,7 +261,7 @@
                 $('#motor').val(ui.item.data);
             }
         });
-        
+
         $('#form').bootstrapValidator({ //VALIDADOR
             message: 'This value is not valid',
             feedbackIcons: {
@@ -289,15 +289,11 @@
             }
         });
 
-<<<<<<< HEAD
-    //});
-=======
     
 
 
 
 
->>>>>>> develop
 
 
     var id_cliente_seleccionado = '';

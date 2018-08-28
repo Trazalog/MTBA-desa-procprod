@@ -9,9 +9,6 @@ class InicioTrabajos extends CI_Model
 	}
 	public function LanzarProceso($param)
 	{
-<<<<<<< HEAD
-		$result = file_get_contents("http://35.239.41.196:8080/bonita/API/bpm/process/".$id."/instantiation", false, $parametros);
-=======
 		$resource = 'API/bpm/process/';
 		$url = BONITA_URL.$resource;
 		$com = '/instantiation';
@@ -25,7 +22,6 @@ class InicioTrabajos extends CI_Model
 			
 		
 		//$result = file_get_contents("http://192.168.100.112:8080/bonita/API/bpm/process/4726708257911377330/instantiation", false, $parametros);
->>>>>>> develop
 		return $result;
 	}
 	public function ObtenerTodas()

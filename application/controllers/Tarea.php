@@ -270,56 +270,6 @@ class Tarea extends CI_Controller {
 				}	
 
 
-<<<<<<< HEAD
-		// confirma si hay form guardado de esa listarea		
-		if ($this->Tareas->getEstadoForm($id_listarea)) {
-			//echo "hay form guardado";
-		}
-		else{
-			//echo "no hay form guradado";
-			// guarda form inicial vacio
-			$this->Tareas->setFormInicial($id_listarea);
-		}
-			
-		// carga datos del formulario para modal
-		$data['form'] = $this->Tareas->get_form($id_listarea);
-		
-		//FLEIVA COMENTARIOS
-		$metodo = "POST";
-		$parametros = $this->Bonitas->conexiones();
-		$param = stream_context_create($parametros);		
-		$data['comentarios'] = $this->Tareas->ObtenerComentarios($param);
-		$data['pedido_id'] = 12;
-
-		// seguna actividad carga la vista correspondiente
-		// switch ($data['TareaBPM']['displayName']) {
-		// 	case 'Tarea1':
-		// 		$this->load->view('tareas/view_1', $data);
-		// 		break;
-
-		// 	case 'Tarea2':
-		// 		$this->load->view('tareas/view_2', $data);
-		// 		break;	
-
-		// 	// case 'Tarea3':
-		// 	// 	$this->load->view('tareas/view_3', $data);
-		// 	// 	break;
-				
-		// 	case 'Tarea3':
-		// 		$this->load->view('tareas/view_4', $data);
-		// 		break;	
-
-		// 	case 'Tarea4':
-		// 		$this->load->view('tareas/view_', $data);
-		// 		break;
-
-		// 	// sino encuentra ninguna carga la vista estandar	
-		// 	default:
-		// 		$this->load->view('tareas/view_', $data);
-		// 		break;		
-		// }
-=======
->>>>>>> develop
 
 				// si hay formulario
 				if($idForm != 0){
@@ -416,11 +366,15 @@ class Tarea extends CI_Controller {
 				case 'Evalua y envia presupuesto al cliente':
 					$this->load->view('tareas/view_6', $data);
 					break;
-
+				case 'Revisión Diagnóstico':
+					$this->load->model('Preinformes');
+					$data['formularios'] = $this->Preinformes->ObtenerIdFormulariosCompletados($data['idPedTrabajo']);
+					$this->load->view('tareas/view_8', $data);
+					break;
 				// sino encuentra ninguna carga la vista estandar	
-				default:
-					$this->load->view('tareas/view_', $data);
-					break;		
+				 default:
+				 	$this->load->view('tareas/view_9', $data);
+				 	break;		
 			}		
 	}
 //TODO: HACER AKGO
@@ -524,7 +478,7 @@ class Tarea extends CI_Controller {
 		$userdata = $this->session->userdata('user_data');
         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado
         $listarea = $datos['id_listarea'];
-        $idformulario = $datos['idformulario'];
+        $idformulario = 7001;//$datos['idformulario'];
         $i = 1;// para guardar el orden de categorias, grupos y valores		
         $j = 0;
 		foreach ($datos as $key => $value) {	
@@ -600,11 +554,11 @@ class Tarea extends CI_Controller {
 						// 	$nomcodif = $nomcodif.$extesnion;							
 						// }
 						// $data['VALOR'] = "assets/imgformularios/".$nomcodif;
-						$directorio = "D:\sitios\MTBA-desa-procprod\assets\imgformularios";
+						$directorio = ".\assets\imgformularios";
 						//dump_exit( $directorio);
 						$config = [
 							"upload_path"   => "./assets/imgformularios",//$directorio,
-							'allowed_types' => "png|jpg"							
+							'allowed_types' => "*"							
 						];
 
 						$this->load->library("upload",$config);
