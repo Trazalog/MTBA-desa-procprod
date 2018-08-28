@@ -146,11 +146,11 @@ class Bonitas extends CI_Model
 			
 			 //file_get_contents('http://192.168.100.112:8080/bonita/loginservice?username=ernesto.clavel&password=bpm&redirect=false', false, $contexto);	
 
-			$data         = array(
-				'username'=>$usrNick,
-				'password'=>'bpm',
-				'redirect'=>'false'
-				);
+			$data = array(
+					'username'=>$usrNick,
+					'password'=>'bpm',
+					'redirect'=>'false'
+					);
 			$url = http_build_query( $data );
 			$url = BONITA_URL.'loginservice?'.$url;
 			file_get_contents($url, false, $contexto);	
@@ -182,9 +182,7 @@ class Bonitas extends CI_Model
 			    "Cookie: JSESSIONID=".$idsesion."\r\n".
 			    			"X-Bonita-API-Token=".$apiToken."\r\n".
 			    			"bonita_tenant=".$bonita_tenant."\r\n".
-							"Content-Type: application/json"."\r\n"
-							
-					
+							"Content-Type: application/json"."\r\n"	
 			  )
 			);
 
