@@ -150,6 +150,45 @@ class Tareas extends CI_Model
 			var_dump($e->getMessage());
 		 }		
 	}	
+	
+	function validarEstOT($idTarBonita,$idPedido){	
+
+		$this->db->select('orden_trabajo.petr_id,
+							orden_trabajo.bpm_task_id_plan');
+		$this->db->from('orden_trabajo');		
+		$this->db->where('orden_trabajo.bpm_task_id_plan', $idTarBonita);
+		$this->db->where('orden_trabajo.petr_id', $idPedido);
+		$query = $this->db->get();
+
+		if ($query->num_rows()>0){
+			return true;	
+		}else{	
+			return false;
+		}
+	}
+	// Generar OT vacia
+	function setOTInicial($idTarBonita,$idPedido,$cod_interno,$detalle){
+		
+		$userdata = $this->session->userdata('user_data');
+		$usrId= $userdata[0]['usrId']; 
+		
+		$data = array(
+			'nro'=> $cod_interno, 
+			'fecha_inicio'=> date('Y-m-d H:i:S'),
+			'descripcion'=> $detalle,
+			'cliId' => '1',
+			'estado' => 'C',
+			'id_usuario' =>$usrId,
+			'id_usuario_a' =>1,
+			'id_sucursal' => 1,
+			'id_proveedor' => 1,
+			'petr_id' => $idPedido,
+			'bpm_task_id_plan'=>$idTarBonita			        	 
+		   );
+		$query = $this->db->insert("orden_trabajo",$data);
+		
+		return $query;
+	}
 
 	// Soltar Tareas 
 	function soltarTarea($idTarBonita,$param){
@@ -263,19 +302,32 @@ class Tareas extends CI_Model
 	 	}
 	}
 
-
 	function getDatosBPM($idTarBonita,$param){
 
 		// $response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
 		// echo "response: ";
 		// return $response;
 
-		$urlResource = 'http://35.239.41.196:8080/bonita/API/bpm/humanTask/';
+		$urlResource = 'API/bpm/humanTask/';
 		
-		$data = file_get_contents($urlResource.$idTarBonita , false, $param);
+		$data = file_get_contents(BONITA_URL.$urlResource.$idTarBonita , false, $param);
 		
 		
 		return $data;
+	}
+
+	function getIdOtPorIdBPM($idTarBonita){		
+
+		$this->db->select('orden_trabajo.id_orden');
+		$this->db->from('orden_trabajo');
+		$this->db->where('orden_trabajo.bpm_task_id_plan', $idTarBonita);
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->row('bpm_task_id_plan');	
+	 	}else{	
+	 		return 0;
+	 	}
 	}
 
 //////////////  form dinamico  //////////////////

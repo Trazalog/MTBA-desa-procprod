@@ -242,8 +242,7 @@ class Otrabajo extends CI_Controller {
 			        	 'id_usuario' =>$usrId,
 			        	 'id_usuario_a' =>1,
 			        	 'id_sucursal' => $sucursal,
-			        	 'id_proveedor' => $proveedor
-			        	 
+			        	 'id_proveedor' => $proveedor			        	 
 		        		);
 
 	     	$result = $this->Otrabajos->guardar_agregar($datos2);
@@ -462,6 +461,7 @@ class Otrabajo extends CI_Controller {
 
 	// Carga tareas en pantala asignacion por id de OT
 	public function cargartarea($permission,$idglob){ 
+		//$idglob = 17;
 		
 		$data['list'] = $this->Otrabajos->cargartareas($idglob);
 		$data['id_orden'] = $idglob; 

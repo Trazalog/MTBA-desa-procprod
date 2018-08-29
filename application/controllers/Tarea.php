@@ -38,7 +38,7 @@ class Tarea extends CI_Controller {
 		// Variable tipo resource referencia a un recurso externo.
 		$param = stream_context_create($parametros);
 		$response = $this->Tareas->tomarTarea($idTarBonita,$param);
-		
+
 		return $response;
 	}
 
@@ -192,14 +192,13 @@ class Tarea extends CI_Controller {
 		echo json_encode($response);		
 	}
 
-	// Usr Toma tarea en BPM  
-	public function tomarTarea(){	
+	// Usr Toma tarea en BPM (Vista de planificacion) 
+	public function tomarTareaPlanificacion(){	
 		
 		$userdata = $this->session->userdata('user_data');
         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
 		
-		$idTarBonita = $this->input->post('idTarBonita');
-		
+		$idTarBonita = $this->input->post('idTarBonita');		
 		$estado = array (
 		  "assigned_id"	=>	$usrId
 		);
@@ -212,9 +211,51 @@ class Tarea extends CI_Controller {
 		$parametros["http"]["content"] = json_encode($estado);	
 		// Variable tipo resource referencia a un recurso externo.
 		$param = stream_context_create($parametros);
+		$response['respRest'] = $this->Tareas->tomarTarea($idTarBonita,$param);	
+
+		$idPedido = $this->input->post('idPedido');
+		$cod_interno = $this->input->post('cod_interno');
+		$detalle = $this->input->post('detalle');
+		
+		// Valida exitencia y genera OT inicial		
+		if (!$this->Tareas->validarEstOT($idTarBonita,$idPedido)) {
+				//echo "NOOO hay orden guardada";
+				$this->Tareas->setOTInicial($idTarBonita,$idPedido,$cod_interno,$detalle);
+				$insert_id = $this->db->insert_id();				
+		}else{
+				$insert_id = 0;
+		}
+		
+		$response['resInsert'] = $insert_id;
+
+		echo json_encode($response);
+	}
+	
+	// Usr Toma tarea en BPM (Vistas tareas comunes) 
+	public function tomarTarea(){	
+		
+		$userdata = $this->session->userdata('user_data');
+        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
+		
+		//dump_exit($usrId);
+		$idTarBonita = $this->input->post('idTarBonita');
+		
+		$estado = array (
+ 		  "assigned_id"	=>	$usrId
+ 		);
+ 		
+ 		// trae la cabecera
+ 		$parametros = $this->Bonitas->conexiones();
+ 		
+ 		// Cambio el metodo de la cabecera a "PUT"
+ 		$parametros["http"]["method"] = "PUT";	
+ 		$parametros["http"]["content"] = json_encode($estado);	
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
 		$response = $this->Tareas->tomarTarea($idTarBonita,$param);
 		echo json_encode($response);
 	}
+	
 	// Usr Toma tarea en BPM   CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
 	public function soltarTarea(){	
 		
@@ -242,6 +283,8 @@ class Tarea extends CI_Controller {
 			//dump_exit($data['TareaBPM']);
 			// Trae id_listarea desde BPM sino '0' si la tarea es solo de BPM(no form asociado)
 			$id_listarea = $this->getIdTareaTraJobs($idTarBonita);
+
+			$idOT = $this->Tareas->getIdOtPorIdBPM($idTarBonita);
 			
 			//si trae id_listarea (TJobs)
 			if($id_listarea != 0){				
@@ -305,14 +348,14 @@ class Tarea extends CI_Controller {
 				// si es 0 no hay form asociado			
 			//dump_exit($idForm);
 			$data['permission'] = $permission;
-			
+			$data['idOT'] = $idOT;
 			//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
 			$data['TareaBPM'] = json_decode($this->getDatosBPM($idTarBonita),true);
 			$caseId = $data['TareaBPM']["caseId"];
-			//$caseId =75;
+
 			// trae id pedido de trabajo desde trj_pedido_trabajo
 			$pedTrab = $this->Tareas->getIdPedTrabajo($caseId);
-			//var_dump($pedTrab[0]['petr_id']);
+		
 			$data['idPedTrabajo'] = $pedTrab[0]['petr_id'];
 			$data['codInterno'] = $pedTrab[0]['cod_interno'];
 
@@ -348,6 +391,10 @@ class Tarea extends CI_Controller {
 				case 'Evalua y envia presupuesto al cliente':
 					$this->load->view('tareas/view_6', $data);
 					break;
+				
+				case 'Planificar Diagnóstico':
+					$this->load->view('tareas/view_planificacion', $data);
+					break;	
 
 				// sino encuentra ninguna carga la vista estandar	
 				default:

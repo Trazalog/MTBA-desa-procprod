@@ -14,10 +14,13 @@ class InicioTrabajos extends CI_Model
 		$com = '/instantiation';
 		try {
 			$result = file_get_contents($url.BPM_PROCESS_ID.$com, false, $param);
+			log_message('error', 'error en lanzar proceso' .implode(';',$http_response_header));
 		} catch (Exception $e) {
 			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 			echo 'respuestas: ';
 			var_dump( $http_response_header);
+			log_message('error', 'error en lanzar proceso' .implode(';',$http_response_header));
+
 		} 
 			
 		

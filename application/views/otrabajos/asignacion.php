@@ -759,7 +759,35 @@ function  guardarInfo(){
 
   
   /// Trae tarea standar - Listo
-  $(function(){
+  // $(function(){
+  //   var tarea = $('#tarea');
+  //    $.ajax({
+  //         type: 'POST',
+  //         data: { idtarea: idtarea},
+  //         url: 'index.php/Otrabajo/getTareaSdt', 
+  //         success: function(data){ 
+                  
+  //                 tarea.append($('<option />', 
+  //                     { value: "-1", 
+  //                       text: "Seleccione..." }));
+
+  //                 for (var i = 0; i< data.length; i++) {                     
+  //                   //console.log(data[i].length);
+  //                   tarea.append($('<option />', 
+  //                     { value: data[i]['id_tarea'], 
+  //                       text: data[i]['descripcion'] }
+  //                   ));
+  //                 };                   
+  //               },            
+  //         error: function(result){
+  //                 console.log(result);
+  //               },
+  //         dataType: 'json'      
+  //   });  
+  // });
+
+  getTareasEstandar();
+  function getTareasEstandar(){
     var tarea = $('#tarea');
      $.ajax({
           type: 'POST',
@@ -783,13 +811,12 @@ function  guardarInfo(){
                   console.log(result);
                 },
           dataType: 'json'      
-    });  
-  });
+    }); 
+  }
 
   /// Plantillas llena select y tablas al seleccionar
-  $(function(){
-
-    // Trae plantillas y llena select
+  getPlantillas();
+  function getPlantillas(){
     var plantilla = $('#plantilla');
     $.ajax({
           type: 'POST',
@@ -813,9 +840,8 @@ function  guardarInfo(){
                 },
           dataType: 'json'      
     });
-
-    // Al seleccionar plantilla llena tabla
-    $(plantilla).change(
+  }
+  $('#plantilla').change(
         function(){
           var idPlantilla = $("#plantilla option:selected").val();
           $.ajax({
@@ -832,8 +858,84 @@ function  guardarInfo(){
                 dataType: 'json'      
           }); 
         }
-    ); 
-  });
+  );
+
+  /// Trae subsectores - Listo
+  getSubsectores();
+  function getSubsectores(){
+    var sectSelect = $('#sectSelect');
+    $.ajax({
+          type: 'POST',
+          //data: { idtarea: idtarea},
+          url: 'index.php/Otrabajo/getSubsectores', 
+          success: function(data){ 
+                  
+                  sectSelect.append($('<option />', 
+                      { value: "-1", 
+                        text: "Todos los Subsectores..." }));
+
+                  for (var i = 0; i< data.length; i++) {   
+                    sectSelect.append($('<option />', 
+                      { value: data[i]['id_subsector'], 
+                        text: data[i]['descripcion'] }
+                    ));
+                  };                   
+                },            
+          error: function(result){
+                  console.log(result);
+                },
+          dataType: 'json'      
+    });  
+  }
+
+  /// Plantillas llena select y tablas al seleccionar
+  // $(function(){
+
+  //   // Trae plantillas y llena select
+  //   var plantilla = $('#plantilla');
+  //   $.ajax({
+  //         type: 'POST',
+  //         //data: { idtarea: idtarea},
+  //         url: 'index.php/Otrabajo/getPlantilla', 
+  //         success: function(data){ 
+
+  //                 plantilla.append($('<option />', 
+  //                     { value: "-1", 
+  //                       text: "Seleccione..." }));
+
+  //                 for (var i = 0; i< data.length; i++) {                      
+  //                   plantilla.append($('<option />', 
+  //                     { value: data[i]['id_plantilla'], 
+  //                       text: data[i]['descripcion'] }
+  //                   ));
+  //                 };                   
+  //               },              
+  //         error: function(result){
+  //                 console.log(result);
+  //               },
+  //         dataType: 'json'      
+  //   });
+
+  //   // Al seleccionar plantilla llena tabla
+  //   $(plantilla).change(
+  //       function(){
+  //         var idPlantilla = $("#plantilla option:selected").val();
+  //         $.ajax({
+  //               type: 'POST',
+  //               data: { idPlantilla: idPlantilla},
+  //               url: 'index.php/Otrabajo/getTareasPlantilla', 
+  //               success: function(data){ 
+  //                       //console.log(data);
+  //                       llenarTabla(data);                                           
+  //                     },                  
+  //               error: function(result){
+  //                       console.log(result);
+  //                     },
+  //               dataType: 'json'      
+  //         }); 
+  //       }
+  //   ); 
+  // });
 
   /// Trae subsectores - Listo
   $(function(){
@@ -1044,12 +1146,7 @@ function  guardarInfo(){
       });  
   }
 
-  // Guarda planificacion completa
-  function planificar(){
-    // Validar que todas las tareas esten progrmadas antes de guardar.
-    
-
-  }
+  
 
   // Programa fecha y equipo elegido en selector de equipos
   function programTarea(){
@@ -1115,14 +1212,6 @@ function  guardarInfo(){
 //////////////////////  / listado tareas y pantillas hugo////////////////////////
 
 
-
-
-
-
-
-
-
-
 /////////////////////////////////////////
   var codglo= "";
   var tareaglob= "";
@@ -1131,7 +1220,7 @@ function  guardarInfo(){
   var idtarea1="";
   var idu=";"
   var no="";
-  $(document).ready(function(event) {
+ // $(document).ready(function(event) {
     // Vuelve al listado de ordenes de trabajo
     $('#listado').click( function cargarVista(){
       WaitingOpen();
@@ -1141,7 +1230,8 @@ function  guardarInfo(){
     });
 
     // Agrega una tarea - Listo
-    $('#agregar').click(function (e) {      
+    $('#agregar').click(function (e) { 
+
       var numord= $('#numord').val();
       no=numord;      
       var tarea1= $('#tarea option:selected').text(); 
@@ -1196,7 +1286,6 @@ function  guardarInfo(){
        
       $('#tarea').val(''); 
     }); 
-
 
     // No se hace desde aca sino desde BPM
     //check de tarea realizada cambia estado a RE por id de tarea - Listo
@@ -1271,7 +1360,7 @@ function  guardarInfo(){
         changeYear: true
     });
 
-});
+//});
 
 // Asigna equipo a tarea por id de tarea y por id equipo - LISTO
 function setEquipo(){
@@ -1336,10 +1425,9 @@ function guardarmodif(){
                 data: { idtarea: idtarea, idusu:idusu },
                 url: 'index.php/Otrabajo/ModificarUsuario', //index.php/
                 success: function(data){
-                        console.log(data);
-                        
-                        regresa1();
-                      
+
+                        console.log(data);                        
+                        regresa1();                      
                       },
                   
                 error: function(result){
@@ -1367,10 +1455,9 @@ function guardarfecha(){
                 data: { idtarea: idtarea, idusu:idusu, fe:fe},
                 url: 'index.php/Otrabajo/ModificarFecha', //index.php/
                 success: function(data){
-                        console.log(data);
-                        
-                        regresa1();
-                      
+
+                        console.log(data);                        
+                        regresa1();                      
                       },
                   
                 error: function(result){
@@ -1381,24 +1468,19 @@ function guardarfecha(){
 }
 
 function regresa1(){
-  //   var idusu= $('#nomusu').val();
- // no=idusu;
+  
   var numord= $('#numord').val();
   no=numord;
   console.log(no);
-
-  //$('#content').empty(); //listOrden
-  //$('#modalSale').empty();  
-  //$('#modalfecha').empty(); 
+  
   $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargartarea/<?php echo $permission; ?>/"+no+"");
-  //WaitingClose();
- // WaitingClose();
-  //WaitingClose();
+  
 }
 
 $('#fechaProgNueva').datetimepicker(
   {format: 'YYYY-MM-DD H:mm:ss',
-    locale: 'es'});
+    locale: 'es'}
+);
 
 
 </script>
