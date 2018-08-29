@@ -33,16 +33,17 @@
 
                                                         <?php
                                     //echo"id de form: ";
-                                    //dump_exit($idForm);
+                                    //dump_exit($TareaBPM["assigned_id"]);
+                                    //$TareaBPM["assigned_id"] = 'asignado';
                                                         //echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
                                                     //if ($estadoTarea == "noasignado") {´
 
-                                                        echo "<button class='btn btn-block btn-success' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
+                                                        echo "<button class='btn btn-block btn-success' id='btontomar' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
                                                     //}else{
                                                         echo "&nbsp"; 
                                                         echo "&nbsp"; 
                                                         echo "&nbsp";
-                                                        echo "<button class='btn btn-block btn-danger' style='width: 100px; margin-top: 10px;display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
+                                                        echo "<button class='btn btn-block btn-danger grupNoasignado' id='btonsoltr' style='width: 100px; margin-top: 10px; display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
                                                     //}    
                                                         echo "</br>"; 
                                                         echo "</br>"; 
@@ -50,7 +51,7 @@
                                                         $userdata = $this->session->userdata('user_data');
                                                         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
                                                     ?>
-
+                                                    <input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>" >
                                                     <form>
                                                         <div class="panel panel-default">
                                                             <h4 class="panel-heading">INFORMACION:</h4>
@@ -106,7 +107,7 @@
                                                                 <div class="col-sm-12 col-md-12">
                                                                     <label for="detalle">Detalle</label>
                                                                     <textarea class="form-control" id="detalle" rows="3"
-                                                                    disabled><?php $TareaBPM['displayDescription']?></textarea>
+                                                                    disabled><?php echo $TareaBPM['displayDescription']?></textarea>
                                                                 </div>
                                                             </div></br> </br> </br> </br> </br>
                                                         </div>
@@ -128,7 +129,7 @@
                                                                 <textarea class="form-control" id="observaciones" rows="3"></textarea>
                                                             </div>
                                                         </div>
-
+                                                                    
                                                     </form>
 
                                                 </div>
@@ -158,7 +159,7 @@
                                        </div>
                                        <textarea id="comentario" class="form-control" placeholder="Nuevo Comentario..."></textarea>
                                        <br/>						
-                                       <button class="btn btn-primary" onclick="guardarComentario()">Agregar</button>
+                                       <button class="btn btn-primary" id="guardarComentario" onclick="guardarComentario()">Agregar</button>
                                    </div>
                                </div>
 
@@ -179,7 +180,7 @@
 
         <div class="modal-footer">
             <button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
-            <button type="button" class="btn btn-success" onclick="terminarTarea()">Hecho</button>
+            <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button>
         </div> <!-- /.modal footer -->
 
     </div><!-- /.box body -->
@@ -190,9 +191,41 @@
 
 
 
-<script>
-    
-    
+<script>  
+          
+    evaluarEstado();    
+    function evaluarEstado(){
+       
+        var asig = $('#asignado').val();       
+        // si esta tomada la tarea
+        if(asig != ""){
+            habilitar();
+        }else{
+            deshabilitar();
+        }
+    }      
+   
+    function habilitar(){       
+        // habilito btn y textarea       
+        $("#btonsoltr").show();
+        $("#hecho").show();       
+        $("#guardarComentario").show();        
+        $("#comentario").show();
+        //desahilito btn tomar      
+        $("#btontomar").hide();
+        $("#formulario").show();
+    }
+    function deshabilitar(){
+        // habilito btn tomar
+        $("#btontomar").show();
+        // habilito btn y textarea  
+        $("#btonsoltr").hide();       
+        $("#hecho").hide();       
+        $("#guardarComentario").hide();
+        $("#comentario").hide();
+        $("#formulario").hide();
+    }    
+
     // Volver al atras
     $('#cerrar').click(function cargarVista() {
         WaitingOpen();
@@ -200,6 +233,7 @@
         $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
         WaitingClose();
     });
+
     /* Funciones BPM */
     //Ckeck Tarea realizada
     $('.btncolor').click(function(e) {
@@ -231,7 +265,7 @@
             //   if ($('#observaciones').val() == ""){
             //     alert('Campo Detalle vacio');
             //   }
-            // }); 
+            // });               
 
 
 
@@ -244,18 +278,20 @@
                 'idTarBonita': idTarBonita,
             },
             url: 'index.php/Tarea/terminarTarea',
-            success: function(result) {
-                console.log(result);
-                //alert("SII");
+            success: function(data) {
+                    
+                    // toma a tarea exitosamente
+                    if(data['reponse_code'] == 204){
+                        $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
+                    }
             },
-            error: function(result) {
+            error: function(data) {
                 //alert("Noo");
-                console.log(result);
+                console.log(data);
             },
             dataType: 'json'
         }); 
-    }        
-    
+    }            
     
     // Boton Hecho generico
     function estado() {
@@ -308,6 +344,12 @@
             },
             url: 'index.php/Tarea/tomarTarea',
             success: function(data) {
+                   console.log(data['reponse_code']);
+                    // toma a tarea exitosamente
+                    if(data['reponse_code'] == 200){
+                        habilitar();
+                    }
+
             },
             error: function(result) {
                 console.log(result);
@@ -326,6 +368,11 @@
             },
             url: 'index.php/Tarea/soltarTarea',
             success: function(data) {
+                console.log(data['reponse_code']);
+                    // toma a tarea exitosamente
+                    if(data['reponse_code'] == 200){
+                        deshabilitar();
+                    }
             },
             error: function(result) {
                 console.log(result);

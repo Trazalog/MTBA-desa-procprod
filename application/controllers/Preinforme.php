@@ -16,7 +16,7 @@ class Preinforme extends CI_Controller {
 
     public function index($permission)
     {
-        $data['formularios'] = $this->Preinformes->ObtenerIdFormularios();
+        $data['formularios'] = array(1, 3);
         $data['permission']  = $permission;
         $this->load->view('preinforme/view', $data);
     }
