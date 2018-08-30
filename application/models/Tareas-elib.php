@@ -7,37 +7,37 @@ class Tareas extends CI_Model
 	// trae tareas de BPM
 	function getTareas($param){
 		
-		$tareas = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);
+		$tareas = file_get_contents(BONITA_URL.'API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);
 		return $tareas;	
 	}
 	// Estado GENERICO
 	function estadocuenta($idTarBonita,$param){
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		$response = file_get_contents(BONITA_URL.'API/bpm/userTask/78/execution',false, $param);
 		return $response;
 	}
 	// Estado de cuenta 
 	function estadocuentaOk($idTarBonita,$param){
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		$response = file_get_contents(BONITA_URL.'API/bpm/userTask/78/execution',false, $param);
 		return $response;
 	}
 	//Espera regularizacion
 	function esperandoRegularizacion($idTarBonita,$param){
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		$response = file_get_contents(BONITA_URL.'API/bpm/userTask/78/execution',false, $param);
 		return $response;
 	}
 	//Precisa Anticipo
 	function precisaAnticipo($idTarBonita,$param){
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
+		$response = file_get_contents(BONITA_URL.'API/bpm/userTask/78/execution',false, $param);
 		return $response;
 	}
 	//obtener Comentarios
 	function ObtenerComentarios($param){
-		$comentarios = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
+		$comentarios = file_get_contents(BONITA_URL.'API/bpm/comment?f=processInstanceId%3D14&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
 		return json_decode($comentarios,true);
 	}
 	//Guardar Comentarios
 	function GuardarComentarioBPM($param){
-		$respuesta = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment',false,$param);
+		$respuesta = file_get_contents(BONITA_URL.'API/bpm/comment',false,$param);
 		return $respuesta;
 	}
 	// Terminar Tarea
@@ -51,7 +51,7 @@ class Tareas extends CI_Model
 		// } catch (Exception $e) {
 		//     // Handle exception
 		// }
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/44', false, $param);
+		$response = file_get_contents(BONITA_URL.'API/bpm/humanTask/44', false, $param);
 		return $response;
 		// echo "response: ";
 		// var_dump($response);
@@ -67,7 +67,7 @@ class Tareas extends CI_Model
 		// } catch (Exception $e) {
 		//     // Handle exception
 		// }
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/78', false, $param);
+		$response = file_get_contents(BONITA_URL.'API/bpm/humanTask/78', false, $param);
 		return $response;
 		//echo "response: ";
 		//var_dump($response);
@@ -83,13 +83,13 @@ class Tareas extends CI_Model
 		// } catch (Exception $e) {
 		//     // Handle exception
 		// }
-		$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/78', false, $param);
+		$response = file_get_contents(BONITA_URL.'API/bpm/humanTask/78', false, $param);
 		echo "response: ";
 		var_dump($response);
 	}
 	// Devuelve el id de tareas de trazaj correspond al id_tarea bonita
 	function getIdTareaTraJobs($idBonita,$param){
-		$idTJobs = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/activityVariable/78/trazajobsTaskId', false, $param);
+		$idTJobs = file_get_contents(BONITA_URL.'API/bpm/activityVariable/78/trazajobsTaskId', false, $param);
 		
 		return $idTJobs;
 	}

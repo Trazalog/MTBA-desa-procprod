@@ -5,6 +5,7 @@ class Tarea extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Tareas');
 		$this->load->model('Bonitas');
+		$this->load->model('Notapedidos');
 	}
 	// Carga lista de OT
 	public function index($permission){
@@ -13,18 +14,20 @@ class Tarea extends CI_Controller {
 		$parametros = $this->Bonitas->conexiones();
 		$param = stream_context_create($parametros);
 		$data['list'] = $this->Tareas->getTareas($param);		
-		$data['permission'] = $permission;
-		//dump_exit($data);
+		$data['permission'] = "Add-Edit-Del-View-";//$permission;
+
 		$this->load->view('tareas/list', $data);
 	}
 	// ver el usr dinamico
 	public function ObtenerTareaBPM(){	
 	
+		$userdata = $this->session->userdata('user_data');
+        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
 		// PONER EL ID DE USUARIO DINAMICO!!!!!!
 		$idTarBonita = $this->input->post('idTarBonita');
 		
 		$estado = array (
-		  "assigned_id"	=>	5
+		  "assigned_id"	=>	$usrId
 		);
 		
 		// trae la cabecera
@@ -55,7 +58,6 @@ class Tarea extends CI_Controller {
 
 		return $response;
 	}
-
 
 	// Estado cuenta BOTON HECHO
 	public function estadoCuenta(){	
@@ -177,12 +179,6 @@ class Tarea extends CI_Controller {
 		
 		// PONER EL ID DE USUARIO DINAMICO!!!!!!
 		$idTarBonita = $this->input->post('idTarBonita');
-		//dump_exit($idTarBonita);
-		
-		// $estado = array (
-		//   //"assigned_id"	=>	5,
-		//   //"state"=> "completed"
-		// );
 		
 		// trae la cabecera
 		$parametros = $this->Bonitas->conexiones();
@@ -197,13 +193,12 @@ class Tarea extends CI_Controller {
 		echo json_encode($response);		
 	}
 
-	// Usr Toma tarea en BPM   CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
+	// Usr Toma tarea en BPM  
 	public function tomarTarea(){	
 		
 		$userdata = $this->session->userdata('user_data');
         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
 		
-		//dump_exit($usrId);
 		$idTarBonita = $this->input->post('idTarBonita');
 		
 		$estado = array (
@@ -219,6 +214,7 @@ class Tarea extends CI_Controller {
 		// Variable tipo resource referencia a un recurso externo.
 		$param = stream_context_create($parametros);
 		$response = $this->Tareas->tomarTarea($idTarBonita,$param);
+		echo json_encode($response);
 	}
 	// Usr Toma tarea en BPM   CAMBIAR EL USR POR USR LOGUEADO !!!!!!!
 	public function soltarTarea(){	
@@ -228,22 +224,20 @@ class Tarea extends CI_Controller {
 		$estado = array (
 		  "assigned_id"	=>	""
 		);
-		
 		// trae la cabecera
 		$parametros = $this->Bonitas->conexiones();
-		
 		// Cambio el metodo de la cabecera a "PUT"
 		$parametros["http"]["method"] = "PUT";	
 		$parametros["http"]["content"] = json_encode($estado);	
 		// Variable tipo resource referencia a un recurso externo.
 		$param = stream_context_create($parametros);
 		$response = $this->Tareas->soltarTarea($idTarBonita,$param);
+		echo json_encode($response);
 	}
 
 	// trae datos para llenar notificaion estandar y formulario asociado
 	public function detaTarea($permission,$idTarBonita){	
 			
-
 			//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
 			$data['TareaBPM'] = json_decode($this->getDatosBPM($idTarBonita),true);
 		//dump_exit($data['TareaBPM']);
@@ -268,8 +262,6 @@ class Tarea extends CI_Controller {
 						$this->Tareas->setFormInicial($idTarBonita,$idForm);
 					}
 				}	
-
-
 
 				// si hay formulario
 				if($idForm != 0){
@@ -296,12 +288,10 @@ class Tarea extends CI_Controller {
 								//echo "hay form guardado";
 							}
 							else{
-								//echo "no hay form guradado";
-								// guarda form inicial vacio
+								
 								$this->Tareas->setFormInicial($idTarBonita,$idForm);
 							}
 						}	
-
 
 						$data['idForm'] = $id[0]['form_asoc'];
 						$data['form'] = $this->Tareas->get_form($idTarBonita,$idForm);
@@ -317,7 +307,6 @@ class Tarea extends CI_Controller {
 			//dump_exit($idForm);
 			$data['permission'] = $permission;
 
-			
 			//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
 			$data['TareaBPM'] = json_decode($this->getDatosBPM($idTarBonita),true);
 			$caseId = $data['TareaBPM']["caseId"];
@@ -331,22 +320,12 @@ class Tarea extends CI_Controller {
 			$data['datos'] = $this->Tareas->detaTareas($id_listarea);			
 
 			$data['idTarBonita'] = $idTarBonita;
-			//$data['estadoTarea']= $estadoTarea;		
 
-			
-			
-			//dump_exit($data);
-
-
-
-			//FLEIVA COMENTARIOS
-			$metodo = "POST";
-			$parametros = $this->Bonitas->conexiones();
-			$param = stream_context_create($parametros);		
-			$data['comentarios'] = $this->Tareas->ObtenerComentarios($param);	
+			//FLEIVA COMENTARIOS		
+		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);	
 
 			switch ($data['TareaBPM']['displayName']) {
-				
+				// esta vista
 				case 'Evaluación del estado de cuenta del cliente':
 					$this->load->view('tareas/view_1', $data);
 					break;
@@ -371,41 +350,19 @@ class Tarea extends CI_Controller {
 					$data['formularios'] = $this->Preinformes->ObtenerIdFormulariosCompletados($data['idPedTrabajo']);
 					$this->load->view('tareas/view_8', $data);
 					break;
-				// sino encuentra ninguna carga la vista estandar	
-				 default:
-				 	$this->load->view('tareas/view_9', $data);
-				 	break;		
+				default:
+				 $this->load->model('Preinformes');
+				 $data['formularios'] = ['1000'];
+				// //$data['cotizacion'] = $this->Tareas->ObtenerCotizacion(777);
+				 $data['list'] = $this->Notapedidos->notaPedidosxId($datos[0][ 'id_orden']);
+				 $this->load->view('tareas/view_9', $data);
+				
+				//Cotizacion
+				//$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0][ 'id_orden']);
+				 //$this->load->view('tareas/view_10', $data);
+				 break;			
 			}		
 	}
-//TODO: HACER AKGO
-	// trae valores validos para llenar componentes del formulario
-	// public function getValValido(){
-	// 	$idForm = $this->input->post('idForm');
-	// 	$response = $this->Tareas->getValValidos($idForm);
-	// 	echo json_encode($response);		
-	// }
-	// // guarda  form commpletado (revisar no funciona bien)
-	// public function guardarForm(){
-	// 	//  array con id de dato->valor
-	// 	$datos = $this->input->post();
-	// 	//dump_exit($datos);
-	// 	$userdata = $this->session->userdata('user_data');
- //        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado
- //        $i = 1;// para guardar el orden de categorias, grupos y valores
-	// 	foreach ($datos as $key => $value) {	
-	// 		//trae array con info de dato por id		
-	// 		$data = $this->Tareas->getDatos($key);
-	// 		$data['USUARIO'] = $usrId;
-	// 		$data['ORDEN'] = $i;
-	// 		$this->Tareas->UpdateForm($data);
-	// 		$i++;
-	// 	}
-		
-	// 	//echo json_encode(true);	usala para el alburo nomas
-	// }
-	
-	
-
 
 	//////////////  form dinamico  //////////////////
 
@@ -422,6 +379,33 @@ class Tarea extends CI_Controller {
 		$idForm = $this->input->post('idForm');
 		$response = $this->Tareas->getImgValor($idForm);
 		echo json_encode($response);
+	}
+
+	public function GuardarCotizacion(){
+		$idPedTrabajo = $this->input->post('idPedTrabajo');
+		$config = [
+			'upload_path' => "./assets/documentosMTB/cotizaciones",
+			'allowed_types' => "*",
+			'max_size' => "5000"
+		];
+		$this->load->library("upload",$config);
+		if($this->upload->do_upload('cotizacion')){
+			$documento = array("upload_data" => $this->upload->data());	
+			$data = array(
+				'NOM_VAR' => 'cotizacion',
+				'VALOR' => "./assets/documentosMTB/cotizaciones/".$documento['upload_data']['file_name']
+			);
+		 	$resultBD = $this->Tarea->GuardarCotizacion($idPedTrabajo,$data);
+		 	if($resultBD==false){
+		 		echo 'error';
+		 	}else{
+		 		echo base_url().$data['VALOR'];
+			}
+
+			}else{
+				echo $this->upload->display_errors();
+		}
+
 	}
 
 	// verifica que el form tenga todos los campos validado en 1 
@@ -478,7 +462,7 @@ class Tarea extends CI_Controller {
 		$userdata = $this->session->userdata('user_data');
         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado
         $listarea = $datos['id_listarea'];
-        $idformulario = 7001;//$datos['idformulario'];
+        $idformulario = $datos['idformulario'];
         $i = 1;// para guardar el orden de categorias, grupos y valores		
         $j = 0;
 		foreach ($datos as $key => $value) {	
@@ -554,7 +538,7 @@ class Tarea extends CI_Controller {
 						// 	$nomcodif = $nomcodif.$extesnion;							
 						// }
 						// $data['VALOR'] = "assets/imgformularios/".$nomcodif;
-						$directorio = ".\assets\imgformularios";
+						$directorio = "D:\sitios\MTBA-desa-procprod\assets\imgformularios";
 						//dump_exit( $directorio);
 						$config = [
 							"upload_path"   => "./assets/imgformularios",//$directorio,
@@ -577,7 +561,7 @@ class Tarea extends CI_Controller {
 
 
 					}else{
-						echo"vacio";
+						echo $data['VALOR'];
 					}
 				}
 
@@ -608,6 +592,18 @@ class Tarea extends CI_Controller {
 		
 		return $nomImagen;
 	}
- 
+
+	function ObtenerComentariosBPM($caseId){
+		//$metodo = "POST";
+		$parametros = $this->Bonitas->conexiones();
+		$param = stream_context_create($parametros);		
+		return $this->Tareas->ObtenerComentariosBPM($caseId,$param);	
+	}
+
+	public function GuardarValorPresupuesto(){
+		$idPedido = $this->input->post('PETR_ID');
+		$result = $this->Tareas->GuardarValorPresupuesto($idPedido);
+		echo $result;
+	}
 }
 ?>

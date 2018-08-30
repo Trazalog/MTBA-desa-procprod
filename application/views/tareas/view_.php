@@ -143,15 +143,20 @@
                                                  <ul id="listaComentarios">
                                                      <?php 
                                                      foreach($comentarios as $f){
-                                                       echo '<hr/>';
+                                                       
 
-                                                       if(strpos($f['userId']['icon'],'.png')==0){
-                                                           $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
-                                                       }else{
-                                                           $img='';
-                                                       }
-                                                       echo '<li><h4>'.$img.$f['userId']['userName'].'<small style="float: right">'.$f['postDate'].'</small></h4>';
+                                                    //    if(strpos($f['userId']['icon'],'.png')==0){
+                                                    //        $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
+                                                    //    }else{
+                                                    //        $img='';
+                                                    //    }
+                                                    //echo $comentarios;
+                                                   // echo '<li><h4>'.$f['content'].'</h4></li>';
+                                                    if(strcmp($f['userId']['userName'],'System')!=0){
+                                                       echo '<hr/>';
+                                                       echo '<li><h4>'.$f['userId']['userName'].'<small style="float: right">'.$f['postDate'].'</small></h4>';
                                                        echo '<p>'.$f['content'].'</p></li>';
+                                                    }
                                                    }
                                                    ?>
                                                </ul>
@@ -194,7 +199,7 @@
 <script>  
           
     evaluarEstado();    
-    function evaluarEstado(){
+    function evaluarEstado(){     
        
         var asig = $('#asignado').val();       
         // si esta tomada la tarea
@@ -315,8 +320,9 @@
     }
     //Funcion COMENTARIOS
     function guardarComentario() {
-			console.log("Guardar Comentarios...");
-			var id='14';
+			
+            console.log("Guardar Comentarios...");
+            var id=<?php echo json_encode($TareaBPM['caseId']);?>;
 			var comentario=$('#comentario').val();
 			$.ajax({
 			type:'POST',

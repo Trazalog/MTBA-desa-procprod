@@ -16,6 +16,7 @@ class InicioTrabajo extends CI_Controller
 	{
 		$data['list'] = $this->Customers->Customers_List();
 		$data['listaIndices'] = $this->InicioTrabajos->Obtener_Indices();
+		$data['tiempoStandars'] = $this->InicioTrabajos->ObtenerTiemposStandars();
 		$data['permission'] = $permission;
 		$this->load->view('InicioTrabajo/list', $data);
 	}

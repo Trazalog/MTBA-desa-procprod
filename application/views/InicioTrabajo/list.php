@@ -189,9 +189,9 @@
                                         <strong style="color: #dd4b39">*</strong>: </label>
                                     <select id="familia_productos" class="form-control">
                                         <option value="0" selected="selected">Seleccionar...</option>
-                                        <option value="1">Componente Industrial</option>
-                                        <option value="2">Componente Liviano</option>
-                                        <option value="3">Servicio</option>
+                                        <option value="1">CI - Componente Industrial</option>
+                                        <option value="2">CL - Componente Liviano</option>
+                                        <option value="3">S - Servicio</option>
                                     </select>
                                 </div>
                             </div>
@@ -243,6 +243,58 @@
 </section>
 <!-- /.content -->
 
+<script> 
+// function e(q,br) { 
+// document.body.appendChild( document.createTextNode(q) ); 
+// if(!br) document.body.appendChild( document.createElement("BR") ); 
+// } 
+
+// Creo una fecha 
+//var hoy = new Date(); 
+
+// Nuestro método para sumar n dias (que no sean ni Sábado ni Domingo) 
+Date.prototype.sumarLaborables = function(n) { 
+    for(var i=0; i<n; i++) { 
+        this.setTime( this.getTime()+24*60*60*1000 ); 
+        if( (this.getDay()==6) || (this.getDay()==0) )    // sábado o domingo 
+            i--;            // hacemos el bucle una unidad mas larga. 
+    } 
+    return this; 
+} 
+
+// COMPLETAMOS CON CEROS A LA IZQUIERDA AQUELLOS VALORES QUE LO NECESITEN PARA VERLOS BONITOS 
+Date.prototype.getXXXzeroFilled = function(propiedad) { 
+    var dev = this["get"+propiedad](); 
+    if( (propiedad=="Milliseconds") && (dev<100) && (dev>9) ) dev = "0"+dev; 
+    else if( dev<10 ) dev = (propiedad=="Milliseconds")?"00":"0"+dev; 
+    return dev.toString(); 
+} 
+Date.prototype.getHoursZeroFilled = function() { return this.getXXXzeroFilled("Hours"); } 
+Date.prototype.getMinutesZeroFilled = function() { return this.getXXXzeroFilled("Minutes"); } 
+Date.prototype.getSecondsZeroFilled = function() { return this.getXXXzeroFilled("Seconds"); } 
+Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFilled("Milliseconds"); } 
+
+
+
+// // REESCRIBIMOS EL MÉTODO TOSTRING() PARA REPRESENTARLO EN CASTELLANO BONITO 
+// Date.prototype.toString = function() { 
+//     var diaSem = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][ this.getDay() ]; 
+//     var mes = "Enero;Febrero;Marzo;Abril;Mayo;Junio;Julio;Agosto;Septiembre;Octubre;Noviembre;Diciembre".split(";")[this.getMonth()]; 
+//     var str = diaSem+", "+this.getDate()+" de "+mes+" de "+this.getFullYear()+" a las "+this.getHoursZeroFilled()+":"+this.getMinutesZeroFilled()+":"+this.getSecondsZeroFilled()+" "+this.getMillisecondsZeroFilled()+"."; 
+//     return str; 
+// } 
+
+// e(hoy); 
+// for(var i=0; i<15; i++) { 
+//     hoy.sumarLaborables(1); 
+//     e( hoy ); 
+// } 
+
+// e(""); e(""); 
+//e( new Date().sumarLaborables(15) ); 
+
+</script> 
+
 <script>
     $("form").submit(function(event) {
         event.preventDefault();
@@ -288,13 +340,6 @@
                 }
             }
         });
-
-    
-
-
-
-
-
 
     var id_cliente_seleccionado = '';
     var listaClientes;
@@ -396,16 +441,16 @@
         subfamilia.append("<option selected='selected'>Seleccionar...</option>");
         switch (opc) {
             case "1":
-                subfamilia.append("<option>Motor Grande</option>");
-                subfamilia.append("<option>Motor Mediano</option>");
-                subfamilia.append("<option>Motor Semiarmado</option>");
-                subfamilia.append("<option>Partes Sueltas</option>");
+                subfamilia.append("<option>MG - Motor Grande</option>");
+                subfamilia.append("<option>MM - Motor Mediano</option>");
+                subfamilia.append("<option>MSA - Motor Semiarmado</option>");
+                subfamilia.append("<option>PS - Partes Sueltas</option>");
 
                 break;
             case "2":
-                subfamilia.append("<option>Motor Entero</option>");
-                subfamilia.append("<option>Motor Semiarmado</option>");
-                subfamilia.append("<option>Partes Sueltas</option>");
+                subfamilia.append("<option>ME - Motor Entero</option>");
+                subfamilia.append("<option>MSA - Motor Semiarmado</option>");
+                subfamilia.append("<option>PS - Partes Sueltas</option>");
 
                 break;
             case "3":
@@ -416,6 +461,25 @@
                 break;
         }
 
+    });
+
+    $('#subfamilia').change(function() {
+     var tiempoStandars = <?php echo json_encode($tiempoStandars); ?>;
+     var subfamilia = this.value.split(" - ")[0];
+     var familia = $('#familia_productos option:selected').text().split(" - ")[0];
+     for(i = 0; i < tiempoStandars.length; i++){
+         if(familia+"-"+subfamilia==tiempoStandars[i]['tipo_motor_id']){
+             console.log(tiempoStandars[i]['dias_habiles']);
+             console.log(new Date().sumarLaborables(Math.round((tiempoStandars[i]['dias_habiles']))));
+             var d = new Date().sumarLaborables(Math.round(tiempoStandars[i]['dias_habiles']));
+             
+             $('#fecha_entrega').val(("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+                d.getFullYear());
+             
+         }
+     }
+     
+    
     });
 
     function ValidarCampos() {

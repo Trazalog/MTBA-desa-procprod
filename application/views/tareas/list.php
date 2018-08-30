@@ -24,6 +24,8 @@
                 <th>Fecha Vto.:</th>
                 <th>Estado:</th>
                 <th>Prioridad:</th>
+                <th>?</th>
+                <th>?</th>
 
                 <!-- <th>id tarea bonit</th>  -->
                 <!-- <th>Estado:</th> -->     

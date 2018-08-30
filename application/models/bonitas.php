@@ -142,7 +142,7 @@ class Bonitas extends CI_Model
 		$contexto = stream_context_create($opciones);
 
 		// Abre el fichero usando las cabeceras HTTP establecidas arriba
-			//  file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);
+			//  file_get_contents(BONITA_URL.'loginservice?username=admin&password=bpm&redirect=false', false, $contexto);
 			
 			 //file_get_contents('http://192.168.100.112:8080/bonita/loginservice?username=ernesto.clavel&password=bpm&redirect=false', false, $contexto);	
 
@@ -218,9 +218,9 @@ class Bonitas extends CI_Model
 	// 		$contexto = stream_context_create($opciones);
 
 	// 	// Abre el fichero usando las cabeceras HTTP establecidas arriba
-	// 		// file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);
+	// 		// file_get_contents(BONITA_URL.'loginservice?username=admin&password=bpm&redirect=false', false, $contexto);
 
-	// 		file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);	
+	// 		file_get_contents(BONITA_URL.'loginservice?username=admin&password=bpm&redirect=false', false, $contexto);	
 
 	// 		$cookies = array();
 	// 		foreach ($http_response_header as $hdr) {
@@ -284,7 +284,7 @@ class Bonitas extends CI_Model
 	// 		$contexto = stream_context_create($opciones);
 
 	// 	// Abre el fichero usando las cabeceras HTTP establecidas arriba
-	// 		file_get_contents('http://35.239.41.196:8080/bonita/loginservice?username=admin&password=bpm&redirect=false', false, $contexto);	
+	// 		file_get_contents(BONITA_URL.'loginservice?username=admin&password=bpm&redirect=false', false, $contexto);	
 
 	// 		$cookies = array();
 	// 		foreach ($http_response_header as $hdr) {
@@ -323,7 +323,7 @@ class Bonitas extends CI_Model
 	// }
 
 	function getTareas($param){
-		$tareas = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask?p=0&c=10&f=assigned_id%3D5', false, $param);
+		$tareas = file_get_contents(BONITA_URL.'API/bpm/humanTask?p=0&c=10&f=assigned_id%3D5', false, $param);
 
 		dump_exit($tareas);
 	}
