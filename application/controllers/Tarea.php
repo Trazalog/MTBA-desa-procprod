@@ -339,6 +339,8 @@ class Tarea extends CI_Controller {
 					break;
 				
 				case 'Solicita ok del cliente para iniciar diagnostico':
+					$this->load->model('AceptacionTrabajos');
+					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);	
 					$this->load->view('tareas/view_4', $data);
 					break;
 

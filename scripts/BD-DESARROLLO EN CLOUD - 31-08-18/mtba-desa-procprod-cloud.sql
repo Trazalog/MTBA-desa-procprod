@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-08-2018 a las 19:17:11
+-- Tiempo de generación: 31-08-2018 a las 10:59:41
 -- Versión del servidor: 10.1.16-MariaDB
 -- Versión de PHP: 5.6.24
 
@@ -617,6 +617,133 @@ CREATE TABLE `frm_formularios_completados` (
   `VALO_ID` int(11) NOT NULL,
   `VALIDADO` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `frm_formularios_completados`
+--
+
+INSERT INTO `frm_formularios_completados` (`FOCO_ID`, `FORM_NOMBRE`, `CATE_NOMBRE`, `GRUP_NOMBRE`, `VALO_NOMBRE`, `TIDA_NOMBRE`, `VALOR`, `FORM_ID`, `REFERENCIA`, `FEC_CREACION`, `USUARIO`, `ORDEN`, `PETR_ID`, `NOM_VAR`, `LITA_ID`, `TIDA_ID`, `VALO_ID`, `VALIDADO`) VALUES
+(1, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Arnes', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 0, 0, '', 20111, 3, 1118, 0),
+(2, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Abrazadera caño de gases', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 1, 0, '', 20111, 3, 1000, 0),
+(3, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Alternador', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 2, 0, '', 20111, 3, 1001, 0),
+(4, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Arbol auxiliar', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 3, 0, '', 20111, 3, 1002, 0),
+(5, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Arbol de levas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 4, 0, '', 20111, 3, 1003, 0),
+(6, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Balancines', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 5, 0, '', 20111, 3, 1004, 0),
+(7, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Biela de compresor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 6, 0, '', 20111, 3, 1005, 0),
+(8, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bielas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 7, 0, '', 20111, 3, 1006, 0),
+(9, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Block de motor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 8, 0, '', 20111, 3, 1007, 0),
+(10, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bomba de aceite', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 9, 0, '', 20111, 3, 1008, 0),
+(11, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bomba de agua', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 10, 0, '', 20111, 3, 1009, 0),
+(12, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bomba de nafta', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 11, 0, '', 20111, 3, 1010, 0),
+(13, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bomba Inyectora No', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 12, 0, '', 20111, 3, 1011, 0),
+(14, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Botadores', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 13, 0, '', 20111, 3, 1012, 0),
+(15, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Brida de arbol de levas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 14, 0, '', 20111, 3, 1013, 0),
+(16, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bujias', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 15, 0, '', 20111, 3, 1014, 0),
+(17, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bulbo de aceite de vigia', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 16, 0, '', 20111, 3, 1015, 0),
+(18, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bulbo temperatura de vigia', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 17, 0, '', 20111, 3, 1016, 0),
+(19, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bulon punta de cigueñal', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 18, 0, '', 20111, 3, 1017, 0),
+(20, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bulones de retorno', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 19, 0, '', 20111, 3, 1018, 0),
+(21, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bulones de tapa de bancada ', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 20, 0, '', 20111, 3, 1019, 0),
+(22, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Bulones de tapa de cilindros', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 21, 0, '', 20111, 3, 1020, 0),
+(23, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Caño col.de adm.de turb.(alu.)', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 22, 0, '', 20111, 3, 1021, 0),
+(24, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Caño colec.de escape', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 23, 0, '', 20111, 3, 1022, 0),
+(25, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Caño de alim.aceite de turbo', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 24, 0, '', 20111, 3, 1023, 0),
+(26, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Caño de combustible', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 25, 0, '', 20111, 3, 1024, 0),
+(27, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Caño de entrada de aceite', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 26, 0, '', 20111, 3, 1025, 0),
+(28, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Caño de retorno', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 27, 0, '', 20111, 3, 1026, 0),
+(29, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Caño superior retorno de tubo', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 28, 0, '', 20111, 3, 1060, 0),
+(30, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Caño inferior retorno de tubo', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 28, 0, '', 20111, 3, 1027, 0),
+(31, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Caños de inyector', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 29, 0, '', 20111, 3, 1028, 0),
+(32, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Carburador', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 30, 0, '', 20111, 3, 1029, 0),
+(33, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Carcaza cubre volante', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 31, 0, '', 20111, 3, 1030, 0),
+(34, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Carcaza de distribucion', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 32, 0, '', 20111, 3, 1031, 0),
+(35, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Carters c/bulones', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 33, 0, '', 20111, 3, 1032, 0),
+(36, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Chapa cubre volante chica', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 35, 0, '', 20111, 3, 1033, 0),
+(37, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Chapa cubre volante grande', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 36, 0, '', 20111, 3, 1034, 0),
+(38, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Chaveta de arbol de levas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 37, 0, '', 20111, 3, 1035, 0),
+(39, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Chaveta de cigueñal', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 38, 0, '', 20111, 3, 1036, 0),
+(40, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Cigueñal del compresor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 39, 0, '', 20111, 3, 1037, 0),
+(41, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Cigueñal', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 40, 0, '', 20111, 3, 1038, 0),
+(42, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Chupador de bomba de aceite', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 41, 0, '', 20111, 3, 1039, 0),
+(43, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Cilindro de compresor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 42, 0, '', 20111, 3, 1041, 0),
+(44, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Contrapesos', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 43, 0, '', 20111, 3, 1042, 0),
+(45, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Corona de arranque', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 44, 0, '', 20111, 3, 1043, 0),
+(46, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Depresor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 45, 0, '', 20111, 3, 1044, 0),
+(47, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Disco de embrague', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 46, 0, '', 20111, 3, 1045, 0),
+(48, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Distribuidor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 47, 0, '', 20111, 3, 1046, 0),
+(49, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Eje de balancines', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 48, 0, '', 20111, 3, 1047, 0),
+(50, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Engranaje de arbol de levas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 49, 0, '', 20111, 3, 1048, 0),
+(51, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Engranaje de cigueñal', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 50, 0, '', 20111, 3, 1049, 0),
+(52, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Esparragos de tapa de cilindros', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 51, 0, '', 20111, 3, 1050, 0),
+(53, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Filtro de aire', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 52, 0, '', 20111, 3, 1051, 0),
+(54, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Filtro de combustible', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 53, 0, '', 20111, 3, 1052, 0),
+(55, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Gancho de motor delantero', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 54, 0, '', 20111, 3, 1053, 0),
+(56, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Gancho de motor trasero', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 55, 0, '', 20111, 3, 1054, 0),
+(57, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Indicador de puestas a punto', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 56, 0, '', 20111, 3, 1055, 0),
+(58, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Inyectores', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 57, 0, '', 20111, 3, 1056, 0),
+(59, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Leva de embrague', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 58, 0, '', 20111, 3, 1057, 0),
+(60, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Montantes de motor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 59, 0, '', 20111, 3, 1058, 0),
+(61, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Motor de arranque', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 60, 0, '', 20111, 3, 1059, 0),
+(62, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Mecanismo de aceleracion', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 62, 0, '', 20111, 3, 1061, 0),
+(63, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Multiple de admision', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 63, 0, '', 20111, 3, 1062, 0),
+(64, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Multiple de escape', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 64, 0, '', 20111, 3, 1063, 0),
+(65, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Pernos de presion', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 65, 0, '', 20111, 3, 1064, 0),
+(66, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Porta filtro aceite inferior', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 66, 0, '', 20111, 3, 1065, 0),
+(67, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Porta filtro aceite superior', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 67, 0, '', 20111, 3, 1066, 0),
+(68, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Pista reten', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 68, 0, '', 20111, 3, 1067, 0),
+(69, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Piston de compresor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 69, 0, '', 20111, 3, 1068, 0),
+(70, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Pistones', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 70, 0, '', 20111, 3, 1069, 0),
+(71, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Placa de embrague', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 71, 0, '', 20111, 3, 1070, 0),
+(72, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Platillos de valvulas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 72, 0, '', 20111, 3, 1071, 0),
+(73, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Polea balanceadora D/3', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 73, 0, '', 20111, 3, 1072, 0),
+(74, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Polea bomba de agua', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 74, 0, '', 20111, 3, 1073, 0),
+(75, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Porta termostato inferior', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 75, 0, '', 20111, 3, 1074, 0),
+(76, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Porta termostato superior', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 76, 0, '', 20111, 3, 1075, 0),
+(77, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Prisioneros soporte balancin', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 77, 0, '', 20111, 3, 1076, 0),
+(78, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', ' Radiadores de aceite con tornillos', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 78, 0, '', 20111, 3, 1077, 0),
+(79, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Reguladores de balancines', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 79, 0, '', 20111, 3, 1078, 0),
+(80, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Resorte de valvulas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 80, 0, '', 20111, 3, 1079, 0),
+(81, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Resortes de balancines', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 81, 0, '', 20111, 3, 1080, 0),
+(82, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Rompe olas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 82, 0, '', 20111, 3, 1040, 0),
+(83, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Seguro de valvulas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 83, 0, '', 20111, 3, 1081, 0),
+(84, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Sensor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 84, 0, '', 20111, 3, 1120, 0),
+(85, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Sensor de presion de aceite', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 84, 0, '', 20111, 3, 1082, 0),
+(86, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Sensor de temperatura', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 85, 0, '', 20111, 3, 1083, 0),
+(87, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Separador de bomba de agua', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 86, 0, '', 20111, 3, 1084, 0),
+(88, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Separador de motor de arranque', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 87, 0, '', 20111, 3, 1085, 0),
+(89, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Soporte de alternador', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 88, 0, '', 20111, 3, 1086, 0),
+(90, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Soporte de motor', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 89, 0, '', 20111, 3, 1087, 0),
+(91, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Soporte de multiple de escape', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 90, 0, '', 20111, 3, 1088, 0),
+(92, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Soporte filtro de gasoil DH', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 91, 0, '', 20111, 3, 1089, 0),
+(93, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa de carcaza cubre volante', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 92, 0, '', 20111, 3, 1090, 0),
+(94, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa de cilindros', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 93, 0, '', 20111, 3, 1091, 0),
+(95, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa de compresor M/V M/N', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 94, 0, '', 20111, 3, 1092, 0),
+(96, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa de distribucion', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 95, 0, '', 20111, 3, 1093, 0),
+(97, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa de inspeccion', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 96, 0, '', 20111, 3, 1094, 0),
+(98, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa de inspeccion con respirador', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 97, 0, '', 20111, 3, 1095, 0),
+(99, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa lateral', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 98, 0, '', 20111, 3, 1096, 0),
+(100, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa balancines M/N - M/V', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 99, 0, '', 20111, 3, 1097, 0),
+(101, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa de distribucion', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 100, 0, '', 20111, 3, 1098, 0),
+(102, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa de inspeccion', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 101, 0, '', 20111, 3, 1099, 0),
+(103, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa de inspeccion con respirador', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 102, 0, '', 20111, 3, 1100, 0),
+(104, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa lateral', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 103, 0, '', 20111, 3, 1101, 0),
+(105, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapa balancines M/N - M/V', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 104, 0, '', 20111, 3, 1102, 0),
+(106, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapas de bancada', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 105, 0, '', 20111, 3, 1104, 0),
+(107, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tuercas de inyectores', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 106, 0, '', 20111, 3, 1110, 0),
+(108, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tuercas de tapas de cilindros', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 106, 0, '', 20111, 3, 1111, 0),
+(109, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tapon de block', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 106, 0, '', 20111, 3, 1105, 0),
+(110, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Tensor de alternador', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 107, 0, '', 20111, 3, 1106, 0),
+(111, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Turbo', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 107, 0, '', 20111, 3, 1117, 0),
+(112, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Union ejes de balancines', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 107, 0, '', 20111, 3, 1112, 0),
+(113, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Vaina varilla de aceite', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 108, 0, '', 20111, 3, 1103, 0),
+(114, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Varilla nivel de aceite', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 109, 0, '', 20111, 3, 1107, 0),
+(115, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Varilla alza valvulas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 110, 0, '', 20111, 3, 1108, 0),
+(116, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Torre de balancines', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 111, 0, '', 20111, 3, 1109, 0),
+(117, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Valvula corte de gas-oil vigia', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 115, 0, '', 20111, 3, 1113, 0),
+(118, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Valvulas', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 116, 0, '', 20111, 3, 1114, 0),
+(119, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Ventilador con tornillos', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 117, 0, '', 20111, 3, 1115, 0),
+(120, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'Volante con bulones', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 118, 0, '', 20111, 3, 1116, 0),
+(121, 'Registro Recepcion de componente RE-TAL-009', '', 'PARTES RECIBIDAS', 'ECM o ECU', 'checkbox', '', 1000, NULL, '2018-07-30 00:35:27', '28', 120, 0, '', 20111, 3, 1119, 0);
 
 -- --------------------------------------------------------
 
@@ -5567,7 +5694,30 @@ CREATE TABLE `mtb_num_interno` (
 --
 
 INSERT INTO `mtb_num_interno` (`año`, `num_correlativo`) VALUES
-(2018, 25);
+(2018, 27);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `mtb_tiempos_standar`
+--
+
+CREATE TABLE `mtb_tiempos_standar` (
+  `tipo_motor_id` varchar(45) NOT NULL,
+  `dias_habiles` float NOT NULL,
+  `descripcion` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `mtb_tiempos_standar`
+--
+
+INSERT INTO `mtb_tiempos_standar` (`tipo_motor_id`, `dias_habiles`, `descripcion`) VALUES
+('CI-MG', 10.14, 'CI-MG Motor Grande de 8 a 16 cil'),
+('CI-MM', 6.64, 'CI-MM Motor Mediano de 3 a 6 cil'),
+('CI-PS', 1.31, 'CL Parte Suelta'),
+('CL-ME', 2, 'CL-ME Motor Entero de 4 a 6 cil'),
+('CL-MSA', 1.81, 'CL-MSA Motor Semi-Armado ');
 
 -- --------------------------------------------------------
 
@@ -6941,7 +7091,8 @@ INSERT INTO `trj_pedido_trabajo` (`petr_id`, `parte_vehiculo`, `patente`, `indic
 (18, '', '', '', '', '', '', NULL, '0000-00-00', '', 'Seleccionar...', 'Seleccionar...', '0', 25, NULL, NULL, NULL, NULL, NULL, 0),
 (19, '', '', '', '', '', '', NULL, '0000-00-00', '', 'Seleccionar...', 'Seleccionar...', 'BIE-11-18', 25, NULL, NULL, NULL, NULL, NULL, 0),
 (20, 'otra cosa', '12313', 'CAT.924', 'CATERPILAR 3056 (PERKINS ) DIESEL *6CIL* 100mm', '124134', '678588', 'Normal', '2018-08-31', '', 'Componente Liviano', 'Motor Semiarmado', 'CA-23-18', 20, NULL, NULL, NULL, NULL, NULL, 74),
-(22, 'Motor', '', 'CAT.3304 ASP', 'CATERPILLAR 3304 ASP.NOR.INY.IND.P38*4CIL*120.6mm', '11111', '', 'Normal', '2018-08-25', '', 'Componente Industrial', 'Motor Grande', 'BI-25-18', 20, NULL, NULL, NULL, NULL, NULL, 22);
+(22, 'Motor', '', 'CAT.3304 ASP', 'CATERPILLAR 3304 ASP.NOR.INY.IND.P38*4CIL*120.6mm', '11111', '', 'Normal', '2018-08-25', '', 'Componente Industrial', 'Motor Grande', 'BI-25-18', 20, NULL, NULL, NULL, NULL, NULL, 22),
+(23, 'arbol gigant', '3546', 'CAT.924', 'CATERPILAR 3056 (PERKINS ) DIESEL *6CIL* 100mm', '879678', '3456', 'Normal', '2018-09-14', '', 'CI - Componente Industrial', 'MG - Motor Grande', 'BIE-0027-18', 22, NULL, NULL, NULL, NULL, NULL, 1019);
 
 --
 -- Índices para tablas volcadas
@@ -7110,6 +7261,12 @@ ALTER TABLE `info_sistema`
 --
 ALTER TABLE `mtb_num_interno`
   ADD PRIMARY KEY (`año`);
+
+--
+-- Indices de la tabla `mtb_tiempos_standar`
+--
+ALTER TABLE `mtb_tiempos_standar`
+  ADD PRIMARY KEY (`tipo_motor_id`);
 
 --
 -- Indices de la tabla `orden_insumos`
@@ -7360,7 +7517,7 @@ ALTER TABLE `frm_formularios`
 -- AUTO_INCREMENT de la tabla `frm_formularios_completados`
 --
 ALTER TABLE `frm_formularios_completados`
-  MODIFY `FOCO_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `FOCO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 --
 -- AUTO_INCREMENT de la tabla `frm_grupos`
 --
@@ -7375,7 +7532,7 @@ ALTER TABLE `frm_valores`
 -- AUTO_INCREMENT de la tabla `frm_valores_validos`
 --
 ALTER TABLE `frm_valores_validos`
-  MODIFY `VAPO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2500;
+  MODIFY `VAPO_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2328;
 --
 -- AUTO_INCREMENT de la tabla `info_sistema`
 --
@@ -7415,7 +7572,7 @@ ALTER TABLE `sisactions`
 -- AUTO_INCREMENT de la tabla `sisgroups`
 --
 ALTER TABLE `sisgroups`
-  MODIFY `grpId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `grpId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT de la tabla `sisgroupsactions`
 --
@@ -7445,7 +7602,7 @@ ALTER TABLE `sucursal`
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6002;
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `tbl_detanotapedido`
 --
@@ -7495,7 +7652,7 @@ ALTER TABLE `trj_nomenclador_motores`
 -- AUTO_INCREMENT de la tabla `trj_pedido_trabajo`
 --
 ALTER TABLE `trj_pedido_trabajo`
-  MODIFY `petr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `petr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- Restricciones para tablas volcadas
 --
