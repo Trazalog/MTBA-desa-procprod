@@ -21,3 +21,5 @@ application/config/config\.php
 application/models/bonitas\.php
 
 application/config/conexion\.php
+
+application/logs/log-2018-08-28\.php

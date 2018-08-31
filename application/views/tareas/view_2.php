@@ -48,6 +48,11 @@
                      
                       $userdata = $this->session->userdata('user_data');
                       $usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
+                      $usrName =  $userdata[0]['usrName'];
+                      $usrLastName = $userdata[0]["usrLastName"];
+                      
+                      echo "<input type='text' class='hidden' id='usrName' value='$usrName' >";
+                      echo "<input type='text' class='hidden' id='usrLastName' value='$usrLastName' >";
                       ?>
 
                                     <form>
@@ -170,19 +175,24 @@
 													<div class="panel-heading">Comentarios</div>
 													<div  class="panel-body" style="max-height: 500px;overflow-y: scroll;">
 														<ul id="listaComentarios">
-														<?php 
-															foreach($comentarios as $f){
-																echo '<hr/>';
-															
-															    if(strpos($f['userId']['icon'],'.png')==0){
-																$img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
-																}else{
-																$img='';
-																}
-																echo '<li><h4>'.$img.$f['userId']['userName'].'<small style="float: right">'.$f['postDate'].'</small></h4>';
-																echo '<p>'.$f['content'].'</p></li>';
-															}
-														?>
+                                                        <?php 
+                                                            foreach($comentarios as $f){
+                                                            
+
+                                                            //    if(strpos($f['userId']['icon'],'.png')==0){
+                                                            //        $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
+                                                            //    }else{
+                                                            //        $img='';
+                                                            //    }
+                                                            //echo $comentarios;
+                                                        // echo '<li><h4>'.$f['content'].'</h4></li>';
+                                                            if(strcmp($f['userId']['userName'],'System')!=0){
+                                                            echo '<hr/>';
+                                                            echo '<li><h4>'.$userdata[0]['usrName'].' '.$userdata[0]["usrLastName"].'<small style="float: right">'.$f['postDate'].'</small></h4>';
+                                                            echo '<p>'.$f['content'].'</p></li>';
+                                                            }
+                                                        }
+                                                        ?>
 														</ul>
 													</div>
 												</div>
@@ -315,8 +325,11 @@
     }
     //Funcion COMENTARIOS
     function guardarComentario() {
-		console.log("Guardar Comentarios...");
-		var id='14';
+		console.log("Guardar Comentarios...");             
+        var id=<?php echo json_encode($TareaBPM['caseId']);?>;
+        var nombUsr = $('#usrName').val();
+        var apellUsr = $('#usrLastName').val();
+		 
 		var comentario=$('#comentario').val();
 		$.ajax({
 		type:'POST',
@@ -325,7 +338,7 @@
 		success:function(result){
 			console.log("Submit");
 			var lista =  $('#listaComentarios');
-			lista.append('<hr/><li><h4>'+'Nombre de Usuario'+'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
+			lista.append(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
 			$('#comentario').val('');
 		},
 		error:function(result){

@@ -174,8 +174,8 @@
 <script>
 	
 	function guardarComentario() {
-		console.log("Guardar Comentarios...");
-		var id='14';
+		console.log("Guardar Comentarios...");             var id=<?php echo json_encode($TareaBPM['caseId']);?>;
+		 
 		var comentario=$('#comentario').val();
 		$.ajax({
 		type:'POST',
@@ -184,7 +184,7 @@
 		success:function(result){
 			console.log("Submit");
 			var lista =  $('#listaComentarios');
-			lista.append('<hr/><li><h4>'+'Nombre de Usuario'+'<small style="float: right">'+result['postDate']+'</small></h4><p>'+result['content']+'</p></li>');
+			lista.append(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">'+result['postDate']+'</small></h4><p>'+result['content']+'</p></li>');
 			$('#comentario').val('');
 		},
 		error:function(result){

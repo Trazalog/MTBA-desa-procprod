@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-    <?php cargarCabecera(12);?>
+    <?php cargarCabecera($idPedTrabajo); ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -33,24 +33,30 @@
 
                                                         <?php
                                     //echo"id de form: ";
-                                    //dump_exit($idForm);
+                                    //dump_exit($TareaBPM["assigned_id"]);
+                                    //$TareaBPM["assigned_id"] = 'asignado';
                                                         //echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
                                                     //if ($estadoTarea == "noasignado") {´
 
-                                                        echo "<button class='btn btn-block btn-success' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
+                                                        echo "<button class='btn btn-block btn-success' id='btontomar' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
                                                     //}else{
                                                         echo "&nbsp"; 
                                                         echo "&nbsp"; 
                                                         echo "&nbsp";
-                                                        echo "<button class='btn btn-block btn-danger' style='width: 100px; margin-top: 10px;display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
+                                                        echo "<button class='btn btn-block btn-danger grupNoasignado' id='btonsoltr' style='width: 100px; margin-top: 10px; display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
                                                     //}    
                                                         echo "</br>"; 
                                                         echo "</br>"; 
 
                                                         $userdata = $this->session->userdata('user_data');
                                                         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
+                                                        $usrName =  $userdata[0]['usrName'];
+                                                        $usrLastName = $userdata[0]["usrLastName"];
+                                                        
+                                                        echo "<input type='text' class='hidden' id='usrName' value='$usrName' >";
+                                                        echo "<input type='text' class='hidden' id='usrLastName' value='$usrLastName' >";
                                                     ?>
-
+                                                    <input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>" >
                                                     <form>
                                                         <div class="panel panel-default">
                                                             <h4 class="panel-heading">INFORMACION:</h4>
@@ -106,7 +112,7 @@
                                                                 <div class="col-sm-12 col-md-12">
                                                                     <label for="detalle">Detalle</label>
                                                                     <textarea class="form-control" id="detalle" rows="3"
-                                                                    disabled><?php $TareaBPM['displayDescription']?></textarea>
+                                                                    disabled><?php echo $TareaBPM['displayDescription']?></textarea>
                                                                 </div>
                                                             </div></br> </br> </br> </br> </br>
                                                         </div>
@@ -114,7 +120,7 @@
                                                         <div class="form-group">
                                                             <div class="col-sm-12 col-md-12">
                                                                 <!-- Modal formulario tarea -->
-                                                                <?php if($idForm !=''){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
+                                                                <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
                                                                 data-target=".bs-example-modal-lg" onclick="getformulario()">Completar
                                                                 Formulario
                                                                 </button>';}?>
@@ -128,7 +134,7 @@
                                                                 <textarea class="form-control" id="observaciones" rows="3"></textarea>
                                                             </div>
                                                         </div>
-
+                                                                    
                                                     </form>
 
                                                 </div>
@@ -140,17 +146,22 @@
                                                 <div class="panel-heading">Comentarios</div>
                                                 <div  class="panel-body" style="max-height: 500px;overflow-y: scroll;">
                                                  <ul id="listaComentarios">
-                                                     <?php 
+                                                 <?php 
                                                      foreach($comentarios as $f){
-                                                       echo '<hr/>';
+                                                       
 
-                                                       if(strpos($f['userId']['icon'],'.png')==0){
-                                                           $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
-                                                       }else{
-                                                           $img='';
-                                                       }
-                                                       echo '<li><h4>'.$img.$f['userId']['userName'].'<small style="float: right">'.$f['postDate'].'</small></h4>';
+                                                    //    if(strpos($f['userId']['icon'],'.png')==0){
+                                                    //        $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
+                                                    //    }else{
+                                                    //        $img='';
+                                                    //    }
+                                                    //echo $comentarios;
+                                                   // echo '<li><h4>'.$f['content'].'</h4></li>';
+                                                    if(strcmp($f['userId']['userName'],'System')!=0){
+                                                       echo '<hr/>';
+                                                       echo '<li><h4>'.$userdata[0]['usrName'].' '.$userdata[0]["usrLastName"].'<small style="float: right">'.$f['postDate'].'</small></h4>';
                                                        echo '<p>'.$f['content'].'</p></li>';
+                                                    }
                                                    }
                                                    ?>
                                                </ul>
@@ -158,7 +169,7 @@
                                        </div>
                                        <textarea id="comentario" class="form-control" placeholder="Nuevo Comentario..."></textarea>
                                        <br/>						
-                                       <button class="btn btn-primary" onclick="guardarComentario()">Agregar</button>
+                                       <button class="btn btn-primary" id="guardarComentario" onclick="guardarComentario()">Agregar</button>
                                    </div>
                                </div>
 
@@ -179,7 +190,7 @@
 
         <div class="modal-footer">
             <button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
-            <button type="button" class="btn btn-success" onclick="estado()">Hecho</button>
+            <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button>
         </div> <!-- /.modal footer -->
 
     </div><!-- /.box body -->
@@ -190,9 +201,42 @@
 
 
 
-<script>
-    
-    
+<script>  
+          
+    evaluarEstado();    
+    function evaluarEstado(){
+       
+        var asig = $('#asignado').val();       
+        // si esta tomada la tarea
+        if(asig != ""){
+            habilitar();
+        }else{
+            deshabilitar();
+        }
+    }      
+   
+    function habilitar(){       
+        // habilito btn y textarea       
+        $("#btonsoltr").show();
+        $("#hecho").show();       
+        $("#guardarComentario").show();        
+        $("#comentario").show();
+        //desahilito btn tomar      
+        $("#btontomar").hide();
+        $("#formulario").show();
+    }
+
+    function deshabilitar(){
+        // habilito btn tomar
+        $("#btontomar").show();
+        // habilito btn y textarea  
+        $("#btonsoltr").hide();       
+        $("#hecho").hide();       
+        $("#guardarComentario").hide();
+        $("#comentario").hide();
+        $("#formulario").hide();
+    }    
+
     // Volver al atras
     $('#cerrar').click(function cargarVista() {
         WaitingOpen();
@@ -200,6 +244,7 @@
         $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
         WaitingClose();
     });
+
     /* Funciones BPM */
     //Ckeck Tarea realizada
     $('.btncolor').click(function(e) {
@@ -231,8 +276,33 @@
             //   if ($('#observaciones').val() == ""){
             //     alert('Campo Detalle vacio');
             //   }
-            // }); 
-    
+            // });               
+
+
+
+    function terminarTarea(){
+        var idTarBonita = $('#idTarBonita').val();
+        //alert(idTarBonita);
+        $.ajax({
+            type: 'POST',
+            data: {
+                'idTarBonita': idTarBonita,
+            },
+            url: 'index.php/Tarea/terminarTarea',
+            success: function(data) {
+                    
+                    // toma a tarea exitosamente
+                    if(data['reponse_code'] == 204){
+                        $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
+                    }
+            },
+            error: function(data) {
+                //alert("Noo");
+                console.log(data);
+            },
+            dataType: 'json'
+        }); 
+    }            
     
     // Boton Hecho generico
     function estado() {
@@ -256,8 +326,11 @@
     }
     //Funcion COMENTARIOS
     function guardarComentario() {
-			console.log("Guardar Comentarios...");
-			var id='14';
+			console.log("Guardar Comentarios...");            
+            var id=<?php echo json_encode($TareaBPM['caseId']);?>;
+            var nombUsr = $('#usrName').val();
+            var apellUsr = $('#usrLastName').val();;
+			 
 			var comentario=$('#comentario').val();
 			$.ajax({
 			type:'POST',
@@ -266,7 +339,7 @@
 			success:function(result){
 				console.log("Submit");
 				var lista =  $('#listaComentarios');
-				lista.append('<hr/><li><h4>'+'Nombre de Usuario'+'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
+				lista.append(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
 				$('#comentario').val('');
 			},
 			error:function(result){
@@ -285,6 +358,12 @@
             },
             url: 'index.php/Tarea/tomarTarea',
             success: function(data) {
+                   console.log(data['reponse_code']);
+                    // toma a tarea exitosamente
+                    if(data['reponse_code'] == 200){
+                        habilitar();
+                    }
+
             },
             error: function(result) {
                 console.log(result);
@@ -303,6 +382,11 @@
             },
             url: 'index.php/Tarea/soltarTarea',
             success: function(data) {
+                console.log(data['reponse_code']);
+                    // toma a tarea exitosamente
+                    if(data['reponse_code'] == 200){
+                        deshabilitar();
+                    }
             },
             error: function(result) {
                 console.log(result);
@@ -565,8 +649,10 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12">
                                     <?php
-                  cargarFormulario($form);
-                  ?>
+                                    if($form != ''){
+                                        cargarFormulario($form);
+                                    }                                    
+                                    ?>
                                 </div>
                             </div>
                         </div>

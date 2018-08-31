@@ -11,15 +11,14 @@ class AceptacionTrabajo extends CI_Controller
     public function index($permission)
 	{	
 		$data['permission'] = $permission;
-		$data['cotizacion'] = $this->AceptacionTrabajos->ObtenerCotizacion();
-		$this->load->view('aceptaciontrabajo/view_4', $data);
+		$data['pedido_id'] = 12;
+		$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto(777);
+		$this->load->view('tareas/view_4', $data);
 	}
 
 	public function GuardarAceptacionTrabajoBPM(){
 
 		$datos = $this->input->post();
-		dump_exit($datos);
-
 		$entrega_servicio=$this->input->post('entrega_servicio');
 		$direccion_entrega=$this->input->post('direccion_entrega');
 		$tipo_cliente=$this->input->post('tipo_cliente');
@@ -61,14 +60,14 @@ class AceptacionTrabajo extends CI_Controller
 				'direccion_entrega' => $direccion_entrega,
 				'tipo_cliente' => $tipo_cliente,
 				'proveedor_repuesto' => $proveedor_repuesto,
-				'orden_compra' =>  $documento['upload_data']['file_name']	
+				'orden_compra' =>  $documento['upload_data']['file_name']
 			);
 			$resultBD = $this->AceptacionTrabajos->Guardar(37,$data);
 		   	echo $result;
 		   }
 	}
 	
-	function NoAceptaTrabajoBPM(){
+	public function NoAceptaTrabajoBPM(){
 		$dataBPM = $this->input->post();
 		$parametros = $this->Bonitas->conexiones();
 		$parametros["http"]["method"] = "POST";	
@@ -76,6 +75,33 @@ class AceptacionTrabajo extends CI_Controller
 		$param = stream_context_create($parametros);
 		$result = $this->AceptacionTrabajos->TrabajoExecutionBPM(86,$param);
 		echo json_encode($result);
+	}
+
+	public function GuardarPresupuesto(){
+		$idPedTrabajo = $this->input->post('idPedTrabajo');
+		$config = [
+			'upload_path' => "./assets/documentosMTB/presupuestos",
+			'allowed_types' => "*",
+			'max_size' => "5000"
+		];
+		$this->load->library("upload",$config);
+		if($this->upload->do_upload('presupuesto')){
+			$documento = array("upload_data" => $this->upload->data());	
+			$data = array(
+				'NOM_VAR' => 'presupuesto',
+				'VALOR' => "./assets/documentosMTB/presupuestos/".$documento['upload_data']['file_name']
+			);
+		 	$resultBD = $this->AceptacionTrabajos->GuardarPresupuesto($idPedTrabajo,$data);
+		 	if($resultBD==false){
+		 		echo 'error';
+		 	}else{
+		 		echo base_url().$data['VALOR'];
+			 }
+
+			}else{
+			echo 'error';
+		}
+
 	}
 }
 ?>

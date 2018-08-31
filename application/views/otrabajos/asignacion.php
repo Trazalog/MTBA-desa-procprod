@@ -193,8 +193,11 @@
                   </thead>
                   <tbody>  
                    <?php
-                    // echo "<pre>";  
-                   // var_dump($list);
+                   //  echo "<pre>";  
+                   //dump_exit($idTarBonita);
+                  
+                   echo "<input type='text' class='' id='idTarBonita' value='". $idTarBonita ."'>";
+                  
                    if(count($list) > 0) {
                     $userdata = $this->session->userdata('user_data');
                     $usrId= $userdata[0]['usrId'];                       
@@ -313,87 +316,116 @@ $('#tabCalend').click(function(e){
 
   regresa1();
 });
-
+//FIXME: arreglar la vallidacion de campos de asignacio de usr y de fecha
 // Valida que no hayan tareas sin asignar ni sin programar 
 function validarInicio(){
-  var contCeldas = 0;
-  var programadas = 0;
-  var asignadas = 0;
-  var celFecha = "";
-  var tbl_Calendario = $('.tbCalendario tbody tr');
   
-  $(tbl_Calendario).each(function(){    
+  //TODO: sacar esta funcion esta abajo
+  cerrarPlanificacion();
+  
+  // var contCeldas = 0;
+  // var programadas = 0;
+  // var asignadas = 0;
+  // var celFecha = "";
+  // var tbl_Calendario = $('.tbCalendario tbody tr');
+  
+  // $(tbl_Calendario).each(function(){    
       
-      // cuenta programadas
-      celFecha = $(this).find('td.fecha').html();
-      console.log('Validacion - fecha asignacion: ');
-      console.log(celFecha);
-      if(celFecha !== undefined){
-        programadas ++;
-      }
+  //     // cuenta programadas
+  //     celFecha = $(this).find('td.fecha').html();
+  //     console.log('Validacion - fecha asignacion: ');
+  //     console.log(celFecha);
+  //     if(celFecha !== undefined){
+  //       programadas ++;
+  //     }
 
-      // cuent asignadas
-      celAsign = $(this).find('td.usrasign').html();
-      console.log('Validacion - asignado: ');
-      console.log(celAsign);
-      if(celAsign !== undefined){
-        asignadas ++;
-      }
+  //     // cuent asignadas
+  //     celAsign = $(this).find('td.usrasign').html();
+  //     console.log('Validacion - asignado: ');
+  //     console.log(celAsign);
+  //     if(celAsign !== undefined){
+  //       asignadas ++;
+  //     }
 
-      // suma cantidad filas
-      contCeldas++;
-      //console.log(celFecha);
-  });
+  //     // suma cantidad filas
+  //     contCeldas++;
+  //     //console.log(celFecha);
+  // });
 
-  if (contCeldas > programadas) {
-    alert('Existen tareas sin programar...');
-  }else{
+  // if (contCeldas > programadas) {
+  //   alert('Existen tareas sin programar...');
+  // }else{
 
-    //alert(contCeldas +' '+ programadas);
-  }
+  //   //alert(contCeldas +' '+ programadas);
+  // }
 
-  if (contCeldas > asignadas) {
-    alert('falta asignar');
-  }else{
-    //alert(contCeldas +' '+ asignadas);
-    console.log('Se puede iniciar el Proceso...');
-    guardarInfo();
-  }
+  // if (contCeldas > asignadas) {
+  //   alert('Existen tareas sin asignar, por favor asígnelas antes de terminar la Planificación');
+  // }else{
+  //   //alert(contCeldas +' '+ asignadas);
+  //   console.log('Validación de tareas completada.');
+  //   //guardarInfo();
+  //   cerrarPlanificacion();
+  // }
 }
 
-function  guardarInfo(){
-  //alert('guardar info');
-  var tabla = $('#calendarList tbody tr');
-  //console.table(tabla);
-  var usuarioAsignado = "";
-  var idTareaTrazajobs = "";
-  var duracion = 0;
-  var duracionStd = 0;
-  var tareadescrip = "";
-  var coordinador = "Duilio.Alcaraz";
-  var datos = [];
-
-  $(tabla).each(function(){
-    usuarioAsignado = $(this).find('td.usrasign').html();
-    idTareaTrazajobs = $(this).find('td.id_listarea').html();
-    tareadescrip = $(this).find('td.tareadescrip').html();
-    
-    duracion = $(this).find('td.duracionStd').html();
-    duracionStd = duracion * 60000;
-    
-    datos['nombre'] = tareadescrip;
-    datos['usuarioCoordinador'] = coordinador;
-    datos['usuarioAsignado'] = usuarioAsignado;
-    datos['idTareaTrazajobs'] = idTareaTrazajobs;
-    datos['duracionStd'] = duracionStd;
-
-    //console
-
-  });
-
-
-
+function cerrarPlanificacion(){
+  
+  var idTarBonita = $('#idTarBonita').val();
+  //var idOT = $('#idOT').val();
+  $.ajax({
+          type: 'POST',
+          data: { idTarBonita: idTarBonita},
+                  //idOT: idOT},
+          url: 'index.php/Tarea/terminarPlanificacion', 
+          success: function(data){ 
+            console.log('respuesta cerrar planif: ');
+            console.log(data);
+                                  
+                },              
+          error: function(result){
+                  console.log(result);
+                },
+          dataType: 'json'      
+    });
 }
+
+
+
+
+// function  guardarInfo(){
+//   //alert('guardar info');
+//   var tabla = $('#calendarList tbody tr');
+//   //console.table(tabla);
+//   var usuarioAsignado = "";
+//   var idTareaTrazajobs = "";
+//   var duracion = 0;
+//   var duracionStd = 0;
+//   var tareadescrip = "";
+//   var coordinador = "Duilio.Alcaraz";
+//   var datos = [];
+
+//   $(tabla).each(function(){
+//     usuarioAsignado = $(this).find('td.usrasign').html();
+//     idTareaTrazajobs = $(this).find('td.id_listarea').html();
+//     tareadescrip = $(this).find('td.tareadescrip').html();
+    
+//     duracion = $(this).find('td.duracionStd').html();
+//     duracionStd = duracion * 60000;
+    
+//     datos['nombre'] = tareadescrip;
+//     datos['usuarioCoordinador'] = coordinador;
+//     datos['usuarioAsignado'] = usuarioAsignado;
+//     datos['idTareaTrazajobs'] = idTareaTrazajobs;
+//     datos['duracionStd'] = duracionStd;
+
+//     //console
+
+//   });
+
+
+
+// }
 
 
 
@@ -439,13 +471,281 @@ function  guardarInfo(){
   var grpId = $('#grpId').val();
   var permiso = "";
 
-    $(function () {    
+// $(function () {    
 
+    //   //  CALENDARIO
+
+    //  /* initialize the external events
+    //  -----------------------------------------------------------------*/
+    //   function ini_events(ele) {
+    //     ele.each(function () {
+    //         // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+    //         // it doesn't need to have a start or end
+    //         var eventObject = {
+    //           title: $.trim($(this).text()) // use the element's text as the event title
+    //         };
+
+    //         // store the Event Object in the DOM element so we can get to it later
+    //         $(this).data('eventObject', eventObject);
+
+    //         // make the event draggable using jQuery UI
+    //         $(this).draggable({
+    //           zIndex: 1070,
+    //           revert: true, // will cause the event to go back to its
+    //           revertDuration: 0  //  original position after the drag
+    //         });
+
+    //     });
+    //   }
+    //   ini_events($('#external-events div.external-event'));
+
+    //   /* initialize the calendar
+    //   -----------------------------------------------------------------*/
+    //   //Date for the calendar events (dummy data)
+    //   var date = new Date();
+    //   var d = date.getDate(),
+    //   m = date.getMonth(),
+    //   y = date.getFullYear();     
+      
+    //   // Permisos para cambiar la fecha y hora de programacion      
+    //     if (grpId == 1) {
+    //       permiso = true;
+    //     }else{
+    //       permiso = false;
+    //     }
+
+    //   $('#calendar').fullCalendar({
+    //       header: {
+    //         left  : 'prev,next today',
+    //         center: 'title',
+    //         right : 'month,agendaWeek,agendaDay'
+    //       },
+    //       buttonText: {
+    //         today: 'Hoy',
+    //         month: 'Mes',
+    //         week : 'Semana',
+    //         day  : 'Día'
+    //       },
+    //       // desde aca busca los preventivos
+    //       events: function(start, end, timezone, callback) {
+    //         //WaitingOpen('Cargando trabajo');
+    //         var date_ = new Date($("#calendar").fullCalendar('getDate'));
+    //         var month_ = date_.getMonth();
+    //         var idOrden = $('#numord').val();
+
+    //         var evento = $.ajax({
+    //                           //url: 'index.php/Otrabajo/getcalendTareasSector',
+    //                           url: 'index.php/Otrabajo/getcalendTareas',
+    //                           data: { month: month_,
+    //                                   idOrden: idOrden },
+    //                           dataType: 'json',
+    //                           type: 'POST',
+    //                           success: function(doc) {
+    //                               var events = [];
+    //                               //getTablas(month_);
+
+                                
+    //                               $(doc).each(function() {
+
+    //                                   var tarea = $(this).attr('tareaDescripcion');
+                                      
+    //                                   var desde = $(this).attr('fecha');
+    //                                   var from = new Date(desde);                            
+                                      
+    //                                   // sumo los minutos
+    //                                   var minutos = parseInt(from.getMinutes());
+    //                                   var duracion = parseInt($(this).attr('duracion_prog'));
+    //                                   var totalminutos = minutos + duracion;
+
+    //                                   var aaaa = $(this).attr('duracion_prog');
+    //                                   console.log('duracion: ');
+    //                                   console.log(aaaa);
+
+    //                                   var hasta = new Date(from);
+    //                                   hasta = hasta.setMinutes(totalminutos);
+                                      
+    //                                   var to = new Date(hasta);
+
+    //                                   // asigna colores en funcion del tipo de orden
+    //                                   var  Color = '';
+    //                                   // switch ($(this).attr('tipo')) {
+    //                                     //   case '1':
+    //                                     //           Color = '#3c8dbc';    //Orden Trabajo (celeste)
+    //                                     //           break;
+    //                                     //           case '2':
+    //                                     //           Color = '#f56954';    //Correctivo (rojo)
+    //                                     //           break;
+    //                                     //           case '3':
+    //                                     //           Color = '#39CCCC';   //Preventivo (turquesa)
+    //                                     //           break;
+    //                                     //           case '4':
+    //                                     //           Color = '#ff851b';   //Backlog (naranja)
+    //                                     //           break;
+    //                                     //           case '5':
+    //                                     //           Color = '#00a65a';    //Predictivo (verde)
+    //                                     //           break;
+    //                                     //           case '6':
+    //                                     //           Color = '#D81B60';   //Correctivo Programado (fucsia)
+    //                                     //           break;
+    //                                     // };
+
+    //                                   events.push({
+    //                                           // title: $(this).attr('descripcion') + ',' + $(this).attr('id_tarea'),
+    //                                           //start:to,
+    //                                           start:from,
+    //                                           end:to,
+    //                                           title:  $(this).attr('tareaDescripcion'),
+    //                                           // codigo: $(this).attr('nro'),
+    //                                           equipo: $(this).attr('equipoDescripcion'),
+    //                                           // id_orden: $(this).attr('id_orden'),
+    //                                           idtarea: $(this).attr('id_listarea'), 
+    //                                           allDay: false,
+    //                                           backgroundColor: Color,
+    //                                         });
+    //                               });
+                                
+    //                               callback(events);
+    //                               WaitingClose();
+    //                           },
+
+    //                           error: function(doc) {
+    //                             WaitingClose();
+    //                             //alert('Sin datos para este mes');
+    //                                   //alert("Error en ajax calendario:" + doc);
+    //                           }
+    //                       });
+    //       },
+
+    //       eventClick: function(event) {
+    //         //// console.log('eventossss');
+    //         // console.log(evento);
+    //         var idOT = $('#numord').val();
+    //         console.log('Titulo:');
+    //         console.log(event.title);
+    //         //setTimeout("$('#modalPrevent').modal('show')",0);
+    //         $('#title').remove();
+    //         $('#codigo_equipo').remove();
+    //         $('#numero').remove();
+    //         $('#modal_desc').remove();
+    //         $('#modal_prev tbody').append(
+
+    //           '<tr id="modal_desc">'+
+    //           '<td class="tit"><input type="text" class="numero prevent" id="numero" value=" '+ idOT +' " placeholder=""></td>'+              
+    //           '<td class="cod" id="cod"><input type="text" class="codigo_equipo prevent" id="codigo_equipo" value=" '+ event.equipo +' " placeholder=""></td>'+                  
+    //           '<td class="tit"><input type="text" class="title prevent" id="title" value=" '+ event.title +' " placeholder=""></td>'+          
+    //           '</tr>'
+    //           );
+
+    //           $('#modalTarea').modal('show');
+    //       },
+
+    //       editable: permiso,
+    //       droppable: permiso, // this allows things to be dropped onto the calendar !!!
+
+    //       drop: function (date, allDay) { // this function is called when something is dropped
+    //               // retrieve the dropped element's stored Event Object
+    //               var originalEventObject = $(this).data('eventObject');
+    //               // we need to copy it, so that multiple events don't have a reference to the same object
+    //               var copiedEventObject = $.extend({}, originalEventObject);
+    //               // assign it the date that was reported
+    //               copiedEventObject.start = date;
+    //               copiedEventObject.allDay = allDay;
+    //               copiedEventObject.backgroundColor = $(this).css("background-color");
+    //               copiedEventObject.borderColor = $(this).css("border-color");
+    //               // render the event on the calendar
+    //               // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+    //               $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+    //               // is the "remove after drop" checkbox checked?
+    //               if ($('#drop-remove').is(':checked')) {
+    //                 // if so, remove the element from the "Draggable Events" list
+    //                 $(this).remove();
+    //               }
+    //       },
+    //       // Triggered when dragging stops and the event has moved to a different day/time.
+    //       eventDrop: function(event, delta, revertFunc) {
+    //                   //alert("La Tarea: " + event.title + " cambio su programacion al dia " + event.start.format());
+    //                   var resultado = "";
+    //                   var nuevoDia = event.start.format();
+    //                   var id_listarea = event.idtarea;
+    //                   if (!confirm("Realmente desea hacer este cambio?")) {                          
+    //                       revertFunc();
+    //                   }else{
+    //                       resultado = updateDia(id_listarea,nuevoDia);
+    //                       if (resultado == 'false') {
+    //                         revertFunc();
+    //                         alert("No pudo realizarse el cambio");
+    //                       }else{
+    //                         //alert("Cambio exitoso");
+    //                       }
+    //                   }
+    //       },
+    //       // Triggered when resizing stops and the event has changed in duration.          
+    //       eventResize: function(event, delta, revertFunc) {
+    //                     var result = "";
+    //                     var duracion = delta; 
+    //                     var id_LT = event.idtarea;
+    //                         duracion = duracion/60000;
+    //                     //alert("Se agrego o resto: " + duracion + " cambio su duración y finalizará  " + event.end.format("h:mm:ss a"));
+    //                     if (!confirm("Realmente desea hacer este cambio?")) {                          
+    //                         revertFunc();
+    //                     }else{                            
+    //                         result = updateHora(id_LT,duracion);                        
+    //                         if (result == 'false') {
+    //                           revertFunc();
+    //                           alert("No pudo realizarse el cambio");
+    //                         }else{
+    //                           //alert("Cambio exitoso");
+    //                         }
+    //                     }
+    //       }  
+    //   });
+
+    //   /* ADDING EVENTS */
+    //     var currColor = "#3c8dbc"; //Red by default
+    //     //Color chooser button
+    //     var colorChooser = $("#color-chooser-btn");
+    //     $("#color-chooser > li > a").click(function (e) {
+    //       e.preventDefault();
+    //       //Save color
+    //       currColor = $(this).css("color");
+    //       //Add color effect to button
+    //       $('#add-new-event').css({"background-color": currColor, "border-color": currColor});
+    //     });
+    //     $("#add-new-event").click(function (e) {
+    //         e.preventDefault();
+    //         //Get value and make sure it is not null
+    //         var val = $("#new-event").val();
+    //         if (val.length == 0) {
+    //           return;
+    //         }
+
+    //         //Create events
+    //         var event = $("<div />");
+    //         event.css({"background-color": currColor, "border-color": currColor, "color": "#fff"}).addClass("external-event");
+    //         event.html(val);
+    //         $('#external-events').prepend(event);
+
+    //         //Add draggable funtionality
+    //         ini_events(event);
+
+    //         //Remove event from text input
+    //         $("#new-event").val("");
+    //     });    
+    // });
+    
+    
+
+/** */
+
+calendario();
+function calendario(){
+
+  
       //  CALENDARIO
 
      /* initialize the external events
      -----------------------------------------------------------------*/
-      function ini_events(ele) {
+     function ini_events(ele) {
         ele.each(function () {
             // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
             // it doesn't need to have a start or end
@@ -698,11 +998,23 @@ function  guardarInfo(){
 
             //Remove event from text input
             $("#new-event").val("");
-        });    
-    });
-    $(".fa-print").click(function (e) {
+        });   
+
+}
+
+
+
+
+
+
+
+
+/** */
+    
+    
+  $(".fa-print").click(function (e) {
       $("#calendar").printArea();
-    });
+  });
 
     
   
@@ -757,9 +1069,9 @@ function  guardarInfo(){
 
 //////////////////////listado tareas y pantillas hugo/////////////////////////////
 
-  
-  /// Trae tarea standar - Listo
-  $(function(){
+  // trae tareas estandar y llena select
+  getTareasEstandar();
+  function getTareasEstandar(){
     var tarea = $('#tarea');
      $.ajax({
           type: 'POST',
@@ -783,13 +1095,12 @@ function  guardarInfo(){
                   console.log(result);
                 },
           dataType: 'json'      
-    });  
-  });
+    }); 
+  }
 
   /// Plantillas llena select y tablas al seleccionar
-  $(function(){
-
-    // Trae plantillas y llena select
+  getPlantillas();
+  function getPlantillas(){
     var plantilla = $('#plantilla');
     $.ajax({
           type: 'POST',
@@ -813,9 +1124,8 @@ function  guardarInfo(){
                 },
           dataType: 'json'      
     });
-
-    // Al seleccionar plantilla llena tabla
-    $(plantilla).change(
+  }
+  $('#plantilla').change(
         function(){
           var idPlantilla = $("#plantilla option:selected").val();
           $.ajax({
@@ -832,11 +1142,11 @@ function  guardarInfo(){
                 dataType: 'json'      
           }); 
         }
-    ); 
-  });
+  );
 
   /// Trae subsectores - Listo
-  $(function(){
+  getSubsectores();
+  function getSubsectores(){
     var sectSelect = $('#sectSelect');
     $.ajax({
           type: 'POST',
@@ -860,7 +1170,7 @@ function  guardarInfo(){
                 },
           dataType: 'json'      
     });  
-  });
+  }
 
 //////////////////////////////////////////////////////////////////////
 
@@ -1042,14 +1352,7 @@ function  guardarInfo(){
               console.log(result);
             }           
       });  
-  }
-
-  // Guarda planificacion completa
-  function planificar(){
-    // Validar que todas las tareas esten progrmadas antes de guardar.
-    
-
-  }
+  }  
 
   // Programa fecha y equipo elegido en selector de equipos
   function programTarea(){
@@ -1115,14 +1418,6 @@ function  guardarInfo(){
 //////////////////////  / listado tareas y pantillas hugo////////////////////////
 
 
-
-
-
-
-
-
-
-
 /////////////////////////////////////////
   var codglo= "";
   var tareaglob= "";
@@ -1131,7 +1426,7 @@ function  guardarInfo(){
   var idtarea1="";
   var idu=";"
   var no="";
-  $(document).ready(function(event) {
+ // $(document).ready(function(event) {
     // Vuelve al listado de ordenes de trabajo
     $('#listado').click( function cargarVista(){
       WaitingOpen();
@@ -1141,7 +1436,8 @@ function  guardarInfo(){
     });
 
     // Agrega una tarea - Listo
-    $('#agregar').click(function (e) {      
+    $('#agregar').click(function (e) { 
+
       var numord= $('#numord').val();
       no=numord;      
       var tarea1= $('#tarea option:selected').text(); 
@@ -1196,7 +1492,6 @@ function  guardarInfo(){
        
       $('#tarea').val(''); 
     }); 
-
 
     // No se hace desde aca sino desde BPM
     //check de tarea realizada cambia estado a RE por id de tarea - Listo
@@ -1271,7 +1566,7 @@ function  guardarInfo(){
         changeYear: true
     });
 
-});
+//});
 
 // Asigna equipo a tarea por id de tarea y por id equipo - LISTO
 function setEquipo(){
@@ -1336,10 +1631,9 @@ function guardarmodif(){
                 data: { idtarea: idtarea, idusu:idusu },
                 url: 'index.php/Otrabajo/ModificarUsuario', //index.php/
                 success: function(data){
-                        console.log(data);
-                        
-                        regresa1();
-                      
+
+                        console.log(data);                        
+                        regresa1();                      
                       },
                   
                 error: function(result){
@@ -1367,10 +1661,9 @@ function guardarfecha(){
                 data: { idtarea: idtarea, idusu:idusu, fe:fe},
                 url: 'index.php/Otrabajo/ModificarFecha', //index.php/
                 success: function(data){
-                        console.log(data);
-                        
-                        regresa1();
-                      
+
+                        console.log(data);                        
+                        regresa1();                      
                       },
                   
                 error: function(result){
@@ -1381,24 +1674,19 @@ function guardarfecha(){
 }
 
 function regresa1(){
-  //   var idusu= $('#nomusu').val();
- // no=idusu;
+  
   var numord= $('#numord').val();
   no=numord;
   console.log(no);
-
-  //$('#content').empty(); //listOrden
-  //$('#modalSale').empty();  
-  //$('#modalfecha').empty(); 
+  
   $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargartarea/<?php echo $permission; ?>/"+no+"");
-  //WaitingClose();
- // WaitingClose();
-  //WaitingClose();
+  
 }
 
 $('#fechaProgNueva').datetimepicker(
   {format: 'YYYY-MM-DD H:mm:ss',
-    locale: 'es'});
+    locale: 'es'}
+);
 
 
 </script>

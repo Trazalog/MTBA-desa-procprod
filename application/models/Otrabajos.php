@@ -557,6 +557,21 @@ class Otrabajos extends CI_Model
 		}
 	}   
 
+	// devuelve id tarea bonita por id de orden trabajo
+	function getIdBPMPorIdOt($idOT){		
+
+		$this->db->select('orden_trabajo.bpm_task_id_plan AS idTarBonita');
+		$this->db->from('orden_trabajo');
+		$this->db->where('orden_trabajo.id_orden', $idOT);
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->row('idTarBonita');	
+	 	}else{	
+	 		return 0;
+	 	}
+	}
+
     function getTareaSdt(){
     	$this->db->select('tareas.*');
 		$this->db->from('tareas');

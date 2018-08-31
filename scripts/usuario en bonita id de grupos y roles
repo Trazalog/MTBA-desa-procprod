@@ -1,0 +1,57 @@
+
+Carga de datos en BD
+1°) tiene que estar en la tabla sisgroups los grupos del usuario.
+2°) en sismenuactions los permisos de accion (actId) de item de menú (menuId).
+3°) en sisgroupsactions los permisos (que salen de sismenuactions) de cada membresía (grpId y roleId)
+
+/*listo*/
+ernesto.clavel
+grupo comercial id=21
+Asesor comercial id=38
+
+
+leandro.rodriguez
+grupo Control de Gestion id=35
+Abastecimiento id=20
+Jefe of Control de Gestón id=43
+Jefe de abastecimiento of Abastecimiento id=33
+
+
+fernando.palacios
+grupo Producción id=19
+Jefe Producción  id=10
+
+
+gabriela.balderramo
+Administracion y finanzaas id=18
+Jefa de adm y finanzas of Administración y Finanzas id=6
+Jefa de RRHH of Recursos Humanos id=4
+
+
+
+Utilizar los siguientes usuarios para cada Rol 
+Comercial: ernesto.clavel
+Control de Gestion: leandro.rodriguez
+Abastecimiento: leandro.rodriguez
+
+Jefe Producción: fernando.palacios
+Produccion: fernando.palacios
+Administracion: gabriela.balderramo
+
+
+
+pablo.paez (id=32)
+
+grupo Producción id=19
+grupo Arnado id=27
+
+Coordinador  id=32
+
+Servicios en Terreno id=25
+Tecnico servicio In Situ of Servicios en Terreno id=16
+
+
+PROCESO AVANCE
+
+ernesto clavel -> fernando palacios -> gabriela balderramo -> ernesto clavel -> 
+fernando palacios -> pablo paez ->

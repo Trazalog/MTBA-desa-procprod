@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-    <?php cargarCabecera(12);?>
+    <?php cargarCabecera($idPedTrabajo);?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -49,6 +49,11 @@
 
                                                         $userdata = $this->session->userdata('user_data');
                                                         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
+                                                        $usrName =  $userdata[0]['usrName'];
+                                                        $usrLastName = $userdata[0]["usrLastName"];
+                                                        
+                                                        echo "<input type='text' class='hidden' id='usrName' value='$usrName' >";
+                                                        echo "<input type='text' class='hidden' id='usrLastName' value='$usrLastName' >";
                                                     ?>
 
                                                     <form>
@@ -140,17 +145,22 @@
                                                 <div class="panel-heading">Comentarios</div>
                                                 <div  class="panel-body" style="max-height: 500px;overflow-y: scroll;">
                                                  <ul id="listaComentarios">
-                                                     <?php 
+                                                 <?php 
                                                      foreach($comentarios as $f){
-                                                       echo '<hr/>';
+                                                       
 
-                                                       if(strpos($f['userId']['icon'],'.png')==0){
-                                                           $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
-                                                       }else{
-                                                           $img='';
-                                                       }
-                                                       echo '<li><h4>'.$img.$f['userId']['userName'].'<small style="float: right">'.$f['postDate'].'</small></h4>';
+                                                    //    if(strpos($f['userId']['icon'],'.png')==0){
+                                                    //        $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
+                                                    //    }else{
+                                                    //        $img='';
+                                                    //    }
+                                                    //echo $comentarios;
+                                                   // echo '<li><h4>'.$f['content'].'</h4></li>';
+                                                    if(strcmp($f['userId']['userName'],'System')!=0){
+                                                       echo '<hr/>';
+                                                       echo '<li><h4>'.$userdata[0]['usrName'].' '.$userdata[0]["usrLastName"].'<small style="float: right">'.$f['postDate'].'</small></h4>';
                                                        echo '<p>'.$f['content'].'</p></li>';
+                                                    }
                                                    }
                                                    ?>
                                                </ul>
@@ -181,10 +191,13 @@
                     <div class="row">
                         <div class="col-xs-7 col-sm-6">
                             <h3> ¿El Cliente Acepta realizar el trabajo? </h3>
+                            <form id="formPresupuesto" role="form">
                             <div class="form-group">
-                                <label style="margin-top: 7px;"> Archivo Adjunto de Cotización: <a target="_blank" href="<?php //echo $cotizacion; ?>">Ver y Descargar</a></label>
-                                <input type='file' />
+                                <label style="margin-top: 7px;"> Archivo Adjunto de Presupuesto: <a id="linkPresupuesto" target="_blank" <?php echo ($presupuesto==''? '':'href="'.base_url().$presupuesto.'"');?>>Ver y Descargar</a></label>
+                                <input type='file' id="presupuesto" name="presupuesto"/><br/>
+                                <button type="submit" id="subirArchivo" class="btn btn-primary hidden" >Subir Archivo</button>
                             </div>
+                            </form>
                         </div>
                         <div class="col-xs-7 col-sm-1">
                             <button class="btn btn-success" style="margin-top:20px;width:80%;" onclick="mostrarPanelSi()">Si</button>
@@ -445,8 +458,11 @@
     }
     //Funcion COMENTARIOS
     function guardarComentario() {
-			console.log("Guardar Comentarios...");
-			var id='14';
+			console.log("Guardar Comentarios...");             
+            var id=<?php echo json_encode($TareaBPM['caseId']);?>;
+            var nombUsr = $('#usrName').val();
+            var apellUsr = $('#usrLastName').val();
+			 
 			var comentario=$('#comentario').val();
 			$.ajax({
 			type:'POST',
@@ -455,7 +471,7 @@
 			success:function(result){
 				console.log("Submit");
 				var lista =  $('#listaComentarios');
-				lista.append('<hr/><li><h4>'+'Nombre de Usuario'+'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
+				lista.append(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
 				$('#comentario').val('');
 			},
 			error:function(result){
@@ -777,6 +793,7 @@
             processData: false,
             success: function(result) {
                // console.log(result);
+                $("#formSi")[0].reset();
                 alert("Formulario Guardados Correactamente");
             },
             error:function(result){
@@ -815,6 +832,38 @@
             $('#panelSi').click();
         }
     }
+
+      $('#presupuesto').on('change', function() {
+        $('#subirArchivo').removeClass('hidden');             
+     });
+
+     $("#formPresupuesto").submit(function(event) {     
+        event.preventDefault();
+        var formData = new FormData($("#formPresupuesto")[0]); 
+        //TODO:HARDCODE
+       // var $idPedTrabajo = 777;
+        var $idPedTrabajo= <?php echo $idPedTrabajo; ?>;
+        formData.append('idPedTrabajo',$idPedTrabajo);
+        $.ajax({
+            url:'index.php/AceptacionTrabajo/GuardarPresupuesto',
+            type: 'POST',
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(result) {
+             if(result=='error'){
+                 alert("No se pudo Guardar Archivo");
+             }else{
+                $("#formPresupuesto")[0].reset();
+                $('#subirArchivo').addClass("hidden");
+                $('#linkPresupuesto').attr("href",result);    
+                alert("Archivo Guardado");
+             }
+         
+            },
+        });
+    });
 </script>
 
 
