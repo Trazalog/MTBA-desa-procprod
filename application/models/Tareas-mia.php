@@ -12,8 +12,8 @@ class Tareas extends CI_Model
 		
 		$userdata = $this->session->userdata('user_data');
 		$usrId= $userdata[0]["usrId"];
-		//$tareas = file_get_contents(BONITA_URL.'API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);		
-		$resource = 'API/bpm/humanTask?p=0&c=1000&f=user_id%3D';
+		//$tareas = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);		
+		$resource = 'API/bpm/humanTask?p=0&c=1000&o=reachedStateDate&f=state=ready&f=user_id%3D';
 		$url = BONITA_URL.$resource.$usrId;
 		$tareas = file_get_contents($url, false, $param);
 
@@ -39,7 +39,8 @@ class Tareas extends CI_Model
 	}
 	// trae cod interno de pedido trabajo en funcion del caseId de BPM
 	function getDatPedidoTrabajo($caseId){
-		
+		// echo"caseid: ";
+		// var_dump($caseId);
 		$this->db->select('trj_pedido_trabajo.petr_id,
 							trj_pedido_trabajo.cod_interno');
 		$this->db->from('trj_pedido_trabajo');
@@ -74,7 +75,7 @@ class Tareas extends CI_Model
 		$resource = 'API/bpm/userTask/';
 		$com = '/execution';
 		$url = BONITA_URL.$resource.$idTarBonita.$com;		
-		// $response = file_get_contents(BONITA_URL.'API/bpm/userTask/78/execution',false, $param);
+		// $response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
 		$response = file_get_contents($url,false, $param);
 
 		return $response;
@@ -92,7 +93,7 @@ class Tareas extends CI_Model
 	}
 	//Espera regularizacion
 	function esperandoRegularizacion($idTarBonita,$param){
-		//$response = file_get_contents(BONITA_URL.'API/bpm/userTask/78/execution',false, $param);
+		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
 
 		$resource = 'API/bpm/userTask/';
 		$com = '/execution';
@@ -103,7 +104,7 @@ class Tareas extends CI_Model
 	}
 	//Precisa Anticipo
 	function precisaAnticipo($idTarBonita,$param){
-		//$response = file_get_contents(BONITA_URL.'API/bpm/userTask/78/execution',false, $param);
+		//$response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/78/execution',false, $param);
 
 		$resource = 'API/bpm/userTask/';
 		$com = '/execution';
@@ -114,16 +115,15 @@ class Tareas extends CI_Model
 	}
 
 	//obtener Comentarios
-	function ObtenerComentariosBPM($caseId,$param){
-		$processInstance = 'processInstanceId%3D'.$caseId;
-		$comentarios = file_get_contents(BONITA_URL.'API/bpm/comment?f='.$processInstance.'&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
+	function ObtenerComentarios($param){
+		$comentarios = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
 		return json_decode($comentarios,true);
 	}
 	//Guardar Comentarios
-	function GuardarComentarioBPM($param){
-		$respuesta = file_get_contents(BONITA_URL.'API/bpm/comment',false,$param);
-		return $respuesta;
-	}
+	// function GuardarComentarioBPM($param){
+	// 	$respuesta = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/comment',false,$param);
+	// 	return $respuesta;
+	// }
 	
 	// Terminar Tarea
 	function terminarTarea($idTarBonita,$param){
@@ -131,6 +131,17 @@ class Tareas extends CI_Model
 		$method = '/execution';
 		$resource = 'API/bpm/userTask/';
 		$url = BONITA_URL.$resource.$idTarBonita.$method;
+		file_get_contents($url, false, $param);			
+		$response = $this->parseHeaders( $http_response_header );
+		return $response;
+	}
+
+	function terminarPlanificacion($idTarBonita,$param){
+		
+		$method = '/execution';
+		$resource = 'API/bpm/userTask/';
+		$url = BONITA_URL.$resource.$idTarBonita.$method;
+		var_dump($url);
 		file_get_contents($url, false, $param);			
 		$response = $this->parseHeaders( $http_response_header );
 		return $response;
@@ -151,6 +162,45 @@ class Tareas extends CI_Model
 			var_dump($e->getMessage());
 		 }		
 	}	
+	
+	function validarEstOT($idTarBonita,$idPedido){	
+
+		$this->db->select('orden_trabajo.petr_id,
+							orden_trabajo.bpm_task_id_plan');
+		$this->db->from('orden_trabajo');		
+		$this->db->where('orden_trabajo.bpm_task_id_plan', $idTarBonita);
+		$this->db->where('orden_trabajo.petr_id', $idPedido);
+		$query = $this->db->get();
+
+		if ($query->num_rows()>0){
+			return true;	
+		}else{	
+			return false;
+		}
+	}
+	// Generar OT vacia
+	function setOTInicial($idTarBonita,$idPedido,$cod_interno,$detalle){
+		
+		$userdata = $this->session->userdata('user_data');
+		$usrId= $userdata[0]['usrId']; 
+		
+		$data = array(
+			'nro'=> $cod_interno, 
+			'fecha_inicio'=> date('Y-m-d H:i:S'),
+			'descripcion'=> $detalle,
+			'cliId' => '1',
+			'estado' => 'C',
+			'id_usuario' =>$usrId,
+			'id_usuario_a' =>1,
+			'id_sucursal' => 1,
+			'id_proveedor' => 1,
+			'petr_id' => $idPedido,
+			'bpm_task_id_plan'=>$idTarBonita			        	 
+		   );
+		$query = $this->db->insert("orden_trabajo",$data);
+		
+		return $query;
+	}
 
 	// Soltar Tareas 
 	function soltarTarea($idTarBonita,$param){
@@ -264,19 +314,32 @@ class Tareas extends CI_Model
 	 	}
 	}
 
-
 	function getDatosBPM($idTarBonita,$param){
 
-		// $response = file_get_contents(BONITA_URL.'API/bpm/humanTask/54', false, $param);
+		// $response = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/humanTask/54', false, $param);
 		// echo "response: ";
 		// return $response;
 
-		$urlResource = BONITA_URL.'API/bpm/humanTask/';
+		$urlResource = 'API/bpm/humanTask/';
 		
-		$data = file_get_contents($urlResource.$idTarBonita , false, $param);
+		$data = file_get_contents(BONITA_URL.$urlResource.$idTarBonita , false, $param);
 		
 		
 		return $data;
+	}
+
+	function getIdOtPorIdBPM($idTarBonita){		
+
+		$this->db->select('orden_trabajo.id_orden');
+		$this->db->from('orden_trabajo');
+		$this->db->where('orden_trabajo.bpm_task_id_plan', $idTarBonita);
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->row('id_orden');	
+	 	}else{	
+	 		return 0;
+	 	}
 	}
 
 //////////////  form dinamico  //////////////////
@@ -609,34 +672,17 @@ class Tareas extends CI_Model
 		return $response;
 	}
 
-		//**************************ARCHIVO******************************
-		public function GuardarCotizacion($idPedido,$data){
-			$this->db->where('PETR_ID',$idPedido);
-			$result = $this->db->update('frm_formularios_completados',$data);
-			return $result;
-		}
-		//**************************ARCHIVO******************************
-	
-		//***********Ver Cotizacion en Presupuesto*************/
-			public function ObtenerCotizacion($idPedido){
-				$this->db->select('VALOR');
-				$this->db->where('PETR_ID',$idPedido);
-				$this->db->where('NOM_VAR',"cotizacion");
-				$query = $this->db->get('frm_formularios_completados');
-				if($query->num_rows()!=0){
-					return $query->result_array()[0]['VALOR'];
-				}else{
-					return '';
-				}
-			
-			}
-		//***********Ver Cotizacion en Presupuesto*************/
-
-		public function GuardarValorPresupuesto($idPedido){
-			$this->db->where('PETR_ID',$idPedido);
-			$query = $this->db->update('frm_formularios_completados',array('NOM_VAR'=>'presupuesto'));
-			return $query;
-		}
+	//obtener Comentarios
+	function ObtenerComentariosBPM($caseId,$param){
+		$processInstance = 'processInstanceId%3D'.$caseId;
+		$comentarios = file_get_contents(BONITA_URL.'API/bpm/comment?f='.$processInstance.'&o=postDate%20DESC&p=0&c=200&d=userId',false,$param);
+		return json_decode($comentarios,true);
+	}
+	//Guardar Comentarios
+	function GuardarComentarioBPM($param){
+		$respuesta = file_get_contents(BONITA_URL.'API/bpm/comment',false,$param);
+		return $respuesta;
+	}
 
 
 

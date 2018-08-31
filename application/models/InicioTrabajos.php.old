@@ -14,12 +14,17 @@ class InicioTrabajos extends CI_Model
 		$com = '/instantiation';
 		try {
 			$result = file_get_contents($url.BPM_PROCESS_ID.$com, false, $param);
+			log_message('error', 'error en lanzar proceso' .implode(';',$http_response_header));
 		} catch (Exception $e) {
 			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 			echo 'respuestas: ';
 			var_dump( $http_response_header);
+			log_message('error', 'error en lanzar proceso' .implode(';',$http_response_header));
+
 		} 
 			
+		
+		//$result = file_get_contents("http://192.168.100.112:8080/bonita/API/bpm/process/4726708257911377330/instantiation", false, $parametros);
 		return $result;
 	}
 	public function ObtenerTodas()
@@ -59,17 +64,13 @@ class InicioTrabajos extends CI_Model
 			$num = $num + 1;
 			$this->db->set('num_correlativo', $num);
 			$this->db->update('mtb_num_interno');
-			return "-" . ($num <= 9 ? "000" . $num : ($num <= 99 ? "00" . $num :($num <= 999 ? "0". $num:$num))) . "-" . substr($año, 2, 3);
+			return "-" . ($num <= 9 ? "0" . $num : $num) . "-" . substr($año, 2, 3);
 		} else {//DISTINTOS AÑO SETEA EL NUMERO CORRELATIVO EN 1;
 			$this->db->set('año', date("Y"));
 			$this->db->set('num_correlativo', 1);
 			$this->db->update('mtb_num_interno');
-			return "-" . "0001" . "-" . substr(date("Y"), 2, 3);
+			return "-" . "01" . "-" . substr(date("Y"), 2, 3);
 		}
-	}
-	public function ObtenerTiemposStandars(){
-		$query = $this->db->get('mtb_tiempos_standar');
-		return $query->result_array();
 	}
 }
 ?>

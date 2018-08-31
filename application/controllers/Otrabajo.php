@@ -458,16 +458,17 @@ class Otrabajo extends CI_Controller {
 
 
 ///////// Calendario Hugo  ////////////////
-
+//TODO: Traer el id de tarea de bonita por id de orden de trabajo
 	// Carga tareas en pantala asignacion por id de OT
 	public function cargartarea($permission,$idglob){ 
 		//$idglob = 17;
 		
 		$data['list'] = $this->Otrabajos->cargartareas($idglob);
-		$data['id_orden'] = $idglob; 
+		$data['id_orden'] = $idglob;
+		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($idglob); 
         $data['permission'] = $permission;
         $this->load->view('otrabajos/asignacion',$data);  
-    }
+	}
 	
 	// Trae taresas estandar
 	public function getTareaSdt(){

@@ -5,39 +5,16 @@ class Notapedidos extends CI_Model
 	function __construct()
 	{
 		parent::__construct();
-    }	
-    
-    function notaPedidos_List(){
-    
-        $this->db->select('tbl_notapedido.id_notaPedido,
-                            tbl_notapedido.fecha,
-                            tbl_notapedido.id_ordTrabajo,
-                            orden_trabajo.descripcion');     
-        $this->db->from('tbl_notapedido');
-       
-        $this->db->join('orden_trabajo','tbl_notapedido.id_ordTrabajo = orden_trabajo.id_orden');       
-  
-        $query= $this->db->get();
-      
-        if ($query->num_rows()!=0)
-        {
-         return $query->result_array();          
-        }
-        else
-        { 
-          return array();
-        }
-      }   
+	}	
 
-    function notaPedidosxId($idOT){
+    function notaPedidos_List(){
     
       $this->db->select('tbl_notapedido.id_notaPedido,
                           tbl_notapedido.fecha,
                           tbl_notapedido.id_ordTrabajo,
                           orden_trabajo.descripcion');     
       $this->db->from('tbl_notapedido');
-      $this->db->join('orden_trabajo','tbl_notapedido.id_ordTrabajo = orden_trabajo.id_orden');  
-      $this->db->where('id_orden',$idOT);     
+      $this->db->join('orden_trabajo','tbl_notapedido.id_ordTrabajo = orden_trabajo.id_orden');       
 
       $query= $this->db->get();
     

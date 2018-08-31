@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-    <?php cargarCabecera($idPedTrabajo);?>
+    <?php cargarCabecera($idPedTrabajo); ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -30,32 +30,32 @@
                                                 <div role="tabpanel" class="tab-pane active" id="home">
                                                     <!-- <h4 class="panel-heading">Tarea</h4> -->
                                                     <div class="panel-body">
+                                                    <?php 
+                                                     foreach($comentarios as $f){
+                                                       
 
-                                                        <?php
-                                    //echo"id de form: ";
-                                    //dump_exit($idForm);
-                                                        //echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
-                                                    //if ($estadoTarea == "noasignado") {´
+                                                    //    if(strpos($f['userId']['icon'],'.png')==0){
+                                                    //        $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
+                                                    //    }else{
+                                                    //        $img='';
+                                                    //    }
+                                                    //echo $comentarios;
+                                                   // echo '<li><h4>'.$f['content'].'</h4></li>';
+                                                    if(strcmp($f['userId']['userName'],'System')!=0){
+                                                       echo '<hr/>';
+                                                       echo '<li><h4>'.$userdata[0]['usrName'].' '.$userdata[0]["usrLastName"].'<small style="float: right">'.$f['postDate'].'</small></h4>';
+                                                       echo '<p>'.$f['content'].'</p></li>';
+                                                    }
+                                                   }
+                                                   $usrName =  $userdata[0]['usrName'];
+                                                   $usrLastName = $userdata[0]["usrLastName"];
 
-                                                        echo "<button class='btn btn-block btn-success' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
-                                                    //}else{
-                                                        echo "&nbsp"; 
-                                                        echo "&nbsp"; 
-                                                        echo "&nbsp";
-                                                        echo "<button class='btn btn-block btn-danger' style='width: 100px; margin-top: 10px;display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
-                                                    //}    
-                                                        echo "</br>"; 
-                                                        echo "</br>"; 
-
-                                                        $userdata = $this->session->userdata('user_data');
-                                                        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
-                                                        $usrName =  $userdata[0]['usrName'];
-                                                        $usrLastName = $userdata[0]["usrLastName"];
-                                                        
-                                                        echo "<input type='text' class='hidden' id='usrName' value='$usrName' >";
-                                                        echo "<input type='text' class='hidden' id='usrLastName' value='$usrLastName' >";
-                                                    ?>
-
+                                                   
+                                                   
+                                                   echo "<input type='text' class='hidden' id='usrName' value='$usrName' >";
+                                                   echo "<input type='text' class='hidden' id='usrLastName' value='$usrLastName' >";
+                                                   ?>
+                                                    <input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>" >
                                                     <form>
                                                         <div class="panel panel-default">
                                                             <h4 class="panel-heading">INFORMACION:</h4>
@@ -111,7 +111,7 @@
                                                                 <div class="col-sm-12 col-md-12">
                                                                     <label for="detalle">Detalle</label>
                                                                     <textarea class="form-control" id="detalle" rows="3"
-                                                                    disabled><?php $TareaBPM['displayDescription']?></textarea>
+                                                                    disabled><?php echo $TareaBPM['displayDescription']?></textarea>
                                                                 </div>
                                                             </div></br> </br> </br> </br> </br>
                                                         </div>
@@ -119,7 +119,7 @@
                                                         <div class="form-group">
                                                             <div class="col-sm-12 col-md-12">
                                                                 <!-- Modal formulario tarea -->
-                                                                <?php if($idForm !=''){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
+                                                                <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
                                                                 data-target=".bs-example-modal-lg" onclick="getformulario()">Completar
                                                                 Formulario
                                                                 </button>';}?>
@@ -133,7 +133,7 @@
                                                                 <textarea class="form-control" id="observaciones" rows="3"></textarea>
                                                             </div>
                                                         </div>
-
+                                                                    
                                                     </form>
 
                                                 </div>
@@ -145,22 +145,18 @@
                                                 <div class="panel-heading">Comentarios</div>
                                                 <div  class="panel-body" style="max-height: 500px;overflow-y: scroll;">
                                                  <ul id="listaComentarios">
-                                                 <?php 
+                                                     <?php 
                                                      foreach($comentarios as $f){
-                                                       
-
-                                                    //    if(strpos($f['userId']['icon'],'.png')==0){
-                                                    //        $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
-                                                    //    }else{
-                                                    //        $img='';
-                                                    //    }
-                                                    //echo $comentarios;
-                                                   // echo '<li><h4>'.$f['content'].'</h4></li>';
-                                                    if(strcmp($f['userId']['userName'],'System')!=0){
                                                        echo '<hr/>';
+
+                                                       if(strpos($f['userId']['icon'],'.png')==0){
+                                                           $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
+                                                       }else{
+                                                           $img='';
+                                                       }
                                                        echo '<li><h4>'.$userdata[0]['usrName'].' '.$userdata[0]["usrLastName"].'<small style="float: right">'.$f['postDate'].'</small></h4>';
                                                        echo '<p>'.$f['content'].'</p></li>';
-                                                    }
+                                                       
                                                    }
                                                    ?>
                                                </ul>
@@ -168,7 +164,7 @@
                                        </div>
                                        <textarea id="comentario" class="form-control" placeholder="Nuevo Comentario..."></textarea>
                                        <br/>						
-                                       <button class="btn btn-primary" onclick="guardarComentario()">Agregar</button>
+                                       <button class="btn btn-primary" id="guardarComentario" onclick="guardarComentario()">Agregar</button>
                                    </div>
                                </div>
 
@@ -184,205 +180,27 @@
 
         </div><!-- /.row -->
         <section class="content">
-    <div class="row">
-        <div class="col-xs-12">
-            <div class="box">
-                <div class="box-header">
-                    <div class="row">
-                        <div class="col-xs-7 col-sm-6">
-                            <h3> ¿El Cliente Acepta realizar el trabajo? </h3>
-                            <form id="formPresupuesto" role="form">
-                            <div class="form-group">
-                                <label style="margin-top: 7px;"> Archivo Adjunto de Presupuesto: <a id="linkPresupuesto" target="_blank" <?php echo ($presupuesto==''? '':'href="'.base_url().$presupuesto.'"');?>>Ver y Descargar</a></label>
-                                <input type='file' id="presupuesto" name="presupuesto"/><br/>
-                                <button type="submit" id="subirArchivo" class="btn btn-primary hidden" >Subir Archivo</button>
-                            </div>
-                            </form>
-                        </div>
-                        <div class="col-xs-7 col-sm-1">
-                            <button class="btn btn-success" style="margin-top:20px;width:80%;" onclick="mostrarPanelSi()">Si</button>
-                        </div>
-                        <div class="col-xs-7 col-sm-1">
-                            <button class="btn btn-danger" style="margin-top:20px;width:80%;" onclick="mostrarPanelNo()">No</button>
-                        </div>
-                    </div>
+            <div class="row">
+                <div class="col-xs-12">
+                <div class="box">
 
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-
-                    <div id="collapseDivNo" class="box box-danger collapsed-box box-solid">
-                        <div class="box-header with-border">
-                            <h3 id="tituloInfo" class="box-title">No Acepto</h3>
-                            <div class="box-tools pull-right">
-                                <button style="display:none" id="panelNo" type="button" data-widget="collapse">
-                                </button>
-                            </div>
-                            <!-- /.box-tools -->
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-4">
-                                        <label style="margin-top: 7px;">¿Como desea el Cliente recibir el Componente?</label>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-2">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="a_d" value="Armado" /> Armado
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-2">
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="a_d" value="Desarmado" /> Desarmado
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button id="guardarNo" class="hidden" onclick="guardarNo()"></button>
-                        </div>
-                    </div>
-
-
-
-                    <div id="collapseDivSi" class="box box-success collapsed-box box-solid">
-                        <div class="box-header with-border">
-                            <h3 id="tituloInfo" class="box-title">Condiciones Comerciales</h3>
-
-                            <div class="box-tools pull-right">
-                                <button style="display:none" id="panelSi" type="button" data-widget="collapse">
-                                </button>
-                            </div>
-                            <!-- /.box-tools -->
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <form id="formSi" role="form" action="<?php base_url();?>AceptacionTrabajo/GuardarAceptacionTrabajoBPM"
-                                method="POST">
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-2">
-                                            <label style="margin-top: 7px;">Entrega del Servicio
-                                                <strong style="color: #dd4b39">*</strong>: </label>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-2">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="entrega_servicio" value="C/Banco" />
-                                                    C/Banco
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-2">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="entrega_servicio" value="Armado" />
-                                                    Armado
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-2">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="entrega_servicio" value="Semi-Armado" />
-                                                    Semi-Armado
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-2">
-                                            <div class="radio">
-                                                <label>
-                                                    <input type="radio" name="entrega_servicio" value="Desarmado" />
-                                                    Desarmado
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-xs-12 col-sm-3">
-                                        <div class="form-group">
-                                            <label>Fecha de Entrega: </label>
-                                            <input type="text" name="fecha_entrega" class="form-control" />
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-12 col-sm-7">
-                                        <div class="form-group">
-                                            <label>Dirección de Entrega: </label>
-                                            <input type="text" name="direccion_entrega" class="form-control" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-xs-12 col-sm-3">
-                                            <div class="form-group">
-                                                <label style="margin-top: 7px;">Tipo de Clientes
-                                                    <strong style="color: #dd4b39">*</strong>: </label>
-                                                <select name="tipo_cliente" class="form-control">
-                                                    <option value="0"> Seleccionar... </option>
-                                                    <option> Minera </option>
-                                                    <option> Industrial </option>
-                                                    <option> Emp.Transporte </option>
-                                                    <option> Agencia </option>
-                                                    <option> Particular </option>
-                                                    <option> Otros </option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-3">
-                                            <div class="form-group">
-                                                <label style="margin-top: 7px;">Provisión de Repuestos
-                                                    <strong style="color: #dd4b39">*</strong>: </label>
-                                                <select name="proveedor_repuesto" class="form-control">
-                                                    <option value="0"> Seleccionar... </option>
-                                                    <option> Cliente </option>
-                                                    <option> Motores Balderramo </option>
-
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="form-group">
-                                                <label style="margin-top: 7px;">Orden de Compra: </label>
-                                                <input type='file' id="orden" name="orden" />
-                                                <a id="adjunto" target="_blank">Ver Archivo Adjunto</a>                             
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button id="guardarSi" class="hidden" type="submit" value="Registrar"></button>
-                            </form>
-
-                        </div>
+                    <div class="box-header">PRE INFORME</div>
+                    <div class="box-body">
+                    <?php 
+                   // print_r($formularios);
+                    ?>
+                    Acá se elegirán los formularios a imprimir... Por ahora se eligen en el controlador Preinforme, método index.
+                    <br><br>
+                    <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Generar Preinforme</button>
                     </div>
                 </div>
-
+                </div>
             </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box-body -->
-    </div>
-    <!-- /.box -->
-    </div>
-    <!-- /.col -->
-    </div>
-    <!-- /.row -->
-</section>
-
-       <div class="modal-footer">
-          <button type="button" id="" class="btn btn-primary" onclick="">Cerrar</button>
-          <button type="button" class="btn btn-success" onclick="hecho()">Hecho</button>
-        </div>
-<!-- /.modal footer -->
+        </section>
+        <div class="modal-footer">
+            <button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
+            <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button>
+        </div> <!-- /.modal footer -->
 
     </div><!-- /.box body -->
 </div> <!-- /.box  -->
@@ -390,11 +208,99 @@
 </div><!-- /.row -->
 </section><!-- /.content -->
 
-
+<!-- Modal -->
+<div class="modal fade" id="modalPDF" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><span id="modalAction"> </span> Preinforme</h4> 
+      </div>
+      <div class="modal-body" id="modalBodyPdf">
+        <object id="pdf" data="" width="100%" height="500px" type="application/pdf"> Plugin de PDF no instalado </object>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-    
-    
+//genero el preinforme 
+//(paragenerarlo automáticamente comentar lineas 15, 46 y 65)
+$('#crearPDF').on("click", function (e) {
+  WaitingOpen('Generando preinforme');
+  var formularios = '<?php echo json_encode($formularios) ?>';
+  console.log( formularios );
+  $.ajax({
+    type: 'POST',
+    data: { idForms: formularios },
+    url: 'index.php/Preinforme/generar',
+    async: false,
+    success: function(data) {
+      $("#pdf").attr("data", '<?php echo base_url() ?>'+'assets/preinforme.pdf');
+      $('#modalPDF').modal('show');
+      WaitingClose();
+    },
+    error: function(data) {
+      console.error("error al crear el preinforme en pdf");
+      WaitingClose();
+    }
+  });
+});
+
+//elimino el archivo al salir del modal
+$('#modalPDF').on('hidden.bs.modal', function (e) { 
+  $.ajax({
+    type: 'POST',
+    data: {},
+    url: 'index.php/Preinforme/eliminarPDF',
+    success: function(data) {
+      console.log("archivo borrado. "+data);
+    },
+    error: function(data) {
+      console.error("error al eliminar el pdf: "+data);
+    }
+  });
+});
+</script>
+
+<script>  
+          
+    evaluarEstado();    
+    function evaluarEstado(){
+       
+        var asig = $('#asignado').val();       
+        // si esta tomada la tarea
+        if(asig != ""){
+            habilitar();
+        }else{
+            deshabilitar();
+        }
+    }      
+   
+    function habilitar(){       
+        // habilito btn y textarea       
+        $("#btonsoltr").show();
+        $("#hecho").show();       
+        $("#guardarComentario").show();        
+        $("#comentario").show();
+        //desahilito btn tomar      
+        $("#btontomar").hide();
+        $("#formulario").show();
+    }
+    function deshabilitar(){
+        // habilito btn tomar
+        $("#btontomar").show();
+        // habilito btn y textarea  
+        $("#btonsoltr").hide();       
+        $("#hecho").hide();       
+        $("#guardarComentario").hide();
+        $("#comentario").hide();
+        $("#formulario").hide();
+    }    
+
     // Volver al atras
     $('#cerrar').click(function cargarVista() {
         WaitingOpen();
@@ -402,6 +308,7 @@
         $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
         WaitingClose();
     });
+
     /* Funciones BPM */
     //Ckeck Tarea realizada
     $('.btncolor').click(function(e) {
@@ -433,8 +340,33 @@
             //   if ($('#observaciones').val() == ""){
             //     alert('Campo Detalle vacio');
             //   }
-            // }); 
-    
+            // });               
+
+
+
+    function terminarTarea(){
+        var idTarBonita = $('#idTarBonita').val();
+        alert(idTarBonita);
+        $.ajax({
+            type: 'POST',
+            data: {
+                'idTarBonita': idTarBonita,
+            },
+            url: 'index.php/Tarea/terminarTarea',
+            success: function(data) {
+                    
+                    // toma a tarea exitosamente
+                    if(data['reponse_code'] == 204){
+                        $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
+                    }
+            },
+            error: function(data) {
+                //alert("Noo");
+                console.log(data);
+            },
+            dataType: 'json'
+        }); 
+    }            
     
     // Boton Hecho generico
     function estado() {
@@ -490,6 +422,12 @@
             },
             url: 'index.php/Tarea/tomarTarea',
             success: function(data) {
+                   console.log(data['reponse_code']);
+                    // toma a tarea exitosamente
+                    if(data['reponse_code'] == 200){
+                        habilitar();
+                    }
+
             },
             error: function(result) {
                 console.log(result);
@@ -508,6 +446,11 @@
             },
             url: 'index.php/Tarea/soltarTarea',
             success: function(data) {
+                console.log(data['reponse_code']);
+                    // toma a tarea exitosamente
+                    if(data['reponse_code'] == 200){
+                        deshabilitar();
+                    }
             },
             error: function(result) {
                 console.log(result);
@@ -757,115 +700,6 @@
 
 </script>
 
-<script>
-    function hecho(){
-        if ($('#collapseDivNo').hasClass('collapsed-box')) {
-            console.log("Acepto");
-            $('#guardarSi').click();
-        }else{
-            console.log("No Acepta");
-            $('#guardarNo').click();
-            
-        }
-    }
-    $('#orden').on('change', function() {
-        $('#adjunto').attr("href",URL.createObjectURL(this.files[0]));              
-    });
-    
-    $("#formSi").submit(function(event) {
-
-        
-        event.preventDefault();
-
-        var idt = $('#idTarBonita').val();
-       alert(idt);
-       
-        var formData = new FormData($("#formSi")[0]);
-        formData.append('idtareabonita',idt);
-        
-
-        $.ajax({
-            url: $("#formSi").attr("action"),
-            type: $("#formSi").attr("method"),
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(result) {
-               // console.log(result);
-                $("#formSi")[0].reset();
-                alert("Formulario Guardados Correactamente");
-            },
-            error:function(result){
-               // console.log(result);
-                alert("Error");
-            }
-        });
-    });
-
-    function guardarNo() {
-        var opcion = $('input[name="a_d"]:checked').val();
-        console.log(opcion);
-        $.ajax({
-            type:'post',
-            data:{'estado':opcion},
-            url:'index.php/AceptacionTrabajo/NoAceptaTrabajoBPM',
-            success:function(result){
-                alert("Transaccion Exitosa");
-            },
-            error:function(result){
-                alert("Transaccion Fallida");
-            }
-        });
-    }
-
-    function mostrarPanelSi() {
-        $('#panelSi').click();
-        if (!$('#collapseDivNo').hasClass('collapsed-box')) {
-            $('#panelNo').click();
-        }
-    }
-
-    function mostrarPanelNo() {
-        $('#panelNo').click();
-        if (!$('#collapseDivSi').hasClass('collapsed-box')) {
-            $('#panelSi').click();
-        }
-    }
-
-      $('#presupuesto').on('change', function() {
-        $('#subirArchivo').removeClass('hidden');             
-     });
-
-     $("#formPresupuesto").submit(function(event) {     
-        event.preventDefault();
-        var formData = new FormData($("#formPresupuesto")[0]); 
-        //TODO:HARDCODE
-       // var $idPedTrabajo = 777;
-        var $idPedTrabajo= <?php echo $idPedTrabajo; ?>;
-        formData.append('idPedTrabajo',$idPedTrabajo);
-        $.ajax({
-            url:'index.php/AceptacionTrabajo/GuardarPresupuesto',
-            type: 'POST',
-            data: formData,
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function(result) {
-             if(result=='error'){
-                 alert("No se pudo Guardar Archivo");
-             }else{
-                $("#formPresupuesto")[0].reset();
-                $('#subirArchivo').addClass("hidden");
-                $('#linkPresupuesto').attr("href",result);    
-                alert("Archivo Guardado");
-             }
-         
-            },
-        });
-    });
-</script>
-
 
 
 <div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -879,8 +713,10 @@
                             <div class="row">
                                 <div class="col-sm-12 col-md-12">
                                     <?php
+                                    if($form != ''){
                                         cargarFormulario($form);
-                                        ?>
+                                    }                                    
+                                    ?>
                                 </div>
                             </div>
                         </div>
