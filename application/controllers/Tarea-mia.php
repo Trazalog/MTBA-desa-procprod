@@ -5,6 +5,7 @@ class Tarea extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Tareas');
 		$this->load->model('Bonitas');
+		$this->load->model('Notapedidos');
 	}
 	// Carga lista de OT
 	public function index($permission){

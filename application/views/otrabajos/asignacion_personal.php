@@ -13,7 +13,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h2 class="box-title ">Programación de Tareas (planificacion)</h2>         
+          <h2 class="box-title ">Programación de Tareas(ASIGNACION PERSONAL)</h2>         
         </div><!-- /.box-header -->
         <div class="box-body">    
           <?php
@@ -29,6 +29,8 @@
 
           echo' <input type="hidden"  id="usrId" name="usrId" value="'.$usrId.'">';
           echo' <input type="hidden"  id="grpId" name="grpId" value="'.$grpId.'">' ; 
+          echo' <input type="hidden"  id="idTarea" name="idTarea" value="'.$idTarea.'">' ;
+          //dump_exit($idTarea);
           ?>
           <br><br>
           <div class="row" >
@@ -78,7 +80,7 @@
                               <tbody>  
                                <?php
 
-                               //var_dump($list);
+                              // dump_exit($list);
                        
                                 if(count($list) > 0) {
                                   $userdata = $this->session->userdata('user_data');
@@ -94,7 +96,7 @@
                                     
                                     // limitada al grupo 7 Coordinador
                                     if ($grpId != 7) {
-                                    echo '<td>'; 
+                                    echo '<td class="hidden">'; 
                                     echo '<i class="fa fa-calendar cous" style="color: #006400 ; cursor: pointer;" title="Programar tarea" data-toggle="modal" data-target="#modalProgramacion" data-idTarea="'.$a['id_tarea'].'" ></i>';
                                     echo '</td>';
                                     }
@@ -170,7 +172,7 @@
                 <select id="plantilla" name="plantilla" class="form-control " placeholder="" value="" ></select>
               </div>
               <div class="col-xs-4">
-                <input type="hidden"  id="numord" name="numord" value="<?php echo $id_orden;?>"> 
+                <input type=""  id="numord" name="numord" value="<?php echo $id_orden;?>"> 
               </div>  
               <br><div class="clearfix"></div>
 
@@ -193,7 +195,7 @@
                   </thead>
                   <tbody>  
                    <?php
-                   //  echo "<pre>";  
+                   //echo "<pre>";  
                    //dump_exit($idTarBonita);
                   
                    echo "<input type='text' class='' id='idTarBonita' value='". $idTarBonita ."'>";
@@ -314,80 +316,83 @@
 // A hacer click en tab calend recarga la lista
 $('#tabCalend').click(function(e){
 
-  regresa1();
+  recargaAsignaPersPlanif();
 });
 //FIXME: arreglar la vallidacion de campos de asignacio de usr y de fecha
 // Valida que no hayan tareas sin asignar ni sin programar 
-function validarInicio(){
+
+function validarInicio(){  
   
-  //TODO: sacar esta funcion esta abajo
-  cerrarPlanificacion();
+   var contCeldas = 0;
+   var programadas = 0;
+   var asignadas = 0;
+   var celFecha = "";
+   var tbl_Calendario = $('.tbCalendario tbody tr');
   
-  // var contCeldas = 0;
-  // var programadas = 0;
-  // var asignadas = 0;
-  // var celFecha = "";
-  // var tbl_Calendario = $('.tbCalendario tbody tr');
-  
-  // $(tbl_Calendario).each(function(){    
+   $(tbl_Calendario).each(function(){    
       
-  //     // cuenta programadas
-  //     celFecha = $(this).find('td.fecha').html();
-  //     console.log('Validacion - fecha asignacion: ');
-  //     console.log(celFecha);
-  //     if(celFecha !== undefined){
-  //       programadas ++;
-  //     }
+       // cuenta programadas
+    //    celFecha = $(this).find('td.fecha').html();
+    //    console.log('Validacion - fecha asignacion: ');
+    //    console.log(celFecha);
+    //    if(celFecha !== undefined){
+    //      programadas ++;
+    //    }
 
-  //     // cuent asignadas
-  //     celAsign = $(this).find('td.usrasign').html();
-  //     console.log('Validacion - asignado: ');
-  //     console.log(celAsign);
-  //     if(celAsign !== undefined){
-  //       asignadas ++;
-  //     }
+       // cuent asignadas
+       celAsign = $(this).find('td.usrasign').html();
+       console.log('Validacion - asignado: ');
+       console.log(celAsign);
+       if(celAsign !== undefined){
+         asignadas ++;
+       }
 
-  //     // suma cantidad filas
-  //     contCeldas++;
-  //     //console.log(celFecha);
-  // });
+       // suma cantidad filas
+       contCeldas++;
+       //console.log(celFecha);
+   });
 
-  // if (contCeldas > programadas) {
-  //   alert('Existen tareas sin programar...');
-  // }else{
+    //    if (contCeldas > programadas) {
+    //      alert('Existen tareas sin programar...');
+    //    }else{
 
-  //   //alert(contCeldas +' '+ programadas);
-  // }
+    //      //alert(contCeldas +' '+ programadas);
+    //    }
 
-  // if (contCeldas > asignadas) {
-  //   alert('Existen tareas sin asignar, por favor asígnelas antes de terminar la Planificación');
-  // }else{
-  //   //alert(contCeldas +' '+ asignadas);
-  //   console.log('Validación de tareas completada.');
-  //   //guardarInfo();
-  //   cerrarPlanificacion();
-  // }
+   if (contCeldas > asignadas) {
+     alert('Existen tareas sin asignar, por favor asígnelas antes de terminar la Planificación');
+   }else{
+     //alert(contCeldas +' '+ asignadas);
+     console.log('Validación de tareas completada.');
+     //guardarInfo();
+     cerrarAsignacion();
+   }
 }
 
-function cerrarPlanificacion(){
+function cerrarAsignacion(){
   
-  var idTarBonita = $('#idTarBonita').val();
-  //var idOT = $('#idOT').val();
-  $.ajax({
-          type: 'POST',
-          data: { idTarBonita: idTarBonita},
-                  //idOT: idOT},
-          url: 'index.php/Tarea/terminarPlanificacion', 
-          success: function(data){ 
-            console.log('respuesta cerrar planif: ');
-            console.log(data);
-                                  
-                },              
-          error: function(result){
-                  console.log(result);
-                },
-          dataType: 'json'      
-    });
+    var idTarBonita = $('#idTarea').val();
+    alert(idTarBonita);
+    var idOT = $('#numord').val();
+    alert(idOT);
+     $.ajax({
+             type: 'POST',
+             data: { idTarBonita: idTarBonita,
+                     idOT: idOT },
+                     //idOT: idOT},
+             url: 'index.php/Tarea/terminarAsigPersPlanificacion', 
+             success: function(data){ 
+                     console.log('respuesta cerrar planif: ');
+                     console.log(data);
+                     if(data['reponse_code'] == 204){
+                          $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
+                      }                   
+                     },              
+             error: function(result){
+                     console.log(result);
+                     },
+             dataType: 'json'      
+     });
 }
 
 
@@ -641,8 +646,11 @@ function calendario(){
               $('#modalTarea').modal('show');
           },
 
-          editable: permiso,
-          droppable: permiso, // this allows things to be dropped onto the calendar !!!
+          // no permite editar ni arrastrar eventos del calendar
+          editable: false,
+          droppable: false,
+          //editable: permiso,
+          //droppable: permiso, // this allows things to be dropped onto the calendar !!!
 
           drop: function (date, allDay) { // this function is called when something is dropped
                   // retrieve the dropped element's stored Event Object
@@ -922,7 +930,7 @@ $(".fa-print").click(function (e) {
       //alert(idsubsector);
     }else{
       //alert(idsubsector);
-      regresa1();
+      recargaAsignaPersPlanif();
     }
     //carga equipos een select equipos por subsector
     //getEquipPorIdSubsector(idsubsector);
@@ -968,7 +976,7 @@ $(".fa-print").click(function (e) {
       //alert(idequipo);
     }else{
      // alert(idequipo);
-      regresa1();
+      recargaAsignaPersPlanif();
     }
     
 
@@ -1097,7 +1105,7 @@ $(".fa-print").click(function (e) {
                   id_equipo: idEquip},
           url: 'index.php/Otrabajo/programTarea', 
           success: function(data){ 
-                  regresa1();
+                  recargaAsignaPersPlanif();
                   //alert('programacion exitosa');                  
                 },            
           error: function(result){
@@ -1108,34 +1116,34 @@ $(".fa-print").click(function (e) {
   }
 
   //ASIGNAR FECHA 
-    $(".fa-calendar").click(function (e) { 
+    // $(".fa-calendar").click(function (e) { 
      
-      $('#descTareaModal').empty(); //limpio modal       
+    //   $('#descTareaModal').empty(); //limpio modal       
       
-      var idEquipo = $('#equiPSelect option:selected').val();
-      var idSubsector = $('#sectSelect option:selected').val(); 
+    //   var idEquipo = $('#equiPSelect option:selected').val();
+    //   var idSubsector = $('#sectSelect option:selected').val(); 
       
-            var idListarea = $(this).parent('td').parent('tr').attr('id'); //id lis_tarea      
-            var idTarea = $(this).data('idtarea'); // id de tarea standar      
+    //         var idListarea = $(this).parent('td').parent('tr').attr('id'); //id lis_tarea      
+    //         var idTarea = $(this).data('idtarea'); // id de tarea standar      
       
-            $('#idListTarea').val(idListarea);
-            $('#idTarea').val(idTarea);
-            $('#idEquip').val(idEquipo);
-            console.log("id_listarea es:");
-            console.log(idListarea); 
-            console.log('id de tarea: ');
-            console.log(idTarea);      
-            console.log('id equipo: ');
-            console.log(idEquipo);
+    //         $('#idListTarea').val(idListarea);
+    //         $('#idTarea').val(idTarea);
+    //         $('#idEquip').val(idEquipo);
+    //         console.log("id_listarea es:");
+    //         console.log(idListarea); 
+    //         console.log('id de tarea: ');
+    //         console.log(idTarea);      
+    //         console.log('id equipo: ');
+    //         console.log(idEquipo);
 
-            var descTar = $(this).parents("tr").find("td").eq(2).html();
-            var text ='<h5>'+ descTar + '</h5>';
-            $('#descTareaModal').append(text);
+    //         var descTar = $(this).parents("tr").find("td").eq(2).html();
+    //         var text ='<h5>'+ descTar + '</h5>';
+    //         $('#descTareaModal').append(text);
 
-            var duracion = $(this).parents("tr").find("td").eq(7).html();     
-            $('#duracion').val(duracion);    
+    //         var duracion = $(this).parents("tr").find("td").eq(7).html();     
+    //         $('#duracion').val(duracion);    
 
-    });
+    // });
 
 
 
@@ -1232,7 +1240,7 @@ $(".fa-print").click(function (e) {
         url: 'index.php/Otrabajo/TareaRealizada',
         success: function(data){
                 console.log(data);
-                regresa1();
+                recargaAsignaPersPlanif();
                              
               },
           
@@ -1258,7 +1266,7 @@ $(".fa-print").click(function (e) {
               url: 'index.php/Otrabajo/EliminarTarea', 
               success: function(data){
                         console.log("TAREA ELIMINADA");                        
-                        regresa1();                      
+                        recargaAsignaPersPlanif();                      
                       },
                 
               error: function(result){
@@ -1302,7 +1310,7 @@ function setEquipo(){
                       id_listarea: id_listarea},
               url: 'index.php/Otrabajo/setEquipo', //index.php/
               success: function(data){                             
-                      regresa1();                    
+                      recargaAsignaPersPlanif();                    
                     },                
               error: function(result){
                     console.log(result);
@@ -1312,32 +1320,28 @@ function setEquipo(){
 
 traer_usuarios();
 function traer_usuarios(){
+  $.ajax({
+         type: 'POST',
+         data: { },
+         url: 'index.php/Tarea/getUsuariosBPM', 
+         success: function(data){            
 
-      $.ajax({
-        type: 'POST',
-        data: { },
-        url: 'index.php/Otrabajo/getusuario', //index.php/
-        success: function(data){
-               
-                var opcion  = "<option value='-1'>Seleccione...</option>" ; 
-                $('#nomusu').append(opcion); 
-                for(var i=0; i < data.length ; i++) {
+                 var opcion  = "<option value='-1'>Seleccione...</option>" ; 
+                 $('#nomusu').append(opcion); 
+                 for(var i=0; i < data.length ; i++) {
 
-                      var nombre = data[i]['usrLastName']+' '+data[i]['usrName'];
-                      //data[i]['usrName'];
+                      var nombre = data[i]["firstname"]+' '+data[i]['lastname'];
+                      var opcion  = "<option value='"+data[i]["id"]+"'>" +nombre+ "</option>" ; 
 
-                      var opcion  = "<option value='"+data[i]['usrId']+"'>" +nombre+ "</option>" ; 
-
-                    $('#nomusu').append(opcion); 
-                                   
-                }
-              },
-        error: function(result){
+                      $('#nomusu').append(opcion);                                    
+                 }
+               },
+         error: function(result){
               
-              console.log(result);
-            },
-            dataType: 'json'
-      });
+               console.log(result);
+             },
+             dataType: 'json'
+       });
 }
 
 //guardando usuario asignado - listo
@@ -1357,7 +1361,7 @@ function guardarmodif(){
                 success: function(data){
 
                         console.log(data);                        
-                        regresa1();                      
+                        recargaAsignaPersPlanif();                      
                       },
                   
                 error: function(result){
@@ -1387,7 +1391,7 @@ function guardarfecha(){
                 success: function(data){
 
                         console.log(data);                        
-                        regresa1();                      
+                        recargaAsignaPersPlanif();                      
                       },
                   
                 error: function(result){
@@ -1397,14 +1401,10 @@ function guardarfecha(){
    
 }
 
-function regresa1(){
+function recargaAsignaPersPlanif(){
   
   var numord= $('#numord').val();
-  no=numord;
-  console.log(no);
-  
-  $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargartarea/<?php echo $permission; ?>/"+no+"");
-  
+  $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/"+numord+"");  
 }
 
 $('#fechaProgNueva').datetimepicker(

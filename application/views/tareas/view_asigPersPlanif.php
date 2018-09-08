@@ -36,6 +36,8 @@
                                                         //$TareaBPM["assigned_id"] = 'asignado';
                                                         //echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
                                                     //if ($estadoTarea == "noasignado") {´
+                                                        echo' <input type=""  id="idTareaBPM" name="grpId" value="'.$idTarBonita.'">' ;
+                                                        echo "<input type='text' class='' id='caseId' value='". $TareaBPM["caseId"] ."'>";
 
                                                         echo "<input type='text' class='' id='idOT' value='". $idOT ."'>";
 
@@ -65,7 +67,7 @@
                                                                     value="<?php echo $datos[0]['id_listarea'] ?>">
                                                                     <input type="text" class="hidden" id="idform" value="<?php echo $idForm ?>">
                                                                     <!-- id de task en bonita -->
-                                                                    <input type="text" class="hidden" id="idTarBonita"
+                                                                    <input type="text" class="" id="idTarBonita"
                                                                     value="<?php echo $idTarBonita ?>">
                                                                 </div>
                                                             </div>
@@ -163,7 +165,64 @@
                                </div>
 
                                <div role="tabpanel" class="tab-pane" id="messages">
-                                <div class="panel-body"></div>
+                                <div class="panel-body">
+                                
+                                <div class="panel panel-primary" >
+                                                <div class="panel-heading">Línea de Tiempo</div>
+                                                <div  class="panel-body" style="max-height: 500px;overflow-y: scroll;">
+                                                
+
+                                                <div class="container">
+                                                    <ul class="timeline">
+                                                    <?php
+
+                                                    foreach ($timeline['listAct'] as $f) {       
+                                                        echo '<li>
+                                                            <div class="timeline-badge info"><i class="glyphicon glyphicon-time"></i></div>
+                                                            <div class="timeline-panel">
+                                                                <div class="timeline-heading">
+                                                                <h4 class="timeline-title">'.$f['displayName'].'</h4>
+                                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
+                                                                </div>
+                                                                <div class="timeline-body">
+                                                                <p>ID: '.$f['id'].'</p>
+                                                                <p>caseId: '.$f['caseId'].'</p>
+                                                                <p>idProceso: '.$f['processId'].'</p>
+                                                                <p>state: '.$f['state'].'</p>
+                                        
+                                                                </div>
+                                                            </div>
+                                                            </li>';
+                                                    }
+                                                    echo '<h2 style="margin-left:50px;">Actividades Terminadas</h2>';
+                                                    foreach ($timeline['listArch'] as $f) {
+                                                        
+                                                        echo '<li>
+                                                            <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+                                                            <div class="timeline-panel">
+                                                                <div class="timeline-heading">
+                                                                <h4 class="timeline-title">'.$f['displayName'].'</h4>
+                                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
+                                                                </div>
+                                                                <div class="timeline-body">
+                                                                <p>ID: '.$f['id'].'</p>
+                                                                <p>caseId: '.$f['caseId'].'</p>
+                                                                <p>idProceso: '.$f['processId'].'</p>
+                                                                <p>state: '.$f['state'].'</p>
+                                                               
+                                                                </div>
+                                                            </div>
+                                                            </li>';
+                                                    }
+                                                    ?>    
+                                                    </ul>
+                                                </div>                                            
+                                            
+                                           </div>
+                                       </div>
+                                
+                                
+                                </div><!--p<nelbody-->
 
                             </div>
                             <div class="col-sm-12 col-md-12" id="infoOT">
@@ -179,7 +238,7 @@
 
         <div class="modal-footer">
             <button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
-            <!-- <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button> -->
+            <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button>
         </div> <!-- /.modal footer -->
 
     </div><!-- /.box body -->
@@ -188,22 +247,47 @@
 </div><!-- /.row -->
 </section><!-- /.content -->
 
-<script>  
+<!-- estilos de linea de tiempo -->
+<style type="text/css">
 
-  function verOT(){
+    .timeline{list-style:;padding:0 0 20px;position:relative;margin-top:-15px;margin-left:70px;}.timeline:before{top:30px;bottom:25px;position:absolute;content:" ";width:3px;background-color:#ccc;left:25px;margin-right:-1.5px}.timeline>li,.timeline>li>.timeline-panel{margin-bottom:5px;position:relative}.timeline>li:after,.timeline>li:before{content:" ";display:table}.timeline>li:after{clear:both}.timeline>li>.timeline-panel{margin-left:55px;float:left;top:19px;padding:4px 10px 8px 15px;border:1px solid #ccc;border-radius:5px;width:45%}.timeline>li>.timeline-badge{color:#fff;width:36px;height:36px;line-height:36px;font-size:1.2em;text-align:center;position:absolute;top:26px;left:9px;margin-right:-25px;background-color:#fff;z-index:100;border-radius:50%;border:1px solid #d4d4d4}.timeline>li.timeline-inverted>.timeline-panel{float:left}.timeline>li.timeline-inverted>.timeline-panel:before{border-right-width:0;border-left-width:15px;right:-15px;left:auto}.timeline>li.timeline-inverted>.timeline-panel:after{border-right-width:0;border-left-width:14px;right:-14px;left:auto}.timeline-badge.primary{background-color:#2e6da4!important}.timeline-badge.success{background-color:#3f903f!important}.timeline-badge.warning{background-color:#f0ad4e!important}.timeline-badge.danger{background-color:#d9534f!important}.timeline-badge.info{background-color:#5bc0de!important}.timeline-title{margin-top:0;color:inherit}.timeline-body>p,.timeline-body>ul{margin-bottom:0;margin-top:0}.timeline-body>p+p{margin-top:5px}.timeline-badge>.glyphicon{margin-right:0px;color:#fff}.timeline-body>h4{margin-bottom:0!important}
+</style>
+
+
+<script>  
+// Trae id de ot por id tarea BPM (la oT fue generada por la Tarea anterior. Lo vincula por CASE ID)
+getIdOTporIdBPM();
+function getIdOTporIdBPM(){
+     var caseId = $('#caseId').val();     
+     $.ajax({
+            type: 'POST',
+            data: {
+                'caseId': caseId,  
+            },
+            url: 'index.php/Tarea/getIdOTPorCaseId',
+            success: function(data) {
+                console.log('id de ot en vista: ');
+                console.log(data);
+                    $('#idOT').val(data);                   
+            },
+            error: function(data) {   
+                console.log(data);
+            },
+            dataType: 'json'
+        }); 
+}
+ 
+function verOT(){
     
     var iort = $('#idOT').val();   
+    var idTarea = $('#idTarBonita').val();// idde tarea para cerrar la tarea asignacion
+    alert(iort);
+    alert(idTarea);  
     WaitingOpen('Cargando Tareas...');
     $('#content').empty();
-    $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargartarea/<?php echo $permission; ?>/"+iort+"");
+    $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/"+iort+"/"+idTarea+" ");
     WaitingClose();  
-  }
-
-
-  getIdOTporIdTask();
-  function getIdOTporIdTask(){
-
-  }
+}  
 
     evaluarEstado();    
     function evaluarEstado(){
@@ -275,7 +359,9 @@
         });
     });  
 
-    function terminarTarea(){
+//TODO: METODO NUEVO CAMBIADO POR TERNINAR TAREA
+// para poder probar  terminar la planificacion
+    function terminarAsigPersPlanificacion(){
         var idTarBonita = $('#idTarBonita').val();
         alert(idTarBonita);
         $.ajax({
@@ -283,7 +369,7 @@
             data: {
                 'idTarBonita': idTarBonita,
             },
-            url: 'index.php/Tarea/terminarTarea',
+            url: 'index.php/Tarea/terminarAsigPersPlanificacion',
             success: function(data) {
                     
                     // toma a tarea exitosamente
@@ -297,7 +383,33 @@
             },
             dataType: 'json'
         }); 
-    }            
+    }
+    // function terminarTarea(){
+        //     var idTarBonita = $('#idTarBonita').val();
+        //     alert(idTarBonita);
+        //     $.ajax({
+        //         type: 'POST',
+        //         data: {
+        //             'idTarBonita': idTarBonita,
+        //         },
+        //         url: 'index.php/Tarea/terminarTarea',
+        //         success: function(data) {
+                        
+        //                 // toma a tarea exitosamente
+        //                 if(data['reponse_code'] == 204){
+        //                     $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
+        //                 }
+        //         },
+        //         error: function(data) {
+        //             //alert("Noo");
+        //             console.log(data);
+        //         },
+        //         dataType: 'json'
+        //     }); 
+        // }   
+
+
+
     
     // Boton Hecho generico
     function estado() {

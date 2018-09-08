@@ -6,88 +6,97 @@ class Tareas extends CI_Model
 	function __construct(){
 
 		parent::__construct();
-	}	
+	}
 	// trae tareas de BPM
-	function getTareas($param){
-		
-		$userdata = $this->session->userdata('user_data');
-		$usrId= $userdata[0]["usrId"];
-		//$tareas = file_get_contents(BONITA_URL.'API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);		
-		$resource = 'API/bpm/humanTask?p=0&c=1000&f=user_id%3D';
-		$url = BONITA_URL.$resource.$usrId;
-		$tareas = file_get_contents($url, false, $param);
+	 function getTareas($param){
 
-		$tar = $this->AgregarDatos($tareas);
+	 	$userdata = $this->session->userdata('user_data');
+	 	$usrId= $userdata[0]["usrId"];
+	 	//$tareas = file_get_contents(BONITA_URL.'API/bpm/humanTask?p=0&c=10&f=user_id%3D5', false, $param);
+	 	$resource = 'API/bpm/humanTask?p=0&c=1000&f=user_id%3D';
+	 	$url = BONITA_URL.$resource.$usrId;
+	 	$tareas = file_get_contents($url, false, $param);
 
-		return $tar;	
+	 	$tar = $this->AgregarDatos($tareas);
+
+	 	return $tar;
+	 }
+
+	function getUsuariosBPM($param){
+
+		// $resource = 'API/identity/user?f=group_id=19';
+		$resource = 'API/identity/user?p=0&c=50';	 	
+	 	$url = BONITA_URL.$resource;
+		$usrs = file_get_contents($url, false, $param);
+		return json_decode($usrs,true) ;
 	}
 
 	function AgregarDatos($tareas){
 		//dump_exit($tareas);
 		$tar = json_decode($tareas,true);
-	
+
 		foreach ($tar as $key => $value) {
-			
+
 			$caseId = $tar[$key]["caseId"];
 			$datos = $this->getDatPedidoTrabajo($caseId);
-			
+
 			$tar[$key]['petr_id'] = $datos[0]['petr_id'];
 			$tar[$key]['cod_interno'] = $datos[0]['cod_interno'];
 		}
-		
+
 		return $tar;
 	}
 	// trae cod interno de pedido trabajo en funcion del caseId de BPM
 	function getDatPedidoTrabajo($caseId){
-		
+
 		$this->db->select('trj_pedido_trabajo.petr_id,
 							trj_pedido_trabajo.cod_interno');
 		$this->db->from('trj_pedido_trabajo');
 		$this->db->where('trj_pedido_trabajo.bpm_id',$caseId);
-		
+
 		$query = $this->db->get();
 
 		if ($query->num_rows()!=0)
-		{	
-			return $query->result_array();			
+		{
+			return $query->result_array();
 		}
 	}
 
 	function getIdPedTrabajo($caseId){
 		$this->db->select('trj_pedido_trabajo.petr_id,trj_pedido_trabajo.cod_interno');
-		$this->db->from('trj_pedido_trabajo');		
+		$this->db->from('trj_pedido_trabajo');
 		$this->db->where('trj_pedido_trabajo.bpm_id', $caseId);
-		
+
 		$query = $this->db->get();
 
 		if ($query->num_rows()!=0){
-			return $query->result_array(); 
-			//return $query->row('petr_id');	
-	 	}else{	
+			return $query->result_array();
+			//return $query->row('petr_id');
+	 	}else{
 	 		return false;
 	 	}
 	}
 
 	// Estado GENERICO
 	function estadocuenta($idTarBonita,$param){
-		
+
 		$resource = 'API/bpm/userTask/';
 		$com = '/execution';
-		$url = BONITA_URL.$resource.$idTarBonita.$com;		
+		$url = BONITA_URL.$resource.$idTarBonita.$com;
 		// $response = file_get_contents(BONITA_URL.'API/bpm/userTask/78/execution',false, $param);
 		$response = file_get_contents($url,false, $param);
 
 		return $response;
 	}
-	// Estado de cuenta 
+	// Estado de cuenta
 	function estadocuentaOk($idTarBonita,$param){
-		
+
 		$resource = 'API/bpm/userTask/';
 		$com = '/execution';
-		$url = BONITA_URL.$resource.$idTarBonita.$com;	
+		$url = BONITA_URL.$resource.$idTarBonita.$com;
 		file_get_contents($url,false, $param);
 		$response = $this->parseHeaders( $http_response_header );
-		
+
 		return $response;
 	}
 	//Espera regularizacion
@@ -96,7 +105,7 @@ class Tareas extends CI_Model
 
 		$resource = 'API/bpm/userTask/';
 		$com = '/execution';
-		$url = BONITA_URL.$resource.$idTarBonita.$com;	
+		$url = BONITA_URL.$resource.$idTarBonita.$com;
 		$response = file_get_contents($url,false, $param);
 
 		return $response;
@@ -107,7 +116,7 @@ class Tareas extends CI_Model
 
 		$resource = 'API/bpm/userTask/';
 		$com = '/execution';
-		$url = BONITA_URL.$resource.$idTarBonita.$com;	
+		$url = BONITA_URL.$resource.$idTarBonita.$com;
 		$response = file_get_contents($url,false, $param);
 
 		return $response;
@@ -124,35 +133,89 @@ class Tareas extends CI_Model
 		$respuesta = file_get_contents(BONITA_URL.'API/bpm/comment',false,$param);
 		return $respuesta;
 	}
-	
+
+	// FIXME: CAMBIE ID TAR BONITA PO ID DE USR
 	// Terminar Tarea
 	function terminarTarea($idTarBonita,$param){
-		
+
+		$userdata = $this->session->userdata('user_data');
+        $usrId = $userdata[0]['usrId'];
 		$method = '/execution';
 		$resource = 'API/bpm/userTask/';
 		$url = BONITA_URL.$resource.$idTarBonita.$method;
-		file_get_contents($url, false, $param);			
+		//$url = BONITA_URL.$resource.$usrId.$method;
+		file_get_contents($url, false, $param);
 		$response = $this->parseHeaders( $http_response_header );
 		return $response;
 	}
 
-	// Tomar Tareas 
+	function terminarPlanificacion($idTarBonita,$param){
+
+		$method = '/execution';
+		$resource = 'API/bpm/userTask/';
+		$url = BONITA_URL.$resource.$idTarBonita.$method;
+		//var_dump($url);
+		file_get_contents($url, false, $param);
+		$response = $this->parseHeaders( $http_response_header );
+		return $response;
+	}
+
+
+	// Tomar Tareas
 	function tomarTarea($idTarBonita,$param){
-	
+
 		try {
 			$resource = 'API/bpm/humanTask/';
-			$url = BONITA_URL.$resource.$idTarBonita;		
+			$url = BONITA_URL.$resource.$idTarBonita;
 
 			file_get_contents($url, false, $param);
 			$response = $this->parseHeaders( $http_response_header );
-			 
+
 			return $response;
 		}catch (Exception $e) {
 			var_dump($e->getMessage());
-		 }		
-	}	
+		 }
+	}
 
-	// Soltar Tareas 
+	function validarEstOT($idTarBonita,$idPedido){
+
+		$this->db->select('orden_trabajo.petr_id,
+							orden_trabajo.bpm_task_id_plan');
+		$this->db->from('orden_trabajo');
+		$this->db->where('orden_trabajo.bpm_task_id_plan', $idTarBonita);
+		$this->db->where('orden_trabajo.petr_id', $idPedido);
+		$query = $this->db->get();
+
+		if ($query->num_rows()>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	// Generar OT vacia
+	function setOTInicial($idTarBonita,$idPedido,$cod_interno,$detalle){
+
+		$userdata = $this->session->userdata('user_data');
+		$usrId= $userdata[0]['usrId'];
+
+		$data = array(
+			'nro'=> $cod_interno,
+			'fecha_inicio'=> date('Y-m-d H:i:S'),
+			'descripcion'=> $detalle,
+			'cliId' => '1',
+			'estado' => 'C',
+			'id_usuario' =>$usrId,
+			'id_usuario_a' =>1,
+			'id_sucursal' => 1,
+			'id_proveedor' => 1,
+			'petr_id' => $idPedido,
+			'bpm_task_id_plan'=>$idTarBonita
+		   );
+		$query = $this->db->insert("orden_trabajo",$data);
+
+		return $query;
+	}
+	// Soltar Tareas
 	function soltarTarea($idTarBonita,$param){
 
 		$resource = 'API/bpm/humanTask/';
@@ -178,32 +241,62 @@ class Tareas extends CI_Model
 		return $head;
 	}
 
+	// devuelve id de OT por case_id
+	function getIdOrdenTrabajoPorCaseId($caseId){
 
+		$this->db->select('orden_trabajo.id_orden');
+		$this->db->from('orden_trabajo');
+		$this->db->join('trj_pedido_trabajo', 'orden_trabajo.petr_id = trj_pedido_trabajo.petr_id');
+		$this->db->where('trj_pedido_trabajo.bpm_id', $caseId);
+		$query = $this->db->get();
 
+		if($query->num_rows()>0){
+	    	return $query->row('id_orden');
+	    }
+	    else{
+	    	return false;
+	    }
+	}
+
+	// devuelve id de ot por caseId
+	function getIdOTPorCaseId($caseId){
+
+		$this->db->select('orden_trabajo.id_orden');
+		$this->db->from('orden_trabajo');
+		$this->db->join('trj_pedido_trabajo', 'trj_pedido_trabajo.petr_id = orden_trabajo.petr_id');
+		$this->db->where('trj_pedido_trabajo.bpm_id', $caseId);
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->row('id_orden');	
+	 	}else{	
+	 		return 0;
+	 	}
+	}
 
 
 
 	// Devuelve el id de tareas de trazaj correspond al id_tarea bonita para detatareas
 	// NO TOCAR
 	function getIdTareaTraJobs($idBonita,$param){
-		
+
 		$urlResource = 'API/bpm/activityVariable/';
 		$idListEnBPM = '/trazajobsTaskId';
 
 		try {
 			$idTJ = file_get_contents(BONITA_URL.$urlResource.$idBonita.$idListEnBPM , false, $param);
-			$idTJobs = json_decode($idTJ,true); //sin true no se puede acceder		
+			$idTJobs = json_decode($idTJ,true); //sin true no se puede acceder
 			$id_listarea = $idTJobs["value"];
 		} catch (Exception $e) {
 			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 			$id_listarea = 0;
-		} 	
-		
+		}
+
 		return $id_listarea;
-	}	 
+	}
 
 	// devuelve detalle de tareas para notificacion standart a partir de id_listarea
-	function detaTareas($id_listarea){			
+	function detaTareas($id_listarea){
 
 	 	$this->db->select('tbl_listarea.id_listarea,
 							tbl_listarea.id_orden,
@@ -219,14 +312,14 @@ class Tareas extends CI_Model
 		$query = $this->db->get();
 
 		if ($query->num_rows()!=0){
-	 		return $query->result_array();	
-	 	}else{	
+	 		return $query->result_array();
+	 	}else{
 	 		return false;
 	 	}
 	}
 
 	function getOtNroyDurStdTarea($id_listarea){
-		
+
 
 		$this->db->select('tbl_listarea.id_listarea,
 							tbl_listarea.id_orden,
@@ -251,15 +344,15 @@ class Tareas extends CI_Model
 
 	//devuelve el id de tarea estandar asociada a listarea
 	function getTarea_idListarea($id_listarea){
-		
+
 		$this->db->select('tbl_listarea.id_tarea');
 		$this->db->from('tbl_listarea');
 		$this->db->where('tbl_listarea.id_listarea', $id_listarea);
 		$query = $this->db->get();
 
 		if ($query->num_rows()!=0){
-	 		return $query->row('id_tarea');	
-	 	}else{	
+	 		return $query->row('id_tarea');
+	 	}else{
 	 		return false;
 	 	}
 	}
@@ -272,32 +365,48 @@ class Tareas extends CI_Model
 		// return $response;
 
 		$urlResource = BONITA_URL.'API/bpm/humanTask/';
-		
+
 		$data = file_get_contents($urlResource.$idTarBonita , false, $param);
-		
-		
+
+
 		return $data;
 	}
 
+	function getIdOtPorIdBPM($idTarBonita){
+
+		$this->db->select('orden_trabajo.id_orden');
+		$this->db->from('orden_trabajo');
+		$this->db->where('orden_trabajo.bpm_task_id_plan', $idTarBonita);
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->row('id_orden');
+	 	}else{
+	 		return 0;
+	 	}
+	}
+
+
+
 //////////////  form dinamico  //////////////////
 
-	// verifica que el form tenga todos los campos validado en 1 
-	function validarFormGuardado($idValor,$id_listarea){		
+	// verifica que el form tenga todos los campos validado en 1
+	function validarFormGuardado($idValor,$id_listarea){
 
 		// $this->db->select('frm_formularios_completados.VALO_ID');
 		// $this->db->from('frm_formularios_completados');
-		// $this->db->where('frm_formularios_completados.VALIDADO', 0);	// no validado 
+		// $this->db->where('frm_formularios_completados.VALIDADO', 0);	// no validado
 		// $this->db->where('frm_formularios_completados.VALO_ID', $idValor);
 		// $this->db->where('frm_formularios_completados.LITA_ID', $id_listarea);
 		// $query = $this->db->get();
 
 	 	// if ($query->num_rows() > 0){
-	 	// 	return $query->row('VALO_ID');	
-	 	// }else{	
+	 	// 	return $query->row('VALO_ID');
+	 	// }else{
 	 	// 	return 0;
 	 	// }
 
-		// cuenta los campos que estan en 0 y son obligatorios	
+		// cuenta los campos que estan en 0 y son obligatorios
 		 $sql ="SELECT
 		 COUNT(*) as novalidos
 		 FROM
@@ -309,7 +418,7 @@ class Tareas extends CI_Model
 		 $query = $this->db->query($sql);
 
 		 if( $query->row('novalidos') > 0 ){
-	    	
+
 	     	return false;
 	     }
 	     else{
@@ -323,32 +432,32 @@ class Tareas extends CI_Model
 		$this->db->from('frm_formularios_completados');
 		$this->db->where('frm_formularios_completados.LITA_ID', $bpm_task_id);
 		$query = $this->db->get();
-		
+
 		if ($query->num_rows()>0){
-	 		return true;	
-	 	}else{	
+	 		return true;
+	 	}else{
 	 		return false;
 	 	}
 	}
 
 	// Trae form asoc a id de tarea
 	function getFormTarea($id_tarea){
-		
+
 		$this->db->select('tareas.form_asoc');
-		$this->db->from('tareas');		
+		$this->db->from('tareas');
 		$this->db->where('tareas.id_tarea', $id_tarea);
-		
+
 		$query = $this->db->get();
 
 		if ($query->num_rows()!=0){
-	 		return $query->row('form_asoc');	
-	 	}else{	
+	 		return $query->row('form_asoc');
+	 	}else{
 	 		return false;
 	 	}
 	}
 
 	// Devuelve form asociado a una tarea std
-	function getIdFormPorIdTareaSTD($idTareaStd){		
+	function getIdFormPorIdTareaSTD($idTareaStd){
 
 		$this->db->select('tareas.form_asoc');
 		$this->db->from('tareas');
@@ -356,15 +465,15 @@ class Tareas extends CI_Model
 		$query = $this->db->get();
 
 		if ($query->num_rows()!=0){
-	 		return $query->row('form_asoc');	
-	 	}else{	
+	 		return $query->row('form_asoc');
+	 	}else{
 	 		return 0;
 	 	}
 	}
 
 	// devuelve id tarea y form asociado por nomb de tarea BPM
 	function getidFormTareaBPM($nomtarea){
-		
+
 		$this->db->select('tareas.id_tarea,
 							tareas.form_asoc');
 		$this->db->from('tareas');
@@ -392,7 +501,7 @@ class Tareas extends CI_Model
 		//$idForm = $this->getFormTarea($id_tarea);
 		//echo "id form: ";
 		//var_dump($idForm);
-		
+
 		$sql = "SELECT
 				frm_formularios_completados.FOCO_ID,
 				frm_formularios_completados.FORM_NOMBRE AS nombre,
@@ -429,7 +538,7 @@ class Tareas extends CI_Model
 
 	// Trae valores validos por ID de formularios
 	function getValValidos($idForm){
-		
+
 		$sql = "SELECT
 				frm_grupos.GRUP_ID,
 				frm_valores.NOMBRE,
@@ -451,7 +560,7 @@ class Tareas extends CI_Model
 	    }
 	    else{
 	    	return false;
-	    }				
+	    }
 	}
 
 	// devuelve array con id de valor y url de la imag
@@ -472,42 +581,40 @@ class Tareas extends CI_Model
 	    }
 	    else{
 	    	return false;
-	    }		
+	    }
 	}
-// TODO: SAACR FORM ID = 1 
+// TODO: SAACR FORM ID = 1
 	// Trae configuracion de form inicial para guardar en frm_frm_completados
 	function getFormInicial($idFormAsoc){
 		// trae i de tarea estandar por id listarea
 		//$id_tarea = $this->getTarea_idListarea($id_listarea);
 		// trae id de form asociado a tarea
-		
+
 		//$idFormAsoc = $this->getFormTarea($id_tarea);
 
 
-		$sql = "SELECT	
+		$sql = "SELECT
 				form.form_id AS FORM_ID,
 				form.nombre AS FORM_NOMBRE,
 				form.fec_creacion AS FEC_CREACION,
-				cate.NOMBRE AS CATE_NOMBRE,						
+				cate.NOMBRE AS CATE_NOMBRE,
 				grup.NOMBRE AS GRUP_NOMBRE,
-				tida.NOMBRE AS TIDA_NOMBRE,	
-
-				tida.TIDA_ID AS TIDA_ID,						
-					
-				valo.NOMBRE AS VALO_NOMBRE,	
-				valo.VALO_ID AS VALO_ID,				
-				valo.ORDEN AS ORDEN							
+				tida.NOMBRE AS TIDA_NOMBRE,
+				tida.TIDA_ID AS TIDA_ID,
+				valo.NOMBRE AS VALO_NOMBRE,
+				valo.VALO_ID AS VALO_ID,
+				valo.ORDEN AS ORDEN
 				FROM
-				frm_formularios form, 
-				frm_categorias cate, 
-				frm_grupos grup ,  
+				frm_formularios form,
+				frm_categorias cate,
+				frm_grupos grup ,
 				frm_tipos_dato tida,
 				frm_valores valo
-				where FORM.FORM_ID = CATE.FORM_ID 
-				AND CATE.CATE_ID = GRUP.CATE_ID 
-				AND GRUP.GRUP_ID = VALO.GRUP_ID 
-				AND TIDA.TIDA_ID = VALO.TIDA_ID	
-				AND form.form_id = $idFormAsoc 					
+				where form.FORM_ID = cate.FORM_ID
+				AND cate.CATE_ID = grup.CATE_ID
+				AND grup.GRUP_ID = valo.GRUP_ID
+				AND tida.TIDA_ID = valo.TIDA_ID
+				AND form.form_id = $idFormAsoc
 				ORDER BY cate.ORDEN,grup.ORDEN,valo.ORDEN";
 
 		$query= $this->db->query($sql);
@@ -528,14 +635,14 @@ class Tareas extends CI_Model
         $i=0;
         $dat= array();
 
-        // Trae la info del form sin valores validos desp se actualiza al guardar        
+        // Trae la info del form sin valores validos desp se actualiza al guardar
         $form = $this->getFormInicial($idFormAsoc); //$id_listarea);
 
         // Agrego id de usuario al array para insertar
         foreach ($form as $key) {
 
-        	$key['USUARIO'] = $usrId; 
-        	$key['LITA_ID'] = $bpm_task_id; //$id_listarea;      	
+        	$key['USUARIO'] = $usrId;
+        	$key['LITA_ID'] = $bpm_task_id; //$id_listarea;
         	$i++;
         	$dat[$i] =  $key;
         }
@@ -544,7 +651,7 @@ class Tareas extends CI_Model
         // dump_exit($dat);
 
 
-        $response = $this->db->insert_batch('frm_formularios_completados', $dat);       
+        $response = $this->db->insert_batch('frm_formularios_completados', $dat);
 	}
 
 	// Arma array p/ insertar en frm_formularios_completados por ID de Valor
@@ -574,13 +681,13 @@ class Tareas extends CI_Model
 				frm_categorias.NOMBRE AS CATE_NOMBRE,
 				frm_grupos.NOMBRE AS GRUP_NOMBRE,
 				frm_valores.NOMBRE VALO_NOMBRE,
-				frm_tipos_dato.NOMBRE AS TIDA_NOMBRE				
+				frm_tipos_dato.NOMBRE AS TIDA_NOMBRE
 				FROM
 				frm_formularios
 				INNER JOIN frm_categorias ON frm_categorias.FORM_ID = frm_formularios.form_id
 				INNER JOIN frm_grupos ON frm_grupos.CATE_ID = frm_categorias.CATE_ID
 				INNER JOIN frm_valores ON frm_valores.GRUP_ID = frm_grupos.GRUP_ID
-				INNER JOIN frm_tipos_dato ON frm_valores.TIDA_ID = frm_tipos_dato.TIDA_ID	
+				INNER JOIN frm_tipos_dato ON frm_valores.TIDA_ID = frm_tipos_dato.TIDA_ID
 				WHERE
 				frm_valores.VALO_ID = $idValor";
 
@@ -598,27 +705,27 @@ class Tareas extends CI_Model
 	        //$response['VALOR'] 		 = $row['VALOR'];
 		}
 
-		return $response;	    					
+		return $response;
 	}
 
 	// Inserta datos de Form en frm_formularios_completados
 	function UpdateForm($datos,$key){
-		
+
 		$this->db->where('VALO_ID', $key);	// $key = Id de valor
 		$response = $this->db->update('frm_formularios_completados', $datos);
 		return $response;
 	}
 
-		//**************************ARCHIVO******************************
-		public function GuardarCotizacion($idPedido,$data){
+		//ARCHIVO
+		function GuardarCotizacion($idPedido,$data){
 			$this->db->where('PETR_ID',$idPedido);
 			$result = $this->db->update('frm_formularios_completados',$data);
 			return $result;
 		}
-		//**************************ARCHIVO******************************
-	
-		//***********Ver Cotizacion en Presupuesto*************/
-			public function ObtenerCotizacion($idPedido){
+		//ARCHIVO
+
+		//Ver Cotizacion en Presupuesto
+		function ObtenerCotizacion($idPedido){
 				$this->db->select('VALOR');
 				$this->db->where('PETR_ID',$idPedido);
 				$this->db->where('NOM_VAR',"cotizacion");
@@ -628,11 +735,11 @@ class Tareas extends CI_Model
 				}else{
 					return '';
 				}
-			
-			}
-		//***********Ver Cotizacion en Presupuesto*************/
 
-		public function GuardarValorPresupuesto($idPedido){
+			}
+		//Ver Cotizacion en Presupuesto
+
+		function GuardarValorPresupuesto($idPedido){
 			$this->db->where('PETR_ID',$idPedido);
 			$query = $this->db->update('frm_formularios_completados',array('NOM_VAR'=>'presupuesto'));
 			return $query;
@@ -640,8 +747,35 @@ class Tareas extends CI_Model
 
 
 
-	
+	/**
+     * Tarea::tareasPorSector()
+     * Método que muestra el listado de tareas a evaluar por el coordinador.
+     *
+     * @return   Tareas
+     */
+	function tareasPorSector($idTarBonita){
+		$userdata = $this->session->userdata('user_data');
+		$usrNick  = $userdata[0]["usrNick"];
+		$rolId    = $userdata[0]["rolId"];
+		//$grpId    = $userdata[0]["grpId"];
+		$clave    = array_search(46, $rolId);//rol46=coordinador
+		//dump_exit($usrId);
+		$this->db->select('
+			tareas.form_asoc, tareas.id_tarea,
+			tbl_listarea.id_listarea, tbl_listarea.id_orden, tbl_listarea.tareadescrip, tbl_listarea.fecha, tbl_listarea.id_usuario, tbl_listarea.id_equipo, tbl_listarea.estado, tbl_listarea.bpm_task_id,
+			tbl_subsector.usuario_coordinador, tbl_subsector.descripcion AS subsector_descripcion,
+			tbl_equipos.id_subsector,
+			orden_trabajo.descripcion as orden_descripcion');
+		$this->db->from('tbl_subsector');
+		$this->db->join('tbl_equipos', 'tbl_subsector.id_subsector = tbl_equipos.id_subsector');
+		$this->db->join('tbl_listarea', 'tbl_listarea.id_equipo = tbl_equipos.id_equipo');
+		$this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
+		$this->db->join('orden_trabajo', 'orden_trabajo.id_orden = tbl_listarea.id_orden');
+		$this->db->where('tbl_subsector.usuario_coordinador', $usrNick);
+		//$this->db->where('orden_trabajo.bpm_task_id_plan', $idTarBonita);
 
-}	
+		$query = $this->db->get();
+		return $query->result_array();
+	}
 
-?>
+}

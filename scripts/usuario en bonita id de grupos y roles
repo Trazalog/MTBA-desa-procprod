@@ -55,3 +55,16 @@ PROCESO AVANCE
 
 ernesto clavel -> fernando palacios -> gabriela balderramo -> ernesto clavel -> 
 fernando palacios -> pablo paez ->
+
+
+
+
+
+
+
+
+
+
+RewriteRule ^(.*)$ /mtba-desa-procprod/index.php/$1 [L]
+
+$config['base_url'] = 'http://35.239.41.196/mtba-desa-procprod/';

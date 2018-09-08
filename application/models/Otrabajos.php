@@ -533,14 +533,21 @@ class Otrabajos extends CI_Model
 	function cargartareas($idglob){
 
 		// funcionando!!!!
-		$this->db->select('tbl_listarea.*,							
-							sisgroups.grpId,
-							sisusers.usrName,
-							sisusers.usrLastName,
+			// $this->db->select('tbl_listarea.*,							
+			// 					sisgroups.grpId,
+			// 					sisusers.usrName,
+			// 					sisusers.usrLastName,
+			// 					tareas.duracion_std');
+			// $this->db->from('tbl_listarea');
+			// $this->db->join('sisusers', 'sisusers.usrId = tbl_listarea.id_usuario', 'left');
+			// $this->db->join('sisgroups', 'sisgroups.grpId = sisusers.grpId', 'left');
+			// $this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
+			// $this->db->where('tbl_listarea.id_orden',$idglob);
+
+		$this->db->select('tbl_listarea.*,
 							tareas.duracion_std');
 		$this->db->from('tbl_listarea');
-		$this->db->join('sisusers', 'sisusers.usrId = tbl_listarea.id_usuario', 'left');
-		$this->db->join('sisgroups', 'sisgroups.grpId = sisusers.grpId', 'left');
+		
 		$this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
 		$this->db->where('tbl_listarea.id_orden',$idglob);
 		
@@ -555,7 +562,58 @@ class Otrabajos extends CI_Model
 		{	
 			return false;
 		}
-	}   
+	} 
+
+	// carga tareas para calendario segun id de BPM	
+	function cargartareasParaAsignar($iort){
+		//$idOt = $this->getidOTporIdTareaBonita($idTarBonita);
+		// funcionando!!!!
+		$this->db->select('tbl_listarea.*,							
+							sisgroups.grpId,
+							sisusers.usrName,
+							sisusers.usrLastName,
+							tareas.duracion_std');
+		$this->db->from('tbl_listarea');
+		$this->db->join('sisusers', 'sisusers.usrId = tbl_listarea.id_usuario', 'left');
+		$this->db->join('sisgroups', 'sisgroups.grpId = sisusers.grpId', 'left');
+		$this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
+		$this->db->where('tbl_listarea.id_orden',$iort);
+		
+		$query= $this->db->get();
+
+		if ($query->num_rows()!=0)
+		{	
+			return $query->result_array();
+			
+		}
+		else
+		{	
+			return false;
+		}
+	}  
+
+	//trae susuarios BPM para mostrar tareas en calendario 
+	function getUsuariosBPM($param){
+		// $resource = 'API/identity/user?f=group_id=19';
+		$resource = 'API/identity/user?p=0&c=50';	 	
+	 	$url = BONITA_URL.$resource;
+		$usrs = file_get_contents($url, false, $param);
+		return json_decode($usrs,true) ;
+	}
+
+	// devuelve el id de orden de trabajo segun el id de tarea guardado en la planificacion
+	function getidOTporIdTareaBonita($idTarBonita){
+		$this->db->select('orden_trabajo.id_orden');
+		$this->db->from('orden_trabajo');
+		$this->db->where('orden_trabajo.bpm_task_id_plan', $idTarBonita);
+		$query = $this->db->get();
+
+		if ($query->num_rows()!=0){
+	 		return $query->row('id_orden');	
+	 	}else{	
+	 		return 0;
+	 	}
+	}
 
 	// devuelve id tarea bonita por id de orden trabajo
 	function getIdBPMPorIdOt($idOT){		
@@ -742,6 +800,7 @@ class Otrabajos extends CI_Model
 				tbl_listarea.fecha,
 				tbl_listarea.id_equipo,
 				tbl_listarea.estado,
+				tbl_listarea.duracion_prog,
 				tbl_equipos.descripcion AS equipoDescripcion,
 				tareas.descripcion AS tareaDescripcion,
 				tareas.duracion_std
@@ -858,13 +917,18 @@ class Otrabajos extends CI_Model
 
     // Actualiza la nueva duracion de la Tarea en listareas
    	function updateDurTarea($id,$duracion){
+		echo "id list: ";   
+		var_dump($id);
+		echo "duracion: ";
+		   var_dump($duracion);
    		$this->db->set('duracion_prog', $duracion);
 		$this->db->where('id_listarea', $id);
 		$resposnse = $this->db->update('tbl_listarea');
 		return $resposnse;
-   	}
+	}
+	   
 
-   	// Calendaariza Tareas y equipos en calendario
+   	// Calendariza Tareas y equipos en calendario
    	function programTareas($datos){
 
    		$id = $datos['id_listarea'];
@@ -872,7 +936,9 @@ class Otrabajos extends CI_Model
    		$data['fecha'] = $datos['fecha'];
    		$data['duracion_prog'] = $datos['duracion_prog'];
    		$data['id_equipo'] = $datos['id_equipo'];
-
+		$data['estado'] = 'PR';
+		
+		
 		$this->db->where('id_listarea', $id);
 		$resposnse = $this->db->update('tbl_listarea',$data);
 		return $resposnse;
