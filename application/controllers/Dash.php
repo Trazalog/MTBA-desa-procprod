@@ -11,7 +11,7 @@ class dash extends CI_Controller {
 		$this->load->model('Customers');
 		$this->load->model('Calendar');
 		$this->_init_Menu();	// Inicializa el menu
-		//$this->output->enable_profiler(true);	
+		//$this->output->enable_profiler(true);
 	}
 
 	/**
@@ -93,7 +93,7 @@ class dash extends CI_Controller {
 	public function getCustommers()
 	{
 		$data['customers'] = $this->Customers->Customers_List();
-		$response['html'] = $this->load->view('calendar/programer_', $data, true);	
+		$response['html'] = $this->load->view('calendar/programer_', $data, true);
 
 		echo json_encode($response);
 	}
@@ -101,7 +101,7 @@ class dash extends CI_Controller {
 	public function getCustommerReprogram()
 	{
 		$data['customer'] = $this->Customers->status($this->input->post());
-		$response['html'] = $this->load->view('calendar/reprogramer_', $data, true);	
+		$response['html'] = $this->load->view('calendar/reprogramer_', $data, true);
 
 		echo json_encode($response);
 	}
@@ -114,7 +114,7 @@ class dash extends CI_Controller {
 		}
 		else
 		{
-			echo json_encode($data);	
+			echo json_encode($data);
 		}
 	}
 
@@ -126,7 +126,7 @@ class dash extends CI_Controller {
 		}
 		else
 		{
-			echo json_encode($data);	
+			echo json_encode($data);
 		}
 	}
 
@@ -138,13 +138,13 @@ class dash extends CI_Controller {
 		}
 		else
 		{
-			echo json_encode($data);	
+			echo json_encode($data);
 		}
 	}
 
 	public function getSaleData(){
 		$data = $this->Calendar->getSaleData();
-		$response['html'] = $this->load->view('calendar/sale_', $data, true);	
+		$response['html'] = $this->load->view('calendar/sale_', $data, true);
 
 		echo json_encode($response);
 	}
@@ -157,7 +157,7 @@ class dash extends CI_Controller {
 		}
 		else
 		{
-			echo json_encode($data);	
+			echo json_encode($data);
 		}
 	}
 

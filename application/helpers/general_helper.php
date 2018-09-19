@@ -53,3 +53,21 @@ if (!function_exists('dump_exit')) {
         exit;
     }
 }
+
+// --------------------------------------------------------------------
+
+if (!function_exists('object_to_array'))
+{
+    /**
+    * Convertir un objeto en un arreglo (dimensiones infinitas).
+    *
+    * @param    object  $object  Objeto original.
+    *
+    * @return   array   Arreglo generado a partir de un objeto.
+    */
+    function object_to_array($objeto)
+    {
+        $array = json_decode( json_encode( $objeto ), true );
+        return $array;
+    }
+}

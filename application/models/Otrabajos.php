@@ -550,6 +550,8 @@ class Otrabajos extends CI_Model
 		
 		$this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
 		$this->db->where('tbl_listarea.id_orden',$idglob);
+		$this->db->where('tbl_listarea.estado !=', 'IN');
+
 		
 		$query= $this->db->get();
 
@@ -633,6 +635,7 @@ class Otrabajos extends CI_Model
     function getTareaSdt(){
     	$this->db->select('tareas.*');
 		$this->db->from('tareas');
+		$this->db->where('tareas.visible =', 1);
 		$query = $this->db->get();
 		
 		if($query->num_rows()>0){
@@ -809,7 +812,7 @@ class Otrabajos extends CI_Model
 				LEFT JOIN tbl_equipos ON tbl_equipos.id_equipo = tbl_listarea.id_equipo
 				INNER JOIN tareas ON tbl_listarea.id_tarea = tareas.id_tarea
 				WHERE
-				(tbl_listarea.estado = 'C' OR tbl_listarea.estado = 'AS')
+				(tbl_listarea.estado = 'PR' OR tbl_listarea.estado = 'AS')
 				AND month(tbl_listarea.fecha)  = $month
 				AND id_orden = $idOrden";
 				
@@ -829,7 +832,10 @@ class Otrabajos extends CI_Model
     	$month = $data['month'] + 1 ;    	
     	$idSubsector = $data['idSubsector'];
     			
-    	$sql = "SELECT
+    					
+
+		if($idSubsector != -1){
+			$sql = "SELECT
 				tbl_listarea.id_listarea,
 				tbl_listarea.id_orden,
 				tbl_listarea.tareadescrip AS title,
@@ -849,11 +855,43 @@ class Otrabajos extends CI_Model
 				LEFT JOIN tbl_equipos ON tbl_equipos.id_equipo = tbl_listarea.id_equipo
 				INNER JOIN tbl_subsector ON tbl_equipos.id_subsector = tbl_subsector.id_subsector
 				WHERE
-				(tbl_listarea.estado = 'C' OR tbl_listarea.estado = 'AS') 
+				
+				(tbl_listarea.estado = 'AS' OR tbl_listarea.estado = 'PR')  
 				AND
 				month(tbl_listarea.fecha) = $month
 				AND
-				tbl_equipos.id_subsector =  $idSubsector";				
+				tbl_equipos.id_subsector =  $idSubsector";
+		}else{
+			$sql = "SELECT
+				tbl_listarea.id_listarea,
+				tbl_listarea.id_orden,
+				tbl_listarea.tareadescrip AS title,
+				tbl_listarea.id_tarea,
+				tbl_listarea.fecha AS start,
+				tbl_listarea.id_equipo,
+				tbl_listarea.estado,
+				tbl_subsector.id_subsector,
+				tbl_subsector.descripcion,
+				tbl_equipos.id_equipo,
+				tbl_equipos.descripcion,
+				tareas.id_tarea,
+				tareas.descripcion
+				FROM
+				tbl_listarea
+				INNER JOIN tareas ON tbl_listarea.id_tarea = tareas.id_tarea
+				LEFT JOIN tbl_equipos ON tbl_equipos.id_equipo = tbl_listarea.id_equipo
+				INNER JOIN tbl_subsector ON tbl_equipos.id_subsector = tbl_subsector.id_subsector
+				WHERE
+				
+				(tbl_listarea.estado = 'AS' OR tbl_listarea.estado = 'PR')  
+				AND
+				month(tbl_listarea.fecha) = $month";
+		}
+
+
+
+
+				//(tbl_listarea.estado = 'C' OR tbl_listarea.estado = 'AS')
 
 		$query= $this->db->query($sql);
 

@@ -169,7 +169,7 @@
                              </div>
                                 <!-- /.box-header -->
  <div class="box-body">
-                             
+                                    
 
 <section class="content">
   <div class="row">
@@ -183,7 +183,7 @@
             <thead>
               <tr>
                 <th width="20%" style="text-align: center">Acciones</th>
-                
+                <th style="text-align: center">Codigo Interno</th>
                 <th style="text-align: center">Orden de Trabajo</th>
                 <th style="text-align: center">Detalle</th>
                 <th style="text-align: center">Fecha Nota</th>              
@@ -207,7 +207,7 @@
                     echo '<i class="fa fa-fw fa-search" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Ver Nota Pedido" data-toggle="modal" data-target="#modaltarea"></i>';
                   }                     
                   echo '</td>';
-                 
+                  echo '<td style="text-align: center">'.$z['cod_interno'].'</td>';
                   echo '<td style="text-align: center">'.$z['id_ordTrabajo'].'</td>';
                   echo '<td style="text-align: center">'.$z['descripcion'].'</td>';
                   echo '<td style="text-align: center">'.$z['fecha'].'</td>';
@@ -227,7 +227,7 @@
   </div><!-- /.row -->
 </section><!-- /.content -->
         
-    </div>
+</div>
                                 <!-- /.box-body -->
 </div>
 
@@ -235,10 +235,10 @@
 
 
 
-     <div class="form-group">   
-     <label for="observaciones">Observaciones:</label>
-     <textarea class="form-control" id="observaciones" rows="3"></textarea>                      
-     </div>
+                                                        <div class="form-group">   
+                                                                <label for="observaciones">Observaciones:</label>
+                                                                <textarea class="form-control" id="observaciones" rows="3"></textarea>                      
+                                                        </div>
 
 
 
@@ -379,10 +379,9 @@ $('#crearPDF').on("click", function (e) {
   WaitingOpen('Generando preinforme');
   var formularios = '<?php echo json_encode($formularios) ?>';
   console.log( formularios );
-  var petr = <?php echo $idPedTrabajo;?>;
   $.ajax({
     type: 'POST',
-    data: { idForms: formularios,petr_id:petr },
+    data: { idForms: formularios },
     url: 'index.php/Preinforme/generar',
     async: false,
     success: function(data) {
@@ -551,7 +550,7 @@ function regresa(){
 
     function terminarTarea(){
         var idTarBonita = $('#idTarBonita').val();
-        //alert(idTarBonita);
+        alert(idTarBonita);
         $.ajax({
             type: 'POST',
             data: {
@@ -584,10 +583,10 @@ function regresa(){
             url: 'index.php/Tarea/estadoCuenta',
             success: function(result) {
                 console.log(result);
-                //alert("SII");
+                alert("SII");
             },
             error: function(result) {
-                //alert("Noo");
+                alert("Noo");
                 console.log(result);
             },
             dataType: 'json'
@@ -609,7 +608,7 @@ function regresa(){
 			success:function(result){
 				console.log("Submit");
 				var lista =  $('#listaComentarios');
-				lista.prepend(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
+				lista.append(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
 				$('#comentario').val('');
 			},
 			error:function(result){
@@ -765,7 +764,7 @@ function regresa(){
     //Cotizacion
     function GuardarValorCotizacion(){
         var idForm = <?php echo $idForm;?>;
-        var idPed = <?php echo $idPedTrabajo;?>;
+        var idPed = <?php echo '0';?>;
         $.ajax({
             url:'index.php/Tarea/GuardarValorCotizacion',
             type:'POST',

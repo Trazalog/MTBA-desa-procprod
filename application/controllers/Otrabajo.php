@@ -510,6 +510,29 @@ class Otrabajo extends CI_Controller {
         $this->load->view('otrabajos/asignacion_planificar',$data);  
 	}
 
+	public function llenarPlanificacion(){ 
+		//$idglob = 17;
+		// trae tareas de TJobs
+		$numord = $this->input->post('numord');
+		$tareas = $this->Otrabajos->cargartareas($numord);
+		//var_dump($numord);
+		//var_dump($tareas);
+		//trae usr de BPM
+		$usrs = $this->getUsuariosBPM();
+		//var_dump($usrs);
+		// arma un array con ambos array
+		$list = $this->getListadoArmado($tareas,$usrs);
+		
+		//var_dump($list);
+		$data['list'] = $list;
+		//$data['list'] = $this->Otrabajos->cargartareas($idglob);
+		$data['id_orden'] = $numord;
+		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($numord);
+		
+        
+        echo json_encode($data);
+	}
+
 	//devuelve un array con los usuarios de tareas con usuarios asignados de BPM
 	function getListadoArmado($tareas,$usrs){		
 		// echo('<pre>');
@@ -529,6 +552,12 @@ class Otrabajo extends CI_Controller {
 		}
 		return $listado;
 	}		
+
+
+
+
+
+
 
 // TODO: METODO NUEVO
 

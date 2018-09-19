@@ -13,12 +13,12 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h2 class="box-title ">Programación de Tareas(ASIGNACION PERSONAL)</h2>         
+          <h2 class="box-title ">Programación de Tareas (Asignación de Personal)</h2>         
         </div><!-- /.box-header -->
         <div class="box-body">    
           <?php
         // if (strpos($permission,'Add') !== false) {
-          echo '<button class="btn btn-block btn-success" style="width: 100px;" id="listado">Ver Listado</button>';
+          // echo '<button class="btn btn-block btn-success" style="width: 100px;" id="listado">Ver Listado</button>';
         // }
 
           //// USUARIO LOGUEADO Y GRUPO DE USUARIO
@@ -43,7 +43,7 @@
                       <!-- Nav tabs -->
                       <ul class="nav nav-tabs" role="tablist">
                         <li role="presentation" class=""><a  id="tabCalend" href="#Calendario" aria-controls="Calendario" role="tab" data-toggle="tab">Calendario</a></li>
-                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Tareas</a></li>    
+                        <!-- <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Tareas</a></li> -->    
                       </ul>
                       <!-- Tab panes -->                            
                       <div class="tab-content">
@@ -172,7 +172,7 @@
                 <select id="plantilla" name="plantilla" class="form-control " placeholder="" value="" ></select>
               </div>
               <div class="col-xs-4">
-                <input type=""  id="numord" name="numord" value="<?php echo $id_orden;?>"> 
+                <input type="hidden"  id="numord" name="numord" value="<?php echo $id_orden;?>"> 
               </div>  
               <br><div class="clearfix"></div>
 
@@ -198,7 +198,7 @@
                    //echo "<pre>";  
                    //dump_exit($idTarBonita);
                   
-                   echo "<input type='text' class='' id='idTarBonita' value='". $idTarBonita ."'>";
+                   echo "<input type='text' class='hidden' id='idTarBonita' value='". $idTarBonita ."'>";
                   
                    if(count($list) > 0) {
                     $userdata = $this->session->userdata('user_data');
@@ -316,9 +316,10 @@
 // A hacer click en tab calend recarga la lista
 $('#tabCalend').click(function(e){
 
+  //recargaCalendario();
   recargaAsignaPersPlanif();
 });
-//FIXME: arreglar la vallidacion de campos de asignacio de usr y de fecha
+
 // Valida que no hayan tareas sin asignar ni sin programar 
 
 function validarInicio(){  
@@ -372,9 +373,9 @@ function validarInicio(){
 function cerrarAsignacion(){
   
     var idTarBonita = $('#idTarea').val();
-    alert(idTarBonita);
+    //alert(idTarBonita);
     var idOT = $('#numord').val();
-    alert(idOT);
+    //alert(idOT);
      $.ajax({
              type: 'POST',
              data: { idTarBonita: idTarBonita,
@@ -384,9 +385,12 @@ function cerrarAsignacion(){
              success: function(data){ 
                      console.log('respuesta cerrar planif: ');
                      console.log(data);
-                     if(data['reponse_code'] == 204){
+                     // toma a tarea exitosamente
+                      if(data['reponse_code'] == 204){
                           $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
-                      }                   
+                      }else{
+                          alert('Ocurrio un error en la conexion con BPM...');
+                      }                  
                      },              
              error: function(result){
                      console.log(result);
@@ -394,79 +398,6 @@ function cerrarAsignacion(){
              dataType: 'json'      
      });
 }
-
-
-
-
-// function  guardarInfo(){
-//   //alert('guardar info');
-//   var tabla = $('#calendarList tbody tr');
-//   //console.table(tabla);
-//   var usuarioAsignado = "";
-//   var idTareaTrazajobs = "";
-//   var duracion = 0;
-//   var duracionStd = 0;
-//   var tareadescrip = "";
-//   var coordinador = "Duilio.Alcaraz";
-//   var datos = [];
-
-//   $(tabla).each(function(){
-//     usuarioAsignado = $(this).find('td.usrasign').html();
-//     idTareaTrazajobs = $(this).find('td.id_listarea').html();
-//     tareadescrip = $(this).find('td.tareadescrip').html();
-    
-//     duracion = $(this).find('td.duracionStd').html();
-//     duracionStd = duracion * 60000;
-    
-//     datos['nombre'] = tareadescrip;
-//     datos['usuarioCoordinador'] = coordinador;
-//     datos['usuarioAsignado'] = usuarioAsignado;
-//     datos['idTareaTrazajobs'] = idTareaTrazajobs;
-//     datos['duracionStd'] = duracionStd;
-
-//     //console
-
-//   });
-
-
-
-// }
-
-
-
-
-
-
-
-// Arma objeto con tareas para guardar
-// function guardarInfo(){
-//   alert('guardar info');
-//   //var tabla = $('.tbCalendario tbody tr');
-//   var tabla = $('#calendarList tbody tr');
-//   var usuarioAsignado = "";
-//   var idTareaTrazajobs = "";
-//    var duracionStd = "";
-//    var input = {};
-//   console.table(tabla);
-//   // $(tabla).each(function(){          
-      
-//   //     usuarioAsignado = $(this).find('td.id_usuario').html();
-//   //     idTareaTrazajobs = $(this).find('td.idTareaTrazajobs').html();
-//   //     duracionStd = $(this).find('td.duracionStd').html();
-
-//   //     console.log('usuario: ');
-//   //     console.log(usuarioAsignado);
-//   //     console.log('idTareaTrazajobs: ');
-//   //     console.log(idTareaTrazajobs);
-//   // });
-// }
-
-
-
-
-
-
-
 
 /////////////////////   CALENDARIO //////////////////////////
 
@@ -751,7 +682,7 @@ $(".fa-print").click(function (e) {
     
   
 
- //////////  ACTUALIZA DIA Y HORA
+//////////  ACTUALIZA DIA Y HORA
 
   function updateDia(id_listarea,nuevoDia){
 
@@ -1115,6 +1046,14 @@ $(".fa-print").click(function (e) {
     }); 
   }
 
+  // Toma id de subsector y me en curso para recargar
+  function recargaCalendario(){
+    
+    var idsubsector = $('#sectSelect option:selected').val();    
+    getMesResources(month_,idsubsector);
+
+  }
+
   //ASIGNAR FECHA 
     // $(".fa-calendar").click(function (e) { 
      
@@ -1158,7 +1097,7 @@ $(".fa-print").click(function (e) {
   var idtarea1="";
   var idu=";"
   var no="";
- // $(document).ready(function(event) {
+ 
     // Vuelve al listado de ordenes de trabajo
     $('#listado').click( function cargarVista(){
       WaitingOpen();
@@ -1170,66 +1109,75 @@ $(".fa-print").click(function (e) {
     // Agrega una tarea - Listo
     $('#agregar').click(function (e) { 
 
-      var numord= $('#numord').val();
-      no=numord;      
-      var tarea1= $('#tarea option:selected').text(); 
-      var tareaId = $('#tarea option:selected').val();
-      tareaglob= tarea1;
-      var tr = "<tr id='"+numord+"'>"+
-                  // "<td  style='text-align: center' ><i class='fa fa-check-circle-o' style='color: #006400 '; cursor: 'pointer' title='Confirmar tarea'></i></td>"+
-                  "<td>"+tarea1+"</td>"+
-                  "<td></td>"+
-                  "<td></td>"+
-                  // "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
-                  "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i> <i class=' fa fa-user' style='color: #A9A9A9; margin-left:7px'; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+
-                  /*"<td><i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+*/
-                  // "<td  ><i class='fa fa-cogs' style='color: #A9A9A9    '; cursor: 'pointer' title='Fecha' data-toggle='modal' data-target='#modalAsignaEquipo'></i></td>"+
-                "</tr>";          
-      console.log(tr); 
-      var hayError = false;
-      if (tarea1){
-        $('#orden tbody').append(tr);
-        $('#error').fadeOut('slow');
-      }
-      else {
-        var hayError = true;
-        $('#error').fadeIn('slow');
+      var opcion = $('#tarea').val();
+
+      if(opcion == -1){
+        alert('Por favor seleccione una tarea para agregar...');
         return;
-      }
-      if(hayError == false){
-      
-        $('#error').fadeOut('slow');
-      }
-      var parametros = {       
-        'id_orden': numord,
-        'tareadescrip': tarea1,
-        'id_tarea': tareaId,
-        'estado': 'C'   
-      };
-      // guarda tarea de a una
-      $.ajax({
-        type: 'POST',
-        data: { parametros:parametros},
-        url: 'index.php/Otrabajo/agregar_tarea', 
-        success: function(data){
-              console.log(data);
-              var datos= parseInt(data);
-              idtarea= datos; 
-              },
-        error: function(result){
-              
-              console.log(result);
-            }           
-      });  
-       
-      $('#tarea').val(''); 
+      }else{
+
+          var numord= $('#numord').val();
+          no=numord;      
+          var tarea1= $('#tarea option:selected').text(); 
+          var tareaId = $('#tarea option:selected').val();
+          tareaglob= tarea1;
+          var tr = "<tr id='"+numord+"'>"+
+                      // "<td  style='text-align: center' ><i class='fa fa-check-circle-o' style='color: #006400 '; cursor: 'pointer' title='Confirmar tarea'></i></td>"+
+                      "<td>"+tarea1+"</td>"+
+                      "<td></td>"+
+                      "<td></td>"+
+                      // "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
+                      "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i> <i class=' fa fa-user' style='color: #A9A9A9; margin-left:7px'; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+
+                      /*"<td><i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+*/
+                      // "<td  ><i class='fa fa-cogs' style='color: #A9A9A9    '; cursor: 'pointer' title='Fecha' data-toggle='modal' data-target='#modalAsignaEquipo'></i></td>"+
+                    "</tr>";          
+          console.log(tr); 
+          var hayError = false;
+          if (tarea1){
+            $('#orden tbody').append(tr);
+            $('#error').fadeOut('slow');
+          }
+          else {
+            var hayError = true;
+            $('#error').fadeIn('slow');
+            return;
+          }
+          if(hayError == false){
+          
+            $('#error').fadeOut('slow');
+          }
+          var parametros = {       
+            'id_orden': numord,
+            'tareadescrip': tarea1,
+            'id_tarea': tareaId,
+            'estado': 'C'   
+          };
+          //guarda tarea de a una
+          $.ajax({
+            type: 'POST',
+            data: { parametros:parametros},
+            url: 'index.php/Otrabajo/agregar_tarea', 
+            success: function(data){
+                    console.log(data);
+                    var datos= parseInt(data);
+                    idtarea= datos; 
+                  },
+            error: function(result){
+                  
+                    console.log(result);
+                  }           
+          });  
+           
+          $('#tarea').val(-1); 
+      }   
+
     }); 
 
     // No se hace desde aca sino desde BPM
     //check de tarea realizada cambia estado a RE por id de tarea - Listo
     $(".fa-check-circle-o").click(function (e) { 
       var idtarea= $(this).data("idtarea");
-      alert(idtarea);  
+      //alert(idtarea);  
       var id_orden = $(this).parent('td').parent('tr').attr('id'); 
       console.log("Estoy realizando una tarea");
       console.log("id de tarea es:");
@@ -1288,7 +1236,7 @@ $(".fa-print").click(function (e) {
     $(".fa-cogs").click(function (e) { 
         // guarda el id_listarea en input de modal
         var idtar = $(this).parent('td').parent('tr').attr('id');
-        alert(idtar);
+        //alert(idtar);
         $('#id_listarea').val(idtar);
     }); 
 
@@ -1297,8 +1245,6 @@ $(".fa-print").click(function (e) {
         changeMonth: true,
         changeYear: true
     });
-
-//});
 
 // Asigna equipo a tarea por id de tarea y por id equipo - LISTO
 function setEquipo(){
@@ -1349,7 +1295,15 @@ function guardarmodif(){
 
   console.log("Estoy guardando usuario asignado");
   var idusu= $('#nomusu').val();
-  //idu=idusu;
+
+  if (idusu == -1) {
+    $('.errorSelec').show();
+    return;
+  }else{
+    $('.errorSelec').hide();
+    $('#modalSale').modal('hide'); 
+  }
+  
   console.log("El id de usuario es:");
   console.log(idusu);
   console.log("El id de tarea es :");
@@ -1402,9 +1356,10 @@ function guardarfecha(){
 }
 
 function recargaAsignaPersPlanif(){
-  
+  var idTarea = $('#idTarea').val();
+
   var numord= $('#numord').val();
-  $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/"+numord+"");  
+  $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/"+numord+"/"+idTarea+"/");  
 }
 
 $('#fechaProgNueva').datetimepicker(
@@ -1424,11 +1379,15 @@ $('#fechaProgNueva').datetimepicker(
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerro()"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel"><span id="modalActionSale" class="fa fa-user" style="color: #A9A9A9" > </span> Asignación de usuario</h4> 
       </div>
+       
 
       <div class="modal-body" id="modalBodySale">
         <div class="row" >
           <div class="col-sm-12 col-md-12">
             <fieldset> </fieldset>
+            <div class="errorSelec" style="display: none">
+              <h5>Para guardar, seleccione un usuario de la lista por favor...</h5>
+            </div>
             <br>
             <div class="form-group">Usuario
               <select id="nomusu" name="nomusu" value="" class="form-control input-md"></select>
@@ -1440,7 +1399,7 @@ $('#fechaProgNueva').datetimepicker(
       </div>       
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerro()">Cancelar</button>
-        <button type="button" class="btn btn-primary" id="reset" data-dismiss="modal" onclick="guardarmodif()">Guardar</button>
+        <button type="button" class="btn btn-primary" id="reset" onclick="guardarmodif()">Guardar</button>
       </div>
 
     </div>

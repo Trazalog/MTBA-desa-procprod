@@ -26,9 +26,11 @@
     <!-- DataTables 1.10.7 -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugin/datatables/dataTables.bootstrap.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrapValidator.min.css"/>
+    <!-- Bootstrap datetimepicker -->
     <!-- <link rel="stylesheet" href="<?php //echo base_url();?>assets/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css"> -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css">
-    <!-- Bootstrap datetimepicker -->
+    <!-- Estilos propios y arreglo de bugs -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/propios.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -76,7 +78,7 @@
 
     <!-- FastClick -->
     <script src="<?php  echo base_url();?>assets/plugin/fastclick/fastclick.min.js"></script>
-    
+
     <!-- SlimScroll -->
     <script src="<?php  echo base_url();?>assets/plugin/slimScroll/jquery.slimscroll.min.js"></script>
 
@@ -87,7 +89,7 @@
 
      <!- - VALIDADOR -->
      <script src="<?php  echo base_url();?>assets/js/bootstrapValidator.min.js"></script>
-    
+
 
     <!--
     <script src="<?php  echo base_url();?>assets/plugin/input-mask/jquery.inputmask.js"></script>
