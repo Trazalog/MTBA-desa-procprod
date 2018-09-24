@@ -515,7 +515,8 @@
         //console.table(aux);
         for (var i = 0; i < imgs.length; i++){
         
-            var inpValor = $(imgs[i]).val();
+            //var inpValor = $(imgs[i]).val();
+            var inpValor = $(imgs[i]).prop('files')[0];
             var idValor = $(imgs[i]).attr('name');
             //console.log("idValor: "+idValor);
             // si tiene algun valor (antes de subir img)
@@ -544,8 +545,8 @@
         for (var i = 0; i < check.length; i++){
             //var chekValor = $(check[i]).val();
             var idCheckValor = $(check[i]).attr('name');
-            console.log('valor: ');
-            console.log(idCheckValor);
+            //console.log('valor: ');
+            //console.log(idCheckValor);
             if ($(check[i]).is(':checked')){
                 chekValor = 'tilde';
             }else{

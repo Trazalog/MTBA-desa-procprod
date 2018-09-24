@@ -1,5 +1,5 @@
 <?php
-//dump($data);
+//dump($form);
 if($form != ''){
     cargarFormulario($form);
 }

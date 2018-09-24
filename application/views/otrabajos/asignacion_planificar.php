@@ -76,76 +76,8 @@
                                 </tr>
                               </thead>
                               <tbody>  
-                               <?php
-
-                               //var_dump($list);
-                       
-                                if(count($list) > 0) {
-                                  $userdata = $this->session->userdata('user_data');
-                                  $usrId= $userdata[0]['usrId']; 
-
-                                  foreach($list as $a){
-
-                                    // Muestra listado de tareas que no estan inactivas
-                                    if($a['estado']!=='IN'){ // || $a['estado']== 'RE' $a['id_usuario']==$usrId  && $a['grpId']==1
-
-                                    $id=$a['id_listarea'];
-                                    echo '<tr id="'.$id.'" class="'.$id.'">';
-                                    
-                                    // limitada al grupo 7 Coordinador
-                                    if ($grpId != 7) {
-                                    echo '<td>'; 
-                                    // echo '<i class="fa fa-calendar cous" style="color: #006400 ; cursor: pointer;" title="Programar tarea" data-toggle="modal" data-target="#modalProgramacion" data-idTarea="'.$a['id_tarea'].'" ></i>';
-                                    echo '<i class="fa fa-calendar cous" style="color: #006400 ; cursor: pointer;" title="Programar tarea"  data-idTarea="'.$a['id_tarea'].'" ></i>';
-                                    echo '</td>';
-                                    }
-
-                                    echo '<td  class="hidden idTareaTrazajobs" style="text-align: left">'.$a['id_listarea'].'</td>';
-
-                                    echo '<td style="text-align: left">'.$a['tareadescrip'].'</td>';
-
-                                    if($a['usrLastName']!= null){
-                                      echo '<td class="usrasign" style="text-align: left">'.$a['usrLastName'].' '.$a['usrName'].'</td>';
-                                    }else{
-                                      echo '<td style="text-align: left"></td>';
-                                    }
-
-                                    if($a['fecha']!= null){
-                                      echo '<td class="fecha" id="fecha" style="text-align: left">'.date_format(date_create($a['fecha']), 'd-m-Y').'</td>';
-                                    }
-                                    else echo '<td style="text-align: left"></td>';
-
-                                    // echo '<td style="text-align: center">'.
-                                    // ($a['estado'] == 'C' ? '<small class="label label-default">Curso</small>' : 
-                                    //   ($a['estado'] == 'RE' ? '<small class="label label-default">Finalizada</small>' : 
-                                    //     ($a['estado'] == 'AS' ? '<small class="label label-default">Asignada</small>' : '<small class="label label-default">Eliminada</small>'))).'</td>';
-
-                                    echo '<td>';
-                                  //  if (strpos($permission,'Del') !== false && ($a['id_usuario']==$usrId || $usrId==1) && ($a['estado']!='RE') ){
-                                      echo '<i class="fa fa-times-circle" style="color: #A9A9A9 ; cursor: pointer;" title="Eliminar"></i>';
-                                  //  }     
-                                    echo '</td>';
-
-                                    echo '<td>';
-
-                                    //if (strpos($permission,'Edit') !== false && ($a['id_usuario']==$usrId || $usrId==1) && ($a['estado']!='RE') ){
-
-                                      echo '<i class="hidden fa fa-user" style="color: #A9A9A9 ; cursor: pointer;"" title="Asignación de usuario"></i>';
-                                    //}
-                                    echo '</td>';                                   
-
-                                      // duracion standar de tarea
-                                    echo '<td class=" duracionStd" style="text-align: left">'.$a['duracion_std'].'</td>';
-                                      // id de usuario asignado
-                                    echo '<td class="hidden id_usuario" style="text-align: left">'.$a['id_usuario'].'</td>';
-                                    echo '<td class="hidden id_listarea" style="text-align: left">'.$a['id_listarea'].'</td>';
-
-                                    echo '</tr>';
-                                    } 
-                                  }               
-                                }
-                      ?> 
-                    </tbody>
+                               
+                    		  </tbody>
                   </table>
 
 <!------------------------ / listado en calendario------------------------------>
@@ -182,93 +114,16 @@
                   <div class="col-xs-4" align="center"><label>Listado de tareas</label></div>-->
                   <thead>
                     <tr>
-                      <!-- <th width="2%">Terminar</th> -->
+                      <th width="2%">Programar</th> 
                       <th width="25%">Tareas</th>
                       <th width="10%">Asignado</th>
                       <th width="5%">Fecha</th>
-                      <!-- <th width="5%">Estado</th> -->                   
+                      <th width="5%">Duración</th>             
                       <th width="3%">Accion</th>
-                      
-                      
                     </tr>
                   </thead>
                   <tbody>  
-                   <?php
-                   //  echo "<pre>";  
-                   //dump_exit($idTarBonita);
-                  
-                   echo "<input type='text' class='hidden' id='idTarBonita' value='". $idTarBonita ."'>";
-                  
-                   if(count($list) > 0) {
-                    $userdata = $this->session->userdata('user_data');
-                    $usrId= $userdata[0]['usrId'];                       
-
-                    foreach($list as $a){
-
-                        // Muestra listado de tareas que no estan inactivas
-                        if($a['estado']!=='IN'){ // || $a['estado']== 'RE' $a['id_usuario']==$usrId  && $a['grpId']==1
-
-                        $id=$a['id_listarea'];
-                        echo '<tr id="'.$id.'" class="'.$id.'">';
-                        
-                        // echo '<td>';
-                          //   // Tarea asignada (solo estado AS) - H 
-                          // if (($a['id_usuario'] != NULL) && ($a['estado'] == 'AS')) {
-                          //     // Si usr asignado es el logueado o Admin
-                          //   if ( ($a['id_usuario'] == $usrId) || ($grpId == '1')) {
-
-                          //     echo '<i class="fa fa-check-circle-o" style="color: #006400 ; cursor: pointer; margin-left: 15px;" data-idTarea="'.$a['id_tarea'].'" title="Confirmar tarea"></i>';
-                          //   }else{
-
-                          //     echo '<i   class="fa fa-check-circle" style="color: #A9A9A9 ; cursor: pointer; margin-left: 15px;" title="Tarea finalizada"></i>';
-                          //   }        
-
-                          // } else{
-
-                          // }    
-                          // echo '</td>';
-
-                        echo '<td style="text-align: left">'.$a['tareadescrip'].'</td>';
-
-
-                        if($a['usrName']!= null ){
-                        //echo '<td style="text-align: left">'.$a['usrName'].'</td>';
-                          echo '<td style="text-align: left">'.$a['usrLastName'].' '.$a['usrName'].'</td>';
-                        }else {
-                          echo '<td style="text-align: left"></td>';
-                        }
-
-                        if($a['fecha']!= null){
-                          echo '<td style="text-align: left">'.date_format(date_create($a['fecha']), 'd-m-Y').'</td>';
-                        }
-                        else echo '<td style="text-align: left"></td>';
-
-
-                        // echo '<td style="text-align: center">'.
-                        // ($a['estado'] == 'C' ? '<small class="label label-default">Curso</small>' : 
-                        //   ($a['estado'] == 'RE' ? '<small class="label label-default">Finalizada</small>' : 
-                        //     ($a['estado'] == 'AS' ? '<small class="label label-default">Asignada</small>' : '<small class="label label-default">Eliminada</small>'))).'</td>';
-
-                        echo '<td>';
-
-                        // si DEL y (usr asignado o admin) est No RE (realizada)
-                      //  if (strpos($permission,'Del') !== false && ($a['id_usuario']==$usrId || $grpId==1) && ($a['estado']!='RE') ){ 
-                         echo '<i class="fa fa-times-circle" style="color: #A9A9A9 ; cursor: pointer;" title="Eliminar"></i>';
-                      // }     
-
-                       //echo '<i class=" fa fa-user" style="color: #A9A9A9; margin-left:7px "; cursor: "pointer" title="Asignacion de usuario"></i>';
-                       
-
-                       // echo '<i class="fa fa-cogs" style="color: #A9A9A9 ; cursor: pointer; margin-left:7px"" title="Asignación de Equipo" data-id_tarea="'.$a['id_tarea'].'" data-toggle="modal" data-target="#modalAsignaEquipo"></i>';
-
-                       echo '</td>';
-
-                       echo '</tr>';
-                     } 
-
-                   }               
-                 }
-                 ?> 
+                 
                </tbody>
              </table>
            </div>
@@ -333,48 +188,154 @@
 
 
 // Recarga la tabla de Calendario
+// function llenaTabla(){
+
+//     var tbl = $('#calendarList');
+//     var numord= $('#numord').val(); 
+//     //alert(numord);
+//     $.ajax({
+//       type: 'POST',
+//       data: { numord: numord},
+//       url: 'index.php/Otrabajo/llenarPlanificacion', 
+//       success: function(data){ 
+//               $('#calendarList tbody tr').remove();
+//               //console.table(data['list'][1]['id_listarea']);                  
+//               for (var i=0; i< data['list'].length; i++) {                  
+
+//                 var tr = "<tr id='"+data['list'][i]['id_listarea']+"'>"+
+//                   "<td  style='text-align: center' ><i class='fa fa-calendar cous' style='color: #006400 ; cursor: pointer;' title='Programar tarea'  data-idTarea='"+data['list'][i]['id_tarea']+"' ></i></td>"+
+    
+//                   "<td  class='hidden idTareaTrazajobs' style='text-align: left'>"+data['list'][i]['id_listarea']+"</td>" +
+    
+//                   "<td style='text-align: left'> "+data['list'][i]['tareadescrip']+" </td>"+ 
+
+
+//  // if(data['list'][i]['usrName'] == undefined  ){
+//  //    tr2 = "<td class='usrasign' style='text-align: left'> "+data['list'][i]['usrName']+" "+data['list'][i]['usrLastName'] +" </td>";
+//  //   }else{
+//  //     tr2 = "<td class='usrasign' style='text-align: left'></td>"
+//  //   }
+
+
+//                "<td class='usrasign' style='text-align: left'> "+data['list'][i]['usrName']+" "+data['list'][i]['usrLastName'] +" </td>"+
+
+    
+//                   "<td class='fecha' id='fecha' style='text-align: left'> "+data['list'][i]['fecha']+"</td>"+
+
+//                   "<td class='fecha' id='fecha' style='text-align: left'> "+data['list'][i]['duracion_std']+"</td>"+
+
+//                   "<td><i class='fa fa-times-circle' style='color: #A9A9A9;  cursor: pointer' title='Eliminar'></i></td>"+                   
+    
+//                 "</tr>";
+//                  // <i class=' fa fa-user' style='color: #A9A9A9; margin-left:7px'; cursor: 'pointer' title='asignar'></i> 
+                
+//                 $(tbl).append(tr);
+//               }                                                   
+//             },              
+//       error: function(result){
+//               console.log(result);
+//             },
+//       dataType: 'json'      
+//     });
+// }
+
+// function llenaTabla(){
+
+//     var tbl = $('#calendarList');
+//     var numord= $('#numord').val(); 
+//     var trow = "";
+//     //alert(numord);
+//     $.ajax({
+//       type: 'POST',
+//       data: { numord: numord},
+//       url: 'index.php/Otrabajo/llenarPlanificacion', 
+//       success: function(data){ 
+//               $('#calendarList tbody tr').remove();
+//               //console.table(data['list'][1]['id_listarea']);                  
+//               for (var i=0; i< data['list'].length; i++) {                  
+
+//                 var tr = "<tr id='"+data['list'][i]['id_listarea']+"'>";
+//                 var tdIcono =  "<td  style='text-align: center' ><i class='fa fa-calendar cous' style='color: #006400 ; cursor: pointer;' title='Programar tarea'  data-idTarea='"+data ['list'][i]['id_tarea']+"' ></i></td>" +   
+//                                 "<td  class='hidden idTareaTrazajobs' style='text-align: left'>"+data['list'][i]['id_listarea']+"</td>" +    
+//                                 "<td style='text-align: left'> "+data['list'][i]['tareadescrip']+" </td>"; 
+
+//                 var tdUsr = "<td class='usrasign' style='text-align: left'> "+data['list'][i]['usrName']+" "+data['list'][i]['usrLastName'] +" </td>" ; 
+
+//                 var tdUsrNull = "<td class='usrasign' style='text-align: left'>No Asignado</td>"; 
+
+//                 var tdFecha = "<td class='fecha' id='fecha' style='text-align: left'> "+data['list'][i]                       ['fecha']+"</td>"+
+//                               "<td class='fecha' id='fecha' style='text-align: left'> "+data['list'][i]['duracion_std']+"</td>"+
+//                               "<td><i class='fa fa-times-circle' style='color: #A9A9A9;  cursor: pointer' title='Eliminar'></i></td>";                  
+    
+//                 var trCierre = "</tr>";
+//                 // si no esta asignado muestra vacio el campo
+//                 if(data['list'][i]['usrName'] == undefined  ){ 
+//                   trow = tr + tdIcono + tdUsrNull + tdFecha + trCierre;
+//                 }else{ 
+//                   trow = tr + tdIcono + tdUsr + tdFecha + trCierre;
+//                 } 
+                
+//                 $(tbl).append(trow);
+//               }                                                   
+//             },              
+//       error: function(result){
+//               console.log(result);
+//             },
+//       dataType: 'json'      
+//     });
+// }
+llenaTabla();
 function llenaTabla(){
 
     var tbl = $('#calendarList');
+    var tblorden = $('#orden'); 
     var numord= $('#numord').val(); 
-    //alert(numord);
+    var trow = "";
     $.ajax({
       type: 'POST',
       data: { numord: numord},
       url: 'index.php/Otrabajo/llenarPlanificacion', 
       success: function(data){ 
               $('#calendarList tbody tr').remove();
-              //console.table(data['list'][1]['id_listarea']);                  
+              $('#orden tbody tr').remove();           
               for (var i=0; i< data['list'].length; i++) {                  
 
-                var tr = "<tr id='"+data['list'][i]['id_listarea']+"'>"+
-                  "<td  style='text-align: center' ><i class='fa fa-calendar cous' style='color: #006400 ; cursor: pointer;' title='Programar tarea'  data-idTarea='"+data['list'][i]['id_tarea']+"' ></i></td>"+
+                var tr = "<tr id='"+data['list'][i]['id_listarea']+"'>";
+                var tdIcono =  "<td class='icoCalendario' style='text-align: center' ><i class='fa fa-calendar cous' style='color:#006400 ; cursor: pointer;' title='Programar tarea'  data-idTarea='"+data['list'][i]['id_tarea']+"' ></i></td>" +   
+                                "<td  class='hidden idTareaTrazajobs' style='text-align: left'>"+data['list'][i]['id_listarea']+"</td>" +    
+                                "<td style='text-align: left'> "+data['list'][i]['tareadescrip']+" </td>"; 
+
+                var tdUsr = "<td class='usrasign' style='text-align: left'> "+data['list'][i]['usrName']+" "                +data['list'][i]['usrLastName'] +" </td>" ; 
+
+                var tdUsrNull = "<td class='usrasign' style='text-align: left'>No Asignado</td>"; 
+
+                var tdFecha = "<td class='fecha' id='fecha' style='text-align: left'> "+data['list'][i]                       ['fecha']+"</td>";
+               
+                var tdFechNull = "<td class='fecha' id='fecha' style='text-align: left'>No Programado</td>";
+
+                var tdFinal =  "<td class='fecha' id='fecha' style='text-align: left'> "+data['list'][i]                       ['duracion_std']+"</td>"+
+                              "<td><i class='fa fa-times-circle' style='color: #A9A9A9;  cursor: pointer' title='Eliminar'></i></td>";                  
     
-                  "<td  class='hidden idTareaTrazajobs' style='text-align: left'>"+data['list'][i]['id_listarea']+"</td>" +
-    
-                  "<td style='text-align: left'> "+data['list'][i]['tareadescrip']+" </td>"+ 
-
-
- // if(data['list'][i]['usrName'] == undefined  ){
- //    tr2 = "<td class='usrasign' style='text-align: left'> "+data['list'][i]['usrName']+" "+data['list'][i]['usrLastName'] +" </td>";
- //   }else{
- //     tr2 = "<td class='usrasign' style='text-align: left'></td>"
- //   }
-
-
-               "<td class='usrasign' style='text-align: left'> "+data['list'][i]['usrName']+" "+data['list'][i]['usrLastName'] +" </td>"+
-
-    
-                  "<td class='fecha' id='fecha' style='text-align: left'> "+data['list'][i]['fecha']+"</td>"+
-
-                  "<td class='fecha' id='fecha' style='text-align: left'> "+data['list'][i]['duracion_std']+"</td>"+
-
-                  "<td><i class='fa fa-times-circle' style='color: #A9A9A9;  cursor: pointer' title='Eliminar'></i></td>"+                   
-    
-                "</tr>";
-                 // <i class=' fa fa-user' style='color: #A9A9A9; margin-left:7px'; cursor: 'pointer' title='asignar'></i> 
-                
-                $(tbl).append(tr);
+                var trCierre = "</tr>";
+                // si no esta asignado muestra vacio el campo
+                if(data['list'][i]['usrName'] == undefined  ){
+                  // sino tiene fecha 
+                  if (data['list'][i]['fecha'] == null) {
+                    trow = tr + tdIcono + tdUsrNull + tdFechNull + tdFinal + trCierre;
+                  }else{
+                    trow = tr + tdIcono + tdUsrNull + tdFecha + tdFinal + trCierre;
+                  }                   
+                }else{ 
+                  if (data['list'][i]['fecha'] == null) {
+                    trow = tr + tdIcono + tdUsrNull + tdFechNull + tdFinal + trCierre;
+                  }else{
+                    trow = tr + tdIcono + tdUsrNull + tdFecha + tdFinal + trCierre;
+                  }                   
+                } 
+                // Agrego a tabla
+                $(tbl).append(trow);
+                //$('#orden td.icoCalendario').remove();
+                $(tblorden).append(trow);
               }                                                   
             },              
       error: function(result){
@@ -395,11 +356,12 @@ $('#tabCalend').click(function(e){
 function recargaCalendario(){
   
   var idsubsector = $('#sectSelect option:selected').val();    
-  getMesResources(month_,idsubsector);
+  var idequipo = $('#equiPSelect option:selected').val();
+  getMesResources(month_,idsubsector,idequipo);
 }
 
 // trae eventos caendarizados por subsector
-function getMesResources(mont_,idSubsector) {
+function getMesResources(mont_,idSubsector,idequipo) {
   console.log('Recargando Eventos...');
   console.log('Mes: '+mont_+' idSubsector:'+idSubsector);
   $.ajax({
@@ -408,7 +370,8 @@ function getMesResources(mont_,idSubsector) {
       url: 'index.php/Otrabajo/getcalendTareasSector',
       data: {
           'month': month_,
-          'idSubsector': idSubsector
+          'idSubsector': idSubsector,
+          'idequipo' : idequipo
       },
       success:function(data) {
         //console.log(data);
@@ -1224,33 +1187,11 @@ $(".fa-print").click(function (e) {
         var tarea1= $('#tarea option:selected').text(); 
         var tareaId = $('#tarea option:selected').val();
         tareaglob= tarea1;
-        var tr = "<tr id='"+numord+"'>"+
-                    // "<td  style='text-align: center' ><i class='fa fa-check-circle-o' style='color: #006400 '; cursor: 'pointer' title='Confirmar tarea'></i></td>"+
-                    "<td>"+tarea1+"</td>"+
-                    "<td></td>"+
-                    "<td></td>"+                  
-                    // "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
-                    "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i></td>"+
-                    /*"<td><i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+*/
-                    // "<td  ><i class='fa fa-cogs' style='color: #A9A9A9    '; cursor: 'pointer' title='Fecha' data-toggle='modal' data-target='#modalAsignaEquipo'></i></td>"+
-                  "</tr>"; 
-        //FIXME: NO HACE FALTA LO LLENA EL llenaTabla()          
-        var trPlanif = "<tr id='"+numord+"'>"+
-                     "<td  style='text-align: center' ><i class='fa fa-calendar cous' style='color: #006400 '; cursor: 'pointer' title='Confirmar tarea'></i></td>"+
-                    "<td>"+tarea1+"</td>"+
-                    "<td></td>"+
-                    "<td></td>"+
-                    // "<td style='text-align: center' ><small class='label label-default' >Curso</td>"+
-                    "<td><i class='fa fa-times-circle' style='color: #A9A9A9 '; cursor: 'pointer' title='Eliminar'></i></td>"+
-                    /*"<td><i class=' fa fa-user' style='color: #A9A9A9 '; cursor: 'pointer' title='Asignacion de usuario' data-toggle='modal' data-target='#modalSale'></i></td>"+*/
-                    // "<td  ><i class='fa fa-cogs' style='color: #A9A9A9    '; cursor: 'pointer' title='Fecha' data-toggle='modal' data-target='#modalAsignaEquipo'></i></td>"+
-                  "</tr>"; 
-
-        console.log(tr); 
+        
         var hayError = false;
         if (tarea1){
-          $('#orden tbody').append(tr);
-          $('#calendarList tbody').append(trPlanif);
+          //$('#orden tbody').append(tr);
+          //$('#calendarList tbody').append(trPlanif);
           $('#error').fadeOut('slow');
         }
         else {
@@ -1277,7 +1218,8 @@ $(".fa-print").click(function (e) {
           success: function(data){
                 console.log(data);
                 var datos= parseInt(data);
-                idtarea= datos; 
+                idtarea= datos;
+                llenaTabla(); 
                 },
           error: function(result){
                 
@@ -1289,36 +1231,29 @@ $(".fa-print").click(function (e) {
     });     
        
 // ELLIMINA TAREAS
-  $(document).on('click','div i.fa-times-circle',function(e) {
-    if(e.handled !== true) // This will prevent event triggering more then once
-    {
-      //  e.preventdefault();
-      // e.stopPropagation();
+$(document).on('click','div i.fa-times-circle',function(e) {
+    if(e.handled !== true){ // This will prevent event triggering more then once
+    
       e.preventDefault();
       e.stopImmediatePropagation();
 
-      //console.log("Estoy eliminando tarea");
-      var idt = $(this).parent('td').parent('tr').attr('id'); 
-      //console.log("id de tarea es:");
-      //console.log(idt); 
-      idtarea=idt;  
+      var idtarea = $(this).parent('td').parent('tr').attr('id');      
+      WaitingOpen('Eliminando Tarea...');
       $.ajax({
               type: 'POST',
               data: { idtarea: idtarea},
               url: 'index.php/Otrabajo/EliminarTarea', 
-              success: function(data){
-                        //alert("Tarea eliminada exitosamente...");                        
-                        //recargar(); 
+              success: function(data){                        
+                        WaitingClose();
                         recargaCalendario();
                         llenaTabla();                     
-                      },
-                
+                      },                
               error: function(result){
                       console.log(result);
                     }
       });
     }
-  }); 
+}); 
 
     //ASIGNAR USUARIO
     $(".fa-user").click(function (e) { 

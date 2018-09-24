@@ -464,36 +464,28 @@ class Tarea extends CI_Controller {
 				case 'Evaluación del estado de cuenta del cliente':
 					$this->load->view('tareas/view_1', $data);
 					break;
-
 				case 'Entender si seguir esperando':
 					$this->load->view('tareas/view_2', $data);
 					break;
-
 				case 'Análisis financiero y emisión de reportes':
 					$this->load->view('tareas/view_3', $data);
 					break;
-
 				case 'Solicita ok del cliente para iniciar diagnostico':
 					// $this->load->model('AceptacionTrabajos');
 					// $data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
 					// $this->load->view('tareas/view_4', $data);
 					break;
-
 				case 'Evalua y envia presupuesto al cliente':
 					//$this->load->view('tareas/view_6', $data);
 					$this->load->model('AceptacionTrabajos');
 					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
 					$this->load->view('tareas/view_4', $data);
 					break;
-				case 'Planificar Diagnóstico':					//con comentarios listos
-				//echo '<pre>';
-				//var_dump($data);
+				case 'Planificar Diagnóstico':					//con comentarios listos				
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
 				case 'Asignar personal a Planificación':		//con comentarios listo
-
 					$data['idOT'] = $this->Tareas->getIdOrdenTrabajoPorCaseId($caseId);
-					//dump_exit($data);
 					$this->load->view('tareas/view_asigPersPlanif', $data);
 					break;
 				case 'Revisión Diagnóstico':
@@ -501,7 +493,6 @@ class Tarea extends CI_Controller {
 					$data['formularios'] = $this->Preinformes->ObtenerIdFormulariosCompletados($data['idPedTrabajo']);
 					$this->load->view('tareas/view_8', $data);
 					break;
-
 				case 'Cotización de trabajo Industrial':
 					$this->load->model('Preinformes');
 					$data['formularios'] = array(2500);
@@ -513,7 +504,6 @@ class Tarea extends CI_Controller {
 					$data['cotizacion'] = $this->Tareas->ObtenerCotizacion($data['idPedTrabajo']);
 					$this->load->view('tareas/view_10', $data);
 					break;
-
 				case 'Revisión Diagnóstico por el Coordinador':
 					$idForm = 2500;
 					$data['idForm'] = $idForm;
@@ -523,9 +513,10 @@ class Tarea extends CI_Controller {
 					$data['list']   = $this->Tareas->tareasPorSector($caseId);
                     $this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
                     break;
-				default:
+				default:				
 				$this->load->view('tareas/view_', $data);
-				//var_dump($data);
+				//echo "<pre>";
+				//var_dump($data['form']);
 				break;
 			}
 	}
@@ -555,10 +546,11 @@ class Tarea extends CI_Controller {
 		}else{
 			$data['idForm'] = 0;
 		}
-
+		//dump_exit($data);
 		$response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
 		echo json_encode($response);
 	}
+
 
 	public function rehacerTareaIds()
 	{
@@ -575,6 +567,7 @@ class Tarea extends CI_Controller {
 	public function getValValido(){
 
 		$idForm = $this->input->post('idForm');
+		//dump_exit($idForm);
 		$response = $this->Tareas->getValValidos($idForm);
 		echo json_encode($response);
 	}
@@ -660,47 +653,35 @@ class Tarea extends CI_Controller {
 	// guarda  form commpletado (revisar no funciona bien)
 	public function guardarForm(){
 
-		//  array con id de dato->valor
+		//  array con id de dato->valor(dato es FOCO_ID)
 		$datos = $this->input->post();
 		//dump_exit($datos);
-		//echo "array en funcion";
-		//var_dump($datos);
-
 		$userdata = $this->session->userdata('user_data');
         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado
         $listarea = $datos['id_listarea'];
         $idformulario = $datos['idformulario'];
         $i = 1;// para guardar el orden de categorias, grupos y valores
         $j = 0;
+		
 		foreach ($datos as $key => $value) {
 
 			// Si no son los primeros dos campos id listarea e id formulario
 			if (($key != 'id_listarea') && ($key != 'idformulario')) {
-				//trae array con info de dato por id
-				// $data = $this->Tareas->getDatos($key);
-				$data = $this->Tareas->getDatos($key);
-				// echo "data 18: ";
-				// var_dump($data);
-				// echo "data 18: ";
-				// var_dump($data);
-
+				//trae array con info de dato por id				
+				$data = $this->Tareas->getDatos($key);		
 				// Agrego datos adicionales al formulario
 				$data['USUARIO'] = $usrId;
-				//$data['ORDEN'] = $i;
-
+				
 				// Solo si los valores vienen con info guarda
 				if (($value != "") || ($value != -1) ) {
-
 					$data['VALOR'] = $value;
 				}
 				// si el valor es -1 guarda Seleccione..
 				if (($value == -1) ) {
-
 					$data['VALOR'] = 'Seleccione...';
 				}
 
-
-				// Si un componente viene "" o -1  o"notide" guarda 0 (no validado)
+				// Si un componente viene "" o -1  o "notilde" guarda 0 (no validado)
 				if( ($value == "") || ($value == -1) || ($value == "notilde") )  {
 					$data['VALIDADO'] = 0;
 				}else{
@@ -708,79 +689,36 @@ class Tarea extends CI_Controller {
 				}
 
 				$tipoComp = $data['TIDA_NOMBRE'];
-
-				// Si el tipo de dato es "input_archivo"
-				if ($tipoComp == "input_archivo") {
-
+				// Si el tipo de dato es "input_archivo"			
+				if ($tipoComp == "input_archivo") {					
 					// si el value no esta vacio
-					if($value != ""){
-
-						// IMAGEN SUBIDA
-						//codifico nombre para guardar
-						// $nomcodif = $this->codifNombre($listarea, $usrId);
-						// $data['VALOR'] = ".assets/imgformularios/".$nomcodif;
-						// // datos del archivo a subir en server
-						// $config = [
-						// 	"upload_path"   => "/assets/imgformularios",
-						// 	'allowed_types' => "png|jpg",
-						// 	'file_name'     => $nomcodif
-						// ];
-
-
-						//$nomcodif = $this->codifNombre($listarea, $usrId);
-						//$data['VALOR'] = ".assets/imgformularios/".$nomcodif;
-						// datos del archivo a subir en server
-						// $config = [
-						// 	"upload_path"   => "/assets/imgformularios",
-						// 	'allowed_types' => "png|jpg",
-						// 	'file_name'     => $nomcodif
-						// ];
-
-						// $this->load->library("upload",$config);
-
-						// // si el campo del form con el id name corriente subio una img
-						// if ($this->upload->do_upload($key)) {
-
-						// 	$extension = $this->upload->data('file_ext');
-						// 	$nomcodif = $nomcodif.$extesnion;
-						// }
-						// $data['VALOR'] = "assets/imgformularios/".$nomcodif;
-						$directorio = "D:\sitios\MTBA-desa-procprod\assets\imgformularios";
-						//dump_exit( $directorio);
+					if($value != ""){							
 						$config = [
-							"upload_path"   => "./assets/imgformularios",//$directorio,
-							'allowed_types' => "*"
+							'upload_path' => './assets/imgformularios/',
+							'allowed_types' => 'png|jpg'
 						];
-
-						$this->load->library("upload",$config);
-						$this->upload->initialize($config);
-
-						// si el campo del form con el id name corriente subio una img
-						if ($this->upload->do_upload($key)) {
-							$dataImag = array("upload_data" => $this->upload->data());
-							//$extension = $this->upload->data('file_ext');
-							//$nomcodif = $nomcodif.$extesnion;
-						} else {
-							dump_exit( array('error' => $this->upload->display_errors()) );
+						$this->load->library("upload",$config);	
+						if($this->upload->do_upload($key)){
+							echo "subio ok";
+						}else{
+							$this->upload->display_errors('<p>', '</p>');
+							echo "error en subida";
 						}
-						$nom = $dataImag['upload_data']['file_name'];
-						$data['VALOR'] = "assets/imgformularios/".$nom;
-
-
+						$dataImag = array("upload_data" => $this->upload->data());
+						$nom = $dataImag['upload_data']['file_name'];							
+						$data['VALOR'] = "assets/imgformularios/".$nom;	
+						
 					}else{
 						echo $data['VALOR'];
 					}
 				}
 
-				$this->Tareas->UpdateForm($data,$key); // key es VALO_ID
+				$this->Tareas->UpdateForm($data,$key); // key es FOCO_ID
+				
 				$i++;
 			}
 
-
 		}
-
-
-		//echo json_encode(true);	usala para el alburo nomas
 	}
 
 	// Codifica nombre de imagen para no repetir en servidor

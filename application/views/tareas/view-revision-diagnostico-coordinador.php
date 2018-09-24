@@ -620,7 +620,6 @@
       // guarda el id form asoc a tarea std en modal para guardar
       $('#idformulario').val(idForm);
 
-      idForm = 1;
       // trae valores validos para llenar componentes de form asoc.
       $.ajax({
         type: 'POST',
@@ -638,6 +637,37 @@
       });
     }
   }
+  /*function getformulario(event) {
+    // llena form una sola vez al primer click
+    if (click == 0) {
+      //var estadoTarea = $('#estadoTarea').val();
+      // toma id de form asociado a listarea en TJS
+      var idForm = $('#idform').val();
+      console.log('id de form: '+idForm);
+
+      // guarda el id form asoc a tarea std en modal para guardar
+      $('#idformulario').val(idForm);
+
+      var petr_id = '<?php echo $idPedTrabajo ?>';
+      // trae valores validos para llenar componentes de form asoc.
+      $.ajax({
+        type: 'POST',
+        data: { idForm:idForm, petr_id:petr_id},
+        url: 'index.php/Tarea/llenarForm2500',
+        success: function(result){
+          console.log('form 2500: ');
+          console.table(result.html);
+          $("#modalBodyRevDiagCoord").html(result.html);
+          $('#modalRevDiagCoord').modal('show');
+        },
+        error: function(result){
+          console.error("error");
+          console.table(result.html);
+        },
+        dataType: 'json'
+      });
+    }
+  }*/
 
   // llena los componentes de form asoc con valores validos
   function llenaComp(data){

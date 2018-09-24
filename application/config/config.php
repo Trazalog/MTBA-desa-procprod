@@ -17,7 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://35.239.41.196/mtba-desa-procprod-desarrollo/';
+//$config['base_url'] = 'http://35.239.41.196/mtba-desa-procprod-desarrollo/';
+$config['base_url'] = 'http://localhost/MTBA-desa-procprod/';
 
 /*
 |--------------------------------------------------------------------------

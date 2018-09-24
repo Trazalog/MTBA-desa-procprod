@@ -831,8 +831,79 @@ class Otrabajos extends CI_Model
     	
     	$month = $data['month'] + 1 ;    	
     	$idSubsector = $data['idSubsector'];
-    			
-    					
+    	//$idequipo = $data['idequipo'];
+    	//////
+
+		// $this->db->select('tbl_listarea.id_listarea,
+		// 					tbl_listarea.id_orden,
+		// 					tbl_listarea.tareadescrip AS title,
+		// 					tbl_listarea.id_tarea,
+		// 					tbl_listarea.fecha AS start,
+		// 					tbl_listarea.id_equipo,
+		// 					tbl_listarea.estado,
+		// 					tbl_subsector.id_subsector,
+		// 					tbl_subsector.descripcion,
+		// 					tbl_equipos.id_equipo,
+		// 					tbl_equipos.descripcion,
+		// 					tareas.id_tarea,
+		// 					tareas.descripcion');
+		// $this->db->from('tbl_listarea');
+		// $this->db->join('tareas', 'tbl_listarea.id_tarea = tareas.id_tarea');
+		// $this->db->join('tbl_equipos', 'tbl_equipos.id_equipo = tbl_listarea.id_equipo','left');
+		// $this->db->join('tbl_subsector', 'tbl_equipos.id_subsector = tbl_subsector.id_subsector');		
+		  
+		//  //TODO: FALTA LOS WHERE E IF'S
+		  
+		// $this->db->where('month(tbl_listarea.fecha)', $month);
+		// $this->db->where('tbl_equipos.id_subsector', $idSubsector);
+		// $this->db->where('tbl_listarea.estado', 'AS');
+		// $this->db->or_where('tbl_listarea.estado', 'PR'); 	
+		
+
+  //   	$this->db->select('tbl_listarea.id_listarea,
+		// 					tbl_listarea.id_orden,
+		// 					tbl_listarea.tareadescrip AS title,
+		// 					tbl_listarea.id_tarea,
+		// 					tbl_listarea.fecha AS start,
+		// 					tbl_listarea.id_equipo,
+		// 					tbl_listarea.estado,
+		// 					tbl_subsector.id_subsector,
+		// 					tbl_subsector.descripcion,
+		// 					tbl_equipos.id_equipo,
+		// 					tbl_equipos.descripcion,
+		// 					tareas.id_tarea,
+		// 					tareas.descripcion');
+		// $this->db->from('tbl_listarea');
+		// $this->db->join('tareas', 'tbl_listarea.id_tarea = tareas.id_tarea');
+		// $this->db->join('tbl_equipos', 'tbl_equipos.id_equipo = tbl_listarea.id_equipo','left');
+		// $this->db->join('tbl_subsector', 'tbl_equipos.id_subsector = tbl_subsector.id_subsector');			
+		// $this->db->where('month(tbl_listarea.fecha)', $month);	
+		
+		// if ($idSubsector != -1) {	// hay sector
+			
+		// 	if ($idequipo != -1) {	// hay sector y equipo
+		// 		$this->db->where('tbl_equipos.id_subsector', $idSubsector);
+		// 		$this->db->where('tbl_equipos.id_equipo', $idequipo);
+		// 	}else{				// hay sector y no equipo
+		// 		$this->db->where('tbl_equipos.id_subsector', $idSubsector);
+		// 	}
+		// }	//no hay sector ni equipo
+		
+		// //$this->db->where('tbl_equipos.id_subsector', $idSubsector);
+		// //$this->db->where('tbl_listarea.estado', 'AS');
+		// $this->db->where('tbl_listarea.estado', 'PR'); 
+
+
+
+		// $query = $this->db->get();
+		// if($query->num_rows()>0){
+		// return $query->result_array();
+		// }
+		// else{
+		// 	return false;
+		// }    					
+
+    	/////
 
 		if($idSubsector != -1){
 			$sql = "SELECT
@@ -887,11 +958,7 @@ class Otrabajos extends CI_Model
 				AND
 				month(tbl_listarea.fecha) = $month";
 		}
-
-
-
-
-				//(tbl_listarea.estado = 'C' OR tbl_listarea.estado = 'AS')
+		//(tbl_listarea.estado = 'C' OR tbl_listarea.estado = 'AS')
 
 		$query= $this->db->query($sql);
 
