@@ -189,9 +189,9 @@
                                         <strong style="color: #dd4b39">*</strong>: </label>
                                     <select id="familia_productos" class="form-control">
                                         <option value="0" selected="selected">Seleccionar...</option>
-                                        <option value="1">Componente Industrial</option>
-                                        <option value="2">Componente Liviano</option>
-                                        <option value="3">Servicio</option>
+                                        <option value="1">CI - Componente Industrial</option>
+                                        <option value="2">CL - Componente Liviano</option>
+                                        <option value="3">S - Servicio</option>
                                     </select>
                                 </div>
                             </div>
@@ -210,25 +210,21 @@
                         <!--FIN ROW   -->
                         <br>
                         <div class="row">
-
+                        <div class="form-group">
                             <div class="col-xs-12 col-sm-5">
-                                <label style="margin-top: 7px;">Fecha Compromiso Entrega Informe: </label>
+                                <label style="margin-top: 7px;">Fecha Compromiso Entrega Informe <strong style="color: #dd4b39">*</strong>: </label>
                             </div>
                             <div class="col-xs-12 col-sm-5">
-                                <input type="text" id="fecha_entrega" class="form-control" />
-
+                                <input type="text" id="fecha_entrega" class="form-control obligatorio" />
                             </div>
+                        </div>
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Observaciones:</label>
                             <textarea id="observacion" class="form-control"></textarea>
                         </div>
-
-
-
-
-                        <button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()" disabled>Guardar</button>
+                        <button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()" disabled>Inicio Proceso</button>
                     </form>
                 </div>
                 <!-- /.box-body -->
@@ -243,58 +239,103 @@
 </section>
 <!-- /.content -->
 
+<script> 
+// function e(q,br) { 
+// document.body.appendChild( document.createTextNode(q) ); 
+// if(!br) document.body.appendChild( document.createElement("BR") ); 
+// } 
+
+// Creo una fecha 
+//var hoy = new Date(); 
+
+// Nuestro método para sumar n dias (que no sean ni Sábado ni Domingo) 
+Date.prototype.sumarLaborables = function(n) { 
+    for(var i=0; i<n; i++) { 
+        this.setTime( this.getTime()+24*60*60*1000 ); 
+        if( (this.getDay()==6) || (this.getDay()==0) )    // sábado o domingo 
+            i--;            // hacemos el bucle una unidad mas larga. 
+    } 
+    return this; 
+} 
+
+// COMPLETAMOS CON CEROS A LA IZQUIERDA AQUELLOS VALORES QUE LO NECESITEN PARA VERLOS BONITOS 
+Date.prototype.getXXXzeroFilled = function(propiedad) { 
+    var dev = this["get"+propiedad](); 
+    if( (propiedad=="Milliseconds") && (dev<100) && (dev>9) ) dev = "0"+dev; 
+    else if( dev<10 ) dev = (propiedad=="Milliseconds")?"00":"0"+dev; 
+    return dev.toString(); 
+} 
+Date.prototype.getHoursZeroFilled = function() { return this.getXXXzeroFilled("Hours"); } 
+Date.prototype.getMinutesZeroFilled = function() { return this.getXXXzeroFilled("Minutes"); } 
+Date.prototype.getSecondsZeroFilled = function() { return this.getXXXzeroFilled("Seconds"); } 
+Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFilled("Milliseconds"); } 
+
+
+
+// // REESCRIBIMOS EL MÉTODO TOSTRING() PARA REPRESENTARLO EN CASTELLANO BONITO 
+// Date.prototype.toString = function() { 
+//     var diaSem = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][ this.getDay() ]; 
+//     var mes = "Enero;Febrero;Marzo;Abril;Mayo;Junio;Julio;Agosto;Septiembre;Octubre;Noviembre;Diciembre".split(";")[this.getMonth()]; 
+//     var str = diaSem+", "+this.getDate()+" de "+mes+" de "+this.getFullYear()+" a las "+this.getHoursZeroFilled()+":"+this.getMinutesZeroFilled()+":"+this.getSecondsZeroFilled()+" "+this.getMillisecondsZeroFilled()+"."; 
+//     return str; 
+// } 
+
+// e(hoy); 
+// for(var i=0; i<15; i++) { 
+//     hoy.sumarLaborables(1); 
+//     e( hoy ); 
+// } 
+
+// e(""); e(""); 
+//e( new Date().sumarLaborables(15) ); 
+
+</script> 
+
 <script>
     $("form").submit(function(event) {
         event.preventDefault();
     });
 
     
-        $('#fecha_entrega').datepicker({
-            autoclose: true
-        });
+    $('#fecha_entrega').datepicker({
+        autoclose: true
+    });
 
-        var sourceArray = <?php echo json_encode($listaIndices); ?>
+    var sourceArray = <?php echo json_encode($listaIndices); ?>
 
-        $('#indice').autocomplete({
-            source: sourceArray,
-            select: function(event, ui) {
-                $('#motor').val(ui.item.data);
-            }
-        });
+    $('#indice').autocomplete({
+        source: sourceArray,
+        select: function(event, ui) {
+            $('#motor').val(ui.item.data);
+        }
+    });
 
-        $('#form').bootstrapValidator({ //VALIDADOR
-            message: 'This value is not valid',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                obligatorio: {
-                    message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
-                    selector: '.obligatorio',
-                    validators: {
-                        notEmpty: {
-                            message: 'Los campos obligatorios(*) deben estar completos'
-                        }
+    $('#form').bootstrapValidator({ //VALIDADOR
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            obligatorio: {
+                message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+                selector: '.obligatorio',
+                validators: {
+                    notEmpty: {
+                        message: 'Los campos obligatorios(*) deben estar completos'
                     }
-                },
-                optionsRadios: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Alguna de las opciones debe estar seleccionada'
-                        }
+                }
+            },
+            optionsRadios: {
+                validators: {
+                    notEmpty: {
+                        message: 'Alguna de las opciones debe estar seleccionada'
                     }
                 }
             }
-        });
-
-    
-
-
-
-
-
+        }
+    });
 
     var id_cliente_seleccionado = '';
     var listaClientes;
@@ -375,15 +416,12 @@
             url: 'index.php/InicioTrabajo/Guardar_Pedido',
             success: function(result) {
                 console.log(result);
-
-                alert("Formulario Guardado.");
+                alert("Proceso Iniciado!\nCódigo de Interno: "+result);     
                 ActualizarPagina();
-
             },
             error: function(result) {
                 console.log(result);
-
-                alert("El Formulario contiene error, por favor cargar datos correctamente.");
+                alert("No se pudo Inciar el Proceso, por favor cargar datos correctamente.");
             }
         });
     }
@@ -393,19 +431,21 @@
         var opc = this.value;
         var subfamilia = $('#subfamilia');
         subfamilia.html('');
+        $('#fecha_entrega').val('');
+        $('#fecha_entrega').prop('disabled', false);
         subfamilia.append("<option selected='selected'>Seleccionar...</option>");
         switch (opc) {
             case "1":
-                subfamilia.append("<option>Motor Grande</option>");
-                subfamilia.append("<option>Motor Mediano</option>");
-                subfamilia.append("<option>Motor Semiarmado</option>");
-                subfamilia.append("<option>Partes Sueltas</option>");
+                subfamilia.append("<option>MG - Motor Grande</option>");
+                subfamilia.append("<option>MM - Motor Mediano</option>");
+                subfamilia.append("<option>MSA - Motor Semiarmado</option>");
+                subfamilia.append("<option>PS - Partes Sueltas</option>");
 
                 break;
             case "2":
-                subfamilia.append("<option>Motor Entero</option>");
-                subfamilia.append("<option>Motor Semiarmado</option>");
-                subfamilia.append("<option>Partes Sueltas</option>");
+                subfamilia.append("<option>ME - Motor Entero</option>");
+                subfamilia.append("<option>MSA - Motor Semiarmado</option>");
+                subfamilia.append("<option>PS - Partes Sueltas</option>");
 
                 break;
             case "3":
@@ -416,6 +456,27 @@
                 break;
         }
 
+    });
+
+    $('#subfamilia').change(function() {
+     var tiempoStandars = <?php echo json_encode($tiempoStandars); ?>;
+     var subfamilia = this.value.split(" - ")[0];
+     var familia = $('#familia_productos option:selected').text().split(" - ")[0];
+     $('#fecha_entrega').val('');
+     $('#fecha_entrega').prop('disabled', false);
+     for(i = 0; i < tiempoStandars.length; i++){
+         if(familia+"-"+subfamilia==tiempoStandars[i]['tipo_motor_id']){
+             console.log(tiempoStandars[i]['dias_habiles']);
+             console.log(new Date().sumarLaborables(Math.round((tiempoStandars[i]['dias_habiles']))));
+             var d = new Date().sumarLaborables(Math.round(tiempoStandars[i]['dias_habiles']));
+             $('#fecha_entrega').val(("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+                d.getFullYear());
+            $('#fecha_entrega').prop('disabled', true);
+             
+         }
+     }
+     
+    
     });
 
     function ValidarCampos() {

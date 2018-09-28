@@ -15,15 +15,16 @@ class AceptacionTrabajos extends CI_Model
     }
 
     public function TrabajoExecutionBPM($idTarea,$parametros){
-        //$result = file_get_contents('http://192.168.100.110:8080/bonita/API/bpm/userTask/'.$idTarea.'/execution',false,$parametros);
-
-        $result = file_get_contents('http://35.239.41.196:8080/bonita/API/bpm/userTask/'.$idTarea.'/execution',false,$parametros);
-        return $result;
+      
+            $result = @file_get_contents(BONITA_URL.'API/bpm/userTask/'.$idTarea.'/execution',false,$parametros);
+            return $result;
+    
     }
 
     public function ObtenerPresupuesto($idPedido){
         $this->db->select('VALOR');
         $this->db->where('PETR_ID',$idPedido);
+        $this->db->where('NOM_VAR','presupuesto');
         $query = $this->db->get('frm_formularios_completados');
         if($query->num_rows()!=0){
             return $query->result_array()[0]['VALOR'];
@@ -35,6 +36,7 @@ class AceptacionTrabajos extends CI_Model
 
     public function GuardarPresupuesto($idPedido,$data){
         $this->db->where('PETR_ID',$idPedido);
+        $this->db->where('NOM_VAR','presupuesto');
         $result = $this->db->update('frm_formularios_completados',$data);
         return $result;
     }

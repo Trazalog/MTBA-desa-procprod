@@ -7,6 +7,7 @@ class Otrabajo extends CI_Controller {
         {
 		parent::__construct();
 		$this->load->model('Otrabajos');
+		$this->load->model('Bonitas');
 	}
 
 	public function index($permission)
@@ -242,8 +243,7 @@ class Otrabajo extends CI_Controller {
 			        	 'id_usuario' =>$usrId,
 			        	 'id_usuario_a' =>1,
 			        	 'id_sucursal' => $sucursal,
-			        	 'id_proveedor' => $proveedor
-			        	 
+			        	 'id_proveedor' => $proveedor			        	 
 		        		);
 
 	     	$result = $this->Otrabajos->guardar_agregar($datos2);
@@ -457,17 +457,133 @@ class Otrabajo extends CI_Controller {
 	
 	}
 
+	//trae susuarios BPM para mostrar tareas en calendario 
+	public function getUsuariosBPM(){
+		 
+		$parametros = $this->Bonitas->LoggerAdmin();
+		// Cambio el metodo de la cabecera a "PUT"
+		$parametros["http"]["method"] = "GET";		 
+		$param = stream_context_create($parametros);
+		$users = $this->Otrabajos->getUsuariosBPM($param);
+		return $users;	
+	}
+
 
 ///////// Calendario Hugo  ////////////////
 
 	// Carga tareas en pantala asignacion por id de OT
 	public function cargartarea($permission,$idglob){ 
+		//$idglob = 17;
 		
 		$data['list'] = $this->Otrabajos->cargartareas($idglob);
-		$data['id_orden'] = $idglob; 
+		$data['id_orden'] = $idglob;
+		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($idglob); 
         $data['permission'] = $permission;
         $this->load->view('otrabajos/asignacion',$data);  
-    }
+	}
+	// TODO: METODO NUEVO
+		// carga vista asignacion para planificar
+			// public function cargarPlanificacion($permission,$idglob,$idTarBonita){ 
+			// 	//$idglob = 17;
+				
+			// 	$data['list'] = $this->Otrabajos->cargartareas($idglob);
+			// 	$data['id_orden'] = $idglob;
+			// 	$data['idTarBonita'] = $idTarBonita; 
+		 //        $data['permission'] = $permission;
+		 //        $this->load->view('otrabajos/asignacion_planificar',$data);  
+			// }
+
+	public function cargarPlanificacion($permission,$idglob){ 
+		//$idglob = 17;
+		// trae tareas de TJobs
+		$tareas = $this->Otrabajos->cargartareas($idglob);
+		//trae usr de BPM
+		$usrs = $this->getUsuariosBPM();
+		// arma un array con ambos array
+		$list = $this->getListadoArmado($tareas,$usrs);
+		$data['list'] = $list;
+		//$data['list'] = $this->Otrabajos->cargartareas($idglob);
+		$data['id_orden'] = $idglob;
+		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($idglob);
+		//$data['idTarBonita'] = $idTarBonita; 
+        $data['permission'] = $permission;
+        $this->load->view('otrabajos/asignacion_planificar',$data);  
+	}
+
+	public function llenarPlanificacion(){ 
+		//$idglob = 17;
+		// trae tareas de TJobs
+		$numord = $this->input->post('numord');
+		$tareas = $this->Otrabajos->cargartareas($numord);
+		//var_dump($numord);
+		//var_dump($tareas);
+		//trae usr de BPM
+		$usrs = $this->getUsuariosBPM();
+		//var_dump($usrs);
+		// arma un array con ambos array
+		$list = $this->getListadoArmado($tareas,$usrs);
+		
+		//var_dump($list);
+		$data['list'] = $list;
+		//$data['list'] = $this->Otrabajos->cargartareas($idglob);
+		$data['id_orden'] = $numord;
+		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($numord);
+		
+        
+        echo json_encode($data);
+	}
+
+	//devuelve un array con los usuarios de tareas con usuarios asignados de BPM
+	function getListadoArmado($tareas,$usrs){		
+		// echo('<pre>');
+		// var_dump($usrs);
+		$listado = $tareas;
+
+		foreach ($tareas as $key => $task) {
+			
+			foreach ($usrs as $usuario) {
+				
+				if( $usuario["id"] == $task['id_usuario']){	
+
+					$listado[$key]['usrName'] = $usuario["firstname"];
+					$listado[$key]['usrLastName'] = $usuario["lastname"];					
+				}			
+			}	
+		}
+		return $listado;
+	}	
+
+// TODO: METODO NUEVO
+
+	public function cargarAsignacion($permission,$idOT,$idTarea){ 			
+		
+		// trae tareas de TJobs
+		$tareas = $this->Otrabajos->cargartareas($idOT);
+		//trae usr de BPM
+		$usrs = $this->getUsuariosBPM();
+		// arma un array con ambos array
+		$list = $this->getListadoArmado($tareas,$usrs);
+		$data['list'] = $list;
+		//$data['list'] = $this->Otrabajos->cargartareas($idOT);
+		$data['id_orden'] = $idOT;
+		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($idOT);
+		$data['idTarea'] = $idTarea; 
+        
+        $data['permission'] = $permission;      
+        $this->load->view('otrabajos/asignacion_personal',$data);  
+	}
+
+
+	// carga vista asignacion_personal para asignar personal a planificacion
+	// public function cargarAsignacion($permission,$idglob,$idTarBonita){ 			
+		
+	// 	$data['list'] = $this->Otrabajos->cargartareas($idglob);
+	// 	$data['id_orden'] = $idglob;
+	// 	$data['idTarBonita'] = $idTarBonita;
+	// 	//$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($idglob);  
+ //        $data['permission'] = $permission;
+ //        $this->load->view('otrabajos/asignacion_personal',$data);  
+	// }
 	
 	// Trae taresas estandar
 	public function getTareaSdt(){
@@ -490,22 +606,13 @@ class Otrabajo extends CI_Controller {
 		echo json_encode($response);
 	}
 
-	// Trae tareas por plantillas pre armadas 
-	public function getTareasPlantilla(){
-		$idPlantilla = $this->input->post('idPlantilla');
-		$response = $this->Otrabajos->getTareasPlantillas($idPlantilla);
-		echo json_encode($response);
-		
-	}
-
-
 	/// Guarda tarea nueva con usuario logueado
-  	public function agregar_tarea(){
+	public function agregar_tarea(){
 
-  		//// USUARIO LOGUEADO
-        $userdata = $this->session->userdata('user_data');
-        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
-	  	$datos['id_usuario'] = $usrId;
+		//// USUARIO LOGUEADO
+		$userdata = $this->session->userdata('user_data');
+		$usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
+		$datos['id_usuario'] = $usrId;
 
 		$datos=$_POST['parametros']; 		
 		$idTarea = $datos['id_tarea']; 			
@@ -514,24 +621,34 @@ class Otrabajo extends CI_Controller {
 		$durac = $this->Otrabajos->getDuracTareaSTD($idTarea);
 		$datos['duracion_prog'] = $durac;
 
-	    $result = $this->Otrabajos->agregar_tareas($datos);	      	
-	   
-	   	if($result)
-	      		echo $this->db->insert_id();
-	      	else echo 0;	
-	   
-  	}
-  	
+		$result = $this->Otrabajos->agregar_tareas($datos);	      	
+		
+		if($result)
+					echo $this->db->insert_id();
+				else echo 0;	
+		
+	}  	
 
 	// Guarda tareas de plantilla
 	public function setTareasPlant(){
-
-		$idsTareas = $this->input->post('idsTareas');
-		$numOT = $this->input->post('numOT');
-		$batch = $this->Otrabajos->armarBatch($numOT,$idsTareas);
-		$response = $this->Otrabajos->setBatch($batch);
-
-		echo json_encode($response);
+		// recibe id de plantilla e id de OT
+		$idPlantilla = $this->input->post('idPlantilla');
+		$numOT = $this->input->post('numord');
+		//trae array de id tarea/descripcion
+		$arrayTarIdDescrip = $this->Otrabajos->getTareasPlantillas($idPlantilla);
+		$batch = array();
+		// arma array con datos a insertar en tabla tbl_listareas
+		foreach ($arrayTarIdDescrip as $key => $value) {
+			$comp = array('id_orden' => $numOT,
+										'tareadescrip' => $value["descripcion"],
+										'id_tarea' => $value["id_tarea"],
+										'estado'=> 'C'
+										);
+			array_push($batch,$comp);				
+		}
+		
+		$response = $this->Otrabajos->setBatchTareasPlantilla($batch);
+		echo json_encode($response);		
 	}
 
 	public function setEquipo(){
@@ -550,37 +667,30 @@ class Otrabajo extends CI_Controller {
 		echo json_encode($response);
    	}
 
-   	// Trae equipos de un sector por id de sector
-   	public function getEquipPorIdSubsector(){
+	// Trae equipos de un sector por id de sector
+	public function getEquipPorIdSubsector(){
 
-   		$id_subsector = $this->input->post('idsubsector');
-   		$response = $this->Otrabajos->getEquipPorIdSubsector($id_subsector);
-		echo json_encode($response);
-   	}
-   
-   	// Trae tareas por mes y por id de OT para calendario
-   	public function getcalendTareas(){
-   		
-   		$data = $this->Otrabajos->getcalendTareas($this->input->post());
-		if($data  == false){
-			echo json_encode(false);
-		}
-		else{
-			echo json_encode($data);
-		}
-   	}
-
-
-
-   	
-
-
-   	// Trae tareas por mes, Por Sector y por Equipo para calendario
-   	public function getcalendTareasSector(){
-   		
-   		$data = $this->Otrabajos->getcalendTareasSect($this->input->post());
+		$id_subsector = $this->input->post('idsubsector');
+		$response = $this->Otrabajos->getEquipPorIdSubsector($id_subsector);
+	echo json_encode($response);
+	}
+	
+	// Trae tareas por mes y por id de OT para calendario (carga inicial de calendario)
+	public function getcalendTareas(){
 		
-		
+		$data = $this->Otrabajos->getcalendTareas($this->input->post());
+		if($data  == false){
+			echo json_encode(false);
+		}
+		else{
+			echo json_encode($data);
+		}
+	}
+
+	// Trae tareas por mes, Por Sector y por Equipo para calendario
+	public function getcalendTareasSector(){
+
+		$data = $this->Otrabajos->getcalendTareasSect($this->input->post());
 
 		if($data  == false){
 			echo json_encode(false);
@@ -588,46 +698,59 @@ class Otrabajo extends CI_Controller {
 		else{
 			echo json_encode($data);
 		}
-   	}
+	}
 
-   	public function getcalendTareasEquipo(){
+	public function getcalendTareasEquipo(){
 
-   		$data = $this->Otrabajos->getcalendTareasEquipo($this->input->post());
+		$data = $this->Otrabajos->getcalendTareasEquipo($this->input->post());
 		if($data  == false){
 			echo json_encode(false);
 		}
 		else{
 			echo json_encode($data);
 		}
-   	}
+	}
 
+	// Actualiza el nuevo dia programado para una tarea
+	public function updateDiaProgTarea(){
 
-
-   	// Actualiza el nuevo dia programado para una tarea
-   	public function updateDiaProgTarea(){
-
-   		$id = $this->input->post('id');
-   		$diaNuevo = $this->input->post('prog');
-   		$response = $this->Otrabajos->updateDiaProgTareas($id, $diaNuevo);
+		$id = $this->input->post('id');
+		$diaNuevo = $this->input->post('prog');
+		$response = $this->Otrabajos->updateDiaProgTareas($id, $diaNuevo);
 
 		echo json_encode($response);
-   	}
+	}
 
-   	// Actualiza la nueva duracion de la Tarea en listareas
-   	public function updateDurTarea(){
+  // Actualiza la nueva duracion de la Tarea en listareas
+	public function updateDurTarea(){
 
-   		$id = $this->input->post('id');
-   		$duracion = $this->input->post('duracion');    		   
-   		$response = $this->Otrabajos->updateDurTarea($id, $duracion);
+		$id = $this->input->post('id');
+		$duracion = $this->input->post('duracion'); 
+
+		$duracion_prog = $this->getDuracionOTrabajo($id);
+		$nueva = $duracion_prog + $duracion;
+		      		   
+   	$response = $this->Otrabajos->updateDurTarea($id, $nueva);
 		echo json_encode($response);
-   	}
+	}
+	
+	// devuelve la duracion programada, guardada en tbl_listareas
+	function getDuracionOTrabajo($id){
 
-   	public function programTarea(){
+		$this->db->select('tbl_listarea.duracion_prog');
+		$this->db->from('tbl_listarea');        
+		$this->db->where('tbl_listarea.id_listarea', $id);
+		$query = $this->db->get(); 
+		$duracion_prog = $query->row('duracion_prog');
+		return $duracion_prog;
+	}	
 
-   		$datos = $this->input->post();   			   
-   		$response = $this->Otrabajos->programTareas($datos);
+	public function programTarea(){
+
+		$datos = $this->input->post();   			   
+		$response = $this->Otrabajos->programTareas($datos);
 		echo json_encode($response);
-   	}
+	}
    		
 
 

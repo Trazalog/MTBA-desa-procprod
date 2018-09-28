@@ -1,4 +1,4 @@
-<input type="hidden" id="permission" value="<?php echo $permission;?>">
+<input type="" id="permission" value="<?php echo $permission;?>">
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
@@ -45,8 +45,12 @@
                     $gr=$a['grpId'];
                     //echo "grupo";
                     //echo $gr;
-                    if($gr=='1') { 
-                      
+                    //  if($gr=='1') { 
+                  // desde aca puse los botones si permisos   
+                    echo '<i class="fa fa-check-square-o" style="color:#3c8dbc; cursor: pointer; margin-left: 15px;"  title="Asignar tarea " id="btnAddtarea"></i>';
+
+
+
                     //if($a['id_usuario_a'] == $usrId  &&  (($a['grpId']==='1') || ($a['grpId']=== '5'))){ //$a['grpId']==1 //o el grupo es supervisor tarea//if($a['id_usuario_a'] == $usrId || $a['id_usuario_a']== 1){ 
                                          
                       if (($a['estado'] !=='T') && ($a['estado'] !=='E')  && ($a['estado'] !=='TE')) {
@@ -59,7 +63,7 @@
       	                	echo '<i class="fa fa-fw fa-pencil" style="color: #f39c12; cursor: pointer; margin-left: 15px;" title="Editar" data-toggle="modal" data-target="#modaleditar" ></i>';
                         }  
                           
-                          echo '<i class="fa fa-check-square-o" style="color:#3c8dbc; cursor: pointer; margin-left: 15px;"  title="Asignar tarea " id="btnAddtarea"></i>';
+                          // echo '<i class="fa fa-check-square-o" style="color:#3c8dbc; cursor: pointer; margin-left: 15px;"  title="Asignar tarea " id="btnAddtarea"></i>';
                         
                         if (strpos($permission,'Del') !== false) {
       	                	echo '<i class="fa fa-fw fa-times-circle" style="color: #dd4b39; cursor: pointer; margin-left: 15px;" title="Eliminar"></i>';
@@ -154,7 +158,7 @@
                         } 
                       } 
                     } */            
-                  }
+                  //}
                 }
               ?>
             </tbody>

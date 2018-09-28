@@ -65,7 +65,10 @@ if(!function_exists('cargarCabecera')){
                             <div id="collapseDiv" class="box box-default collapsed-box box-solid">
                                 <div class="box-header with-border">
                                     <h3 id="pedidoInfo" class="box-title">N° Interno: '.$result['cod_interno'].'</h3>
-        
+
+                                    <input type="text" id="cod_interno" class="form-control hidden" value="'.$result['cod_interno'].'">
+                                    <input type="text" id="id_pedido" class="form-control hidden" value="'.$idPedido.'">
+
                                     <div class="box-tools pull-right">
                                         <button id="infoCliente" type="button" class="btn btn-box-tool" data-widget="collapse" >
                                             <i class="fa fa-plus"></i>
