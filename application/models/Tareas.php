@@ -577,7 +577,7 @@ class Tareas extends CI_Model
 			// 	AND form.form_id = $idFormAsoc
 			// 	ORDER BY cate.ORDEN,grup.ORDEN,valo.ORDEN";
 
-		$sql = "SELECT foco.FOCO_ID AS idValor,	
+		$sql = "SELECT foco.FOCO_ID AS idValor,
 					foco.FORM_ID,
 					foco.FORM_NOMBRE,
 					'' AS habilitado,
@@ -589,7 +589,7 @@ class Tareas extends CI_Model
 					'' AS idGrupo,
 					foco.VALO_NOMBRE AS nomValor,
 					foco.TIDA_ID,
-					
+
 					foco.VALOR AS valDefecto,
 					'' AS LONGITUD,
 					'' AS OBLIGATORIO,
@@ -642,7 +642,7 @@ class Tareas extends CI_Model
 		//frm_formularios_completados.VALO_ID AS valoid,
 		$sql ="SELECT
 				frm_formularios_completados.FOCO_ID AS valoid,
-				
+
 				frm_formularios_completados.VALOR As valor
 				FROM
 				frm_formularios_completados
@@ -751,12 +751,12 @@ class Tareas extends CI_Model
 
 	// Arma array p/ insertar en frm_formularios_completados por focoId
 	function getDatos($focoId){
-				
+
 		$sql ="SELECT frm_formularios_completados.*
 		FROM frm_formularios_completados
-		WHERE FOCO_ID = $focoId";	
+		WHERE FOCO_ID = $focoId";
 		$query= $this->db->query($sql);
-		
+
 		foreach ($query->result_array() as $row){
 	        $response['FORM_ID'] = $row['FORM_ID'];
 	        $response['FORM_NOMBRE'] = $row['FORM_NOMBRE'];
@@ -773,7 +773,7 @@ class Tareas extends CI_Model
 	// Inserta datos de Form en frm_formularios_completados
 	function UpdateForm($datos,$key){
 
-		$this->db->where('FOCO_ID', $key);	
+		$this->db->where('FOCO_ID', $key);
 		$response = $this->db->update('frm_formularios_completados', $datos);
 		return $response;
 	}
@@ -807,8 +807,8 @@ class Tareas extends CI_Model
      *
      * @return   Tareas
      */
-	function tareasPorSector($idTarBonita){
-		$idOT     = $this->getIdOTPorCaseId($idTarBonita);
+	function tareasPorSector($caseId){
+		$idOT     = $this->getIdOTPorCaseId($caseId);
 		$userdata = $this->session->userdata('user_data');
 		$usrNick  = $userdata[0]["usrNick"];
 		$rolId    = $userdata[0]["rolId"];

@@ -458,7 +458,6 @@ class Tarea extends CI_Controller {
 		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
 			$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
 
-
 			switch ($data['TareaBPM']['displayName']) {
 
 				case 'Evaluación del estado de cuenta del cliente':
@@ -481,7 +480,8 @@ class Tarea extends CI_Controller {
 					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
 					$this->load->view('tareas/view_4', $data);
 					break;
-				case 'Planificar Diagnóstico':					//con comentarios listos				
+				case 'Planificar Diagnóstico':					//con comentarios listos
+					//var_dump($data['TareaBPM']);
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
 				case 'Asignar personal a Planificación':		//con comentarios listo
@@ -513,26 +513,27 @@ class Tarea extends CI_Controller {
 					$data['list']   = $this->Tareas->tareasPorSector($caseId);
                     $this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
                     break;
-				default:				
+				default:
 				$this->load->view('tareas/view_', $data);
-				//echo "<pre>";
-				//var_dump($data['form']);
 				break;
 			}
 	}
 
 	public function detaTareaRevisionDiagnosticoCoordinador()
 	{
-		//$idTareaRevisionB = 20696;
 		//$idOTRevision = 379;
 		//$id_listarea = 333;
 		$idTareaRevisionB = $this->input->post('idTareaRevisionB');
+		$idTareaRevisionB = 80362;
 		$id_listarea = $this->input->post('id_listarea');
-		//dump($id_listarea);
+		//dump($idTareaRevisionB, 'id tarea revision');
+		//dump($id_listarea, 'id listarea');
 
 		// trae id de form asociado a tarea std (las tareas de BPM se cargaran para asociar a form).
 		$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);
 		$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd); // si es 0 no hay form asociado
+		//dump($idTareaStd, 'tarea std');
+		//dump($idForm, 'id form');
 
 		// confirma si hay form guardado de esa listarea
 		//$this->Tareas->getEstadoForm($idTareaRevisionB);
@@ -662,16 +663,16 @@ class Tarea extends CI_Controller {
         $idformulario = $datos['idformulario'];
         $i = 1;// para guardar el orden de categorias, grupos y valores
         $j = 0;
-		
+
 		foreach ($datos as $key => $value) {
 
 			// Si no son los primeros dos campos id listarea e id formulario
 			if (($key != 'id_listarea') && ($key != 'idformulario')) {
-				//trae array con info de dato por id				
-				$data = $this->Tareas->getDatos($key);		
+				//trae array con info de dato por id
+				$data = $this->Tareas->getDatos($key);
 				// Agrego datos adicionales al formulario
 				$data['USUARIO'] = $usrId;
-				
+
 				// Solo si los valores vienen con info guarda
 				if (($value != "") || ($value != -1) ) {
 					$data['VALOR'] = $value;
@@ -689,15 +690,15 @@ class Tarea extends CI_Controller {
 				}
 
 				$tipoComp = $data['TIDA_NOMBRE'];
-				// Si el tipo de dato es "input_archivo"			
-				if ($tipoComp == "input_archivo") {					
+				// Si el tipo de dato es "input_archivo"
+				if ($tipoComp == "input_archivo") {
 					// si el value no esta vacio
-					if($value != ""){							
+					if($value != ""){
 						$config = [
 							'upload_path' => './assets/imgformularios/',
 							'allowed_types' => 'png|jpg'
 						];
-						$this->load->library("upload",$config);	
+						$this->load->library("upload",$config);
 						if($this->upload->do_upload($key)){
 							echo "subio ok";
 						}else{
@@ -705,16 +706,16 @@ class Tarea extends CI_Controller {
 							echo "error en subida";
 						}
 						$dataImag = array("upload_data" => $this->upload->data());
-						$nom = $dataImag['upload_data']['file_name'];							
-						$data['VALOR'] = "assets/imgformularios/".$nom;	
-						
+						$nom = $dataImag['upload_data']['file_name'];
+						$data['VALOR'] = "assets/imgformularios/".$nom;
+
 					}else{
 						echo $data['VALOR'];
 					}
 				}
 
 				$this->Tareas->UpdateForm($data,$key); // key es FOCO_ID
-				
+
 				$i++;
 			}
 
