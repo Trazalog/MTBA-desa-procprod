@@ -148,16 +148,6 @@
                                                             </center>
                                                         </div>
                                                     </div>
-
-
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12 col-md-12">
-                                                            <br>
-                                                            <label for="observaciones">Observaciones:</label>
-                                                            <textarea class="form-control" id="observaciones" rows="3"></textarea>
-                                                        </div>
-                                                    </div>
-
                                         
                                 </form>
 

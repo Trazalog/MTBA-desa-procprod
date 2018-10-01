@@ -88,14 +88,7 @@
                             <button id="formulario" type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="getformulario()">Completar Formulario</button>                          
                           </div>  
                         </div>  
-
-                        <div class="form-group">
-                          <div class="col-sm-12 col-md-12">
-                            <br>
-                            <label for="observaciones">Observaciones</label>
-                            <textarea class="form-control" id="observaciones" rows="3"></textarea>
-                          </div>
-                        </div>                        
+                      
                       </form>
 
                     </div>
