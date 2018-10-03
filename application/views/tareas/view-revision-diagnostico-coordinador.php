@@ -155,16 +155,6 @@
                           </div>
                         </div>
                       </div>
-
-                      <div class="form-group">
-                        <div class="row">
-                          <div class="col-xs-12">
-                            <br>
-                            <label for="observaciones">Observaciones:</label>
-                            <textarea class="form-control" id="observaciones" rows="3"></textarea>
-                          </div>
-                        </div>
-                      </div>
                     </form>
                   </div><!-- ./panel-body -->
                 </div><!-- ./tab-pane -->

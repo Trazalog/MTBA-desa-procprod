@@ -148,15 +148,6 @@
                                 </div>
                             </div>
 
-                <div class="form-group">
-                     
-                        <br>
-                        <label for="observaciones">Observaciones:</label>
-                        <textarea class="form-control" id="observaciones" rows="3"></textarea>
-                        </br>
-                        </br>  
-                   
-                </div>
                                                       
                 </section>
                                                         

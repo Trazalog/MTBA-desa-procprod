@@ -234,14 +234,6 @@
 
 
 
-
-     <div class="form-group">   
-     <label for="observaciones">Observaciones:</label>
-     <textarea class="form-control" id="observaciones" rows="3"></textarea>                      
-     </div>
-
-
-
 </section>
 
 
