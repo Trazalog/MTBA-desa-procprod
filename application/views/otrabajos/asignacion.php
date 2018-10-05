@@ -13,7 +13,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h2 class="box-title ">Programación de Tareas</h2>         
+          <h2 class="box-title ">Programación de Tareas (planificacion)</h2>         
         </div><!-- /.box-header -->
         <div class="box-body">    
           <?php
@@ -193,8 +193,11 @@
                   </thead>
                   <tbody>  
                    <?php
-                    // echo "<pre>";  
-                   // var_dump($list);
+                   //  echo "<pre>";  
+                   //dump_exit($idTarBonita);
+                  
+                   echo "<input type='text' class='' id='idTarBonita' value='". $idTarBonita ."'>";
+                  
                    if(count($list) > 0) {
                     $userdata = $this->session->userdata('user_data');
                     $usrId= $userdata[0]['usrId'];                       
@@ -313,87 +316,116 @@ $('#tabCalend').click(function(e){
 
   regresa1();
 });
-
+//FIXME: arreglar la vallidacion de campos de asignacio de usr y de fecha
 // Valida que no hayan tareas sin asignar ni sin programar 
 function validarInicio(){
-  var contCeldas = 0;
-  var programadas = 0;
-  var asignadas = 0;
-  var celFecha = "";
-  var tbl_Calendario = $('.tbCalendario tbody tr');
   
-  $(tbl_Calendario).each(function(){    
+  //TODO: sacar esta funcion esta abajo
+  cerrarPlanificacion();
+  
+  // var contCeldas = 0;
+  // var programadas = 0;
+  // var asignadas = 0;
+  // var celFecha = "";
+  // var tbl_Calendario = $('.tbCalendario tbody tr');
+  
+  // $(tbl_Calendario).each(function(){    
       
-      // cuenta programadas
-      celFecha = $(this).find('td.fecha').html();
-      console.log('Validacion - fecha asignacion: ');
-      console.log(celFecha);
-      if(celFecha !== undefined){
-        programadas ++;
-      }
+  //     // cuenta programadas
+  //     celFecha = $(this).find('td.fecha').html();
+  //     console.log('Validacion - fecha asignacion: ');
+  //     console.log(celFecha);
+  //     if(celFecha !== undefined){
+  //       programadas ++;
+  //     }
 
-      // cuent asignadas
-      celAsign = $(this).find('td.usrasign').html();
-      console.log('Validacion - asignado: ');
-      console.log(celAsign);
-      if(celAsign !== undefined){
-        asignadas ++;
-      }
+  //     // cuent asignadas
+  //     celAsign = $(this).find('td.usrasign').html();
+  //     console.log('Validacion - asignado: ');
+  //     console.log(celAsign);
+  //     if(celAsign !== undefined){
+  //       asignadas ++;
+  //     }
 
-      // suma cantidad filas
-      contCeldas++;
-      //console.log(celFecha);
-  });
+  //     // suma cantidad filas
+  //     contCeldas++;
+  //     //console.log(celFecha);
+  // });
 
-  if (contCeldas > programadas) {
-    alert('Existen tareas sin programar...');
-  }else{
+  // if (contCeldas > programadas) {
+  //   alert('Existen tareas sin programar...');
+  // }else{
 
-    //alert(contCeldas +' '+ programadas);
-  }
+  //   //alert(contCeldas +' '+ programadas);
+  // }
 
-  if (contCeldas > asignadas) {
-    alert('falta asignar');
-  }else{
-    //alert(contCeldas +' '+ asignadas);
-    console.log('Se puede iniciar el Proceso...');
-    guardarInfo();
-  }
+  // if (contCeldas > asignadas) {
+  //   alert('Existen tareas sin asignar, por favor asígnelas antes de terminar la Planificación');
+  // }else{
+  //   //alert(contCeldas +' '+ asignadas);
+  //   console.log('Validación de tareas completada.');
+  //   //guardarInfo();
+  //   cerrarPlanificacion();
+  // }
 }
 
-function  guardarInfo(){
-  //alert('guardar info');
-  var tabla = $('#calendarList tbody tr');
-  //console.table(tabla);
-  var usuarioAsignado = "";
-  var idTareaTrazajobs = "";
-  var duracion = 0;
-  var duracionStd = 0;
-  var tareadescrip = "";
-  var coordinador = "Duilio.Alcaraz";
-  var datos = [];
-
-  $(tabla).each(function(){
-    usuarioAsignado = $(this).find('td.usrasign').html();
-    idTareaTrazajobs = $(this).find('td.id_listarea').html();
-    tareadescrip = $(this).find('td.tareadescrip').html();
-    
-    duracion = $(this).find('td.duracionStd').html();
-    duracionStd = duracion * 60000;
-    
-    datos['nombre'] = tareadescrip;
-    datos['usuarioCoordinador'] = coordinador;
-    datos['usuarioAsignado'] = usuarioAsignado;
-    datos['idTareaTrazajobs'] = idTareaTrazajobs;
-    datos['duracionStd'] = duracionStd;
-
-    //console
-
-  });
-
-
-
+function cerrarPlanificacion(){
+  
+  var idTarBonita = $('#idTarBonita').val();
+  //var idOT = $('#idOT').val();
+  $.ajax({
+          type: 'POST',
+          data: { idTarBonita: idTarBonita},
+                  //idOT: idOT},
+          url: 'index.php/Tarea/terminarPlanificacion', 
+          success: function(data){ 
+            console.log('respuesta cerrar planif: ');
+            console.log(data);
+                                  
+                },              
+          error: function(result){
+                  console.log(result);
+                },
+          dataType: 'json'      
+    });
 }
+
+
+
+
+// function  guardarInfo(){
+//   //alert('guardar info');
+//   var tabla = $('#calendarList tbody tr');
+//   //console.table(tabla);
+//   var usuarioAsignado = "";
+//   var idTareaTrazajobs = "";
+//   var duracion = 0;
+//   var duracionStd = 0;
+//   var tareadescrip = "";
+//   var coordinador = "Duilio.Alcaraz";
+//   var datos = [];
+
+//   $(tabla).each(function(){
+//     usuarioAsignado = $(this).find('td.usrasign').html();
+//     idTareaTrazajobs = $(this).find('td.id_listarea').html();
+//     tareadescrip = $(this).find('td.tareadescrip').html();
+    
+//     duracion = $(this).find('td.duracionStd').html();
+//     duracionStd = duracion * 60000;
+    
+//     datos['nombre'] = tareadescrip;
+//     datos['usuarioCoordinador'] = coordinador;
+//     datos['usuarioAsignado'] = usuarioAsignado;
+//     datos['idTareaTrazajobs'] = idTareaTrazajobs;
+//     datos['duracionStd'] = duracionStd;
+
+//     //console
+
+//   });
+
+
+
+// }
 
 
 
@@ -439,13 +471,15 @@ function  guardarInfo(){
   var grpId = $('#grpId').val();
   var permiso = "";
 
-    $(function () {    
+calendario();
+function calendario(){
 
+  
       //  CALENDARIO
 
      /* initialize the external events
      -----------------------------------------------------------------*/
-      function ini_events(ele) {
+     function ini_events(ele) {
         ele.each(function () {
             // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
             // it doesn't need to have a start or end
@@ -698,11 +732,13 @@ function  guardarInfo(){
 
             //Remove event from text input
             $("#new-event").val("");
-        });    
-    });
-    $(".fa-print").click(function (e) {
-      $("#calendar").printArea();
-    });
+        });   
+
+}
+    
+$(".fa-print").click(function (e) {
+    $("#calendar").printArea();
+});
 
     
   
@@ -757,9 +793,9 @@ function  guardarInfo(){
 
 //////////////////////listado tareas y pantillas hugo/////////////////////////////
 
-  
-  /// Trae tarea standar - Listo
-  $(function(){
+  // trae tareas estandar y llena select
+  getTareasEstandar();
+  function getTareasEstandar(){
     var tarea = $('#tarea');
      $.ajax({
           type: 'POST',
@@ -783,13 +819,12 @@ function  guardarInfo(){
                   console.log(result);
                 },
           dataType: 'json'      
-    });  
-  });
+    }); 
+  }
 
   /// Plantillas llena select y tablas al seleccionar
-  $(function(){
-
-    // Trae plantillas y llena select
+  getPlantillas();
+  function getPlantillas(){
     var plantilla = $('#plantilla');
     $.ajax({
           type: 'POST',
@@ -813,9 +848,8 @@ function  guardarInfo(){
                 },
           dataType: 'json'      
     });
-
-    // Al seleccionar plantilla llena tabla
-    $(plantilla).change(
+  }
+  $('#plantilla').change(
         function(){
           var idPlantilla = $("#plantilla option:selected").val();
           $.ajax({
@@ -832,11 +866,11 @@ function  guardarInfo(){
                 dataType: 'json'      
           }); 
         }
-    ); 
-  });
+  );
 
   /// Trae subsectores - Listo
-  $(function(){
+  getSubsectores();
+  function getSubsectores(){
     var sectSelect = $('#sectSelect');
     $.ajax({
           type: 'POST',
@@ -860,7 +894,7 @@ function  guardarInfo(){
                 },
           dataType: 'json'      
     });  
-  });
+  }
 
 //////////////////////////////////////////////////////////////////////
 
@@ -1042,14 +1076,7 @@ function  guardarInfo(){
               console.log(result);
             }           
       });  
-  }
-
-  // Guarda planificacion completa
-  function planificar(){
-    // Validar que todas las tareas esten progrmadas antes de guardar.
-    
-
-  }
+  }  
 
   // Programa fecha y equipo elegido en selector de equipos
   function programTarea(){
@@ -1115,14 +1142,6 @@ function  guardarInfo(){
 //////////////////////  / listado tareas y pantillas hugo////////////////////////
 
 
-
-
-
-
-
-
-
-
 /////////////////////////////////////////
   var codglo= "";
   var tareaglob= "";
@@ -1131,7 +1150,7 @@ function  guardarInfo(){
   var idtarea1="";
   var idu=";"
   var no="";
-  $(document).ready(function(event) {
+ // $(document).ready(function(event) {
     // Vuelve al listado de ordenes de trabajo
     $('#listado').click( function cargarVista(){
       WaitingOpen();
@@ -1141,7 +1160,8 @@ function  guardarInfo(){
     });
 
     // Agrega una tarea - Listo
-    $('#agregar').click(function (e) {      
+    $('#agregar').click(function (e) { 
+
       var numord= $('#numord').val();
       no=numord;      
       var tarea1= $('#tarea option:selected').text(); 
@@ -1196,7 +1216,6 @@ function  guardarInfo(){
        
       $('#tarea').val(''); 
     }); 
-
 
     // No se hace desde aca sino desde BPM
     //check de tarea realizada cambia estado a RE por id de tarea - Listo
@@ -1271,7 +1290,7 @@ function  guardarInfo(){
         changeYear: true
     });
 
-});
+//});
 
 // Asigna equipo a tarea por id de tarea y por id equipo - LISTO
 function setEquipo(){
@@ -1336,10 +1355,9 @@ function guardarmodif(){
                 data: { idtarea: idtarea, idusu:idusu },
                 url: 'index.php/Otrabajo/ModificarUsuario', //index.php/
                 success: function(data){
-                        console.log(data);
-                        
-                        regresa1();
-                      
+
+                        console.log(data);                        
+                        regresa1();                      
                       },
                   
                 error: function(result){
@@ -1367,10 +1385,9 @@ function guardarfecha(){
                 data: { idtarea: idtarea, idusu:idusu, fe:fe},
                 url: 'index.php/Otrabajo/ModificarFecha', //index.php/
                 success: function(data){
-                        console.log(data);
-                        
-                        regresa1();
-                      
+
+                        console.log(data);                        
+                        regresa1();                      
                       },
                   
                 error: function(result){
@@ -1381,24 +1398,19 @@ function guardarfecha(){
 }
 
 function regresa1(){
-  //   var idusu= $('#nomusu').val();
- // no=idusu;
+  
   var numord= $('#numord').val();
   no=numord;
   console.log(no);
-
-  //$('#content').empty(); //listOrden
-  //$('#modalSale').empty();  
-  //$('#modalfecha').empty(); 
+  
   $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargartarea/<?php echo $permission; ?>/"+no+"");
-  //WaitingClose();
- // WaitingClose();
-  //WaitingClose();
+  
 }
 
 $('#fechaProgNueva').datetimepicker(
   {format: 'YYYY-MM-DD H:mm:ss',
-    locale: 'es'});
+    locale: 'es'}
+);
 
 
 </script>

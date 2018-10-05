@@ -10,12 +10,12 @@
         <center>
           <h1 class="box-title">Listado de Tareas</h1>
         </center>
-         
+
         </div><!-- /.box-header -->
         <div class="box-body">
           <table id="sector" class="table table-hover">
             <thead>
-              <tr>                
+              <tr>
                 <th width="10%"> </th>
                 <th>Id Pedido Trabajo:</th>
                 <th>Tarea:</th>
@@ -24,11 +24,9 @@
                 <th>Fecha Vto.:</th>
                 <th>Estado:</th>
                 <th>Prioridad:</th>
-                <th>?</th>
-                <th>?</th>
 
-                <!-- <th>id tarea bonit</th>  -->
-                <!-- <th>Estado:</th> -->     
+                <th style="display:none">id tarea bonit</th>
+                <th style="display:none">Estado:</th>
               </tr>
             </thead>
             <tbody>
@@ -40,10 +38,10 @@
                 foreach($list as $f)
                 {
                   $id=$f["id"];
-                  $asig = $f['assigned_id']; 
+                  $asig = $f['assigned_id'];
                   echo '<tr id="'.$id.'" class="'.$id.'" >';
                   // td 0
-                  echo '<td>';                     
+                  echo '<td>';
                     if (strpos($permission,'Del') !== false){
                       if ($asig != "") {
                         echo '<button type="button" id="btncolor" class="btn btnFin btn-success" >
@@ -51,8 +49,8 @@
                       }else{
                         echo '<button type="button" id="btncolor" class="btn btn-success" data-toggle="modal" data-target="#finalizar" disabled>
                             <span class="glyphicon glyphicon-ok"></span>  </button> ';
-                      }      
-                    }                  
+                      }
+                    }
                   echo '</td>';
                   // td 1
                   echo '<td class="celda" style="text-align: left">'.$f['cod_interno'].'</td>';
@@ -72,16 +70,16 @@
                   }
                   // td 6
                   echo '<td class="celda" style="text-align: left">'.$f['priority'].'</td>';
-                  
+
                   // id de tarea en bonita
                   // td 7
                   echo '<td class="celda hidden" style="text-align: left">'.$f['id'].'</td>';
                   // td 8
                   echo '<td class="celda hidden" style="text-align: left">'.$f['assigned_id'].'</td>';
                   // echo '<td class="celda" style="text-align: left">'.($f['estado'] == 'TE' ? '<small class="label pull-left bg-orange">Parcial</small>' : ($f['estado'] == 'C' ? '<small class="label pull-left bg-green">Iniciada</small>' : ($f['estado'] == 'P' ? '<small class="label pull-left bg-blue">Pedido</small>' : ($f['estado'] == 'As' ? '<small class="label pull-left bg-yellow">Asignado</small>' : '<small class="label pull-left bg-red">Entregado</small>')))).'</td>';
-                  
+
                   echo '</tr>';
-          
+
                 }
               ?>
 
@@ -95,24 +93,24 @@
 
 <div class="modal fade" id="finalizar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">         
+    <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="glyphicon glyphicon-check btncolor " style="color: #6aa61b" > </span> Finalización </h4>
-        </div> 
+        </div>
         <center>
         <div>Debe completar el formulario asociado a esta tarea para terminarla</div>
         </center>
-        <div class="modal-footer">
-          <!-- <button  type="button" class="btn btn-success" data-dismiss="modal" onclick=""> PARCIAL</button>  -->    
-          <button  type="button" class="btn btn-success" data-dismiss="modal" onclick="" >Aceptar</button> 
-        </div>   
-    </div>  
+        <!--<div class="modal-footer">
+           <button  type="button" class="btn btn-success" data-dismiss="modal" onclick=""> PARCIAL</button>
+          <button  type="button" class="btn btn-success" data-dismiss="modal" onclick="" >Aceptar</button>
+        </div>-->
+    </div>
   </div>
 </div>
 
 <script>
-  
+
     var idfin="";
     var id_tarea = "";
     var nomTarea = "";
@@ -120,28 +118,28 @@
     var fechaCreacion = "";
 //Tomo valor de la celda y carga detalle de la tarea
   $('.celda').click( function () {
-   
+
     var idTarBonita = $(this).parents('tr').find('td').eq(8).html();
-    console.log('id tarea INTERNO de bonita: ');
-    console.log(idTarBonita);
-    
-    //var id_orden = 17;  
+    //console.log('id tarea INTERNO de bonita: ');
+    //console.log(idTarBonita);
+
+    //var id_orden = 17;
     var estado = $(this).parents('tr').find('td').eq(6).html();
 
     // toma nombre y descripcion de tarea para Notific Estandar
     nomTarea = $(this).parents('tr').find('td').eq(2).html();
-    console.log('nom tarea: ');
-    console.log(nomTarea);
+    //console.log('nom tarea: ');
+    //console.log(nomTarea);
     tareaDesc = $(this).parents('tr').find('td').eq(3).html();
     tareaDesc = "descripcion";
     //console.log('desc tarea: ');
     //console.log(tareaDesc);
-    
+
     //fechaCreacion = $(this).parents('tr').find('td').eq(4).html();
     fechaCreacion = "2018-12-01";
-  
-    console.log('fechaCreacion tarea: ');
-    console.log(fechaCreacion);
+
+    //console.log('fechaCreacion tarea: ');
+    //console.log(fechaCreacion);
 
     var estadoTarea = "";
     if (estado!="") {
@@ -153,23 +151,23 @@
     verTarea(idTarBonita);
     //idfin = id_orden;
     //console.log(idfin);
-    
+
   });
 
 
   // Carga para cargar notif strandar
-    
+
   function verTarea(idTarBonita){
 
-    WaitingOpen();    
-    
+    WaitingOpen();
+
     $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + idTarBonita+ "/"  );
     WaitingClose();
   }
 
 /////////// TERMINAR TAREA   ///////
 
-  // boton terminar tarea  
+  // boton terminar tarea
   $('.btnFin').click( function () {
 
     //var id_orden= $(this).parents('tr').find('td').eq(1).html();
@@ -183,15 +181,15 @@
   //   $.ajax({
   //           type: 'POST',
   //           data: { idTarBonita: idTarBonita},
-  //           url: 'index.php/Tarea/getIdTareaTraJobs', 
+  //           url: 'index.php/Tarea/getIdTareaTraJobs',
   //           success:function(data){
 
   //                  // console.log('value en lista: ');
   //                  // console.log(data['value']);
   //                   idTJobs = data['value'];
-  //                   validarFormGuardado(idTJobs);                       
+  //                   validarFormGuardado(idTJobs);
   //                 },
-              
+
   //           error: function(result){
   //                 console.log(result);
   //               },
@@ -201,11 +199,11 @@
 
 
   // function validarFormGuardado(id_listarea){
-  
+
   //   $.ajax({
   //           type: 'POST',
   //           data: { id_listarea: id_listarea},
-  //           url: 'index.php/Tarea/validarFormGuardado', 
+  //           url: 'index.php/Tarea/validarFormGuardado',
   //           success:function(data){
   //                   //alert('Validado puede guardar');
   //                   console.log(data);
@@ -215,9 +213,9 @@
   //                   }else{
   //                     // si hay campos sin validar
   //                     $('#finalizar').modal('show');
-  //                   }            
+  //                   }
   //                 },
-              
+
   //           error: function(result){
   //                 console.log(result);
   //                 alert('complete el formulario asociado');
@@ -230,11 +228,11 @@
   //   $.ajax({
   //           type: 'POST',
   //           data: { id_listarea: id_listarea},
-  //           url: 'index.php/Tarea/terminarTarea', 
-  //           success:function(data){                    
-  //                   console.log(data);                    
+  //           url: 'index.php/Tarea/terminarTarea',
+  //           success:function(data){
+  //                   console.log(data);
   //                 },
-              
+
   //           error: function(result){
   //                 console.log(result);
   //                 recargar();
@@ -246,7 +244,7 @@
 ////////////// HASTA ACA
   // Recargar vista
   function recargar(){
-    WaitingOpen();    
+    WaitingOpen();
     $(".content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>/");
     WaitingClose();
   }
@@ -255,7 +253,7 @@
 
   // Datatable
   $(function () {
-      
+
       $('#sector').DataTable({
           "paging": true,
           "lengthChange": true,
@@ -278,9 +276,9 @@
       });
   });
 
-  
+
 </script>
-      
+
 
 
 

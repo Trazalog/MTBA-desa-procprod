@@ -53,9 +53,9 @@ $(".sidebar .sidebar-menu a").click(function(event) {
         cargarView(controller, action, permission);
     }
 
-    console.log( "controlador: "+controller);
-    console.log( "metodo: "+action);
-    console.log( "permisos: "+permission );
+    //console.log( "controlador: "+controller);
+    //console.log( "metodo: "+action);
+    //console.log( "permisos: "+permission );
 });
 
 /**

@@ -47,7 +47,7 @@ class InicioTrabajo extends CI_Controller
 		}else{
 			$data['bpm_id'] = json_decode($result, true)['caseId'];
 			$resultBD = $this->InicioTrabajos->Guardar($data);
-			echo json_encode($resultBD);
+			echo json_encode($data['cod_interno']);
 		}
 		
 	}

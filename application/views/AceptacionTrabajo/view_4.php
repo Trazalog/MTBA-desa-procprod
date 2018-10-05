@@ -448,8 +448,8 @@
     }
     //Funcion COMENTARIOS
     function guardarComentario() {
-			console.log("Guardar Comentarios...");
-			var id='14';
+			console.log("Guardar Comentarios...");             var id=<?php echo json_encode($TareaBPM['caseId']);?>;
+			 
 			var comentario=$('#comentario').val();
 			$.ajax({
 			type:'POST',
@@ -458,7 +458,7 @@
 			success:function(result){
 				console.log("Submit");
 				var lista =  $('#listaComentarios');
-				lista.append('<hr/><li><h4>'+'Nombre de Usuario'+'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
+				lista.append(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
 				$('#comentario').val('');
 			},
 			error:function(result){

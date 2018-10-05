@@ -103,3 +103,13 @@ define('BONITA_URL', 'http://35.239.41.196:7070/bonita/');
 |
 */
 define('BPM_PROCESS_ID', '6756824424826776427');
+
+/*
+|--------------------------------------------------------------------------
+| Id de Formularios de Diagnostico
+|--------------------------------------------------------------------------
+|
+| Listado de Formularios de Diagnostico
+|
+*/
+define ("ID_FORMULARIOS", serialize (array (1,2,3,4,5,6,7,8,9)));

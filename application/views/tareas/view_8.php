@@ -50,6 +50,12 @@
 
                                                         $userdata = $this->session->userdata('user_data');
                                                         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
+                                                        $usrName =  $userdata[0]['usrName'];
+                                                        $usrLastName = $userdata[0]["usrLastName"];
+                                                        
+                                                        echo "<input type='text' class='hidden' id='usrName' value='$usrName' >";
+                                                        echo "<input type='text' class='hidden' id='usrLastName' value='$usrLastName' >";
+                                                        echo "<input type='text' class='hidden' id='id_listarea' value='$id_listarea' >";
                                                     ?>
                                                     <input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>" >
                                                     <form>
@@ -116,17 +122,10 @@
                                                             <div class="col-sm-12 col-md-12">
                                                                 <!-- Modal formulario tarea -->
                                                                 <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                                                                data-target=".bs-example-modal-lg" onclick="getformulario()">Completar
-                                                                Formulario
+                                                                data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Informe Técnico
                                                                 </button>';}?>
-                                                            </div>
-                                                        </div>
+                                                               <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Revisar Formularios de Diagnostico</button>
 
-                                                        <div class="form-group">
-                                                            <div class="col-sm-12 col-md-12">
-                                                                <br>
-                                                                <label for="observaciones">Observaciones:</label>
-                                                                <textarea class="form-control" id="observaciones" rows="3"></textarea>
                                                             </div>
                                                         </div>
                                                                     
@@ -142,18 +141,15 @@
                                                 <div  class="panel-body" style="max-height: 500px;overflow-y: scroll;">
                                                  <ul id="listaComentarios">
                                                      <?php 
-                                                     foreach($comentarios as $f){
-                                                       echo '<hr/>';
-
-                                                       if(strpos($f['userId']['icon'],'.png')==0){
-                                                           $img = '<img src="http://35.239.41.196:8080/bonita'.substr($f['userId']['icon'],2).'" class="user-image" alt="User Image" height="42" width="42">      ';
-                                                       }else{
-                                                           $img='';
-                                                       }
-                                                       echo '<li><h4>'.$img.$f['userId']['userName'].'<small style="float: right">'.$f['postDate'].'</small></h4>';
-                                                       echo '<p>'.$f['content'].'</p></li>';
-                                                   }
-                                                   ?>
+                                                        foreach($comentarios as $f){
+        
+                                                            if(strcmp($f['userId']['userName'],'System')!=0){
+                                                            echo '<hr/>';
+                                                            echo '<li><h4>'.$f['userId']['firstname'].' '.$f['userId']["lastname"].'<small style="float: right">'.date_format(date_create($f['postDate']),'H:i  d/m/Y').'</small></h4>';
+                                                            echo '<p>'.$f['content'].'</p></li>';
+                                                            }
+                                                        }
+                                                    ?>
                                                </ul>
                                            </div>
                                        </div>
@@ -164,7 +160,67 @@
                                </div>
 
                                <div role="tabpanel" class="tab-pane" id="messages">
-                                <div class="panel-body"></div>
+                                <div class="panel-body">
+                                  <div class="panel panel-primary">
+                                                    <div class="panel-heading">Línea de Tiempo</div>
+                                                    <div class="panel-body" style="max-height: 500px;overflow-y: scroll;">
+                                                        <style type="text/css">
+                                                            .timeline{list-style:;padding:0 0 20px;position:relative;margin-top:-15px;margin-left:70px;}.timeline:before{top:30px;bottom:25px;position:absolute;content:" ";width:3px;background-color:#ccc;left:25px;margin-right:-1.5px}.timeline>li,.timeline>li>.timeline-panel{margin-bottom:5px;position:relative}.timeline>li:after,.timeline>li:before{content:" ";display:table}.timeline>li:after{clear:both}.timeline>li>.timeline-panel{margin-left:55px;float:left;top:19px;padding:4px 10px 8px 15px;border:1px solid #ccc;border-radius:5px;width:45%}.timeline>li>.timeline-badge{color:#fff;width:36px;height:36px;line-height:36px;font-size:1.2em;text-align:center;position:absolute;top:26px;left:9px;margin-right:-25px;background-color:#fff;z-index:100;border-radius:50%;border:1px solid #d4d4d4}.timeline>li.timeline-inverted>.timeline-panel{float:left}.timeline>li.timeline-inverted>.timeline-panel:before{border-right-width:0;border-left-width:15px;right:-15px;left:auto}.timeline>li.timeline-inverted>.timeline-panel:after{border-right-width:0;border-left-width:14px;right:-14px;left:auto}.timeline-badge.primary{background-color:#2e6da4!important}.timeline-badge.success{background-color:#3f903f!important}.timeline-badge.warning{background-color:#f0ad4e!important}.timeline-badge.danger{background-color:#d9534f!important}.timeline-badge.info{background-color:#5bc0de!important}.timeline-title{margin-top:0;color:inherit}.timeline-body>p,.timeline-body>ul{margin-bottom:0;margin-top:0}.timeline-body>p+p{margin-top:5px}.timeline-badge>.glyphicon{margin-right:0px;color:#fff}.timeline-body>h4{margin-bottom:0!important}
+                                                        </style>
+
+                                                        <div class="container">
+                                                            <ul class="timeline">
+                                                            <?php
+                                                                echo '<h2 style="margin-left:50px;">Actividades Pendientes</h2>';
+                                                                foreach ($timeline['listAct'] as $f) {       
+                                                                echo '<li>
+                                                                    <div class="timeline-badge info"><i class="glyphicon glyphicon-time"></i></div>
+                                                                    <div class="timeline-panel">
+                                                                        <div class="timeline-heading">
+                                                                        <h4 class="timeline-title">'.$f['displayName'].'</h4>
+                                                                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
+                                                                        </div>
+                                                                        <div class="timeline-body">';
+                                                                        if(array_key_exists ( 'assigned_id' , $f ) && $f['assigned_id']!=''){
+                                                                            echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
+                                                                        }else{
+                                                                            echo '<p>Usuario: Sin Asignar</p>';
+                                                                        }
+                                                                echo   '<p>Descripción: '.$f['displayDescription'].'</p>
+                                                                        <p>Case: '.$f['caseId'].'</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    </li>';
+                                                                }
+                                                                echo '<h2 style="margin-left:50px;">Actividades Terminadas</h2>';
+                                                                foreach ($timeline['listArch'] as $f) {
+
+                                                                echo '<li>
+                                                                    <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+                                                                    <div class="timeline-panel">
+                                                                        <div class="timeline-heading">
+                                                                        <h4 class="timeline-title">'.$f['displayName'].'</h4>
+                                                                        <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
+                                                                        </div>
+                                                                        <div class="timeline-body">';
+                                                                        if(array_key_exists ( 'assigned_id' , $f )){
+                                                                            echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
+                                                                        }else{
+                                                                            echo '<p>Usuario: Sin Asignar</p>';
+                                                                        }
+                                                                echo    '<p>Descripción: '.$f['displayDescription'].'</p>           
+                                                                        <p>Case: '.$f['caseId'].'</p>
+                                                                        </div>
+                                                                    </div>
+                                                                    </li>';
+                                                                }
+                                                                ?> 
+                                                            </ul>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                </div>
 
                             </div>
 
@@ -174,24 +230,7 @@
             </div>
 
         </div><!-- /.row -->
-        <section class="content">
-            <div class="row">
-                <div class="col-xs-12">
-                <div class="box">
-
-                    <div class="box-header">PRE INFORME</div>
-                    <div class="box-body">
-                    <?php 
-                   // print_r($formularios);
-                    ?>
-                    Acá se elegirán los formularios a imprimir... Por ahora se eligen en el controlador Preinforme, método index.
-                    <br><br>
-                    <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Generar Preinforme</button>
-                    </div>
-                </div>
-                </div>
-            </div>
-        </section>
+ 
         <div class="modal-footer">
             <button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
             <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button>
@@ -228,9 +267,10 @@ $('#crearPDF').on("click", function (e) {
   WaitingOpen('Generando preinforme');
   var formularios = '<?php echo json_encode($formularios) ?>';
   console.log( formularios );
+  var petr = <?php echo $idPedTrabajo;?>;
   $.ajax({
     type: 'POST',
-    data: { idForms: formularios },
+    data: { idForms: formularios,petr_id:petr},
     url: 'index.php/Preinforme/generar',
     async: false,
     success: function(data) {
@@ -341,7 +381,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
 
     function terminarTarea(){
         var idTarBonita = $('#idTarBonita').val();
-        alert(idTarBonita);
+        //alert(idTarBonita);
         $.ajax({
             type: 'POST',
             data: {
@@ -374,7 +414,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
             url: 'index.php/Tarea/estadoCuenta',
             success: function(result) {
                 console.log(result);
-                alert("SII");
+                //alert("SII");
             },
             error: function(result) {
                 alert("Noo");
@@ -386,8 +426,10 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
     //Funcion COMENTARIOS
     function guardarComentario() {
 			console.log("Guardar Comentarios...");
-			var id='14';
+			var id=<?php echo json_encode($TareaBPM['caseId']);?>;
 			var comentario=$('#comentario').val();
+            var nombUsr = $('#usrName').val();
+            var apellUsr = $('#usrLastName').val();;
 			$.ajax({
 			type:'POST',
 			data:{'processInstanceId':id, 'content':comentario},
@@ -395,7 +437,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
 			success:function(result){
 				console.log("Submit");
 				var lista =  $('#listaComentarios');
-				lista.append('<hr/><li><h4>'+'Nombre de Usuario'+'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
+				lista.prepend('<hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
 				$('#comentario').val('');
 			},
 			error:function(result){
@@ -451,7 +493,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         });
     }
     
-    /** Formulario **/ 
+    /* Formulario */ 
     
     var click = 0; 
     $('#formulario').click(function(){
@@ -467,7 +509,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         
         var formData = new FormData($("#genericForm")[0]);
 
-        /** subidad y resubida de imagenes **/
+        /* subidad y resubida de imagenes */
         // Tomo los inputs auxiliares cargados
         var aux = $('input.auxiliar');
         
@@ -529,7 +571,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         processData:false,
         
         success:function(respuesta){
-            
+        GuardarValorInfoTecnico();
 
             if (respuesta ==="exito") {
                 
@@ -546,6 +588,22 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         });
 
     });
+
+    function GuardarValorInfoTecnico(){
+        var idForm = <?php echo $idForm;?>;
+        var idPed = <?php echo $idPedTrabajo;?>;
+        $.ajax({
+            url:'index.php/Tarea/GuardarValorInfoTecnico',
+            type:'POST',
+            data:{'PETR_ID':idPed,'FORM_ID':idForm},
+            success:function(respuesta){
+                alert("Guardado");
+            },
+            error:function(respuesta){
+                alert("Error");
+            }
+        });
+    }
 
     // trae valores validos para llenar form asoc.  
 	function getformulario(event) {    

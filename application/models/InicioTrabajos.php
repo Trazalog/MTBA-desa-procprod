@@ -12,16 +12,14 @@ class InicioTrabajos extends CI_Model
 		$resource = 'API/bpm/process/';
 		$url = BONITA_URL.$resource;
 		$com = '/instantiation';
-		//try {
+		try {
 			$result = file_get_contents($url.BPM_PROCESS_ID.$com, false, $param);
-		// } catch (Exception $e) {
-		// 	echo 'Excepción capturada: ',  $e->getMessage(), "\n";
-		// 	echo 'respuestas: ';
-		// 	var_dump( $http_response_header);
-		// } 
+		} catch (Exception $e) {
+			echo 'Excepción capturada: ',  $e->getMessage(), "\n";
+			echo 'respuestas: ';
+			var_dump( $http_response_header);
+		} 
 			
-		
-		//$result = file_get_contents("http://192.168.100.112:8080/bonita/API/bpm/process/4726708257911377330/instantiation", false, $parametros);
 		return $result;
 	}
 	public function ObtenerTodas()

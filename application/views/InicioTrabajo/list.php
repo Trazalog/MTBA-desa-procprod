@@ -210,25 +210,21 @@
                         <!--FIN ROW   -->
                         <br>
                         <div class="row">
-
+                        <div class="form-group">
                             <div class="col-xs-12 col-sm-5">
-                                <label style="margin-top: 7px;">Fecha Compromiso Entrega Informe: </label>
+                                <label style="margin-top: 7px;">Fecha Compromiso Entrega Informe <strong style="color: #dd4b39">*</strong>: </label>
                             </div>
                             <div class="col-xs-12 col-sm-5">
-                                <input type="text" id="fecha_entrega" class="form-control" />
-
+                                <input type="text" id="fecha_entrega" class="form-control obligatorio" />
                             </div>
+                        </div>
                         </div>
                         <br>
                         <div class="form-group">
                             <label>Observaciones:</label>
                             <textarea id="observacion" class="form-control"></textarea>
                         </div>
-
-
-
-
-                        <button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()" disabled>Guardar</button>
+                        <button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()" disabled>Inicio Proceso</button>
                     </form>
                 </div>
                 <!-- /.box-body -->
@@ -301,45 +297,45 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
     });
 
     
-        $('#fecha_entrega').datepicker({
-            autoclose: true
-        });
+    $('#fecha_entrega').datepicker({
+        autoclose: true
+    });
 
-        var sourceArray = <?php echo json_encode($listaIndices); ?>
+    var sourceArray = <?php echo json_encode($listaIndices); ?>
 
-        $('#indice').autocomplete({
-            source: sourceArray,
-            select: function(event, ui) {
-                $('#motor').val(ui.item.data);
-            }
-        });
+    $('#indice').autocomplete({
+        source: sourceArray,
+        select: function(event, ui) {
+            $('#motor').val(ui.item.data);
+        }
+    });
 
-        $('#form').bootstrapValidator({ //VALIDADOR
-            message: 'This value is not valid',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                obligatorio: {
-                    message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
-                    selector: '.obligatorio',
-                    validators: {
-                        notEmpty: {
-                            message: 'Los campos obligatorios(*) deben estar completos'
-                        }
+    $('#form').bootstrapValidator({ //VALIDADOR
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            obligatorio: {
+                message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+                selector: '.obligatorio',
+                validators: {
+                    notEmpty: {
+                        message: 'Los campos obligatorios(*) deben estar completos'
                     }
-                },
-                optionsRadios: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Alguna de las opciones debe estar seleccionada'
-                        }
+                }
+            },
+            optionsRadios: {
+                validators: {
+                    notEmpty: {
+                        message: 'Alguna de las opciones debe estar seleccionada'
                     }
                 }
             }
-        });
+        }
+    });
 
     var id_cliente_seleccionado = '';
     var listaClientes;
@@ -420,15 +416,12 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
             url: 'index.php/InicioTrabajo/Guardar_Pedido',
             success: function(result) {
                 console.log(result);
-
-                alert("Formulario Guardado.");
+                alert("Proceso Iniciado!\nCódigo de Interno: "+result);     
                 ActualizarPagina();
-
             },
             error: function(result) {
                 console.log(result);
-
-                alert("El Formulario contiene error, por favor cargar datos correctamente.");
+                alert("No se pudo Inciar el Proceso, por favor cargar datos correctamente.");
             }
         });
     }
@@ -438,6 +431,8 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
         var opc = this.value;
         var subfamilia = $('#subfamilia');
         subfamilia.html('');
+        $('#fecha_entrega').val('');
+        $('#fecha_entrega').prop('disabled', false);
         subfamilia.append("<option selected='selected'>Seleccionar...</option>");
         switch (opc) {
             case "1":
@@ -467,14 +462,16 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
      var tiempoStandars = <?php echo json_encode($tiempoStandars); ?>;
      var subfamilia = this.value.split(" - ")[0];
      var familia = $('#familia_productos option:selected').text().split(" - ")[0];
+     $('#fecha_entrega').val('');
+     $('#fecha_entrega').prop('disabled', false);
      for(i = 0; i < tiempoStandars.length; i++){
          if(familia+"-"+subfamilia==tiempoStandars[i]['tipo_motor_id']){
              console.log(tiempoStandars[i]['dias_habiles']);
              console.log(new Date().sumarLaborables(Math.round((tiempoStandars[i]['dias_habiles']))));
              var d = new Date().sumarLaborables(Math.round(tiempoStandars[i]['dias_habiles']));
-             
              $('#fecha_entrega').val(("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
                 d.getFullYear());
+            $('#fecha_entrega').prop('disabled', true);
              
          }
      }

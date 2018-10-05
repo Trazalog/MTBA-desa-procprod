@@ -1,7 +1,7 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Preinforme extends CI_Controller {
-    
+
     /**
      * __construct()
      * Método constructor de la clase Bonitas.
@@ -10,7 +10,7 @@ class Preinforme extends CI_Controller {
      */
     function __construct()
     {
-        parent::__construct();      
+        parent::__construct();
         $this->load->model('Preinformes');
     }
 
@@ -23,6 +23,7 @@ class Preinforme extends CI_Controller {
 
     public function generar() {
         $idForms = json_decode( $this->input->post('idForms') );
+        $petr_id = $this->input->post('petr_id');
 
         $this->load->library('Pdf');
         $pdf = new Pdf('P', 'mm', 'A4', true, 'UTF-8', false);
@@ -31,23 +32,23 @@ class Preinforme extends CI_Controller {
         $pdf->SetTitle('Preinforme');
         $pdf->SetSubject('Preinforme');
         $pdf->SetKeywords('preinforme, trazalog, trazajobs');
- 
+
         // ---------------------------------------------------------
         // establecer el modo de fuente por defecto
         $pdf->setFontSubsetting(true);
- 
+
         // Establecer el tipo de letra
- 
+
         //Si tienes que imprimir carácteres ASCII estándar, puede utilizar las fuentes básicas como
         // Helvetica para reducir el tamaño del archivo.
         $pdf->SetFont('helvetica', '', 12, '', true);
- 
+
         // Añadir una página
         // Este método tiene varias opciones, consulta la documentación para más información.
         $pdf->AddPage();
- 
+
         // Establecemos el contenido para imprimir
-        $informe = $this->Preinformes->getFormularios($idForms);
+        $informe = $this->Preinformes->getFormularios($idForms,$petr_id);
 
         //preparamos y maquetamos el contenido a crear
         $html = '';
@@ -56,7 +57,7 @@ class Preinforme extends CI_Controller {
         $html .= 'td{background-color: #AAC7E3; color: #fff}';
         $html .= '</style>';
         $html .= ''.$informe;
- 
+        //dump_exit($html);
         // Imprimimos el texto con writeHTML()
         $pdf->writeHTML($html, true, false, true, false, '');
 
@@ -65,7 +66,7 @@ class Preinforme extends CI_Controller {
         // Este método tiene varias opciones, consulte la documentación para más información.
         //$nombre_archivo = utf8_decode( base_url()."assets/Preinforme.pdf");
         //$pdf->Output($nombre_archivo, 'I');
-        
+
         //In the include/tcpdf_static.php file about 1848 line in the static function fopenLocal if I delete the complete 'if statement' it works fine.
         // public static function fopenLocal($filename, $mode) {
         //     /*if (strpos($filename, '://') === false) {
@@ -97,5 +98,5 @@ class Preinforme extends CI_Controller {
             return false;//"No se encontró el archivo";
         }
     }
-    
+
 }
