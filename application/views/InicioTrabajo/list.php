@@ -750,3 +750,5 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
 </div>
 <!-- /.modal fade -->
 <!-- / Modal -->
+<button onclick="popup()">hola</button>
+<?php echo mostrarPopup(); ?>

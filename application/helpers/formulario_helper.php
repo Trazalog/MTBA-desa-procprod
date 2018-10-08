@@ -17,7 +17,7 @@ if (!function_exists('cargarFormulario')) {
 
 
     echo '<div class="modal-footer">
-              <button class="btn btn-primary" onclick="ValidarObligatorios()">Validar</button>
+              <button class="btn btn-primary" onclick="guardarFormulario(true)">Validar</button>
               <button class="btn btn-success" type="button" data-dismiss="modal">Guardar</button>
             </div>';
 

@@ -775,7 +775,7 @@ class Tarea extends CI_Controller {
 		$form_id = $this->input->post("form_id");
 		$petr_id = $this->input->post("petr_id");
 		$result = $this->Tareas->ValidarObligatorios($form_id,$petr_id);
-		echo json_encode($result);
+		echo $result['result'];
 	}
 }
 ?>

@@ -899,12 +899,12 @@ class Tareas extends CI_Model
 	 	}
 	}*/
 	function ValidarObligatorios($form_id,$petr_id){
-		$this->db->select('count(*)!=0 as result');
+		$this->db->select('count(*)=0 as result');
 		$this->db->from('frm_formularios_completados');
 		$this->db->where('FORM_ID',$form_id);
 		$this->db->where('PETR_ID',$petr_id);
-		$this->db->where('OBLIGATORIO',1);
-		$this->db->where('VALIDADO',1);
+		$this->db->where('frm_formularios_completados.OBLIGATORIO',true);
+		$this->db->where('frm_formularios_completados.VALIDADO',false);
 		return $this->db->get()->result_array()[0];
 	}
 

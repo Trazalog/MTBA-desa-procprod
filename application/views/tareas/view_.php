@@ -429,8 +429,9 @@
 			}
 		});
 	});
-
+	var validado=false;
 	function terminarTarea() {
+		if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
 		var idTarBonita = $('#idTarBonita').val();
 		var id_listarea = $('#id_listarea').val();
 		//alert(idTarBonita);
@@ -560,6 +561,12 @@
 
 		$('#error').fadeOut('slow');
 		// toma  el valor de todos los input file 
+		guardarFormulario(false);
+
+	});
+
+	function guardarFormulario(validarOn){
+		console.log("Guardando Formulario...");
 		var imgs = $('input.archivo');
 
 		var formData = new FormData($("#genericForm")[0]);
@@ -627,7 +634,7 @@
 
 			success: function (respuesta) {
 
-
+				if(validarOn)ValidarObligatorios();
 				if (respuesta === "exito") {
 
 				}
@@ -641,8 +648,7 @@
 				}
 			}
 		});
-
-	});
+	}
 
 	// trae valores validos para llenar form asoc.  
 	function getformulario(event) {
@@ -754,25 +760,7 @@
 
 			console.log(" url imagen: ");
 			console.log(imagen);
-			//$("#"+data[index]['valoid']).val(valor);
 		});
-
-
-
-		// var id_listarea = $('inptut.archivo').val();
-
-		// $.each(data,function( index ) {
-
-		//   var id = data[index]['valoid'];
-		//   var valor = data[index]['valor'];
-		//   //carga el valor que viene de DB
-		//   $("."+data[index]['valoid']).val(valor);
-		//      console.log("valor id: ");
-		//      console.log(data[index]['valoid']);
-		//      console.log("  imagen: ");
-		//      console.log(valor);
-		//      //$("#"+data[index]['valoid']).val(valor);
-		// });
 	}
 
 	// Validacion de campos obligatorios y vacios
@@ -819,26 +807,26 @@
 	$('.fecha').datepicker({
 		autoclose: true
 	});
-
 	function ValidarObligatorios(){
 		console.log("Validando Campos Obligatorios...");
-		
-		var form_id = 777;
-		var petr_id = 4;
+		var form_id = $('#idform').val();
+		var petr_id = $('#idPedTrabajo').val();
 		$.ajax({
 			type: 'POST',
 			data: {'form_id':form_id,'petr_id':petr_id},
 			url: 'index.php/Tarea/ValidarObligatorios',
 			success: function (result) {
-				alert(result);
+				validado=(result==1);
+				if(validado)alert("Formularios Correctamente Validado");
+				else {
+					alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");
+				}
 			},
 			error: function(result){
-				alert(result);
+				alert("Fallo la Validación del formularios en el Servidor. Por favor vuelva a intentar.");
 			}
 		});
 	}
-
-
 </script>
 
 
