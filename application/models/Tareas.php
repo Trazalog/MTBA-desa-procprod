@@ -48,7 +48,6 @@ class Tareas extends CI_Model
 	}
 	// trae cod interno de pedido trabajo en funcion del caseId de BPM
 	function getDatPedidoTrabajo($caseId){
-
 		$this->db->select('trj_pedido_trabajo.petr_id,
 							trj_pedido_trabajo.cod_interno');
 		$this->db->from('trj_pedido_trabajo');

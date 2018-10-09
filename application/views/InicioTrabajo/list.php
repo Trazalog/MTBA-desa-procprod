@@ -328,6 +328,7 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
                 }
             },
             optionsRadios: {
+               // selector: '.obligatorio',
                 validators: {
                     notEmpty: {
                         message: 'Alguna de las opciones debe estar seleccionada'
@@ -750,5 +751,3 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
 </div>
 <!-- /.modal fade -->
 <!-- / Modal -->
-<button onclick="popup()">hola</button>
-<?php echo mostrarPopup(); ?>

@@ -383,8 +383,8 @@ class Otrabajo extends CI_Controller {
  	public function EliminarTarea(){
 	
 		$idord=$_POST['idtarea'];	
-		$datos = array('estado'=>'IN');
-		$result = $this->Otrabajos->EliminarTareas($idord, $datos);
+//		$datos = array('estado'=>'IN');
+		$result = $this->Otrabajos->EliminarTareas($idord);
 		print_r($result);
 	
 	}

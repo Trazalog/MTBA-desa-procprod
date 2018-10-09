@@ -723,6 +723,7 @@ function cargarListadoTask(){
               console.log(data);
               var datos= parseInt(data);
               idtarea= datos;
+              $("#tarea").val($("#tarea option:first").val());
               llenaTabla(); 
               },
         error: function(result){

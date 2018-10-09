@@ -429,7 +429,7 @@
 			}
 		});
 	});
-	var validado=false;
+	var validado=<?php echo ($idForm!=0?false:true)?>;
 	function terminarTarea() {
 		if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
 		var idTarBonita = $('#idTarBonita').val();

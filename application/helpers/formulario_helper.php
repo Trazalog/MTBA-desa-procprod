@@ -1,9 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if (!function_exists('cargarFormulario')) {
-
-
-
   function cargarFormulario ($form){
 
     echo '<div class="row">
@@ -85,7 +82,7 @@ if (!function_exists('cargarFormulario')) {
                   switch ($etiqueta) {
                         case "select":
                             echo "<select class='form-control sel ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['VALO_ID']."' style='width: 80%'>
-                              <option value= '-1' >".$a['valDefecto']."</option>
+                              <option value= '".(strcmp($a['valDefecto'],'Seleccione...')==0?-1:$a['valDefecto'])."' >".$a['valDefecto']."</option>
                             </select>";
                             break;
                         case "input_texto":

@@ -489,10 +489,10 @@ class Otrabajos extends CI_Model
         return $insumos;
     }
 
-    function EliminarTareas($idor,$data){
+    function EliminarTareas($idor){
     	
         $this->db->where('id_listarea', $idor);
-        $query = $this->db->update("tbl_listarea",$data);
+        $query = $this->db->delete("tbl_listarea");
         return $query;
 
     }
