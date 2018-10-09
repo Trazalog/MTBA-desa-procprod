@@ -383,8 +383,8 @@ class Otrabajo extends CI_Controller {
  	public function EliminarTarea(){
 	
 		$idord=$_POST['idtarea'];	
-		$datos = array('estado'=>'IN');
-		$result = $this->Otrabajos->EliminarTareas($idord, $datos);
+//		$datos = array('estado'=>'IN');
+		$result = $this->Otrabajos->EliminarTareas($idord);
 		print_r($result);
 	
 	}
@@ -551,13 +551,7 @@ class Otrabajo extends CI_Controller {
 			}	
 		}
 		return $listado;
-	}		
-
-
-
-
-
-
+	}	
 
 // TODO: METODO NUEVO
 
@@ -612,22 +606,13 @@ class Otrabajo extends CI_Controller {
 		echo json_encode($response);
 	}
 
-	// Trae tareas por plantillas pre armadas 
-	public function getTareasPlantilla(){
-		$idPlantilla = $this->input->post('idPlantilla');
-		$response = $this->Otrabajos->getTareasPlantillas($idPlantilla);
-		echo json_encode($response);
-		
-	}
-
-
 	/// Guarda tarea nueva con usuario logueado
-  	public function agregar_tarea(){
+	public function agregar_tarea(){
 
-  		//// USUARIO LOGUEADO
-        $userdata = $this->session->userdata('user_data');
-        $usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
-	  	$datos['id_usuario'] = $usrId;
+		//// USUARIO LOGUEADO
+		$userdata = $this->session->userdata('user_data');
+		$usrId = $userdata[0]['usrId'];     // guarda usuario logueado   
+		$datos['id_usuario'] = $usrId;
 
 		$datos=$_POST['parametros']; 		
 		$idTarea = $datos['id_tarea']; 			
@@ -636,24 +621,34 @@ class Otrabajo extends CI_Controller {
 		$durac = $this->Otrabajos->getDuracTareaSTD($idTarea);
 		$datos['duracion_prog'] = $durac;
 
-	    $result = $this->Otrabajos->agregar_tareas($datos);	      	
-	   
-	   	if($result)
-	      		echo $this->db->insert_id();
-	      	else echo 0;	
-	   
-  	}
-  	
+		$result = $this->Otrabajos->agregar_tareas($datos);	      	
+		
+		if($result)
+					echo $this->db->insert_id();
+				else echo 0;	
+		
+	}  	
 
 	// Guarda tareas de plantilla
 	public function setTareasPlant(){
-
-		$idsTareas = $this->input->post('idsTareas');
-		$numOT = $this->input->post('numOT');
-		$batch = $this->Otrabajos->armarBatch($numOT,$idsTareas);
-		$response = $this->Otrabajos->setBatch($batch);
-
-		echo json_encode($response);
+		// recibe id de plantilla e id de OT
+		$idPlantilla = $this->input->post('idPlantilla');
+		$numOT = $this->input->post('numord');
+		//trae array de id tarea/descripcion
+		$arrayTarIdDescrip = $this->Otrabajos->getTareasPlantillas($idPlantilla);
+		$batch = array();
+		// arma array con datos a insertar en tabla tbl_listareas
+		foreach ($arrayTarIdDescrip as $key => $value) {
+			$comp = array('id_orden' => $numOT,
+										'tareadescrip' => $value["descripcion"],
+										'id_tarea' => $value["id_tarea"],
+										'estado'=> 'C'
+										);
+			array_push($batch,$comp);				
+		}
+		
+		$response = $this->Otrabajos->setBatchTareasPlantilla($batch);
+		echo json_encode($response);		
 	}
 
 	public function setEquipo(){
@@ -672,37 +667,30 @@ class Otrabajo extends CI_Controller {
 		echo json_encode($response);
    	}
 
-   	// Trae equipos de un sector por id de sector
-   	public function getEquipPorIdSubsector(){
+	// Trae equipos de un sector por id de sector
+	public function getEquipPorIdSubsector(){
 
-   		$id_subsector = $this->input->post('idsubsector');
-   		$response = $this->Otrabajos->getEquipPorIdSubsector($id_subsector);
-		echo json_encode($response);
-   	}
-   
-   	// Trae tareas por mes y por id de OT para calendario
-   	public function getcalendTareas(){
-   		
-   		$data = $this->Otrabajos->getcalendTareas($this->input->post());
-		if($data  == false){
-			echo json_encode(false);
-		}
-		else{
-			echo json_encode($data);
-		}
-   	}
-
-
-
-   	
-
-
-   	// Trae tareas por mes, Por Sector y por Equipo para calendario
-   	public function getcalendTareasSector(){
-   		
-   		$data = $this->Otrabajos->getcalendTareasSect($this->input->post());
+		$id_subsector = $this->input->post('idsubsector');
+		$response = $this->Otrabajos->getEquipPorIdSubsector($id_subsector);
+	echo json_encode($response);
+	}
+	
+	// Trae tareas por mes y por id de OT para calendario (carga inicial de calendario)
+	public function getcalendTareas(){
 		
-		
+		$data = $this->Otrabajos->getcalendTareas($this->input->post());
+		if($data  == false){
+			echo json_encode(false);
+		}
+		else{
+			echo json_encode($data);
+		}
+	}
+
+	// Trae tareas por mes, Por Sector y por Equipo para calendario
+	public function getcalendTareasSector(){
+
+		$data = $this->Otrabajos->getcalendTareasSect($this->input->post());
 
 		if($data  == false){
 			echo json_encode(false);
@@ -710,41 +698,39 @@ class Otrabajo extends CI_Controller {
 		else{
 			echo json_encode($data);
 		}
-   	}
+	}
 
-   	public function getcalendTareasEquipo(){
+	public function getcalendTareasEquipo(){
 
-   		$data = $this->Otrabajos->getcalendTareasEquipo($this->input->post());
+		$data = $this->Otrabajos->getcalendTareasEquipo($this->input->post());
 		if($data  == false){
 			echo json_encode(false);
 		}
 		else{
 			echo json_encode($data);
 		}
-   	}
+	}
 
+	// Actualiza el nuevo dia programado para una tarea
+	public function updateDiaProgTarea(){
 
-
-   	// Actualiza el nuevo dia programado para una tarea
-   	public function updateDiaProgTarea(){
-
-   		$id = $this->input->post('id');
-   		$diaNuevo = $this->input->post('prog');
-   		$response = $this->Otrabajos->updateDiaProgTareas($id, $diaNuevo);
+		$id = $this->input->post('id');
+		$diaNuevo = $this->input->post('prog');
+		$response = $this->Otrabajos->updateDiaProgTareas($id, $diaNuevo);
 
 		echo json_encode($response);
-   	}
+	}
 
-   	// Actualiza la nueva duracion de la Tarea en listareas
-   	public function updateDurTarea(){
+  // Actualiza la nueva duracion de la Tarea en listareas
+	public function updateDurTarea(){
 
-   		$id = $this->input->post('id');
+		$id = $this->input->post('id');
 		$duracion = $this->input->post('duracion'); 
 
 		$duracion_prog = $this->getDuracionOTrabajo($id);
 		$nueva = $duracion_prog + $duracion;
 		      		   
-   		$response = $this->Otrabajos->updateDurTarea($id, $nueva);
+   	$response = $this->Otrabajos->updateDurTarea($id, $nueva);
 		echo json_encode($response);
 	}
 	
@@ -759,14 +745,12 @@ class Otrabajo extends CI_Controller {
 		return $duracion_prog;
 	}	
 
+	public function programTarea(){
 
-
-   	public function programTarea(){
-
-   		$datos = $this->input->post();   			   
-   		$response = $this->Otrabajos->programTareas($datos);
+		$datos = $this->input->post();   			   
+		$response = $this->Otrabajos->programTareas($datos);
 		echo json_encode($response);
-   	}
+	}
    		
 
 

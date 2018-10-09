@@ -48,7 +48,6 @@ class Tareas extends CI_Model
 	}
 	// trae cod interno de pedido trabajo en funcion del caseId de BPM
 	function getDatPedidoTrabajo($caseId){
-
 		$this->db->select('trj_pedido_trabajo.petr_id,
 							trj_pedido_trabajo.cod_interno');
 		$this->db->from('trj_pedido_trabajo');
@@ -592,8 +591,9 @@ class Tareas extends CI_Model
 
 					foco.VALOR AS valDefecto,
 					'' AS LONGITUD,
-					'' AS OBLIGATORIO,
-					'' AS PISTA
+					'' AS PISTA,
+					foco.VALO_ID,
+					foco.OBLIGATORIO as obligatorio
 					FROM
 					frm_formularios_completados foco
 					where foco.FORM_ID = $idFormAsoc
@@ -679,7 +679,8 @@ class Tareas extends CI_Model
 				tida.TIDA_ID AS TIDA_ID,
 				valo.NOMBRE AS VALO_NOMBRE,
 				valo.VALO_ID AS VALO_ID,
-				valo.ORDEN AS ORDEN
+				valo.ORDEN AS ORDEN,
+				valo.OBLIGATORIO AS obligatorio
 				FROM
 				frm_formularios form,
 				frm_categorias cate,
@@ -708,7 +709,7 @@ class Tareas extends CI_Model
 
 		$userdata = $this->session->userdata('user_data');
         $usrId = $userdata[0]['usrId'];     // guarda usuario logueado
-        $i=0;
+        $i=1	;
         $dat= array();
 
         // Trae la info del form sin valores validos desp se actualiza al guardar
@@ -720,6 +721,7 @@ class Tareas extends CI_Model
         	$key['USUARIO'] = $usrId;
 			$key['LITA_ID'] = $bpm_task_id; //$id_listarea;
 			$key['PETR_ID'] = $ptr_id;
+			$key['ORDEN'] = $i;
         	$i++;
         	$dat[$i] =  $key;
         }
@@ -894,6 +896,15 @@ class Tareas extends CI_Model
 	 	}else{
 	 		return 0;
 	 	}
-    }*/
+	}*/
+	function ValidarObligatorios($form_id,$petr_id){
+		$this->db->select('count(*)=0 as result');
+		$this->db->from('frm_formularios_completados');
+		$this->db->where('FORM_ID',$form_id);
+		$this->db->where('PETR_ID',$petr_id);
+		$this->db->where('frm_formularios_completados.OBLIGATORIO',true);
+		$this->db->where('frm_formularios_completados.VALIDADO',false);
+		return $this->db->get()->result_array()[0];
+	}
 
 }

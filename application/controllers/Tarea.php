@@ -771,5 +771,11 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->GuardarValorInfoTecnico($data);
 		echo json_encode($result);
 	}
+	public function ValidarObligatorios(){
+		$form_id = $this->input->post("form_id");
+		$petr_id = $this->input->post("petr_id");
+		$result = $this->Tareas->ValidarObligatorios($form_id,$petr_id);
+		echo $result['result'];
+	}
 }
 ?>

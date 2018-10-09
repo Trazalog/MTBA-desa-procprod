@@ -1,9 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if (!function_exists('cargarFormulario')) {
-
-
-
   function cargarFormulario ($form){
 
     echo '<div class="row">
@@ -17,7 +14,7 @@ if (!function_exists('cargarFormulario')) {
 
 
     echo '<div class="modal-footer">
-              <button class="btn btn-primary" onclick="validarFormGuardado()">Validar</button>
+              <button class="btn btn-primary" onclick="guardarFormulario(true)">Validar</button>
               <button class="btn btn-success" type="button" data-dismiss="modal">Guardar</button>
             </div>';
 
@@ -76,7 +73,7 @@ if (!function_exists('cargarFormulario')) {
 
                 $etiqueta = $a["nomTipoDatos"];
                 // si el campo es oblligatorio añade * para señalar
-                echo "<h4 ' style='margin-left: 60px'> ".($a['obligatorio']?"* ":"").$a["nomValor"]."</h4>";
+                echo "<h4 ' style='margin-left: 60px'> ".$a["nomValor"].($a['obligatorio']?" <strong style='color: #dd4b39'>*</strong>: ":" :")."</h4>";
 
                 echo "</td>";
                 echo "<td><div class='form-group'>";
@@ -84,8 +81,8 @@ if (!function_exists('cargarFormulario')) {
                 // muestra el componente a llenar o el select
                   switch ($etiqueta) {
                         case "select":
-                            echo "<select class='form-control sel ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 80%'>
-                              <option value= '-1' >".$a['valDefecto']."</option>
+                            echo "<select class='form-control sel ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['VALO_ID']."' style='width: 80%'>
+                              <option value= '".(strcmp($a['valDefecto'],'Seleccione...')==0?-1:$a['valDefecto'])."' >".$a['valDefecto']."</option>
                             </select>";
                             break;
                         case "input_texto":

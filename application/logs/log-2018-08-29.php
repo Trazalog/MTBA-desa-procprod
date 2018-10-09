@@ -3255,7 +3255,11 @@ INFO - 2018-08-29 14:01:00 --> Controller Class Initialized
 INFO - 2018-08-29 14:01:00 --> Model Class Initialized
 INFO - 2018-08-29 14:01:00 --> Model Class Initialized
 INFO - 2018-08-29 14:01:00 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 14:01:01 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/process/5001391305553048577/instantiation): failed to open stream: HTTP request failed! HTTP/1.1 400 
+=======
+ERROR - 2018-08-29 14:01:01 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/process/5001391305553048577/instantiation): failed to open stream: HTTP request failed! HTTP/1.1 400 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\InicioTrabajos.php 16
 ERROR - 2018-08-29 14:01:01 --> error en lanzar procesoHTTP/1.1 400 ;Cache-Control: no-store, no-cache, must-revalidate, proxy-revalidate;Date: Wed, 29 Aug 2018 17:01:00 GMT;Accept-Ranges: bytes;Server: Restlet-Framework/2.3.9;Vary: Accept-Charset, Accept-Encoding, Accept-Language, Accept;Content-Type: application/json;Connection: close
 INFO - 2018-08-29 14:01:01 --> Final output sent to browser
@@ -3378,12 +3382,20 @@ INFO - 2018-08-29 14:09:10 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 14:09:10 --> Controller Class Initialized
 INFO - 2018-08-29 14:09:10 --> Model Class Initialized
 INFO - 2018-08-29 14:09:10 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 14:09:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/loginservice?username=admin&amp;password=admin&amp;redirect=false): failed to open stream: HTTP request failed! HTTP/1.1 401 
+=======
+ERROR - 2018-08-29 14:09:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/loginservice?username=admin&amp;password=admin&amp;redirect=false): failed to open stream: HTTP request failed! HTTP/1.1 401 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\bonitas.php 62
 ERROR - 2018-08-29 14:09:13 --> Severity: Notice --> Undefined index: JSESSIONID D:\sitios\MTBA-desa-procprod\application\models\bonitas.php 75
 ERROR - 2018-08-29 14:09:13 --> Severity: Notice --> Undefined index: bonita_tenant D:\sitios\MTBA-desa-procprod\application\models\bonitas.php 76
 ERROR - 2018-08-29 14:09:13 --> Severity: Notice --> Undefined index: X-Bonita-API-Token D:\sitios\MTBA-desa-procprod\application\models\bonitas.php 77
+<<<<<<< HEAD
 ERROR - 2018-08-29 14:09:14 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/identity/user?f=userName=admin): failed to open stream: HTTP request failed! HTTP/1.1 401 
+=======
+ERROR - 2018-08-29 14:09:14 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/identity/user?f=userName=admin): failed to open stream: HTTP request failed! HTTP/1.1 401 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Users.php 167
 INFO - 2018-08-29 14:09:15 --> Final output sent to browser
 DEBUG - 2018-08-29 14:09:15 --> Total execution time: 5.0753
@@ -3904,9 +3916,15 @@ INFO - 2018-08-29 14:11:34 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 14:11:34 --> Controller Class Initialized
 INFO - 2018-08-29 14:11:34 --> Model Class Initialized
 INFO - 2018-08-29 14:11:34 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 14:11:36 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20003/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 14:11:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 14:11:36 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20003/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 14:11:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 14:11:42 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 145
 INFO - 2018-08-29 14:11:42 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -4054,9 +4072,15 @@ INFO - 2018-08-29 14:33:46 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 14:33:46 --> Controller Class Initialized
 INFO - 2018-08-29 14:33:46 --> Model Class Initialized
 INFO - 2018-08-29 14:33:47 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 14:33:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20005/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 14:33:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 14:33:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20005/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 14:33:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 14:33:52 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 26
 ERROR - 2018-08-29 14:33:52 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 40
@@ -4133,9 +4157,15 @@ INFO - 2018-08-29 14:34:07 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 14:34:07 --> Controller Class Initialized
 INFO - 2018-08-29 14:34:07 --> Model Class Initialized
 INFO - 2018-08-29 14:34:07 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 14:34:09 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20003/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 14:34:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 14:34:09 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20003/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 14:34:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 14:34:13 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 145
 INFO - 2018-08-29 14:34:13 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -4423,9 +4453,15 @@ INFO - 2018-08-29 14:35:48 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 14:35:48 --> Controller Class Initialized
 INFO - 2018-08-29 14:35:48 --> Model Class Initialized
 INFO - 2018-08-29 14:35:48 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 14:35:50 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20008/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 14:35:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 14:35:50 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20008/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 14:35:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 14:35:53 --> Severity: Notice --> Undefined variable: estadoTarea D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 36
 ERROR - 2018-08-29 14:35:53 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 169
@@ -4717,9 +4753,15 @@ INFO - 2018-08-29 14:37:31 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 14:37:31 --> Controller Class Initialized
 INFO - 2018-08-29 14:37:31 --> Model Class Initialized
 INFO - 2018-08-29 14:37:31 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 14:37:33 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20010/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 14:37:36 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 14:37:33 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20010/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 14:37:36 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 14:37:36 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 145
 ERROR - 2018-08-29 14:37:36 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 638
@@ -4953,9 +4995,15 @@ INFO - 2018-08-29 14:38:49 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 14:38:49 --> Controller Class Initialized
 INFO - 2018-08-29 14:38:49 --> Model Class Initialized
 INFO - 2018-08-29 14:38:49 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 14:38:51 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 14:38:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 14:38:51 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 14:38:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 14:38:55 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 144
 ERROR - 2018-08-29 14:38:55 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 659
@@ -5077,9 +5125,15 @@ INFO - 2018-08-29 15:07:40 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:07:40 --> Controller Class Initialized
 INFO - 2018-08-29 15:07:40 --> Model Class Initialized
 INFO - 2018-08-29 15:07:40 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:07:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:07:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:07:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:07:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:07:45 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 144
 ERROR - 2018-08-29 15:07:45 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 659
@@ -5139,9 +5193,15 @@ INFO - 2018-08-29 15:18:19 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:18:19 --> Controller Class Initialized
 INFO - 2018-08-29 15:18:19 --> Model Class Initialized
 INFO - 2018-08-29 15:18:19 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:18:21 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:18:24 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:18:21 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:18:24 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:18:24 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 ERROR - 2018-08-29 15:18:24 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 662
@@ -5228,9 +5288,15 @@ INFO - 2018-08-29 15:20:50 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:20:50 --> Controller Class Initialized
 INFO - 2018-08-29 15:20:50 --> Model Class Initialized
 INFO - 2018-08-29 15:20:50 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:20:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:20:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:20:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:20:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:20:55 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 ERROR - 2018-08-29 15:20:55 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 662
@@ -5344,9 +5410,15 @@ INFO - 2018-08-29 15:25:17 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:25:17 --> Controller Class Initialized
 INFO - 2018-08-29 15:25:17 --> Model Class Initialized
 INFO - 2018-08-29 15:25:17 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:25:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:25:23 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:25:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:25:23 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:25:23 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 ERROR - 2018-08-29 15:25:23 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 677
@@ -5487,9 +5559,15 @@ INFO - 2018-08-29 15:32:50 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:32:50 --> Controller Class Initialized
 INFO - 2018-08-29 15:32:50 --> Model Class Initialized
 INFO - 2018-08-29 15:32:50 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:32:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:32:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:32:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:32:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:32:55 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 ERROR - 2018-08-29 15:32:55 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 684
@@ -5630,9 +5708,15 @@ INFO - 2018-08-29 15:34:55 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:34:55 --> Controller Class Initialized
 INFO - 2018-08-29 15:34:55 --> Model Class Initialized
 INFO - 2018-08-29 15:34:55 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:34:57 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:35:00 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:34:57 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:35:00 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:35:00 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 ERROR - 2018-08-29 15:35:00 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 684
@@ -5801,9 +5885,15 @@ INFO - 2018-08-29 15:38:10 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:38:10 --> Controller Class Initialized
 INFO - 2018-08-29 15:38:10 --> Model Class Initialized
 INFO - 2018-08-29 15:38:10 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:38:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:38:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:38:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:38:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:38:15 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 ERROR - 2018-08-29 15:38:15 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 684
@@ -5922,9 +6012,15 @@ INFO - 2018-08-29 15:42:42 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:42:42 --> Controller Class Initialized
 INFO - 2018-08-29 15:42:42 --> Model Class Initialized
 INFO - 2018-08-29 15:42:42 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:42:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:42:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:42:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:42:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:42:49 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 15:42:49 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -6039,9 +6135,15 @@ INFO - 2018-08-29 15:43:05 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:43:05 --> Controller Class Initialized
 INFO - 2018-08-29 15:43:05 --> Model Class Initialized
 INFO - 2018-08-29 15:43:05 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:43:07 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:43:11 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:43:07 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:43:11 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:43:11 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 15:43:11 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -6156,9 +6258,15 @@ INFO - 2018-08-29 15:43:35 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:43:35 --> Controller Class Initialized
 INFO - 2018-08-29 15:43:35 --> Model Class Initialized
 INFO - 2018-08-29 15:43:35 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:43:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:43:41 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:43:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:43:41 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:43:41 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 15:43:41 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -6189,7 +6297,11 @@ INFO - 2018-08-29 15:50:01 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:50:01 --> Controller Class Initialized
 INFO - 2018-08-29 15:50:01 --> Model Class Initialized
 INFO - 2018-08-29 15:50:01 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:50:22 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/loginservice?username=fernando.palacios&amp;password=bpm&amp;redirect=false): failed to open stream: Se produjo un error durante el intento de conexi�n ya que la parte conectada no respondi� adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi�n establecida ya que el host conectado no ha podido responder.
+=======
+ERROR - 2018-08-29 15:50:22 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/loginservice?username=fernando.palacios&amp;password=bpm&amp;redirect=false): failed to open stream: Se produjo un error durante el intento de conexi�n ya que la parte conectada no respondi� adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi�n establecida ya que el host conectado no ha podido responder.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\bonitas.php 156
 ERROR - 2018-08-29 15:50:22 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\models\bonitas.php 160
 ERROR - 2018-08-29 15:50:43 --> Severity: Error --> Maximum execution time of 30 seconds exceeded D:\sitios\MTBA-desa-procprod\system\core\Common.php 595
@@ -6412,9 +6524,15 @@ INFO - 2018-08-29 15:57:13 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:57:13 --> Controller Class Initialized
 INFO - 2018-08-29 15:57:14 --> Model Class Initialized
 INFO - 2018-08-29 15:57:14 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:57:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:57:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:57:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:57:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:57:20 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 15:57:20 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -6529,9 +6647,15 @@ INFO - 2018-08-29 15:57:39 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 15:57:39 --> Controller Class Initialized
 INFO - 2018-08-29 15:57:39 --> Model Class Initialized
 INFO - 2018-08-29 15:57:39 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 15:57:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 15:57:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 15:57:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 15:57:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 15:57:48 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 15:57:48 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -6645,9 +6769,15 @@ INFO - 2018-08-29 16:03:46 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 16:03:46 --> Controller Class Initialized
 INFO - 2018-08-29 16:03:46 --> Model Class Initialized
 INFO - 2018-08-29 16:03:46 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 16:03:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 16:03:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 16:03:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 16:03:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 16:03:52 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 16:03:52 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -6870,9 +7000,15 @@ INFO - 2018-08-29 16:05:12 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 16:05:12 --> Controller Class Initialized
 INFO - 2018-08-29 16:05:12 --> Model Class Initialized
 INFO - 2018-08-29 16:05:12 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 16:05:14 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 16:05:18 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 16:05:14 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 16:05:18 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 16:05:18 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 16:05:18 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -6931,9 +7067,15 @@ INFO - 2018-08-29 16:10:14 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 16:10:14 --> Controller Class Initialized
 INFO - 2018-08-29 16:10:14 --> Model Class Initialized
 INFO - 2018-08-29 16:10:14 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 16:10:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 16:10:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 16:10:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 16:10:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 16:10:20 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 16:10:20 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -7074,9 +7216,15 @@ INFO - 2018-08-29 16:12:31 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 16:12:31 --> Controller Class Initialized
 INFO - 2018-08-29 16:12:31 --> Model Class Initialized
 INFO - 2018-08-29 16:12:31 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 16:12:36 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 16:12:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 16:12:36 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 16:12:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 16:12:40 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 16:12:40 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -7351,9 +7499,15 @@ INFO - 2018-08-29 16:19:46 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 16:19:46 --> Controller Class Initialized
 INFO - 2018-08-29 16:19:46 --> Model Class Initialized
 INFO - 2018-08-29 16:19:46 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 16:19:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 16:19:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 16:19:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 16:19:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 16:19:52 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 16:19:52 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -7810,9 +7964,15 @@ INFO - 2018-08-29 16:22:27 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 16:22:27 --> Controller Class Initialized
 INFO - 2018-08-29 16:22:27 --> Model Class Initialized
 INFO - 2018-08-29 16:22:27 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 16:22:29 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 16:22:33 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 16:22:29 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 16:22:33 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 16:22:33 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 16:22:33 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -8502,9 +8662,15 @@ INFO - 2018-08-29 16:36:10 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 16:36:10 --> Controller Class Initialized
 INFO - 2018-08-29 16:36:10 --> Model Class Initialized
 INFO - 2018-08-29 16:36:10 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 16:36:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 16:36:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 16:36:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 16:36:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 16:36:16 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 16:36:16 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -8825,9 +8991,15 @@ INFO - 2018-08-29 17:02:34 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 17:02:34 --> Controller Class Initialized
 INFO - 2018-08-29 17:02:34 --> Model Class Initialized
 INFO - 2018-08-29 17:02:34 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 17:02:36 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 17:02:39 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 17:02:36 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 17:02:39 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 17:02:39 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 17:02:39 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -9462,9 +9634,15 @@ INFO - 2018-08-29 17:08:06 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 17:08:06 --> Controller Class Initialized
 INFO - 2018-08-29 17:08:06 --> Model Class Initialized
 INFO - 2018-08-29 17:08:06 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 17:08:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 17:08:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 17:08:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 17:08:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 17:08:12 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 17:08:12 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -9680,9 +9858,15 @@ INFO - 2018-08-29 17:09:26 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 17:09:26 --> Controller Class Initialized
 INFO - 2018-08-29 17:09:26 --> Model Class Initialized
 INFO - 2018-08-29 17:09:26 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 17:09:28 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 17:09:44 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: Se produjo un error durante el intento de conexi�n ya que la parte conectada no respondi� adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi�n establecida ya que el host conectado no ha podido responder.
+=======
+ERROR - 2018-08-29 17:09:28 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 17:09:44 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: Se produjo un error durante el intento de conexi�n ya que la parte conectada no respondi� adecuadamente tras un periodo de tiempo, o bien se produjo un error en la conexi�n establecida ya que el host conectado no ha podido responder.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 17:09:44 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 17:09:44 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -9939,7 +10123,11 @@ INFO - 2018-08-29 17:12:56 --> Input Class Initialized
 INFO - 2018-08-29 17:12:56 --> Language Class Initialized
 INFO - 2018-08-29 17:12:56 --> Loader Class Initialized
 INFO - 2018-08-29 17:12:56 --> Helper loaded: url_helper
+<<<<<<< HEAD
 ERROR - 2018-08-29 17:12:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20014/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-29 17:12:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20014/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 INFO - 2018-08-29 17:12:56 --> Helper loaded: directory_helper
 INFO - 2018-08-29 17:12:56 --> Helper loaded: file_helper
@@ -9949,7 +10137,11 @@ INFO - 2018-08-29 17:12:56 --> Helper loaded: formulario_helper
 INFO - 2018-08-29 17:12:56 --> Helper loaded: cabecera_helper
 INFO - 2018-08-29 17:12:57 --> Database Driver Class Initialized
 DEBUG - 2018-08-29 17:12:57 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+<<<<<<< HEAD
 ERROR - 2018-08-29 17:13:01 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 17:13:01 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 17:13:01 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 145
 INFO - 2018-08-29 17:13:01 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -9959,9 +10151,15 @@ INFO - 2018-08-29 17:13:01 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 17:13:01 --> Controller Class Initialized
 INFO - 2018-08-29 17:13:01 --> Model Class Initialized
 INFO - 2018-08-29 17:13:01 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 17:13:03 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 17:13:06 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 17:13:03 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 17:13:06 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 17:13:06 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 17:13:06 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -10020,9 +10218,15 @@ INFO - 2018-08-29 17:15:23 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 17:15:23 --> Controller Class Initialized
 INFO - 2018-08-29 17:15:23 --> Model Class Initialized
 INFO - 2018-08-29 17:15:23 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 17:15:26 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 17:15:29 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 17:15:26 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 17:15:29 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 17:15:29 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 17:15:29 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -11493,7 +11697,11 @@ INFO - 2018-08-29 18:28:39 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:28:39 --> Controller Class Initialized
 INFO - 2018-08-29 18:28:39 --> Model Class Initialized
 INFO - 2018-08-29 18:28:39 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:28:57 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20026/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-29 18:28:57 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20026/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 18:29:10 --> Severity: Error --> Maximum execution time of 30 seconds exceeded D:\sitios\MTBA-desa-procprod\system\core\Common.php 595
 INFO - 2018-08-29 18:34:07 --> Config Class Initialized
@@ -11521,7 +11729,11 @@ INFO - 2018-08-29 18:34:07 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:34:07 --> Controller Class Initialized
 INFO - 2018-08-29 18:34:07 --> Model Class Initialized
 INFO - 2018-08-29 18:34:07 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:34:09 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20026/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-29 18:34:09 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20026/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 INFO - 2018-08-29 18:34:10 --> Config Class Initialized
 INFO - 2018-08-29 18:34:10 --> Hooks Class Initialized
@@ -11544,7 +11756,11 @@ INFO - 2018-08-29 18:34:11 --> Helper loaded: formulario_helper
 INFO - 2018-08-29 18:34:11 --> Helper loaded: cabecera_helper
 INFO - 2018-08-29 18:34:11 --> Database Driver Class Initialized
 DEBUG - 2018-08-29 18:34:11 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:34:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 18:34:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 18:34:12 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 18:34:12 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -11554,9 +11770,15 @@ INFO - 2018-08-29 18:34:12 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:34:12 --> Controller Class Initialized
 INFO - 2018-08-29 18:34:12 --> Model Class Initialized
 INFO - 2018-08-29 18:34:12 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:34:14 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 18:34:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 18:34:14 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 18:34:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 18:34:17 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 18:34:17 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -11615,9 +11837,15 @@ INFO - 2018-08-29 18:40:01 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:40:01 --> Controller Class Initialized
 INFO - 2018-08-29 18:40:01 --> Model Class Initialized
 INFO - 2018-08-29 18:40:01 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:40:03 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20026/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 18:40:06 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 18:40:03 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20026/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 18:40:06 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 18:40:06 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 18:40:06 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -11676,9 +11904,15 @@ INFO - 2018-08-29 18:40:12 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:40:12 --> Controller Class Initialized
 INFO - 2018-08-29 18:40:12 --> Model Class Initialized
 INFO - 2018-08-29 18:40:12 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:40:14 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 18:40:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 18:40:14 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 18:40:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 18:40:17 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 18:40:17 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -11737,9 +11971,15 @@ INFO - 2018-08-29 18:41:53 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:41:53 --> Controller Class Initialized
 INFO - 2018-08-29 18:41:53 --> Model Class Initialized
 INFO - 2018-08-29 18:41:53 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:41:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 18:41:58 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 18:41:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 18:41:58 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 18:41:58 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 18:41:58 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -11798,9 +12038,15 @@ INFO - 2018-08-29 18:42:38 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:42:38 --> Controller Class Initialized
 INFO - 2018-08-29 18:42:38 --> Model Class Initialized
 INFO - 2018-08-29 18:42:38 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:42:39 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 18:42:43 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 18:42:39 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 18:42:43 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 18:42:43 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 18:42:43 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -11859,7 +12105,11 @@ INFO - 2018-08-29 18:44:36 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:44:36 --> Controller Class Initialized
 INFO - 2018-08-29 18:44:36 --> Model Class Initialized
 INFO - 2018-08-29 18:44:36 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:44:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-29 18:44:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 INFO - 2018-08-29 18:45:50 --> Config Class Initialized
 INFO - 2018-08-29 18:45:50 --> Hooks Class Initialized
@@ -11914,7 +12164,11 @@ INFO - 2018-08-29 18:46:19 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:46:19 --> Controller Class Initialized
 INFO - 2018-08-29 18:46:19 --> Model Class Initialized
 INFO - 2018-08-29 18:46:19 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:46:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-29 18:46:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 INFO - 2018-08-29 18:49:21 --> Config Class Initialized
 INFO - 2018-08-29 18:49:21 --> Hooks Class Initialized
@@ -11997,9 +12251,15 @@ INFO - 2018-08-29 18:49:43 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 18:49:43 --> Controller Class Initialized
 INFO - 2018-08-29 18:49:43 --> Model Class Initialized
 INFO - 2018-08-29 18:49:43 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 18:49:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 18:49:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 18:49:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 18:49:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 18:49:48 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 146
 INFO - 2018-08-29 18:49:48 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -12583,9 +12843,15 @@ INFO - 2018-08-29 19:44:10 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 19:44:10 --> Controller Class Initialized
 INFO - 2018-08-29 19:44:10 --> Model Class Initialized
 INFO - 2018-08-29 19:44:10 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 19:44:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 19:44:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 19:44:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 19:44:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 19:44:15 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 144
 INFO - 2018-08-29 19:44:15 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -12801,9 +13067,15 @@ INFO - 2018-08-29 19:45:42 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 19:45:42 --> Controller Class Initialized
 INFO - 2018-08-29 19:45:42 --> Model Class Initialized
 INFO - 2018-08-29 19:45:42 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 19:45:44 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 19:45:47 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 19:45:44 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 19:45:47 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 19:45:47 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 144
 INFO - 2018-08-29 19:45:47 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -12886,9 +13158,15 @@ INFO - 2018-08-29 19:48:26 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 19:48:26 --> Controller Class Initialized
 INFO - 2018-08-29 19:48:26 --> Model Class Initialized
 INFO - 2018-08-29 19:48:26 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 19:48:28 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 19:48:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 19:48:28 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 19:48:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 19:48:31 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 144
 INFO - 2018-08-29 19:48:31 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -13104,9 +13382,15 @@ INFO - 2018-08-29 19:51:46 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 19:51:46 --> Controller Class Initialized
 INFO - 2018-08-29 19:51:46 --> Model Class Initialized
 INFO - 2018-08-29 19:51:46 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 19:51:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 19:51:51 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 19:51:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 19:51:51 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 19:51:51 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 144
 INFO - 2018-08-29 19:51:51 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -14026,7 +14310,11 @@ INFO - 2018-08-29 19:52:50 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 19:52:50 --> Controller Class Initialized
 INFO - 2018-08-29 19:52:50 --> Model Class Initialized
 INFO - 2018-08-29 19:52:50 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 19:52:51 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/userTask/20012/execution): failed to open stream: HTTP request failed! HTTP/1.1 400 
+=======
+ERROR - 2018-08-29 19:52:51 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/userTask/20012/execution): failed to open stream: HTTP request failed! HTTP/1.1 400 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 133
 INFO - 2018-08-29 19:52:51 --> Final output sent to browser
 DEBUG - 2018-08-29 19:52:51 --> Total execution time: 1.1191
@@ -14083,9 +14371,15 @@ INFO - 2018-08-29 19:58:11 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 19:58:11 --> Controller Class Initialized
 INFO - 2018-08-29 19:58:11 --> Model Class Initialized
 INFO - 2018-08-29 19:58:11 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 19:58:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 19:58:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 19:58:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 19:58:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 19:58:16 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 144
 INFO - 2018-08-29 19:58:16 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_planificacion.php
@@ -14391,9 +14685,15 @@ INFO - 2018-08-29 20:01:25 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 20:01:25 --> Controller Class Initialized
 INFO - 2018-08-29 20:01:25 --> Model Class Initialized
 INFO - 2018-08-29 20:01:25 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 20:01:28 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
 ERROR - 2018-08-29 20:01:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+=======
+ERROR - 2018-08-29 20:01:28 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/activityVariable/20012/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+ D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 232
+ERROR - 2018-08-29 20:01:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/comment?f=processInstanceId%3D14&amp;o=postDate%20DESC&amp;p=0&amp;c=200&amp;d=userId): failed to open stream: No se puede establecer una conexi�n ya que el equipo de destino deneg� expresamente dicha conexi�n.
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 118
 ERROR - 2018-08-29 20:01:31 --> Severity: Warning --> Invalid argument supplied for foreach() D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 144
 ERROR - 2018-08-29 20:01:31 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_planificacion.php 664
@@ -14583,7 +14883,11 @@ INFO - 2018-08-29 20:01:55 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-29 20:01:55 --> Controller Class Initialized
 INFO - 2018-08-29 20:01:55 --> Model Class Initialized
 INFO - 2018-08-29 20:01:55 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-29 20:01:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/userTask/20012/execution): failed to open stream: HTTP request failed! HTTP/1.1 400 
+=======
+ERROR - 2018-08-29 20:01:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:7070/bonita/API/bpm/userTask/20012/execution): failed to open stream: HTTP request failed! HTTP/1.1 400 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 133
 INFO - 2018-08-29 20:01:56 --> Final output sent to browser
 DEBUG - 2018-08-29 20:01:56 --> Total execution time: 1.1391
