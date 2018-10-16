@@ -740,7 +740,6 @@ class Tarea extends CI_Controller {
 	}
 
 	function ObtenerComentariosBPM($caseId){
-		//$metodo = "POST";
 		$parametros = $this->Bonitas->conexiones();
 		$param = stream_context_create($parametros);
 		return $this->Tareas->ObtenerComentariosBPM($caseId,$param);

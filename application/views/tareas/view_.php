@@ -361,6 +361,39 @@
 
 
 <script>
+  $('#genericForm').bootstrapValidator({ //VALIDADOR
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {		
+			fecha:{
+				selector: '.fecha',
+				validators:{
+					date: {
+                        format: 'DD-MM-YYYY',
+                        message: '(*) Formato de Fecha Inválido'
+                    }
+				}
+			},
+			number: {
+				selector: '.numerico',
+                validators: {
+                    integer: {
+                        message: '(*) Solo Valores Numéricos'
+                    }
+                }
+            }
+
+        }
+    }).on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+			guardarFormulario(true);
+           
+    });
 
 	evaluarEstado();
 	function evaluarEstado() {
@@ -429,7 +462,7 @@
 			}
 		});
 	});
-	var validado=<?php echo ($idForm!=0?false:true)?>;
+	var validado=($('#idform').val()==0);
 	function terminarTarea() {
 		if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
 		var idTarBonita = $('#idTarBonita').val();
@@ -555,16 +588,26 @@
 	$('#formulario').click(function () {
 		click = 1;
 	});
-
+	// $('.fecha').on('change	', function(e) {
+	// 	alert(this);
+  	//   $('#genericForm').bootstrapValidator('revalidateField', '');
+	// });
 	// evento de cierre de modal guarda parcialmente los datos
 	$('#modalForm').on('hidden.bs.modal', function (e) {
-
-		$('#error').fadeOut('slow');
-		// toma  el valor de todos los input file 
 		guardarFormulario(false);
-
 	});
 
+	function ValidarCampos(){
+		$('#genericForm').data('bootstrapValidator').validate();
+		if(!$('#genericForm').data('bootstrapValidator').isValid()){
+			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
+		}	
+	}
+	function OcultarModal(){
+		$('#genericForm').data('bootstrapValidator').resetForm();
+		$('#modalForm').modal('hide');
+		guardarFormulario(false);
+	}
 	function guardarFormulario(validarOn){
 		console.log("Guardando Formulario...");
 		var imgs = $('input.archivo');
@@ -634,7 +677,7 @@
 
 			success: function (respuesta) {
 
-				if(validarOn)ValidarObligatorios();
+				ValidarObligatorios(validarOn);
 				if (respuesta === "exito") {
 
 				}
@@ -763,51 +806,16 @@
 		});
 	}
 
-	// Validacion de campos obligatorios y vacios
-	function validarFormGuardado() {
-
-		var id_listarea = $('#id_listarea').val();
-
-		var oblig = $('.requerido');
-		//console.log("oblig");
-		//console.table(oblig);
-		var obligArrayIds = [];
-		oblig.each(function () {
-			obligArrayIds.push($(this).attr('name'));
-		});
-		//console.log('obligatorios: ');
-		//console.log(obligArray),
-		$.ajax({
-			type: 'POST',
-			data: {
-				obligArrayIds: obligArrayIds,
-				id_listarea: id_listarea
-			},
-			url: 'index.php/Tarea/validarFormGuardado',
-			success: function (data) {
-				console.log('por sucess: ');
-				console.log(data);
-				if (data == false) {
-					$('#error').fadeIn('slow');
-				}
-				else {
-					$('#error').fadeOut('slow');
-				}
-
-			},
-			error: function (result) {
-				console.log('por error: ');
-				console.log(data);
-				console.log(result);
-			},
-			dataType: 'json'
-		});
-	}
-
 	$('.fecha').datepicker({
 		autoclose: true
-	});
-	function ValidarObligatorios(){
+	}).on('change', function(e) {
+       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
+	   console.log('Validando Campo...'+$(this).attr('name'));
+	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
+	   $('#genericForm').data('bootstrapValidator').validateField($(this));
+    });
+	
+	function ValidarObligatorios(validarOn){
 		console.log("Validando Campos Obligatorios...");
 		var form_id = $('#idform').val();
 		var petr_id = $('#idPedTrabajo').val();
@@ -817,6 +825,7 @@
 			url: 'index.php/Tarea/ValidarObligatorios',
 			success: function (result) {
 				validado=(result==1);
+				if(!validarOn) return;
 				if(validado)alert("Formularios Correctamente Validado");
 				else {
 					alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");

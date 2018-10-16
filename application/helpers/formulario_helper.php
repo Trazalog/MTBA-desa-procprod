@@ -14,8 +14,8 @@ if (!function_exists('cargarFormulario')) {
 
 
     echo '<div class="modal-footer">
-              <button class="btn btn-primary" onclick="guardarFormulario(true)">Validar</button>
-              <button class="btn btn-success" type="button" data-dismiss="modal">Guardar</button>
+              <button class="btn btn-primary" onclick="ValidarCampos(true)">Validar</button>
+              <button class="btn btn-success" type="button" onclick="OcultarModal()">Cerrar</button>
             </div>';
 
     echo'<form enctype="multipart/form-data" id="genericForm" class="form-horizontal" style="padding:0px 15px;" role="form" action="" method="" >';
@@ -90,7 +90,7 @@ if (!function_exists('cargarFormulario')) {
                             //echo "hay input";
                             break;
                         case "input_numerico":
-                            echo "<input type='text' class='form-control inp numerico ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
+                            echo "<input type='number' class='form-control inp numerico ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             break;
                         case "input_fecha":
                             echo "<input type='text' class='form-control inp fecha ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
@@ -98,56 +98,31 @@ if (!function_exists('cargarFormulario')) {
 
                         case "input_archivo":
                             // campo auxiliar guarda ultima img en BD
-                            echo "<input type='text' class='auxiliar ' name='' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
+                            echo "<input type='text' class='auxiliar hidden' name='' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             // input tipo file
                             echo "<input type='file' class='inp archivo ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             // link para ver la imagen adjunta
                             
                             if($a['valDefecto'] != ""){
                               echo "<a href='".base_url.$a['valDefecto']."' class='".$a['idValor']."' target='_blank' ><i class='fa fa-picture-o' style='color: #A4A4A4; cursor: pointer; margin-left: 15px;' title='Imagen'></i> Ver Adjunto</a> ";
-                            } 
-                            
+                            }                        
                             break;
-                            // link para ver la imagen cargada anteriormente
-                            // if($a['valDefecto'] == ""){
-                            //   break;
-                            // }else{
-                            //   echo '<a href="'.base_url().$a['valDefecto'].'" target="_blank" '.($a['valDefecto'] == '' ? "disabled" : "").'  ><i class="fa fa-picture-o" style="color: #A4A4A4; cursor: pointer; margin-left: 15px;" title="Imagen" data-imagen =" data-toggle="" data-target="" ></i></a> ';
-                            // break;
-                            // }
-                            // echo '<a href="'.base_url().$a['valDefecto'].'" target="_blank" '.($a['valDefecto'] == '' ? "disabled" : "").'  ><i class="fa fa-picture-o" style="color: #A4A4A4; cursor: pointer; margin-left: 15px;" title="Imagen" data-imagen =" data-toggle="" data-target="" ></i></a> ';
-                            // break;
-
-                           
-
-
-
-
-                       /*  case "checkbox":
-                             echo "<input class='check ".($a['obligatorio']?"requerido":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";
-                            break; */
                         case "checkbox":
                              echo "<input class='check ".($a['obligatorio']?"requerido":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";
                             break;
                         case "textarea":
                             echo "<textarea class='form-control ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' rows='2'></textarea>";
                             break;
-                        // case "inputFile":
-                        //     echo "<input type='file' class='inp' name='".$a['idValor']."' id='".$a['idValor']."' style='width: 80%'>";
-                        //     break;
                   }
                   echo "</div></td>";
                   echo "</tr>";
-
             }
-
           echo "</tbody>";
         echo "</table>";
 
     echo '<div class="modal-footer">
 
             </div>
-
           </form> ';
 
     }

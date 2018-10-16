@@ -650,6 +650,11 @@ class Otrabajo extends CI_Controller {
 		$response = $this->Otrabajos->setBatchTareasPlantilla($batch);
 		echo json_encode($response);		
 	}
+    public function ObtenerTareasPlantilla(){
+		$idPlantilla = $this->input->post('idPlantilla');
+		$result = $this->Otrabajos->getTareasPlantillas($idPlantilla);
+		echo json_encode($result);
+	}
 
 	public function setEquipo(){
 

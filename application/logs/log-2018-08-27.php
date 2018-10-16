@@ -83,9 +83,15 @@ INFO - 2018-08-27 09:41:45 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 09:41:45 --> Controller Class Initialized
 INFO - 2018-08-27 09:41:45 --> Model Class Initialized
 INFO - 2018-08-27 09:41:45 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 09:41:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/loginservice?username=admin&amp;password=admin&amp;redirect=false): failed to open stream: HTTP request failed! HTTP/1.1 401 
  D:\sitios\MTBA-desa-procprod\application\models\bonitas.php 62
 ERROR - 2018-08-27 09:41:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/identity/user?f=userName=admin): failed to open stream: HTTP request failed! HTTP/1.1 401 
+=======
+ERROR - 2018-08-27 09:41:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/loginservice?username=admin&amp;password=admin&amp;redirect=false): failed to open stream: HTTP request failed! HTTP/1.1 401 
+ D:\sitios\MTBA-desa-procprod\application\models\bonitas.php 62
+ERROR - 2018-08-27 09:41:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/identity/user?f=userName=admin): failed to open stream: HTTP request failed! HTTP/1.1 401 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Users.php 167
 INFO - 2018-08-27 09:41:50 --> Final output sent to browser
 DEBUG - 2018-08-27 09:41:50 --> Total execution time: 4.9014
@@ -231,7 +237,11 @@ INFO - 2018-08-27 09:43:10 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 09:43:10 --> Controller Class Initialized
 INFO - 2018-08-27 09:43:10 --> Model Class Initialized
 INFO - 2018-08-27 09:43:10 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 09:43:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 09:43:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 09:43:15 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 09:43:15 --> Final output sent to browser
@@ -318,7 +328,11 @@ INFO - 2018-08-27 10:09:58 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:09:58 --> Controller Class Initialized
 INFO - 2018-08-27 10:09:58 --> Model Class Initialized
 INFO - 2018-08-27 10:09:58 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:10:01 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:10:01 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:12:57 --> Config Class Initialized
 INFO - 2018-08-27 10:12:57 --> Hooks Class Initialized
@@ -402,7 +416,11 @@ INFO - 2018-08-27 10:13:02 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:13:02 --> Controller Class Initialized
 INFO - 2018-08-27 10:13:02 --> Model Class Initialized
 INFO - 2018-08-27 10:13:02 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:13:05 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:13:05 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:17:18 --> Config Class Initialized
 INFO - 2018-08-27 10:17:18 --> Hooks Class Initialized
@@ -457,7 +475,11 @@ INFO - 2018-08-27 10:17:24 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:17:24 --> Controller Class Initialized
 INFO - 2018-08-27 10:17:24 --> Model Class Initialized
 INFO - 2018-08-27 10:17:24 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:17:27 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:17:27 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:17:41 --> Config Class Initialized
 INFO - 2018-08-27 10:17:41 --> Hooks Class Initialized
@@ -512,7 +534,11 @@ INFO - 2018-08-27 10:17:44 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:17:44 --> Controller Class Initialized
 INFO - 2018-08-27 10:17:44 --> Model Class Initialized
 INFO - 2018-08-27 10:17:44 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:17:46 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:17:46 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:17:48 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 10:17:49 --> Final output sent to browser
@@ -627,7 +653,11 @@ INFO - 2018-08-27 10:20:00 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:20:00 --> Controller Class Initialized
 INFO - 2018-08-27 10:20:00 --> Model Class Initialized
 INFO - 2018-08-27 10:20:00 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:20:02 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:20:02 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:20:04 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 10:20:04 --> Final output sent to browser
@@ -685,7 +715,11 @@ INFO - 2018-08-27 10:22:13 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:22:13 --> Controller Class Initialized
 INFO - 2018-08-27 10:22:13 --> Model Class Initialized
 INFO - 2018-08-27 10:22:13 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:22:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:22:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:22:17 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 10:22:17 --> Final output sent to browser
@@ -743,7 +777,11 @@ INFO - 2018-08-27 10:32:16 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:32:16 --> Controller Class Initialized
 INFO - 2018-08-27 10:32:16 --> Model Class Initialized
 INFO - 2018-08-27 10:32:16 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:32:18 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:32:18 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:32:21 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 10:32:21 --> Final output sent to browser
@@ -801,7 +839,11 @@ INFO - 2018-08-27 10:33:04 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:33:04 --> Controller Class Initialized
 INFO - 2018-08-27 10:33:04 --> Model Class Initialized
 INFO - 2018-08-27 10:33:04 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:33:06 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:33:06 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:33:08 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 10:33:08 --> Final output sent to browser
@@ -859,7 +901,11 @@ INFO - 2018-08-27 10:35:14 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:35:14 --> Controller Class Initialized
 INFO - 2018-08-27 10:35:14 --> Model Class Initialized
 INFO - 2018-08-27 10:35:14 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:35:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:35:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:35:18 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 10:35:18 --> Final output sent to browser
@@ -917,7 +963,11 @@ INFO - 2018-08-27 10:35:59 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:35:59 --> Controller Class Initialized
 INFO - 2018-08-27 10:35:59 --> Model Class Initialized
 INFO - 2018-08-27 10:35:59 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:36:01 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:36:01 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 ERROR - 2018-08-27 10:36:03 --> Severity: Parsing Error --> syntax error, unexpected '$TareaBPM' (T_VARIABLE) D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 36
 INFO - 2018-08-27 10:36:34 --> Config Class Initialized
@@ -973,7 +1023,11 @@ INFO - 2018-08-27 10:36:51 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:36:51 --> Controller Class Initialized
 INFO - 2018-08-27 10:36:51 --> Model Class Initialized
 INFO - 2018-08-27 10:36:51 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:36:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:36:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:37:39 --> Config Class Initialized
 INFO - 2018-08-27 10:37:39 --> Hooks Class Initialized
@@ -1028,7 +1082,11 @@ INFO - 2018-08-27 10:37:43 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:37:43 --> Controller Class Initialized
 INFO - 2018-08-27 10:37:43 --> Model Class Initialized
 INFO - 2018-08-27 10:37:43 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:37:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:37:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:38:06 --> Config Class Initialized
 INFO - 2018-08-27 10:38:06 --> Hooks Class Initialized
@@ -1112,7 +1170,11 @@ INFO - 2018-08-27 10:38:13 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:38:13 --> Controller Class Initialized
 INFO - 2018-08-27 10:38:13 --> Model Class Initialized
 INFO - 2018-08-27 10:38:13 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:38:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:38:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 10:38:18 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 10:38:18 --> Final output sent to browser
@@ -1199,7 +1261,11 @@ INFO - 2018-08-27 10:39:29 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:39:29 --> Controller Class Initialized
 INFO - 2018-08-27 10:39:29 --> Model Class Initialized
 INFO - 2018-08-27 10:39:29 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:39:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:39:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 ERROR - 2018-08-27 10:39:34 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 26
 ERROR - 2018-08-27 10:39:34 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 40
@@ -1331,7 +1397,11 @@ INFO - 2018-08-27 10:52:53 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:52:53 --> Controller Class Initialized
 INFO - 2018-08-27 10:52:53 --> Model Class Initialized
 INFO - 2018-08-27 10:52:53 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:52:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:52:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 ERROR - 2018-08-27 10:52:58 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 26
 ERROR - 2018-08-27 10:52:58 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 40
@@ -1407,7 +1477,11 @@ INFO - 2018-08-27 10:54:13 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:54:13 --> Controller Class Initialized
 INFO - 2018-08-27 10:54:13 --> Model Class Initialized
 INFO - 2018-08-27 10:54:13 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:54:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:54:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 ERROR - 2018-08-27 10:54:19 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 26
 ERROR - 2018-08-27 10:54:19 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 40
@@ -1479,7 +1553,11 @@ INFO - 2018-08-27 10:55:10 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:55:10 --> Controller Class Initialized
 INFO - 2018-08-27 10:55:10 --> Model Class Initialized
 INFO - 2018-08-27 10:55:10 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:55:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:55:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 ERROR - 2018-08-27 10:55:15 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 26
 ERROR - 2018-08-27 10:55:15 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 40
@@ -1551,7 +1629,11 @@ INFO - 2018-08-27 10:55:44 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 10:55:44 --> Controller Class Initialized
 INFO - 2018-08-27 10:55:44 --> Model Class Initialized
 INFO - 2018-08-27 10:55:44 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 10:55:47 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 10:55:47 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 ERROR - 2018-08-27 10:55:49 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 26
 ERROR - 2018-08-27 10:55:49 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 40
@@ -1627,7 +1709,11 @@ INFO - 2018-08-27 11:00:35 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:00:35 --> Controller Class Initialized
 INFO - 2018-08-27 11:00:35 --> Model Class Initialized
 INFO - 2018-08-27 11:00:35 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:00:37 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:00:37 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 11:00:39 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:00:39 --> Final output sent to browser
@@ -1685,7 +1771,11 @@ INFO - 2018-08-27 11:04:37 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:04:37 --> Controller Class Initialized
 INFO - 2018-08-27 11:04:37 --> Model Class Initialized
 INFO - 2018-08-27 11:04:37 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:04:39 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:04:39 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 11:04:41 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:04:41 --> Final output sent to browser
@@ -1743,7 +1833,11 @@ INFO - 2018-08-27 11:09:40 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:09:40 --> Controller Class Initialized
 INFO - 2018-08-27 11:09:40 --> Model Class Initialized
 INFO - 2018-08-27 11:09:40 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:09:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:09:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 11:09:44 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:09:44 --> Final output sent to browser
@@ -1801,7 +1895,11 @@ INFO - 2018-08-27 11:14:07 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:14:07 --> Controller Class Initialized
 INFO - 2018-08-27 11:14:07 --> Model Class Initialized
 INFO - 2018-08-27 11:14:07 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:14:10 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:14:10 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 11:14:12 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:14:12 --> Final output sent to browser
@@ -1859,7 +1957,11 @@ INFO - 2018-08-27 11:18:20 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:18:20 --> Controller Class Initialized
 INFO - 2018-08-27 11:18:20 --> Model Class Initialized
 INFO - 2018-08-27 11:18:20 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:18:22 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:18:22 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 11:18:24 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:18:24 --> Final output sent to browser
@@ -1946,7 +2048,11 @@ INFO - 2018-08-27 11:23:08 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:23:08 --> Controller Class Initialized
 INFO - 2018-08-27 11:23:08 --> Model Class Initialized
 INFO - 2018-08-27 11:23:08 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:23:10 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:23:10 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 11:23:15 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:23:15 --> Final output sent to browser
@@ -1976,7 +2082,11 @@ INFO - 2018-08-27 11:24:06 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:24:06 --> Controller Class Initialized
 INFO - 2018-08-27 11:24:06 --> Model Class Initialized
 INFO - 2018-08-27 11:24:06 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:24:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:24:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 174
 INFO - 2018-08-27 11:29:59 --> Config Class Initialized
 INFO - 2018-08-27 11:29:59 --> Hooks Class Initialized
@@ -2031,7 +2141,11 @@ INFO - 2018-08-27 11:30:06 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:30:06 --> Controller Class Initialized
 INFO - 2018-08-27 11:30:06 --> Model Class Initialized
 INFO - 2018-08-27 11:30:06 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:30:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:30:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 11:30:10 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:30:10 --> Final output sent to browser
@@ -2061,7 +2175,11 @@ INFO - 2018-08-27 11:30:46 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:30:46 --> Controller Class Initialized
 INFO - 2018-08-27 11:30:46 --> Model Class Initialized
 INFO - 2018-08-27 11:30:46 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:30:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:30:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 174
 INFO - 2018-08-27 11:30:48 --> Final output sent to browser
 DEBUG - 2018-08-27 11:30:48 --> Total execution time: 2.6872
@@ -2146,7 +2264,11 @@ INFO - 2018-08-27 11:35:26 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:35:26 --> Controller Class Initialized
 INFO - 2018-08-27 11:35:26 --> Model Class Initialized
 INFO - 2018-08-27 11:35:27 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:35:33 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:35:33 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 211
 INFO - 2018-08-27 11:35:36 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:35:36 --> Final output sent to browser
@@ -2229,7 +2351,11 @@ INFO - 2018-08-27 11:45:28 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:45:28 --> Controller Class Initialized
 INFO - 2018-08-27 11:45:28 --> Model Class Initialized
 INFO - 2018-08-27 11:45:28 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:45:30 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:45:30 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 212
 INFO - 2018-08-27 11:45:32 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:45:32 --> Final output sent to browser
@@ -2259,7 +2385,11 @@ INFO - 2018-08-27 11:45:36 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:45:36 --> Controller Class Initialized
 INFO - 2018-08-27 11:45:36 --> Model Class Initialized
 INFO - 2018-08-27 11:45:36 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:45:37 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:45:37 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 174
 INFO - 2018-08-27 11:51:41 --> Config Class Initialized
 INFO - 2018-08-27 11:51:41 --> Hooks Class Initialized
@@ -2434,7 +2564,11 @@ INFO - 2018-08-27 11:52:02 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:52:02 --> Controller Class Initialized
 INFO - 2018-08-27 11:52:02 --> Model Class Initialized
 INFO - 2018-08-27 11:52:03 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:52:05 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:52:05 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 212
 INFO - 2018-08-27 11:52:07 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:52:07 --> Final output sent to browser
@@ -2464,7 +2598,11 @@ INFO - 2018-08-27 11:52:53 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:52:53 --> Controller Class Initialized
 INFO - 2018-08-27 11:52:53 --> Model Class Initialized
 INFO - 2018-08-27 11:52:53 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:52:54 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:52:54 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 174
 INFO - 2018-08-27 11:52:54 --> Final output sent to browser
 DEBUG - 2018-08-27 11:52:54 --> Total execution time: 1.1211
@@ -2521,7 +2659,11 @@ INFO - 2018-08-27 11:59:44 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:59:44 --> Controller Class Initialized
 INFO - 2018-08-27 11:59:44 --> Model Class Initialized
 INFO - 2018-08-27 11:59:44 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:59:47 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:59:47 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 11:59:49 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 11:59:49 --> Final output sent to browser
@@ -2551,7 +2693,11 @@ INFO - 2018-08-27 11:59:53 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 11:59:53 --> Controller Class Initialized
 INFO - 2018-08-27 11:59:53 --> Model Class Initialized
 INFO - 2018-08-27 11:59:53 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 11:59:54 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 11:59:54 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/humanTask150): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 178
 INFO - 2018-08-27 11:59:54 --> Final output sent to browser
 DEBUG - 2018-08-27 11:59:54 --> Total execution time: 1.2261
@@ -2608,7 +2754,11 @@ INFO - 2018-08-27 12:00:36 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:00:36 --> Controller Class Initialized
 INFO - 2018-08-27 12:00:36 --> Model Class Initialized
 INFO - 2018-08-27 12:00:36 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:00:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:00:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:00:42 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:00:42 --> Final output sent to browser
@@ -2720,7 +2870,11 @@ INFO - 2018-08-27 12:05:08 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:05:08 --> Controller Class Initialized
 INFO - 2018-08-27 12:05:08 --> Model Class Initialized
 INFO - 2018-08-27 12:05:08 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:05:10 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:05:10 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:05:12 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:05:12 --> Final output sent to browser
@@ -2778,7 +2932,11 @@ INFO - 2018-08-27 12:06:11 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:06:11 --> Controller Class Initialized
 INFO - 2018-08-27 12:06:11 --> Model Class Initialized
 INFO - 2018-08-27 12:06:11 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:06:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:06:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:06:17 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:06:17 --> Final output sent to browser
@@ -2836,7 +2994,11 @@ INFO - 2018-08-27 12:07:52 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:07:52 --> Controller Class Initialized
 INFO - 2018-08-27 12:07:52 --> Model Class Initialized
 INFO - 2018-08-27 12:07:52 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:07:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:07:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:07:58 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:07:58 --> Final output sent to browser
@@ -2894,7 +3056,11 @@ INFO - 2018-08-27 12:09:23 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:09:23 --> Controller Class Initialized
 INFO - 2018-08-27 12:09:23 --> Model Class Initialized
 INFO - 2018-08-27 12:09:23 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:09:27 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:09:27 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:09:29 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:09:29 --> Final output sent to browser
@@ -2952,7 +3118,11 @@ INFO - 2018-08-27 12:11:05 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:11:05 --> Controller Class Initialized
 INFO - 2018-08-27 12:11:05 --> Model Class Initialized
 INFO - 2018-08-27 12:11:05 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:11:07 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:11:07 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:11:10 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:11:10 --> Final output sent to browser
@@ -3010,7 +3180,11 @@ INFO - 2018-08-27 12:13:40 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:13:40 --> Controller Class Initialized
 INFO - 2018-08-27 12:13:40 --> Model Class Initialized
 INFO - 2018-08-27 12:13:40 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:13:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:13:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:13:45 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:13:45 --> Final output sent to browser
@@ -3068,7 +3242,11 @@ INFO - 2018-08-27 12:16:52 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:16:52 --> Controller Class Initialized
 INFO - 2018-08-27 12:16:52 --> Model Class Initialized
 INFO - 2018-08-27 12:16:52 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:16:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:16:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:16:58 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:16:58 --> Final output sent to browser
@@ -3126,7 +3304,11 @@ INFO - 2018-08-27 12:30:38 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:30:38 --> Controller Class Initialized
 INFO - 2018-08-27 12:30:38 --> Model Class Initialized
 INFO - 2018-08-27 12:30:38 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:30:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:30:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:30:43 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:30:43 --> Final output sent to browser
@@ -3184,7 +3366,11 @@ INFO - 2018-08-27 12:32:19 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:32:19 --> Controller Class Initialized
 INFO - 2018-08-27 12:32:19 --> Model Class Initialized
 INFO - 2018-08-27 12:32:19 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:32:21 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:32:21 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:32:24 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:32:24 --> Final output sent to browser
@@ -3242,7 +3428,11 @@ INFO - 2018-08-27 12:34:36 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:34:36 --> Controller Class Initialized
 INFO - 2018-08-27 12:34:36 --> Model Class Initialized
 INFO - 2018-08-27 12:34:36 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:34:39 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:34:39 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:34:41 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:34:41 --> Final output sent to browser
@@ -3300,7 +3490,11 @@ INFO - 2018-08-27 12:35:09 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:35:09 --> Controller Class Initialized
 INFO - 2018-08-27 12:35:09 --> Model Class Initialized
 INFO - 2018-08-27 12:35:09 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:35:11 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:35:11 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:35:13 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:35:13 --> Final output sent to browser
@@ -3358,7 +3552,11 @@ INFO - 2018-08-27 12:37:39 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 12:37:39 --> Controller Class Initialized
 INFO - 2018-08-27 12:37:39 --> Model Class Initialized
 INFO - 2018-08-27 12:37:39 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 12:37:41 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 12:37:41 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/150/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 12:37:43 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 12:37:43 --> Final output sent to browser
@@ -3472,7 +3670,11 @@ INFO - 2018-08-27 13:05:51 --> Controller Class Initialized
 INFO - 2018-08-27 13:05:51 --> Model Class Initialized
 INFO - 2018-08-27 13:05:51 --> Model Class Initialized
 INFO - 2018-08-27 13:05:51 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 13:05:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/process/5028188630342903098/instantiation): failed to open stream: HTTP request failed! HTTP/1.1 500 
+=======
+ERROR - 2018-08-27 13:05:52 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/process/5028188630342903098/instantiation): failed to open stream: HTTP request failed! HTTP/1.1 500 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\InicioTrabajos.php 16
 INFO - 2018-08-27 13:05:52 --> Final output sent to browser
 DEBUG - 2018-08-27 13:05:52 --> Total execution time: 1.5741
@@ -3611,7 +3813,11 @@ INFO - 2018-08-27 13:07:23 --> Controller Class Initialized
 INFO - 2018-08-27 13:07:23 --> Model Class Initialized
 INFO - 2018-08-27 13:07:23 --> Model Class Initialized
 INFO - 2018-08-27 13:07:23 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 13:07:25 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/process/5028188630342903098/instantiation): failed to open stream: HTTP request failed! HTTP/1.1 500 
+=======
+ERROR - 2018-08-27 13:07:25 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/process/5028188630342903098/instantiation): failed to open stream: HTTP request failed! HTTP/1.1 500 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\InicioTrabajos.php 16
 INFO - 2018-08-27 13:07:25 --> Final output sent to browser
 DEBUG - 2018-08-27 13:07:25 --> Total execution time: 1.5241
@@ -3929,7 +4135,11 @@ INFO - 2018-08-27 14:05:02 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 14:05:02 --> Controller Class Initialized
 INFO - 2018-08-27 14:05:02 --> Model Class Initialized
 INFO - 2018-08-27 14:05:02 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 14:05:04 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 14:05:04 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 14:05:06 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 14:05:06 --> Final output sent to browser
@@ -4107,7 +4317,11 @@ INFO - 2018-08-27 14:06:40 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 14:06:40 --> Controller Class Initialized
 INFO - 2018-08-27 14:06:40 --> Model Class Initialized
 INFO - 2018-08-27 14:06:40 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 14:06:43 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 14:06:43 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 14:06:47 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 14:06:47 --> Final output sent to browser
@@ -4165,7 +4379,11 @@ INFO - 2018-08-27 14:08:30 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 14:08:30 --> Controller Class Initialized
 INFO - 2018-08-27 14:08:30 --> Model Class Initialized
 INFO - 2018-08-27 14:08:30 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 14:08:32 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 14:08:32 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 14:08:34 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 14:08:34 --> Final output sent to browser
@@ -4223,7 +4441,11 @@ INFO - 2018-08-27 14:10:29 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 14:10:29 --> Controller Class Initialized
 INFO - 2018-08-27 14:10:29 --> Model Class Initialized
 INFO - 2018-08-27 14:10:29 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 14:10:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 14:10:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 14:10:34 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 14:10:34 --> Final output sent to browser
@@ -4281,7 +4503,11 @@ INFO - 2018-08-27 14:12:18 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 14:12:18 --> Controller Class Initialized
 INFO - 2018-08-27 14:12:18 --> Model Class Initialized
 INFO - 2018-08-27 14:12:18 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 14:12:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 14:12:20 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 14:12:23 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 14:12:23 --> Final output sent to browser
@@ -4339,7 +4565,11 @@ INFO - 2018-08-27 14:12:48 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 14:12:48 --> Controller Class Initialized
 INFO - 2018-08-27 14:12:48 --> Model Class Initialized
 INFO - 2018-08-27 14:12:48 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 14:12:50 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 14:12:50 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 216
 INFO - 2018-08-27 14:12:52 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 14:12:52 --> Final output sent to browser
@@ -4397,7 +4627,11 @@ INFO - 2018-08-27 14:30:06 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 14:30:06 --> Controller Class Initialized
 INFO - 2018-08-27 14:30:06 --> Model Class Initialized
 INFO - 2018-08-27 14:30:06 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 14:30:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 14:30:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 218
 INFO - 2018-08-27 14:30:10 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 14:30:10 --> Final output sent to browser
@@ -4482,7 +4716,11 @@ INFO - 2018-08-27 15:00:05 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:00:05 --> Controller Class Initialized
 INFO - 2018-08-27 15:00:05 --> Model Class Initialized
 INFO - 2018-08-27 15:00:05 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:00:07 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:00:07 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 247
 INFO - 2018-08-27 15:00:10 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:00:10 --> Final output sent to browser
@@ -4566,7 +4804,11 @@ INFO - 2018-08-27 15:01:17 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:01:17 --> Controller Class Initialized
 INFO - 2018-08-27 15:01:17 --> Model Class Initialized
 INFO - 2018-08-27 15:01:17 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:01:19 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:01:19 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 247
 ERROR - 2018-08-27 15:01:22 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 626
 INFO - 2018-08-27 15:01:22 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -4651,7 +4893,11 @@ INFO - 2018-08-27 15:02:05 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:02:05 --> Controller Class Initialized
 INFO - 2018-08-27 15:02:05 --> Model Class Initialized
 INFO - 2018-08-27 15:02:05 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:02:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:02:08 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 247
 ERROR - 2018-08-27 15:02:10 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 626
 INFO - 2018-08-27 15:02:10 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -4766,7 +5012,11 @@ INFO - 2018-08-27 15:06:56 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:06:56 --> Controller Class Initialized
 INFO - 2018-08-27 15:06:56 --> Model Class Initialized
 INFO - 2018-08-27 15:06:56 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:06:59 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:06:59 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 249
 ERROR - 2018-08-27 15:07:01 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 626
 INFO - 2018-08-27 15:07:01 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -4852,7 +5102,11 @@ INFO - 2018-08-27 15:08:08 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:08:08 --> Controller Class Initialized
 INFO - 2018-08-27 15:08:08 --> Model Class Initialized
 INFO - 2018-08-27 15:08:08 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:08:10 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:08:10 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 249
 ERROR - 2018-08-27 15:08:13 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 626
 INFO - 2018-08-27 15:08:13 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -5078,7 +5332,11 @@ INFO - 2018-08-27 15:18:32 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:18:32 --> Controller Class Initialized
 INFO - 2018-08-27 15:18:32 --> Model Class Initialized
 INFO - 2018-08-27 15:18:32 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:18:35 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:18:35 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 ERROR - 2018-08-27 15:18:38 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 626
 INFO - 2018-08-27 15:18:38 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -5137,7 +5395,11 @@ INFO - 2018-08-27 15:18:51 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:18:51 --> Controller Class Initialized
 INFO - 2018-08-27 15:18:51 --> Model Class Initialized
 INFO - 2018-08-27 15:18:51 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:18:54 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:18:54 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 ERROR - 2018-08-27 15:18:56 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 626
 INFO - 2018-08-27 15:18:56 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -5223,7 +5485,11 @@ INFO - 2018-08-27 15:20:10 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:20:10 --> Controller Class Initialized
 INFO - 2018-08-27 15:20:10 --> Model Class Initialized
 INFO - 2018-08-27 15:20:10 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:20:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:20:13 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 ERROR - 2018-08-27 15:20:15 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 626
 INFO - 2018-08-27 15:20:15 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -5282,7 +5548,11 @@ INFO - 2018-08-27 15:21:47 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:21:47 --> Controller Class Initialized
 INFO - 2018-08-27 15:21:47 --> Model Class Initialized
 INFO - 2018-08-27 15:21:47 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:21:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:21:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/171/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 ERROR - 2018-08-27 15:21:57 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_.php 626
 INFO - 2018-08-27 15:21:57 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
@@ -5804,7 +6074,11 @@ INFO - 2018-08-27 15:27:52 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:27:52 --> Controller Class Initialized
 INFO - 2018-08-27 15:27:52 --> Model Class Initialized
 INFO - 2018-08-27 15:27:52 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:27:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:27:55 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 INFO - 2018-08-27 15:27:59 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:27:59 --> Final output sent to browser
@@ -5889,7 +6163,11 @@ INFO - 2018-08-27 15:29:03 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:29:03 --> Controller Class Initialized
 INFO - 2018-08-27 15:29:03 --> Model Class Initialized
 INFO - 2018-08-27 15:29:03 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:29:05 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:29:05 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 INFO - 2018-08-27 15:29:10 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:29:10 --> Final output sent to browser
@@ -5947,7 +6225,11 @@ INFO - 2018-08-27 15:30:52 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:30:52 --> Controller Class Initialized
 INFO - 2018-08-27 15:30:52 --> Model Class Initialized
 INFO - 2018-08-27 15:30:52 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:30:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:30:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 INFO - 2018-08-27 15:30:58 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:30:58 --> Final output sent to browser
@@ -6059,7 +6341,11 @@ INFO - 2018-08-27 15:32:13 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:32:13 --> Controller Class Initialized
 INFO - 2018-08-27 15:32:13 --> Model Class Initialized
 INFO - 2018-08-27 15:32:13 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:32:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:32:15 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 INFO - 2018-08-27 15:32:18 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:32:18 --> Final output sent to browser
@@ -6144,7 +6430,11 @@ INFO - 2018-08-27 15:33:52 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:33:52 --> Controller Class Initialized
 INFO - 2018-08-27 15:33:52 --> Model Class Initialized
 INFO - 2018-08-27 15:33:52 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:33:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:33:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 INFO - 2018-08-27 15:33:58 --> Config Class Initialized
 INFO - 2018-08-27 15:33:58 --> Hooks Class Initialized
@@ -6174,7 +6464,11 @@ INFO - 2018-08-27 15:34:00 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:34:00 --> Controller Class Initialized
 INFO - 2018-08-27 15:34:00 --> Model Class Initialized
 INFO - 2018-08-27 15:34:00 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:34:03 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:34:03 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 243
 INFO - 2018-08-27 15:34:09 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:34:09 --> Final output sent to browser
@@ -6286,7 +6580,11 @@ INFO - 2018-08-27 15:44:46 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:44:46 --> Controller Class Initialized
 INFO - 2018-08-27 15:44:46 --> Model Class Initialized
 INFO - 2018-08-27 15:44:46 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:44:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:44:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 15:44:51 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:44:51 --> Final output sent to browser
@@ -6344,7 +6642,11 @@ INFO - 2018-08-27 15:47:20 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:47:20 --> Controller Class Initialized
 INFO - 2018-08-27 15:47:20 --> Model Class Initialized
 INFO - 2018-08-27 15:47:20 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:47:23 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:47:23 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 15:47:25 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:47:25 --> Final output sent to browser
@@ -6429,7 +6731,11 @@ INFO - 2018-08-27 15:51:10 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:51:10 --> Controller Class Initialized
 INFO - 2018-08-27 15:51:10 --> Model Class Initialized
 INFO - 2018-08-27 15:51:10 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:51:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:51:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 15:51:14 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:51:14 --> Final output sent to browser
@@ -6487,7 +6793,11 @@ INFO - 2018-08-27 15:52:41 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:52:41 --> Controller Class Initialized
 INFO - 2018-08-27 15:52:41 --> Model Class Initialized
 INFO - 2018-08-27 15:52:41 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:52:43 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:52:43 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 15:52:45 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:52:45 --> Final output sent to browser
@@ -6545,7 +6855,11 @@ INFO - 2018-08-27 15:53:14 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:53:14 --> Controller Class Initialized
 INFO - 2018-08-27 15:53:14 --> Model Class Initialized
 INFO - 2018-08-27 15:53:14 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:53:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:53:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 15:53:19 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:53:19 --> Final output sent to browser
@@ -6603,7 +6917,11 @@ INFO - 2018-08-27 15:54:19 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:54:19 --> Controller Class Initialized
 INFO - 2018-08-27 15:54:19 --> Model Class Initialized
 INFO - 2018-08-27 15:54:19 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:54:22 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:54:22 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 15:54:25 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:54:25 --> Final output sent to browser
@@ -6929,7 +7247,11 @@ INFO - 2018-08-27 15:56:58 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:56:58 --> Controller Class Initialized
 INFO - 2018-08-27 15:56:58 --> Model Class Initialized
 INFO - 2018-08-27 15:56:58 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:57:00 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:57:00 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 15:57:02 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:57:02 --> Final output sent to browser
@@ -6987,7 +7309,11 @@ INFO - 2018-08-27 15:58:38 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 15:58:38 --> Controller Class Initialized
 INFO - 2018-08-27 15:58:38 --> Model Class Initialized
 INFO - 2018-08-27 15:58:38 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 15:58:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 15:58:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 15:58:43 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 15:58:43 --> Final output sent to browser
@@ -7100,7 +7426,11 @@ INFO - 2018-08-27 16:02:36 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:02:36 --> Controller Class Initialized
 INFO - 2018-08-27 16:02:36 --> Model Class Initialized
 INFO - 2018-08-27 16:02:36 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:02:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:02:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 16:02:40 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:02:40 --> Final output sent to browser
@@ -7158,7 +7488,11 @@ INFO - 2018-08-27 16:03:50 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:03:50 --> Controller Class Initialized
 INFO - 2018-08-27 16:03:50 --> Model Class Initialized
 INFO - 2018-08-27 16:03:50 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:03:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:03:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 16:03:55 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:03:55 --> Final output sent to browser
@@ -7243,7 +7577,11 @@ INFO - 2018-08-27 16:06:54 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:06:54 --> Controller Class Initialized
 INFO - 2018-08-27 16:06:54 --> Model Class Initialized
 INFO - 2018-08-27 16:06:54 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:06:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:06:56 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 16:06:59 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:06:59 --> Final output sent to browser
@@ -7328,7 +7666,11 @@ INFO - 2018-08-27 16:08:03 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:08:03 --> Controller Class Initialized
 INFO - 2018-08-27 16:08:03 --> Model Class Initialized
 INFO - 2018-08-27 16:08:03 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:08:05 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:08:05 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 16:08:08 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:08:08 --> Final output sent to browser
@@ -7413,7 +7755,11 @@ INFO - 2018-08-27 16:12:13 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:12:13 --> Controller Class Initialized
 INFO - 2018-08-27 16:12:13 --> Model Class Initialized
 INFO - 2018-08-27 16:12:13 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:12:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:12:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 16:12:18 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:12:18 --> Final output sent to browser
@@ -7525,7 +7871,11 @@ INFO - 2018-08-27 16:17:37 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:17:37 --> Controller Class Initialized
 INFO - 2018-08-27 16:17:37 --> Model Class Initialized
 INFO - 2018-08-27 16:17:37 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:17:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:17:40 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 16:17:42 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:17:42 --> Final output sent to browser
@@ -7610,7 +7960,11 @@ INFO - 2018-08-27 16:19:16 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:19:16 --> Controller Class Initialized
 INFO - 2018-08-27 16:19:16 --> Model Class Initialized
 INFO - 2018-08-27 16:19:16 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:19:19 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:19:19 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 16:19:22 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:19:22 --> Final output sent to browser
@@ -7722,7 +8076,11 @@ INFO - 2018-08-27 16:20:28 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:20:28 --> Controller Class Initialized
 INFO - 2018-08-27 16:20:28 --> Model Class Initialized
 INFO - 2018-08-27 16:20:28 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:20:30 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:20:30 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 210
 INFO - 2018-08-27 16:20:33 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:20:33 --> Final output sent to browser
@@ -7888,7 +8246,11 @@ INFO - 2018-08-27 16:29:51 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:29:51 --> Controller Class Initialized
 INFO - 2018-08-27 16:29:51 --> Model Class Initialized
 INFO - 2018-08-27 16:29:51 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:29:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:29:53 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 16:29:55 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:29:55 --> Final output sent to browser
@@ -7946,7 +8308,11 @@ INFO - 2018-08-27 16:30:06 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:30:06 --> Controller Class Initialized
 INFO - 2018-08-27 16:30:06 --> Model Class Initialized
 INFO - 2018-08-27 16:30:06 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:30:09 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:30:09 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 16:30:11 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:30:11 --> Final output sent to browser
@@ -8031,7 +8397,11 @@ INFO - 2018-08-27 16:30:29 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:30:29 --> Controller Class Initialized
 INFO - 2018-08-27 16:30:29 --> Model Class Initialized
 INFO - 2018-08-27 16:30:29 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:30:32 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:30:32 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 16:30:34 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:30:34 --> Final output sent to browser
@@ -8089,7 +8459,11 @@ INFO - 2018-08-27 16:30:46 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:30:46 --> Controller Class Initialized
 INFO - 2018-08-27 16:30:46 --> Model Class Initialized
 INFO - 2018-08-27 16:30:46 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:30:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:30:49 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/176/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 16:30:51 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:30:51 --> Final output sent to browser
@@ -8663,7 +9037,11 @@ INFO - 2018-08-27 16:37:35 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:37:35 --> Controller Class Initialized
 INFO - 2018-08-27 16:37:35 --> Model Class Initialized
 INFO - 2018-08-27 16:37:35 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:37:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/181/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:37:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/181/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 16:37:41 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:37:41 --> Final output sent to browser
@@ -8721,7 +9099,11 @@ INFO - 2018-08-27 16:42:42 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:42:42 --> Controller Class Initialized
 INFO - 2018-08-27 16:42:42 --> Model Class Initialized
 INFO - 2018-08-27 16:42:42 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:42:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/181/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:42:45 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/181/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 16:42:48 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:42:48 --> Final output sent to browser
@@ -8833,7 +9215,11 @@ INFO - 2018-08-27 16:46:14 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 16:46:14 --> Controller Class Initialized
 INFO - 2018-08-27 16:46:14 --> Model Class Initialized
 INFO - 2018-08-27 16:46:14 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 16:46:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/166/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 16:46:16 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/166/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 16:46:19 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 16:46:19 --> Final output sent to browser
@@ -9180,7 +9566,11 @@ INFO - 2018-08-27 17:12:56 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 17:12:56 --> Controller Class Initialized
 INFO - 2018-08-27 17:12:56 --> Model Class Initialized
 INFO - 2018-08-27 17:12:56 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 17:12:58 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/156/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 17:12:58 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/156/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 17:13:00 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_.php
 INFO - 2018-08-27 17:13:00 --> Final output sent to browser
@@ -9590,7 +9980,11 @@ INFO - 2018-08-27 17:21:46 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 17:21:46 --> Controller Class Initialized
 INFO - 2018-08-27 17:21:46 --> Model Class Initialized
 INFO - 2018-08-27 17:21:46 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 17:21:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/187/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 17:21:48 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/187/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 17:21:52 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 17:21:52 --> Final output sent to browser
@@ -9648,7 +10042,11 @@ INFO - 2018-08-27 17:22:04 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 17:22:04 --> Controller Class Initialized
 INFO - 2018-08-27 17:22:04 --> Model Class Initialized
 INFO - 2018-08-27 17:22:04 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 17:22:06 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 17:22:06 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 17:22:09 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 17:22:09 --> Final output sent to browser
@@ -9706,7 +10104,11 @@ INFO - 2018-08-27 17:22:23 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 17:22:23 --> Controller Class Initialized
 INFO - 2018-08-27 17:22:23 --> Model Class Initialized
 INFO - 2018-08-27 17:22:23 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 17:22:25 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/179/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 17:22:25 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/179/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 17:22:28 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 17:22:28 --> Final output sent to browser
@@ -9764,7 +10166,11 @@ INFO - 2018-08-27 17:22:39 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 17:22:39 --> Controller Class Initialized
 INFO - 2018-08-27 17:22:39 --> Model Class Initialized
 INFO - 2018-08-27 17:22:39 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 17:22:41 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/184/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 17:22:41 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/184/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 17:22:48 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 17:22:48 --> Final output sent to browser
@@ -9822,7 +10228,11 @@ INFO - 2018-08-27 17:58:36 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 17:58:36 --> Controller Class Initialized
 INFO - 2018-08-27 17:58:36 --> Model Class Initialized
 INFO - 2018-08-27 17:58:36 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 17:58:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 17:58:38 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 17:58:41 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 17:58:41 --> Final output sent to browser
@@ -9880,7 +10290,11 @@ INFO - 2018-08-27 17:59:32 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 17:59:32 --> Controller Class Initialized
 INFO - 2018-08-27 17:59:32 --> Model Class Initialized
 INFO - 2018-08-27 17:59:32 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 17:59:35 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 17:59:35 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 17:59:37 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 17:59:37 --> Final output sent to browser
@@ -9938,7 +10352,11 @@ INFO - 2018-08-27 18:02:39 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:02:39 --> Controller Class Initialized
 INFO - 2018-08-27 18:02:39 --> Model Class Initialized
 INFO - 2018-08-27 18:02:39 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:02:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:02:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 18:02:45 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 18:02:45 --> Final output sent to browser
@@ -9996,7 +10414,11 @@ INFO - 2018-08-27 18:03:29 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:03:29 --> Controller Class Initialized
 INFO - 2018-08-27 18:03:29 --> Model Class Initialized
 INFO - 2018-08-27 18:03:29 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:03:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:03:31 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 18:03:33 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 18:03:33 --> Final output sent to browser
@@ -10054,7 +10476,11 @@ INFO - 2018-08-27 18:07:33 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:07:33 --> Controller Class Initialized
 INFO - 2018-08-27 18:07:33 --> Model Class Initialized
 INFO - 2018-08-27 18:07:33 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:07:35 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:07:35 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 18:07:37 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 18:07:37 --> Final output sent to browser
@@ -10112,7 +10538,11 @@ INFO - 2018-08-27 18:08:15 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:08:15 --> Controller Class Initialized
 INFO - 2018-08-27 18:08:15 --> Model Class Initialized
 INFO - 2018-08-27 18:08:15 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:08:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:08:17 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 18:08:19 --> File loaded: D:\sitios\MTBA-desa-procprod\application\views\tareas/view_1.php
 INFO - 2018-08-27 18:08:19 --> Final output sent to browser
@@ -10197,7 +10627,11 @@ INFO - 2018-08-27 18:10:51 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:10:51 --> Controller Class Initialized
 INFO - 2018-08-27 18:10:51 --> Model Class Initialized
 INFO - 2018-08-27 18:10:51 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:10:54 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:10:54 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 ERROR - 2018-08-27 18:10:59 --> Severity: Parsing Error --> syntax error, unexpected '>' D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 170
 INFO - 2018-08-27 18:11:41 --> Config Class Initialized
@@ -10253,7 +10687,11 @@ INFO - 2018-08-27 18:11:44 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:11:44 --> Controller Class Initialized
 INFO - 2018-08-27 18:11:44 --> Model Class Initialized
 INFO - 2018-08-27 18:11:44 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:11:47 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:11:47 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 ERROR - 2018-08-27 18:11:50 --> Severity: Parsing Error --> syntax error, unexpected '>' D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 170
 INFO - 2018-08-27 18:12:09 --> Config Class Initialized
@@ -10281,7 +10719,11 @@ INFO - 2018-08-27 18:12:09 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:12:09 --> Controller Class Initialized
 INFO - 2018-08-27 18:12:09 --> Model Class Initialized
 INFO - 2018-08-27 18:12:09 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:12:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/179/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:12:12 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/179/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 ERROR - 2018-08-27 18:12:14 --> Severity: Parsing Error --> syntax error, unexpected '>' D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 170
 INFO - 2018-08-27 18:15:22 --> Config Class Initialized
@@ -10319,7 +10761,11 @@ INFO - 2018-08-27 18:15:24 --> Output Class Initialized
 INFO - 2018-08-27 18:15:24 --> Security Class Initialized
 DEBUG - 2018-08-27 18:15:24 --> Global POST, GET and COOKIE data sanitized
 INFO - 2018-08-27 18:15:24 --> Input Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:15:24 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:15:24 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 INFO - 2018-08-27 18:15:24 --> Language Class Initialized
 INFO - 2018-08-27 18:15:24 --> Loader Class Initialized
@@ -10369,7 +10815,11 @@ INFO - 2018-08-27 18:15:30 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:15:30 --> Controller Class Initialized
 INFO - 2018-08-27 18:15:30 --> Model Class Initialized
 INFO - 2018-08-27 18:15:30 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:15:32 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:15:32 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/173/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 ERROR - 2018-08-27 18:15:36 --> Severity: Notice --> Undefined variable: estadoTarea D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 36
 ERROR - 2018-08-27 18:15:36 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 720
@@ -10484,7 +10934,11 @@ INFO - 2018-08-27 18:23:49 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:23:49 --> Controller Class Initialized
 INFO - 2018-08-27 18:23:49 --> Model Class Initialized
 INFO - 2018-08-27 18:23:49 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:23:51 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/179/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:23:51 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/179/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 194
 ERROR - 2018-08-27 18:23:54 --> Severity: Notice --> Undefined variable: estadoTarea D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 36
 ERROR - 2018-08-27 18:23:54 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 722
@@ -10598,7 +11052,11 @@ INFO - 2018-08-27 18:27:39 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:27:39 --> Controller Class Initialized
 INFO - 2018-08-27 18:27:39 --> Model Class Initialized
 INFO - 2018-08-27 18:27:39 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:27:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/184/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:27:42 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/184/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 193
 ERROR - 2018-08-27 18:27:44 --> Severity: Notice --> Undefined variable: estadoTarea D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 36
 ERROR - 2018-08-27 18:27:44 --> Severity: Notice --> Undefined variable: form D:\sitios\MTBA-desa-procprod\application\views\tareas\view_1.php 722
@@ -10980,7 +11438,11 @@ INFO - 2018-08-27 18:32:09 --> Session: Class initialized using 'files' driver.
 INFO - 2018-08-27 18:32:09 --> Controller Class Initialized
 INFO - 2018-08-27 18:32:09 --> Model Class Initialized
 INFO - 2018-08-27 18:32:09 --> Model Class Initialized
+<<<<<<< HEAD
 ERROR - 2018-08-27 18:32:11 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/187/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+=======
+ERROR - 2018-08-27 18:32:11 --> Severity: Warning --> file_get_contents(http://35.239.41.196:8080/bonita/API/bpm/activityVariable/187/trazajobsTaskId): failed to open stream: HTTP request failed! HTTP/1.1 403 
+>>>>>>> fleiva
  D:\sitios\MTBA-desa-procprod\application\models\Tareas.php 193
 ERROR - 2018-08-27 18:32:13 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 26
 ERROR - 2018-08-27 18:32:13 --> Severity: Notice --> Undefined variable: result D:\sitios\MTBA-desa-procprod\application\helpers\cabecera_helper.php 40
