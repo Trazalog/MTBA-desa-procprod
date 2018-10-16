@@ -224,7 +224,7 @@
                             <label>Observaciones:</label>
                             <textarea id="observacion" class="form-control"></textarea>
                         </div>
-                        <button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()" disabled>Inicio Proceso</button>
+                        <button id="lanzarProceso" type="submit" style="float: right;" class="btn btn-success" disabled>Inicio Proceso</button>
                     </form>
                 </div>
                 <!-- /.box-body -->
@@ -240,13 +240,6 @@
 <!-- /.content -->
 
 <script> 
-// function e(q,br) { 
-// document.body.appendChild( document.createTextNode(q) ); 
-// if(!br) document.body.appendChild( document.createElement("BR") ); 
-// } 
-
-// Creo una fecha 
-//var hoy = new Date(); 
 
 // Nuestro método para sumar n dias (que no sean ni Sábado ni Domingo) 
 Date.prototype.sumarLaborables = function(n) { 
@@ -292,11 +285,7 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
 </script> 
 
 <script>
-    $("form").submit(function(event) {
-        event.preventDefault();
-    });
-
-    
+ 
     $('#fecha_entrega').datepicker({
         autoclose: true
     });
@@ -328,7 +317,6 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
                 }
             },
             optionsRadios: {
-               // selector: '.obligatorio',
                 validators: {
                     notEmpty: {
                         message: 'Alguna de las opciones debe estar seleccionada'
@@ -336,7 +324,13 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
                 }
             }
         }
+    }) .on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+            guardarPedido();
+            
     });
+
 
     var id_cliente_seleccionado = '';
     var listaClientes;
@@ -473,12 +467,18 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
              $('#fecha_entrega').val(("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
                 d.getFullYear());
             $('#fecha_entrega').prop('disabled', true);
+           //$('#form').bootstrapValidator('revalidateField','#fecha_entrega');
+           $('#form').bootstrapValidator('updateStatus', field, 'NOT_VALIDATED')
+       .bootstrapValidator('validateField', field);
              
          }
      }
      
     
     });
+
+
+
 
     function ValidarCampos() {
 
@@ -564,8 +564,6 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
         }
 
     }
-
-
 
     function rellenarModal() {
         var id = $('#clientes').prop('selectedIndex') - 1;
