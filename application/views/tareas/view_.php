@@ -621,6 +621,7 @@
 		// for(var pair of formData.entries()) {
 		// console.log(pair[0]+ ', '+ pair[1]); 
 		// }
+	
 
 		/** subidad y resubida de imagenes **/
 		// Tomo los inputs auxiliares cargados

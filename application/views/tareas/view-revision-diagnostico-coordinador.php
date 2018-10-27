@@ -690,6 +690,8 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
 
   // trae valores validos para llenar form asoc.
   function getformulario(event) {
+    console.log("Obteniendo Formulario...");
+    
      form_actual_data = $('#formulario');
      form_actual_id = 'genericForm';
     // llena form una sola vez al primer click
@@ -698,6 +700,36 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
       // toma id de form asociado a listarea en TJS
       var idForm = $('#idform').val();
       console.log('id de form: '+idForm);
+
+      // guarda el id form asoc a tarea std en modal para guardar
+      $('#idformulario').val(idForm);
+
+      // trae valores validos para llenar componentes de form asoc.
+      $.ajax({
+        type: 'POST',
+        data: { idForm: idForm},
+        url: 'index.php/Tarea/getValValido',
+        success: function(data){
+          console.log('valores de componentes: ');
+          console.table(data);
+          llenaComp(data);
+        },
+        error: function(result){
+          console.log(result);
+        },
+        dataType: 'json'
+      });
+    }
+  }
+
+  function getformularioDiag() {
+    console.log("Obteniendo Formulario Diagnostico...");
+  
+    // llena form una sola vez al primer click
+    if (click == 0) {
+      var estadoTarea = $('#estadoTarea').val();
+      // toma id de form asociado a listarea en TJS
+      var idForm = $(form_actual_data).attr("data-formid")
 
       // guarda el id form asoc a tarea std en modal para guardar
       $('#idformulario').val(idForm);
@@ -730,7 +762,7 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
     $.each(data,function( index ) {
       //$( "#" + i ).append(  );
       var idSelect = data[index]['idValor'];
-      console.log('idvalor: '+ data[index]['idValor'] + '-- valor: ' + data[index]['VALOR']);
+     // console.log('idvalor: '+ data[index]['idValor'] + '-- valor: ' + data[index]['VALOR']);
       var i        = 0;
       var valor    = "";
       var valorSig = "";
@@ -845,6 +877,7 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
         
         $("#modalBodyRevDiagCoord").html(result.html);
         IniciarValidador(form_actual_id);
+        getformularioDiag();
         $('#modalRevDiagCoord').modal('show');
         WaitingClose();
       },
