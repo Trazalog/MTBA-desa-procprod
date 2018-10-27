@@ -340,6 +340,8 @@ class Tareas extends CI_Model
 
 		try {
 			$idTJ = @file_get_contents(BONITA_URL.$urlResource.$idBonita.$idListEnBPM , false, $param);
+			echo '<script>alert(\''.json_encode($http_response_header).'\');</script>';
+			echo '<script>alert(\''.$idTJ.'\');</script>';
 			$idTJobs = json_decode($idTJ,true); //sin true no se puede acceder
 			$id_listarea = $idTJobs["value"];
 		} catch (Exception $e) {
@@ -909,6 +911,11 @@ class Tareas extends CI_Model
 		$this->db->where('frm_formularios_completados.OBLIGATORIO',true);
 		$this->db->where('frm_formularios_completados.VALIDADO',false);
 		return $this->db->get()->result_array()[0];
+	}
+
+	function getDatosTarea($nombre){
+		$this->db->where('descripcion',$nombre);
+		return $this->db->get('tareas')->result_array()[0];
 	}
 
 }

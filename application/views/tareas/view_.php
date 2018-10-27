@@ -71,6 +71,7 @@
 																<input type="text" class="hidden" id="idform" value="<?php echo $idForm ?>">
 																<!-- id de task en bonita -->
 																<input type="text" class="hidden" id="idTarBonita" value="<?php echo $idTarBonita ?>">
+																<input type="text" class="hidden" id="esTareaStd" value="<?php echo $infoTarea['visible'] ?>">
 															</div>
 														</div>
 
@@ -467,27 +468,29 @@
 		if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
 		var idTarBonita = $('#idTarBonita').val();
 		var id_listarea = $('#id_listarea').val();
-		//alert(idTarBonita);
-		$.ajax({
-			type: 'POST',
-			data: {
-				'idTarBonita': idTarBonita,
-				'id_listarea': id_listarea
-			},
-			url: 'index.php/Tarea/terminarTareaStandarenBPM',
-			success: function (data) {
+		var esTareaStd = $('#esTareaStd').val();
+		alert(idTarBonita+'_'+id_listarea+'_'+esTareaStd);
+		// $.ajax({
+		// 	type: 'POST',
+		// 	data: {
+		// 		'idTarBonita': idTarBonita,
+		// 		'id_listarea': id_listarea,
+		// 		'esTareaStd': esTareaStd
+		// 	},
+		// 	url: 'index.php/Tarea/terminarTareaStandarenBPM',
+		// 	success: function (data) {
 
-				// toma a tarea exitosamente
-				if (data['reponse_code'] == 204) {
-					$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
-				}
-			},
-			error: function (data) {
-				//alert("Noo");
-				console.log(data);
-			},
-			dataType: 'json'
-		});
+		// 		// toma a tarea exitosamente
+		// 		if (data['reponse_code'] == 204) {
+		// 			$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
+		// 		}
+		// 	},
+		// 	error: function (data) {
+		// 		//alert("Noo");
+		// 		console.log(data);
+		// 	},
+		// 	dataType: 'json'
+		// });
 	}
 
 	// Boton Hecho generico

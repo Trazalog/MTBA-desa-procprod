@@ -178,8 +178,8 @@ class Tarea extends CI_Controller {
 	public function getIdTareaTraJobs($idTarBonita){
 
 		try {
-			$metodo = "POST";
-			$parametros = $this->Bonitas->conexiones();
+			$metodo = "GET";
+			$parametros = $this->Bonitas->LoggerAdmin();
 			$param = stream_context_create($parametros);
 			$idTJobs = $this->Tareas->getIdTareaTraJobs($idTarBonita,$param);
 		} catch (Exception $e) {
@@ -363,8 +363,17 @@ class Tarea extends CI_Controller {
 			//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
 			$data['TareaBPM'] = json_decode($this->getDatosBPM($idTarBonita),true);
 
+			//Verificar si es tarea Std
+			$data['infoTarea'] = $this->Tareas->getDatosTarea($data['TareaBPM']["displayName"]);
+
+			$id_listarea = 0;
+
+			if($data['infoTarea']['visible']==1){// Pregunta si es Una TareasSTD
+				$id_listarea = $this->getIdTareaTraJobs($idTarBonita); echo '<script>alert("'.$id_listarea.'");</script>';
+			}
+
 			// Trae id_listarea desde BPM sino '0' si la tarea es solo de BPM(no form asociado)
-			$id_listarea = $this->getIdTareaTraJobs($idTarBonita);
+			
 
 			$idOT = $this->Tareas->getIdOtPorIdBPM($idTarBonita);
 
@@ -456,7 +465,7 @@ class Tarea extends CI_Controller {
 			//FLEIVA COMENTARIOS
 		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
 			$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
-			$data['TareaBPM']['displayName'] = 'Programar Armado';
+		//	$data['TareaBPM']['displayName'] = 'Programar Armado';
 			switch ($data['TareaBPM']['displayName']) {
 
 				case 'Evaluación del estado de cuenta del cliente':
