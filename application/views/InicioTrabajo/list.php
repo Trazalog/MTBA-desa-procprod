@@ -185,7 +185,7 @@
 
                             <div class="col-xs-12 col-sm-4">
                                 <div class="form-group">
-                                    <label style="margin-top: 7px;">Familia de Productos
+                                    <label >Familia de Productos
                                         <strong style="color: #dd4b39">*</strong>: </label>
                                     <select id="familia_productos" class="form-control">
                                         <option value="0" selected="selected">Seleccionar...</option>
@@ -197,35 +197,34 @@
                             </div>
 
                             <div class="col-xs-12 col-sm-4">
-                                <div class="form-group" style="margin-left:50px;">
-                                    <label style="margin-top: 7px;">SubFamilia
+                                <div class="form-group">
+                                    <label >SubFamilia
                                         <strong style="color: #dd4b39">*</strong>: </label>
                                     <select id="subfamilia" class="form-control">
                                         <option selected="selected">Seleccionar...</option>
                                     </select>
                                 </div>
                             </div>
+                            <!-- Fecha Entrega -->
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group">
+                                <label >Fecha Entrega Informe <strong style="color: #dd4b39">*</strong>: </label>
+                                <input type="text" id="fecha_entrega" name="fechaEntrega" class="form-control fecha" />
+
+                                </div>
+                            </div>
 
                         </div>
                         <!--FIN ROW   -->
                         <br>
-                        <div class="row">
-                        <div class="form-group">
-                            <div class="col-xs-12 col-sm-5">
-                                <label style="margin-top: 7px;">Fecha Compromiso Entrega Informe <strong style="color: #dd4b39">*</strong>: </label>
-                            </div>
-                            <div class="col-xs-12 col-sm-5">
-                                <input type="text" id="fecha_entrega" class="form-control obligatorio" />
-                            </div>
-                        </div>
-                        </div>
-                        <br>
+
                         <div class="form-group">
                             <label>Observaciones:</label>
                             <textarea id="observacion" class="form-control"></textarea>
                         </div>
-                        <button id="lanzarProceso" type="submit" style="float: right;" class="btn btn-success" disabled>Inicio Proceso</button>
                     </form>
+                    <button id="lanzarProceso" style="float: right;" class="btn btn-success" >Inicio Proceso</button>
+
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -285,9 +284,26 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
 </script> 
 
 <script>
+    $('#lanzarProceso').click(function(){
+        $('#form').data('bootstrapValidator').validate();
+		if(!$('#form').data('bootstrapValidator').isValid()){
+			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
+		}	
+    });
  
+    // $('#fecha_entrega').datepicker({
+    //     autoclose: true
+    // });
+    function ValidarCampo(e,reset){
+       $('#form').data('bootstrapValidator').resetField(e,reset);
+	   $('#form').data('bootstrapValidator').validateField(e);
+    }
+
     $('#fecha_entrega').datepicker({
-        autoclose: true
+		autoclose: true
+	}).on('change', function(e) {
+	   console.log('Validando Campo...'+$(this).attr('name'));
+        ValidarCampo($(this),false);
     });
 
     var sourceArray = <?php echo json_encode($listaIndices); ?>
@@ -296,6 +312,7 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
         source: sourceArray,
         select: function(event, ui) {
             $('#motor').val(ui.item.data);
+            ValidarCampo($('#motor'),false);
         }
     });
 
@@ -307,6 +324,18 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
+            fecha:{
+				selector: '.fecha',
+				validators:{
+					date: {
+                        format: 'DD-MM-YYYY',
+                        message: '(*) Formato de Fecha Inválido'
+                    },
+                    notEmpty: {
+                        message: 'Los campos obligatorios(*) deben estar completos'
+                    }
+				}
+			},
             obligatorio: {
                 message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
                 selector: '.obligatorio',
@@ -422,11 +451,11 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
     }
 
     $('#familia_productos').change(function() {
-
+        
         var opc = this.value;
         var subfamilia = $('#subfamilia');
         subfamilia.html('');
-        $('#fecha_entrega').val('');
+       // $('#fecha_entrega').val('');
         $('#fecha_entrega').prop('disabled', false);
         subfamilia.append("<option selected='selected'>Seleccionar...</option>");
         switch (opc) {
@@ -450,6 +479,7 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
 
                 break;
         }
+        ValidarCampo($('#fecha_entrega'),true);
 
     });
 
@@ -466,15 +496,10 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
              var d = new Date().sumarLaborables(Math.round(tiempoStandars[i]['dias_habiles']));
              $('#fecha_entrega').val(("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
                 d.getFullYear());
-            $('#fecha_entrega').prop('disabled', true);
-           //$('#form').bootstrapValidator('revalidateField','#fecha_entrega');
-           $('#form').bootstrapValidator('updateStatus', field, 'NOT_VALIDATED')
-       .bootstrapValidator('validateField', field);
+            ValidarCampo($('#fecha_entrega'),false);
              
          }
      }
-     
-    
     });
 
 

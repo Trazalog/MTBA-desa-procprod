@@ -113,22 +113,35 @@ class Notapedidos extends CI_Model
         }
     }
 
+  function existe_pedido($orden){ //Verifica si existe una "Nota de Pedido" para esa "Orden de Trabajo"
+    $this->db->select('id_notaPedido as id');
+    $this->db->where('id_ordTrabajo',$orden);
+    $result = $this->db->get('tbl_notapedido');
+    if($result->num_rows()>0){
+      return $result->result_array()[0]['id'];
+    }else{
+      return 0;
+    }
+  }
+
 
   //guarda nota de pedidos
   function setNotaPedidos($data)
   {
     $orden = (int)$data['orden_Id'][0];
-    $fecha = date('Y-m-d');
-
-    $notaP = array(
-      'fecha'         => $fecha,
-      'id_ordTrabajo' => $orden
-      );
-
-    if ( !$this->db->insert('tbl_notapedido', $notaP) ) {
-      return false;
-    }
-    $idNota = $this->db->insert_id();
+    $idNota = $this->existe_pedido($orden);
+    if($idNota == 0){ //No existe "Nota Pedido" => Inserta 
+      $fecha = date('Y-m-d');
+      $notaP = array(
+        'fecha'         => $fecha,
+        'id_ordTrabajo' => $orden
+        );
+  
+      if ( !$this->db->insert('tbl_notapedido', $notaP) ) {
+        return false;
+      }
+      $idNota = $this->db->insert_id();
+    } 
 
     for($i=0; $i<count($data['insum_Id']); $i++)
     {

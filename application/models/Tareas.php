@@ -435,12 +435,15 @@ class Tareas extends CI_Model
 		$query = $this->db->get();
 
 		if ($query->num_rows()!=0){
-	 		return $query->row('id_orden');
-	 	}else{
-	 		return 0;
-	 	}
+			return $query->row('id_orden');
+		}else{
+			return 0;
+		}
 	}
 
+	function Programar_Tareas_Form($petrid,$ordenid){
+		$this->db->query('programar_tareas_form(2500,'.$petrid.','.$ordenid.')');
+	}
 
 
 //////////////  form dinamico  //////////////////
@@ -593,7 +596,8 @@ class Tareas extends CI_Model
 					'' AS LONGITUD,
 					'' AS PISTA,
 					foco.VALO_ID,
-					foco.OBLIGATORIO as obligatorio
+					foco.OBLIGATORIO as obligatorio,
+					foco.ORDEN
 					FROM
 					frm_formularios_completados foco
 					where foco.FORM_ID = $idFormAsoc

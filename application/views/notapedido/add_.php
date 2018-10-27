@@ -99,15 +99,16 @@
 
 <style>
   input.celda{border: none; width: 90%;}
+  .ui-autocomplete {
+    z-index: 100000;
+  }
 </style>
 
 
 
 <script>
-//console.log( '<?php echo $descripcion ?>' );
 desc = decodeURI( '<?php echo $descripcion ?>' );
 $("#detaorden").val( desc );
-
 
 //Trae Articulos y autocompleta campo
 $("#artOrdInsum").autocomplete({
