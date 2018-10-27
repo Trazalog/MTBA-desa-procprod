@@ -547,8 +547,10 @@
   //     alert('Campo Detalle vacio');
   //   }
   // });
-
+  var validado=($('#idform').val()==0);   
   function terminarTarea(){
+    if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+
     var idTarBonita = $('#idTarBonita').val();
     alert(idTarBonita);
     $.ajax({
@@ -1066,7 +1068,8 @@
       dataType: 'json',
       type: 'POST',
       url: 'index.php/Notapedido/addEditNotaPedido/<?php echo $permission; ?>',
-      success: function(result){
+      success: function(result){        if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+
         WaitingClose();
         $("#modaltitle").html("Agregar");
         $("#modalBodyRepuestos").html(result.html);

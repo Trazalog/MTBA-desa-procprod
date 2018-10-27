@@ -480,7 +480,6 @@ class Tarea extends CI_Controller {
 					// $this->load->view('tareas/view_4', $data);
 					break;
 				case 'Evalua y envia presupuesto al cliente':
-					//$this->load->view('tareas/view_6', $data);
 					$this->load->model('AceptacionTrabajos');
 					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
 					$this->load->view('tareas/view_4', $data);

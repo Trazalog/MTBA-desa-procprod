@@ -260,6 +260,30 @@
   </div>
 </div>
 
+<script> //Validacion de Formulario
+	function ValidarObligatorios(validarOn){
+		console.log("Validando Campos Obligatorios...");
+		var form_id = $('#idform').val();
+		var petr_id = $('#idPedTrabajo').val();
+		$.ajax({
+			type: 'POST',
+			data: {'form_id':form_id,'petr_id':petr_id},
+			url: 'index.php/Tarea/ValidarObligatorios',
+			success: function (result) {
+				validado=(result==1);
+				if(!validarOn) return;
+				if(validado)alert("Formularios Correctamente Validado");
+				else {
+					alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");
+				}
+			},
+			error: function(result){
+				alert("Fallo la Validación del formularios en el Servidor. Por favor vuelva a intentar.");
+			}
+		});
+	}
+</script>
+
 <script>
 //genero el preinforme 
 //(paragenerarlo automáticamente comentar lineas 15, 46 y 65)
@@ -378,8 +402,9 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
             // });               
 
 
-
+    var validado=($('#idform').val()==0);           
     function terminarTarea(){
+        if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
         var idTarBonita = $('#idTarBonita').val();
         //alert(idTarBonita);
         $.ajax({
