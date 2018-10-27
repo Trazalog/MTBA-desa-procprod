@@ -366,7 +366,7 @@ class Tarea extends CI_Controller {
 			$id_listarea = 0;
 
 			if($data['infoTarea']['visible']==1){// Pregunta si es Una TareasSTD
-				$id_listarea = $this->getIdTareaTraJobs($idTarBonita); echo '<script>alert("'.$id_listarea.'");</script>';
+				$id_listarea = $this->getIdTareaTraJobs($idTarBonita); 
 			}
 
 			// Trae id_listarea desde BPM sino '0' si la tarea es solo de BPM(no form asociado)
@@ -462,7 +462,7 @@ class Tarea extends CI_Controller {
 			//FLEIVA COMENTARIOS
 		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
 			$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
-		//	$data['TareaBPM']['displayName'] = 'Programar Armado';
+			//$data['TareaBPM']['displayName'] = 'Evalua y envia presupuesto al cliente';
 			switch ($data['TareaBPM']['displayName']) {
 
 				case 'Evaluación del estado de cuenta del cliente':
@@ -539,26 +539,24 @@ class Tarea extends CI_Controller {
 		// trae id de form asociado a tarea std (las tareas de BPM se cargaran para asociar a form).
 		$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);
 		$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd); // si es 0 no hay form asociado
-		//dump($idTareaStd, 'tarea std');
-		//dump($idForm, 'id form');
-		return json_encode($idTareaStd);
 
 
 		// // confirma si hay form guardado de esa listarea
 		// //$this->Tareas->getEstadoForm($idTareaRevisionB);
 
 		// // si hay formulario
-		// if($idForm != 0){
-		// 	$data['idForm']	= $idForm;
-		// 	// carga datos del formulario para modal
-		// 	$data['form'] = $this->Tareas->get_form($idTareaRevisionB,$idForm);
-		// 	//dump($data);
-		// }else{
-		// 	$data['idForm'] = 0;
-		// }
-		// //dump_exit($data);
-		// $response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
-		// echo json_encode($response);
+		if($idForm != 0){
+			$data['idForm']	= $idForm;
+			$data['id_listarea'] = $id_listarea;
+			// carga datos del formulario para modal
+			$data['form'] = $this->Tareas->get_form($idTareaRevisionB,$idForm);
+			//dump($data);
+		}else{
+			$data['idForm'] = 0;
+		}
+		//dump_exit($data);
+		$response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
+		echo json_encode($response);
 	}
 
 

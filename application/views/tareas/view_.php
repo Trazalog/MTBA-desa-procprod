@@ -469,28 +469,28 @@
 		var idTarBonita = $('#idTarBonita').val();
 		var id_listarea = $('#id_listarea').val();
 		var esTareaStd = $('#esTareaStd').val();
-		alert(idTarBonita+'_'+id_listarea+'_'+esTareaStd);
-		// $.ajax({
-		// 	type: 'POST',
-		// 	data: {
-		// 		'idTarBonita': idTarBonita,
-		// 		'id_listarea': id_listarea,
-		// 		'esTareaStd': esTareaStd
-		// 	},
-		// 	url: 'index.php/Tarea/terminarTareaStandarenBPM',
-		// 	success: function (data) {
+		//alert(idTarBonita+'_'+id_listarea+'_'+esTareaStd);
+		$.ajax({
+			type: 'POST',
+			data: {
+				'idTarBonita': idTarBonita,
+				'id_listarea': id_listarea,
+				'esTareaStd': esTareaStd
+			},
+			url: 'index.php/Tarea/terminarTareaStandarenBPM',
+			success: function (data) {
 
-		// 		// toma a tarea exitosamente
-		// 		if (data['reponse_code'] == 204) {
-		// 			$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
-		// 		}
-		// 	},
-		// 	error: function (data) {
-		// 		//alert("Noo");
-		// 		console.log(data);
-		// 	},
-		// 	dataType: 'json'
-		// });
+				// toma a tarea exitosamente
+				if (data['reponse_code'] == 204) {
+					$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
+				}
+			},
+			error: function (data) {
+				//alert("Noo");
+				console.log(data);
+			},
+			dataType: 'json'
+		});
 	}
 
 	// Boton Hecho generico
@@ -616,6 +616,11 @@
 		var imgs = $('input.archivo');
 
 		var formData = new FormData($("#genericForm")[0]);
+
+		// Display the key/value pairs
+		// for(var pair of formData.entries()) {
+		// console.log(pair[0]+ ', '+ pair[1]); 
+		// }
 
 		/** subidad y resubida de imagenes **/
 		// Tomo los inputs auxiliares cargados

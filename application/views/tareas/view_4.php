@@ -483,6 +483,50 @@
 			}
 		});
 	}
+
+    $('#formSi').bootstrapValidator({ //VALIDADOR
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            fecha:{
+				selector: '.fecha',
+				validators:{
+					date: {
+                        format: 'DD-MM-YYYY',
+                        message: '(*) Formato de Fecha Inválido'
+                    },
+                    notEmpty: {
+                        message: 'Los campos obligatorios(*) deben estar completos'
+                    }
+				}
+			},
+            obligatorio: {
+                message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+                selector: '.obligatorio',
+                validators: {
+                    notEmpty: {
+                        message: 'Los campos obligatorios(*) deben estar completos'
+                    }
+                }
+            },
+            optionsRadios: {
+                validators: {
+                    notEmpty: {
+                        message: 'Alguna de las opciones debe estar seleccionada'
+                    }
+                }
+            }
+        }
+    }) .on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+            guardarPedido();
+            
+    });
 </script>    
 
 <script>  

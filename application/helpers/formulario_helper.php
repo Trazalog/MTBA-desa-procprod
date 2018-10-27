@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 if (!function_exists('cargarFormulario')) {
-  function cargarFormulario ($form){
+  function cargarFormulario ($form,$id=''){
 
     echo '<div class="row">
             <div class="col-xs-12">
@@ -14,11 +14,11 @@ if (!function_exists('cargarFormulario')) {
 
 
     echo '<div class="modal-footer">
-              <button class="btn btn-primary" onclick="ValidarCampos(true)">Validar</button>
-              <button class="btn btn-success" type="button" onclick="OcultarModal()">Cerrar</button>
+              <button class="btn btn-primary" onclick="ValidarCampos()">Validar</button>
+              <button class="btn btn-success" type="button" data-dismiss="modal">Cerrar</button>
             </div>';
 
-    echo'<form enctype="multipart/form-data" id="genericForm" class="form-horizontal" style="padding:0px 15px;" role="form" action="" method="" >';
+    echo'<form enctype="multipart/form-data" id="genericForm'.$id.'" class="form-horizontal" style="padding:0px 15px;" role="form" action="" method="" >';
 
 
         // guarda el id_listarea para actualizarla tabla frm formcompletados

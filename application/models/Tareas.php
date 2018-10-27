@@ -185,7 +185,7 @@ class Tareas extends CI_Model
 	function updateTaskEnListarea($id_listarea,$idTarBonita){
 
 
-		$sql= "UPDATE tbl_listarea SET tbl_listarea.bpm_task_id = $idTarBonita  WHERE tbl_listarea.id_listarea = 280";
+		$sql= "UPDATE tbl_listarea SET tbl_listarea.bpm_task_id = $idTarBonita  WHERE tbl_listarea.id_listarea = ".$id_listarea;
 		$query= $this->db->query($sql);
 
 		return $query;
@@ -348,8 +348,6 @@ class Tareas extends CI_Model
 
 		try {
 			$idTJ = @file_get_contents(BONITA_URL.$urlResource.$idBonita.$idListEnBPM , false, $param);
-			echo '<script>alert(\''.json_encode($http_response_header).'\');</script>';
-			echo '<script>alert(\''.$idTJ.'\');</script>';
 			$idTJobs = json_decode($idTJ,true); //sin true no se puede acceder
 			$id_listarea = $idTJobs["value"];
 		} catch (Exception $e) {
