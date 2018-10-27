@@ -14,10 +14,7 @@ class Tarea extends CI_Controller {
 		$parametros = $this->Bonitas->conexiones();
 		$param = stream_context_create($parametros);
 		$data['list'] = $this->Tareas->getTareas($param);
-		//dump_exit($data);
-
 		$data['permission'] = "Add-Edit-Del-View-";//$permission;
-
 		$this->load->view('tareas/list',$data);
 	}
 
@@ -178,8 +175,8 @@ class Tarea extends CI_Controller {
 	public function getIdTareaTraJobs($idTarBonita){
 
 		try {
-			$metodo = "POST";
-			$parametros = $this->Bonitas->conexiones();
+			$metodo = "GET";
+			$parametros = $this->Bonitas->LoggerAdmin();
 			$param = stream_context_create($parametros);
 			$idTJobs = $this->Tareas->getIdTareaTraJobs($idTarBonita,$param);
 		} catch (Exception $e) {
@@ -363,8 +360,17 @@ class Tarea extends CI_Controller {
 			//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
 			$data['TareaBPM'] = json_decode($this->getDatosBPM($idTarBonita),true);
 
+			//Verificar si es tarea Std
+			$data['infoTarea'] = $this->Tareas->getDatosTarea($data['TareaBPM']["displayName"]);
+
+			$id_listarea = 0;
+
+			if($data['infoTarea']['visible']==1){// Pregunta si es Una TareasSTD
+				$id_listarea = $this->getIdTareaTraJobs($idTarBonita); 
+			}
+
 			// Trae id_listarea desde BPM sino '0' si la tarea es solo de BPM(no form asociado)
-			$id_listarea = $this->getIdTareaTraJobs($idTarBonita);
+			
 
 			$idOT = $this->Tareas->getIdOtPorIdBPM($idTarBonita);
 
@@ -474,7 +480,6 @@ class Tarea extends CI_Controller {
 					// $this->load->view('tareas/view_4', $data);
 					break;
 				case 'Evalua y envia presupuesto al cliente':
-					//$this->load->view('tareas/view_6', $data);
 					$this->load->model('AceptacionTrabajos');
 					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
 					$this->load->view('tareas/view_4', $data);
@@ -534,26 +539,24 @@ class Tarea extends CI_Controller {
 		// trae id de form asociado a tarea std (las tareas de BPM se cargaran para asociar a form).
 		$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);
 		$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd); // si es 0 no hay form asociado
-		//dump($idTareaStd, 'tarea std');
-		//dump($idForm, 'id form');
-		return json_encode($idTareaStd);
 
 
 		// // confirma si hay form guardado de esa listarea
 		// //$this->Tareas->getEstadoForm($idTareaRevisionB);
 
 		// // si hay formulario
-		// if($idForm != 0){
-		// 	$data['idForm']	= $idForm;
-		// 	// carga datos del formulario para modal
-		// 	$data['form'] = $this->Tareas->get_form($idTareaRevisionB,$idForm);
-		// 	//dump($data);
-		// }else{
-		// 	$data['idForm'] = 0;
-		// }
-		// //dump_exit($data);
-		// $response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
-		// echo json_encode($response);
+		if($idForm != 0){
+			$data['idForm']	= $idForm;
+			$data['id_listarea'] = $id_listarea;
+			// carga datos del formulario para modal
+			$data['form'] = $this->Tareas->get_form($idTareaRevisionB,$idForm);
+			//dump($data);
+		}else{
+			$data['idForm'] = 0;
+		}
+		//dump_exit($data);
+		$response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
+		echo json_encode($response);
 	}
 
 

@@ -71,6 +71,7 @@
 																<input type="text" class="hidden" id="idform" value="<?php echo $idForm ?>">
 																<!-- id de task en bonita -->
 																<input type="text" class="hidden" id="idTarBonita" value="<?php echo $idTarBonita ?>">
+																<input type="text" class="hidden" id="esTareaStd" value="<?php echo $infoTarea['visible'] ?>">
 															</div>
 														</div>
 
@@ -467,12 +468,14 @@
 		if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
 		var idTarBonita = $('#idTarBonita').val();
 		var id_listarea = $('#id_listarea').val();
-		//alert(idTarBonita);
+		var esTareaStd = $('#esTareaStd').val();
+		//alert(idTarBonita+'_'+id_listarea+'_'+esTareaStd);
 		$.ajax({
 			type: 'POST',
 			data: {
 				'idTarBonita': idTarBonita,
-				'id_listarea': id_listarea
+				'id_listarea': id_listarea,
+				'esTareaStd': esTareaStd
 			},
 			url: 'index.php/Tarea/terminarTareaStandarenBPM',
 			success: function (data) {
@@ -613,6 +616,11 @@
 		var imgs = $('input.archivo');
 
 		var formData = new FormData($("#genericForm")[0]);
+
+		// Display the key/value pairs
+		// for(var pair of formData.entries()) {
+		// console.log(pair[0]+ ', '+ pair[1]); 
+		// }
 
 		/** subidad y resubida de imagenes **/
 		// Tomo los inputs auxiliares cargados

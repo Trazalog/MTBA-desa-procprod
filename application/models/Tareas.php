@@ -28,7 +28,15 @@ class Tareas extends CI_Model
 		$resource = 'API/identity/user?p=0&c=50';
 	 	$url = BONITA_URL.$resource;
 		$usrs = file_get_contents($url, false, $param);
-		return json_decode($usrs,true) ;
+		$array = json_decode($usrs,true) ;
+
+		$sort = array();
+        foreach ($array as $key => $value){
+            $sort['a'][$key] = $value['firstname'];
+            $sort['b'][$key] = $value['lastname'];
+        }
+        array_multisort($sort['a'], SORT_ASC,$sort['b'], SORT_ASC, $array);
+        return $array;
 	}
 
 	function AgregarDatos($tareas){
@@ -177,7 +185,7 @@ class Tareas extends CI_Model
 	function updateTaskEnListarea($id_listarea,$idTarBonita){
 
 
-		$sql= "UPDATE tbl_listarea SET tbl_listarea.bpm_task_id = $idTarBonita  WHERE tbl_listarea.id_listarea = 280";
+		$sql= "UPDATE tbl_listarea SET tbl_listarea.bpm_task_id = $idTarBonita  WHERE tbl_listarea.id_listarea = ".$id_listarea;
 		$query= $this->db->query($sql);
 
 		return $query;
@@ -909,6 +917,11 @@ class Tareas extends CI_Model
 		$this->db->where('frm_formularios_completados.OBLIGATORIO',true);
 		$this->db->where('frm_formularios_completados.VALIDADO',false);
 		return $this->db->get()->result_array()[0];
+	}
+
+	function getDatosTarea($nombre){
+		$this->db->where('descripcion',$nombre);
+		return $this->db->get('tareas')->result_array()[0];
 	}
 
 }

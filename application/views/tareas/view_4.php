@@ -461,6 +461,74 @@
         });
     </script>
 
+<script> //Validacion de Formulario
+	function ValidarObligatorios(validarOn){
+		console.log("Validando Campos Obligatorios...");
+		var form_id = $('#idform').val();
+		var petr_id = $('#idPedTrabajo').val();
+		$.ajax({
+			type: 'POST',
+			data: {'form_id':form_id,'petr_id':petr_id},
+			url: 'index.php/Tarea/ValidarObligatorios',
+			success: function (result) {
+				validado=(result==1);
+				if(!validarOn) return;
+				if(validado)alert("Formularios Correctamente Validado");
+				else {
+					alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");
+				}
+			},
+			error: function(result){
+				alert("Fallo la Validación del formularios en el Servidor. Por favor vuelva a intentar.");
+			}
+		});
+	}
+
+    $('#formSi').bootstrapValidator({ //VALIDADOR
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            fecha:{
+				selector: '.fecha',
+				validators:{
+					date: {
+                        format: 'DD-MM-YYYY',
+                        message: '(*) Formato de Fecha Inválido'
+                    },
+                    notEmpty: {
+                        message: 'Los campos obligatorios(*) deben estar completos'
+                    }
+				}
+			},
+            obligatorio: {
+                message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+                selector: '.obligatorio',
+                validators: {
+                    notEmpty: {
+                        message: 'Los campos obligatorios(*) deben estar completos'
+                    }
+                }
+            },
+            optionsRadios: {
+                validators: {
+                    notEmpty: {
+                        message: 'Alguna de las opciones debe estar seleccionada'
+                    }
+                }
+            }
+        }
+    }) .on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+            guardarPedido();
+            
+    });
+</script>    
+
 <script>  
 
 
@@ -592,17 +660,9 @@
             }
         });
     });
-    
-        // validacion de campo observacion para btn rechazar
-            // $('#rechazar').click(function(e){
-            //   if ($('#observaciones').val() == ""){
-            //     alert('Campo Detalle vacio');
-            //   }
-            // });               
-
-
-
+    var validado=($('#idform').val()==0);  
     function terminarTarea(){
+        if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
         var idTarBonita = $('#idTarBonita').val();
         //alert(idTarBonita);
         $.ajax({
