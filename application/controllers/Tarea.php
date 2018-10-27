@@ -528,13 +528,8 @@ class Tarea extends CI_Controller {
 
 	public function detaTareaRevisionDiagnosticoCoordinador()
 	{
-		//$idOTRevision = 379;
-		//$id_listarea = 333;
 		$idTareaRevisionB = $this->input->post('idTareaRevisionB');
-		//$idTareaRevisionB = 80362;
 		$id_listarea = $this->input->post('id_listarea');
-		//dump($idTareaRevisionB, 'id tarea revision');
-		//dump($id_listarea, 'id listarea');
 
 		// trae id de form asociado a tarea std (las tareas de BPM se cargaran para asociar a form).
 		$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);

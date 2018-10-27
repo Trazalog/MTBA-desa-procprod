@@ -111,7 +111,7 @@ if (!function_exists('cargarFormulario')) {
                              echo "<input class='check ".($a['obligatorio']?"requerido":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";
                             break;
                         case "textarea":
-                            echo "<textarea class='form-control ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' rows='2'></textarea>";
+                            echo "<textarea class='form-control ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' rows='2'>".$a['valDefecto']."</textarea>";
                             break;
                   }
                   echo "</div></td>";
