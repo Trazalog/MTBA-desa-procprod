@@ -28,7 +28,15 @@ class Tareas extends CI_Model
 		$resource = 'API/identity/user?p=0&c=50';
 	 	$url = BONITA_URL.$resource;
 		$usrs = file_get_contents($url, false, $param);
-		return json_decode($usrs,true) ;
+		$array = json_decode($usrs,true) ;
+
+		$sort = array();
+        foreach ($array as $key => $value){
+            $sort['a'][$key] = $value['firstname'];
+            $sort['b'][$key] = $value['lastname'];
+        }
+        array_multisort($sort['a'], SORT_ASC,$sort['b'], SORT_ASC, $array);
+        return $array;
 	}
 
 	function AgregarDatos($tareas){

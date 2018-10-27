@@ -14,10 +14,7 @@ class Tarea extends CI_Controller {
 		$parametros = $this->Bonitas->conexiones();
 		$param = stream_context_create($parametros);
 		$data['list'] = $this->Tareas->getTareas($param);
-		//dump_exit($data);
-
 		$data['permission'] = "Add-Edit-Del-View-";//$permission;
-
 		$this->load->view('tareas/list',$data);
 	}
 
