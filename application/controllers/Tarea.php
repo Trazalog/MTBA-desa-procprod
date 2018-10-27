@@ -11,7 +11,6 @@ class Tarea extends CI_Controller {
 	// Carga lista de OT
 	public function index($permission){
 
-		//$metodo = "POST";
 		$parametros = $this->Bonitas->conexiones();
 		$param = stream_context_create($parametros);
 		$data['list'] = $this->Tareas->getTareas($param);
@@ -19,7 +18,7 @@ class Tarea extends CI_Controller {
 
 		$data['permission'] = "Add-Edit-Del-View-";//$permission;
 
-		$this->load->view('tareas/list', $data);
+		$this->load->view('tareas/list',$data);
 	}
 
 	public function getUsuariosBPM(){
@@ -457,7 +456,7 @@ class Tarea extends CI_Controller {
 			//FLEIVA COMENTARIOS
 		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
 			$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
-
+			$data['TareaBPM']['displayName'] = 'Programar Armado';
 			switch ($data['TareaBPM']['displayName']) {
 
 				case 'Evaluación del estado de cuenta del cliente':
@@ -480,8 +479,11 @@ class Tarea extends CI_Controller {
 					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
 					$this->load->view('tareas/view_4', $data);
 					break;
-				case 'Planificar Diagnóstico':					//con comentarios listos
-					//var_dump($data['TareaBPM']);
+				case 'Planificar Diagnóstico':		
+								//con comentarios listos
+					$this->load->view('tareas/view_planificacion', $data);
+					break;
+				case 'Programar Armado':					//con comentarios listos
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
 				case 'Asignar personal a Planificación':		//con comentarios listo
@@ -496,7 +498,7 @@ class Tarea extends CI_Controller {
 				case 'Cotización de trabajo Industrial':
 					$this->load->model('Preinformes');
 					$data['formularios'] = array(2500);
-					//$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0][ 'id_orden']);
+					$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0][ 'id_orden']);
 					$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
 					$this->load->view('tareas/view_9', $data);
 					break;
@@ -505,9 +507,9 @@ class Tarea extends CI_Controller {
 					$this->load->view('tareas/view_10', $data);
 					break;
 				case 'Revisión Diagnóstico por el Coordinador':
-					$idForm = 2500;
-					$data['idForm'] = $idForm;
-					$this->Tareas->setFormInicial($idTarBonita,$idForm,$data['idPedTrabajo']);
+					 $idForm = 2500;
+					 $data['idForm'] = $idForm;
+					if(!$this->Tareas->getEstadoForm($idTarBonita))$this->Tareas->setFormInicial($idTarBonita,$idForm,$data['idPedTrabajo']);
 					$data['form']   = $this->Tareas->get_form($idTarBonita,$idForm);
                     //dump_exit($data['form']);
 					$data['list']   = $this->Tareas->tareasPorSector($caseId);
@@ -524,7 +526,7 @@ class Tarea extends CI_Controller {
 		//$idOTRevision = 379;
 		//$id_listarea = 333;
 		$idTareaRevisionB = $this->input->post('idTareaRevisionB');
-		$idTareaRevisionB = 80362;
+		//$idTareaRevisionB = 80362;
 		$id_listarea = $this->input->post('id_listarea');
 		//dump($idTareaRevisionB, 'id tarea revision');
 		//dump($id_listarea, 'id listarea');
@@ -534,22 +536,24 @@ class Tarea extends CI_Controller {
 		$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd); // si es 0 no hay form asociado
 		//dump($idTareaStd, 'tarea std');
 		//dump($idForm, 'id form');
+		return json_encode($idTareaStd);
 
-		// confirma si hay form guardado de esa listarea
-		//$this->Tareas->getEstadoForm($idTareaRevisionB);
 
-		// si hay formulario
-		if($idForm != 0){
-			$data['idForm']	= $idForm;
-			// carga datos del formulario para modal
-			$data['form'] = $this->Tareas->get_form($idTareaRevisionB,$idForm);
-			//dump($data);
-		}else{
-			$data['idForm'] = 0;
-		}
-		//dump_exit($data);
-		$response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
-		echo json_encode($response);
+		// // confirma si hay form guardado de esa listarea
+		// //$this->Tareas->getEstadoForm($idTareaRevisionB);
+
+		// // si hay formulario
+		// if($idForm != 0){
+		// 	$data['idForm']	= $idForm;
+		// 	// carga datos del formulario para modal
+		// 	$data['form'] = $this->Tareas->get_form($idTareaRevisionB,$idForm);
+		// 	//dump($data);
+		// }else{
+		// 	$data['idForm'] = 0;
+		// }
+		// //dump_exit($data);
+		// $response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
+		// echo json_encode($response);
 	}
 
 
