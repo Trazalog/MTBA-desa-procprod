@@ -450,7 +450,7 @@ class Tareas extends CI_Model
 	}
 
 	function Programar_Tareas_Form($petrid,$ordenid){
-		$this->db->query('programar_tareas_form(2500,'.$petrid.','.$ordenid.')');
+		$this->db->query('programar_tareas_form(2500,'.$petrid.')');
 	}
 
 
