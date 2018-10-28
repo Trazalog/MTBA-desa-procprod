@@ -225,8 +225,10 @@ class Tarea extends CI_Controller {
 	 	$param = stream_context_create($parametros);
 	 	$response = $this->Tareas->terminarTareaStandarenBPM($idTarBonita,$param);
 
-	 	// guarda el taskId de BPM en tbl_listareas
-	 	$resp = $this->Tareas->updateTaskEnListarea($id_listarea,$idTarBonita);
+		 // guarda el taskId de BPM en tbl_listareas
+		 if($this->input->post('esTareaStd')==1){
+			 $resp = $this->Tareas->updateTaskEnListarea($id_listarea,$idTarBonita);
+		 }
 
 	 	echo json_encode($response);
 	}
@@ -462,7 +464,7 @@ class Tarea extends CI_Controller {
 			//FLEIVA COMENTARIOS
 		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
 			$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
-			//$data['TareaBPM']['displayName'] = 'Evalua y envia presupuesto al cliente';
+			//$data['TareaBPM']['displayName'] = 'Programar Armado';
 			switch ($data['TareaBPM']['displayName']) {
 
 				case 'Evaluación del estado de cuenta del cliente':
@@ -519,7 +521,7 @@ class Tarea extends CI_Controller {
                     //dump_exit($data['form']);
 					$data['list']   = $this->Tareas->tareasPorSector($caseId);
                     $this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
-                    break;
+					break;
 				default:
 				$this->load->view('tareas/view_', $data);
 				break;
