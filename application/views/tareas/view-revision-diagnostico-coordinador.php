@@ -1179,13 +1179,14 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body" id="">
-                <h3>¿Desea Eliminar el Repuesto?</h3>
+                <h3 style="text-align: center;">¿Desea Eliminar el Repuesto?</h3>
             </div><!-- /.modal-body -->
-        </div> <!-- /.modal-content -->
-    </div>  <!-- /.modal-dialog modal-lg -->
-    <div class="modal-footer">
+            <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       <button type="button" class="botones btn btn-primary" onclick="javascript:Eliminar_Repuestos()">Eliminar</button>
     </div>  <!-- /.modal footer -->
+        </div> <!-- /.modal-content -->
+    </div>  <!-- /.modal-dialog modal-lg -->
+   
 </div>  <!-- /.modal fade -->
 <!-- / Modal -->
