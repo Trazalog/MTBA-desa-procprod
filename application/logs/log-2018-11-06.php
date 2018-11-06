@@ -11574,3 +11574,294 @@ INFO - 2018-11-06 22:44:39 --> Controller Class Initialized
 INFO - 2018-11-06 22:44:39 --> Model Class Initialized
 INFO - 2018-11-06 22:44:39 --> Final output sent to browser
 DEBUG - 2018-11-06 22:44:39 --> Total execution time: 0.3537
+INFO - 2018-11-06 23:26:37 --> Config Class Initialized
+INFO - 2018-11-06 23:26:37 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:26:37 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:26:37 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:26:37 --> URI Class Initialized
+INFO - 2018-11-06 23:26:37 --> Router Class Initialized
+INFO - 2018-11-06 23:26:37 --> Output Class Initialized
+INFO - 2018-11-06 23:26:37 --> Security Class Initialized
+DEBUG - 2018-11-06 23:26:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:26:37 --> Input Class Initialized
+INFO - 2018-11-06 23:26:37 --> Language Class Initialized
+INFO - 2018-11-06 23:26:37 --> Loader Class Initialized
+INFO - 2018-11-06 23:26:37 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:26:37 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:26:37 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:26:37 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:26:37 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:26:37 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:26:37 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:26:37 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:26:37 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:26:37 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:26:37 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:26:37 --> Controller Class Initialized
+INFO - 2018-11-06 23:26:37 --> Model Class Initialized
+INFO - 2018-11-06 23:26:37 --> Model Class Initialized
+INFO - 2018-11-06 23:26:37 --> Model Class Initialized
+INFO - 2018-11-06 23:26:37 --> Model Class Initialized
+INFO - 2018-11-06 23:26:43 --> File loaded: C:\xampp\htdocs\MTBA-desa-procprod\application\views\tareas/view-revision-diagnostico-coordinador.php
+INFO - 2018-11-06 23:26:43 --> Final output sent to browser
+DEBUG - 2018-11-06 23:26:43 --> Total execution time: 6.3212
+INFO - 2018-11-06 23:26:46 --> Config Class Initialized
+INFO - 2018-11-06 23:26:46 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:26:46 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:26:46 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:26:46 --> URI Class Initialized
+INFO - 2018-11-06 23:26:46 --> Router Class Initialized
+INFO - 2018-11-06 23:26:46 --> Output Class Initialized
+INFO - 2018-11-06 23:26:46 --> Security Class Initialized
+DEBUG - 2018-11-06 23:26:46 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:26:46 --> Input Class Initialized
+INFO - 2018-11-06 23:26:47 --> Language Class Initialized
+INFO - 2018-11-06 23:26:47 --> Loader Class Initialized
+INFO - 2018-11-06 23:26:47 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:26:47 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:26:47 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:26:47 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:26:47 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:26:47 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:26:47 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:26:47 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:26:47 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:26:47 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:26:47 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:26:47 --> Controller Class Initialized
+INFO - 2018-11-06 23:26:47 --> Model Class Initialized
+INFO - 2018-11-06 23:26:47 --> Final output sent to browser
+DEBUG - 2018-11-06 23:26:47 --> Total execution time: 0.1535
+INFO - 2018-11-06 23:27:22 --> Config Class Initialized
+INFO - 2018-11-06 23:27:22 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:27:22 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:27:22 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:27:22 --> URI Class Initialized
+INFO - 2018-11-06 23:27:22 --> Router Class Initialized
+INFO - 2018-11-06 23:27:22 --> Output Class Initialized
+INFO - 2018-11-06 23:27:22 --> Security Class Initialized
+DEBUG - 2018-11-06 23:27:22 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:27:22 --> Input Class Initialized
+INFO - 2018-11-06 23:27:22 --> Language Class Initialized
+INFO - 2018-11-06 23:27:22 --> Loader Class Initialized
+INFO - 2018-11-06 23:27:22 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:27:22 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:27:22 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:27:22 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:27:22 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:27:22 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:27:22 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:27:22 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:27:22 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:27:22 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:27:22 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:27:22 --> Controller Class Initialized
+INFO - 2018-11-06 23:27:22 --> Model Class Initialized
+INFO - 2018-11-06 23:27:22 --> File loaded: C:\xampp\htdocs\MTBA-desa-procprod\application\views\notapedido/edit.php
+INFO - 2018-11-06 23:27:22 --> Final output sent to browser
+DEBUG - 2018-11-06 23:27:22 --> Total execution time: 0.2149
+INFO - 2018-11-06 23:27:24 --> Config Class Initialized
+INFO - 2018-11-06 23:27:24 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:27:24 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:27:24 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:27:24 --> URI Class Initialized
+INFO - 2018-11-06 23:27:24 --> Router Class Initialized
+INFO - 2018-11-06 23:27:24 --> Output Class Initialized
+INFO - 2018-11-06 23:27:24 --> Security Class Initialized
+DEBUG - 2018-11-06 23:27:24 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:27:24 --> Input Class Initialized
+INFO - 2018-11-06 23:27:24 --> Language Class Initialized
+INFO - 2018-11-06 23:27:24 --> Loader Class Initialized
+INFO - 2018-11-06 23:27:24 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:27:24 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:27:24 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:27:24 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:27:24 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:27:24 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:27:24 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:27:25 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:27:25 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:27:25 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:27:25 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:27:25 --> Controller Class Initialized
+INFO - 2018-11-06 23:27:25 --> Model Class Initialized
+INFO - 2018-11-06 23:27:25 --> Final output sent to browser
+DEBUG - 2018-11-06 23:27:25 --> Total execution time: 0.1723
+INFO - 2018-11-06 23:27:59 --> Config Class Initialized
+INFO - 2018-11-06 23:27:59 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:27:59 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:27:59 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:27:59 --> URI Class Initialized
+INFO - 2018-11-06 23:27:59 --> Router Class Initialized
+INFO - 2018-11-06 23:27:59 --> Output Class Initialized
+INFO - 2018-11-06 23:27:59 --> Security Class Initialized
+DEBUG - 2018-11-06 23:27:59 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:27:59 --> Input Class Initialized
+INFO - 2018-11-06 23:27:59 --> Language Class Initialized
+INFO - 2018-11-06 23:27:59 --> Loader Class Initialized
+INFO - 2018-11-06 23:27:59 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:27:59 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:27:59 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:27:59 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:27:59 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:27:59 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:27:59 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:27:59 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:27:59 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:27:59 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:27:59 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:27:59 --> Controller Class Initialized
+INFO - 2018-11-06 23:27:59 --> Model Class Initialized
+INFO - 2018-11-06 23:27:59 --> Model Class Initialized
+INFO - 2018-11-06 23:27:59 --> Model Class Initialized
+INFO - 2018-11-06 23:27:59 --> Model Class Initialized
+INFO - 2018-11-06 23:28:01 --> File loaded: C:\xampp\htdocs\MTBA-desa-procprod\application\views\tareas/list.php
+INFO - 2018-11-06 23:28:01 --> Final output sent to browser
+DEBUG - 2018-11-06 23:28:01 --> Total execution time: 2.1002
+INFO - 2018-11-06 23:28:04 --> Config Class Initialized
+INFO - 2018-11-06 23:28:04 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:28:04 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:28:04 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:28:04 --> URI Class Initialized
+INFO - 2018-11-06 23:28:04 --> Router Class Initialized
+INFO - 2018-11-06 23:28:04 --> Output Class Initialized
+INFO - 2018-11-06 23:28:04 --> Security Class Initialized
+DEBUG - 2018-11-06 23:28:04 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:28:04 --> Input Class Initialized
+INFO - 2018-11-06 23:28:04 --> Language Class Initialized
+INFO - 2018-11-06 23:28:04 --> Loader Class Initialized
+INFO - 2018-11-06 23:28:04 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:28:04 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:28:04 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:28:04 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:28:04 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:28:04 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:28:04 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:28:04 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:28:04 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:28:04 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:28:04 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:28:04 --> Controller Class Initialized
+INFO - 2018-11-06 23:28:04 --> Model Class Initialized
+INFO - 2018-11-06 23:28:04 --> Model Class Initialized
+INFO - 2018-11-06 23:28:04 --> Model Class Initialized
+INFO - 2018-11-06 23:28:04 --> Model Class Initialized
+INFO - 2018-11-06 23:28:09 --> File loaded: C:\xampp\htdocs\MTBA-desa-procprod\application\views\tareas/view-revision-diagnostico-coordinador.php
+INFO - 2018-11-06 23:28:09 --> Final output sent to browser
+DEBUG - 2018-11-06 23:28:09 --> Total execution time: 4.7301
+INFO - 2018-11-06 23:28:12 --> Config Class Initialized
+INFO - 2018-11-06 23:28:12 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:28:12 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:28:12 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:28:12 --> URI Class Initialized
+INFO - 2018-11-06 23:28:12 --> Router Class Initialized
+INFO - 2018-11-06 23:28:12 --> Output Class Initialized
+INFO - 2018-11-06 23:28:12 --> Security Class Initialized
+DEBUG - 2018-11-06 23:28:12 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:28:12 --> Input Class Initialized
+INFO - 2018-11-06 23:28:12 --> Language Class Initialized
+INFO - 2018-11-06 23:28:12 --> Loader Class Initialized
+INFO - 2018-11-06 23:28:12 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:28:12 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:28:12 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:28:12 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:28:12 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:28:12 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:28:12 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:28:12 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:28:12 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:28:12 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:28:12 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:28:12 --> Controller Class Initialized
+INFO - 2018-11-06 23:28:12 --> Model Class Initialized
+INFO - 2018-11-06 23:28:12 --> Final output sent to browser
+DEBUG - 2018-11-06 23:28:12 --> Total execution time: 0.1752
+INFO - 2018-11-06 23:29:09 --> Config Class Initialized
+INFO - 2018-11-06 23:29:09 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:29:09 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:29:09 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:29:09 --> URI Class Initialized
+INFO - 2018-11-06 23:29:09 --> Router Class Initialized
+INFO - 2018-11-06 23:29:09 --> Output Class Initialized
+INFO - 2018-11-06 23:29:09 --> Security Class Initialized
+DEBUG - 2018-11-06 23:29:09 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:29:09 --> Input Class Initialized
+INFO - 2018-11-06 23:29:09 --> Language Class Initialized
+INFO - 2018-11-06 23:29:09 --> Loader Class Initialized
+INFO - 2018-11-06 23:29:09 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:29:09 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:29:09 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:29:09 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:29:09 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:29:09 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:29:09 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:29:09 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:29:09 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:29:09 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:29:09 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:29:09 --> Controller Class Initialized
+INFO - 2018-11-06 23:29:09 --> Model Class Initialized
+INFO - 2018-11-06 23:29:09 --> Model Class Initialized
+INFO - 2018-11-06 23:29:09 --> Model Class Initialized
+INFO - 2018-11-06 23:29:09 --> Model Class Initialized
+INFO - 2018-11-06 23:29:10 --> File loaded: C:\xampp\htdocs\MTBA-desa-procprod\application\views\tareas/list.php
+INFO - 2018-11-06 23:29:10 --> Final output sent to browser
+DEBUG - 2018-11-06 23:29:10 --> Total execution time: 1.4458
+INFO - 2018-11-06 23:31:44 --> Config Class Initialized
+INFO - 2018-11-06 23:31:44 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:31:44 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:31:44 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:31:44 --> URI Class Initialized
+INFO - 2018-11-06 23:31:44 --> Router Class Initialized
+INFO - 2018-11-06 23:31:44 --> Output Class Initialized
+INFO - 2018-11-06 23:31:44 --> Security Class Initialized
+DEBUG - 2018-11-06 23:31:44 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:31:44 --> Input Class Initialized
+INFO - 2018-11-06 23:31:44 --> Language Class Initialized
+INFO - 2018-11-06 23:31:44 --> Loader Class Initialized
+INFO - 2018-11-06 23:31:44 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:31:44 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:31:44 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:31:44 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:31:44 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:31:44 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:31:44 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:31:44 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:31:44 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:31:44 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:31:44 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:31:44 --> Controller Class Initialized
+INFO - 2018-11-06 23:31:44 --> Model Class Initialized
+INFO - 2018-11-06 23:31:44 --> Model Class Initialized
+INFO - 2018-11-06 23:31:44 --> Model Class Initialized
+INFO - 2018-11-06 23:31:44 --> Model Class Initialized
+INFO - 2018-11-06 23:31:49 --> File loaded: C:\xampp\htdocs\MTBA-desa-procprod\application\views\tareas/view-revision-diagnostico-coordinador.php
+INFO - 2018-11-06 23:31:49 --> Final output sent to browser
+DEBUG - 2018-11-06 23:31:49 --> Total execution time: 5.0247
+INFO - 2018-11-06 23:31:52 --> Config Class Initialized
+INFO - 2018-11-06 23:31:52 --> Hooks Class Initialized
+DEBUG - 2018-11-06 23:31:52 --> UTF-8 Support Enabled
+INFO - 2018-11-06 23:31:52 --> Utf8 Class Initialized
+INFO - 2018-11-06 23:31:52 --> URI Class Initialized
+INFO - 2018-11-06 23:31:52 --> Router Class Initialized
+INFO - 2018-11-06 23:31:52 --> Output Class Initialized
+INFO - 2018-11-06 23:31:52 --> Security Class Initialized
+DEBUG - 2018-11-06 23:31:52 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-06 23:31:52 --> Input Class Initialized
+INFO - 2018-11-06 23:31:52 --> Language Class Initialized
+INFO - 2018-11-06 23:31:52 --> Loader Class Initialized
+INFO - 2018-11-06 23:31:52 --> Helper loaded: url_helper
+INFO - 2018-11-06 23:31:52 --> Helper loaded: directory_helper
+INFO - 2018-11-06 23:31:52 --> Helper loaded: file_helper
+INFO - 2018-11-06 23:31:52 --> Helper loaded: form_helper
+INFO - 2018-11-06 23:31:52 --> Helper loaded: general_helper
+INFO - 2018-11-06 23:31:52 --> Helper loaded: formulario_helper
+INFO - 2018-11-06 23:31:52 --> Helper loaded: cabecera_helper
+INFO - 2018-11-06 23:31:52 --> Helper loaded: popup_helper
+INFO - 2018-11-06 23:31:52 --> Database Driver Class Initialized
+DEBUG - 2018-11-06 23:31:52 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-06 23:31:52 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-06 23:31:52 --> Controller Class Initialized
+INFO - 2018-11-06 23:31:52 --> Model Class Initialized
+INFO - 2018-11-06 23:31:52 --> Final output sent to browser
+DEBUG - 2018-11-06 23:31:52 --> Total execution time: 0.1609
