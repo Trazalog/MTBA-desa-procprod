@@ -34,29 +34,29 @@
 </div><hr>
 -->
 <input id="id_ordTrabajo" name="" class="hidden" value="<?php echo $id_orden ?>"/>
-
+<form>
 <div class="row" >
   <div class="col-xs-12 col-sm-6 col-md-4"><label>Código de Artículo</label> <strong style="color: #dd4b39">*</strong> :
     <input type="hidden" id="id_articulo" name="">
     <input type="text" class="artOrdInsum form-control" id="artOrdInsum" value="" placeholder="Buscar...">
   </div>
   <div class="col-xs-12 col-sm-6 col-md-4"><label>Descripción de Artículo</label> <strong style="color: #dd4b39">*</strong> :
-    <input type="text" class="decripInsumo form-control" id="decripInsumo" value="" placeholder="Descripción">
+    <input type="text" class="decripInsumo form-control" id="decripInsumo" value="" placeholder="Descripción" disabled>
     <input type="hidden" name="" class="id-artOrdIns form-control" id="id-artOrdIns" value="" disabled>
   </div>
   <div class="col-xs-12 col-sm-6 col-md-4"><label>Proveedor</label> <strong style="color: #dd4b39">*</strong> :
     <select  id="proveedor" name="" class="form-control" />
     <input class="hidden" type="text" id="proveedor" name="proveedor" value="1">
   </div>
-  <div class="col-xs-12 col-sm-6 col-md-4"><label>Cantidad</label> <strong style="color: #dd4b39">*</strong> :
-    <input  id="cantidad" name="" class="form-control" placeholder="Ingrese cantidad..."/>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-4"><label>Fecha de Entrega</label> <strong style="color: #dd4b39">*</strong> :
-    <input  type="text" id="fechaEnt" name="fechaEnt" class="form-control datepicker" placeholder="Selecciones fecha..."/>
-  </div>
-  <div class="col-xs-12 col-sm-6 col-md-4"><label>Medida</label> <strong style="color: #dd4b39">*</strong> :
-    <input  type="text" id="medida" name="medida" class="form-control " placeholder="ingrese medida..."/>
-  </div><br>
+  <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group"><label>Cantidad</label> <strong style="color: #dd4b39">*</strong> :
+    <input  id="cantidad" name="" class="form-control numerico" placeholder="Ingrese cantidad..."/>
+  </div></div>
+  <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group"><label>Fecha de Entrega</label> <strong style="color: #dd4b39">*</strong> :
+    <input  type="text" id="fechaEnt" name="fechaEnt" class="form-control datepicker fecha" placeholder="Selecciones fecha..."/>
+  </div></div>
+  <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group"><label>Medida</label> <strong style="color: #dd4b39">*</strong> :
+    <input  type="text" id="medida" name="medida" class="form-control numerico" placeholder="ingrese medida..."/>
+  </div><select id="magnitud" placeholder="Medida..." style="float:right;"><option>kilometro</option><option>decametro</option><option>metro</option></select></div><br>
   <div class="clearfix"></div>
   <div class="col-xs-12">
     <button type="button" class="btn btn-success" id="addcompo" onclick="javascript:armarTabla()" style="margin-top: 15px"><i class="fa fa-check">Agregar</i></button>
@@ -65,7 +65,7 @@
     <label>Observaciones:</label>
     <textarea class="form-control" id="descrip" name="descrip"></textarea>
   </div> -->
-</div><hr>
+</div></form><hr>
 
 <!-- tabla-->
 <div class="row" >
@@ -105,7 +105,41 @@
 </style>
 
 
+<script>
+ $('form').bootstrapValidator({ //VALIDADOR
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {		
+			fecha:{
+				selector: '.fecha',
+				validators:{
+					date: {
+                    format: 'DD-MM-YYYY',
+                    message: '(*) Formato de Fecha Inválido'
+                }
+				}
+			},
+			number: {
+				selector: '.numerico',
+                validators: {
+                    integer: {
+                        message: '(*) Solo Valores Numéricos'
+                    }
+                }
+            }
 
+        }
+    }).on('success.form.bv', function(e) {
+            // Prevent form submission
+          
+            e.preventDefault();
+           
+    });
+</script>
 <script>
 desc = decodeURI( '<?php echo $descripcion ?>' );
 $("#detaorden").val( desc );
@@ -137,7 +171,18 @@ $("#artOrdInsum").autocomplete({
     $("#id_articulo").val(ui.item.value);
     $("#decripInsumo").val(ui.item.descripcion);
   },
+  change: function (event, ui) {
+        if (ui.item == null || ui.item == undefined) {
+            $("#artOrdInsum").val("");
+            $("#decripInsumo").val("");
+            alert("Articulo Inexistente");
+           // $("#artOrdInsum").attr("disabled", false);
+        } else {
+          // $("#artOrdInsum").attr("disabled", true);
+        }
+    }
 });
+
 
 
 // Trae Proveedores y llena select
@@ -162,7 +207,12 @@ $.ajax({
 
 
 // Carga datepicker para fecha
-$( "#fechaEnt" ).datepicker();
+$( "#fechaEnt" ).datepicker().on('change', function(e) {
+       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
+	   console.log('Validando Campo...'+$(this).attr('name'));
+	   $('form').data('bootstrapValidator').resetField($(this),false);
+	   $('form').data('bootstrapValidator').validateField($(this));
+    });;
 
 
 // Arma tabla dinamica
@@ -182,7 +232,7 @@ function armarTabla(){   // inserta valores de inputs en la tabla
     var $id_proveedor = $("select#proveedor option:selected").val();
     //var $id_proveedor = $("input#proveedor").val();
     var $fecha        = $("#fechaEnt").val();
-    var $medida       = $("#medida").val();
+    var $medida       = $("#medida").val()+" "+$('select#magnitud option:selected').html();
 
     //tabla = $('.tabModInsum').DataTable();
     //$( $.fn.dataTable.tables( true ) ).DataTable().columns.adjust();

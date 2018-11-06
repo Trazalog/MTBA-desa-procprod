@@ -743,7 +743,12 @@
 
   	$('.fecha').datepicker({
         autoclose: true
-  	});
+  	}).on('change', function(e) {
+       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
+	   console.log('Validando Campo...'+$(this).attr('name'));
+	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
+	   $('#genericForm').data('bootstrapValidator').validateField($(this));
+    });
 
 
 
