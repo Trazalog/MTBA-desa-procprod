@@ -224,7 +224,7 @@
 											
 										</div>
 										<div class="col-sm-12 col-md-12">
-											<button class="btn btn-primary" id="verOT" onclick="verOT()">Orden de Trabajo</button>
+											<button class="btn btn-primary" id="verOT" onclick="verOT()"><?php echo $nombre_boton_planificacion?></button>
 										</div>
 									</div>
 								</div>
@@ -378,9 +378,19 @@
 <script>
 
 	function verOT() {
-
 		var iort = $('#idOT').val();
 		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
+		$.ajax({
+			type:'POST',
+			url:'index.php/Tarea/Programar_Tareas_Formulario',
+			data:{petrid:$('#petrid').val(),ordenid:iort},
+			success:function(result){
+				alert('Tareas Programadas');
+			},
+			error: function(result){
+				alert('Error');
+			}
+		});
 		WaitingOpen('Cargando Tareas...');
 		$('#content').empty();
 		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
@@ -831,7 +841,12 @@
 
 	$('.fecha').datepicker({
 		autoclose: true
-	});
+	}).on('change', function(e) {
+       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
+	   console.log('Validando Campo...'+$(this).attr('name'));
+	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
+	   $('#genericForm').data('bootstrapValidator').validateField($(this));
+    });
 
 
 

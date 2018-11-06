@@ -853,7 +853,12 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
 
 	$('.fecha').datepicker({
       autoclose: true
-	});
+	}).on('change', function(e) {
+       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
+	   console.log('Validando Campo...'+$(this).attr('name'));
+	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
+	   $('#genericForm').data('bootstrapValidator').validateField($(this));
+    });
 
   var form_actual_id = '';
   var form_actual_data = '';
@@ -1010,7 +1015,7 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
             "<td>"+data['articulos'][indexA]['label']+"</td>"+
             "<td data-artId='"+data['lista'][i]['artId']+"'>"+data['articulos'][indexA]['descripcion']+"</td>"+
             "<td data-provid='"+data['lista'][i]['provid']+"'>"+data['proveedores'][indexP]['provnombre']+"</td>"+
-            "<td>"+data['lista'][i]['cantidad']+" "+data['lista'][i]['medida']+"</td>"+
+            "<td>"+data['lista'][i]['cantidad']+" de "+data['lista'][i]['medida']+"</td>"+
             "<td>"+data['lista'][i]['fechaEntrega']+"</td>"+
             "</tr>";
           $('#pedidoRepuestos tbody').append(tr);
@@ -1036,7 +1041,7 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
       dataType: 'json',
       type: 'POST',
       url: 'index.php/Notapedido/addEditNotaPedido/<?php echo $permission; ?>',
-      success: function(result){        if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+      success: function(result){
 
         WaitingClose();
         $("#modaltitle").html("Agregar");

@@ -17,7 +17,6 @@ class Tarea extends CI_Controller {
 		$data['permission'] = "Add-Edit-Del-View-";//$permission;
 		$this->load->view('tareas/list',$data);
 	}
-
 	public function getUsuariosBPM(){
 
 		$parametros = $this->Bonitas->LoggerAdmin();
@@ -54,7 +53,6 @@ class Tarea extends CI_Controller {
 
 		return $response;
 	}
-
 	// Trae datos de BPM para notif estandar
 	public function getDatosBPM($idTarBonita){
 
@@ -70,15 +68,12 @@ class Tarea extends CI_Controller {
 
 		return $response;
 	}
-
 	// devuelve id de ot por caseId
 	public function getIdOTPorCaseId(){
 		$caseId = $this->input->post('caseId');
 		$response = $this->Tareas->getIdOTPorCaseId($caseId);
 		echo json_encode($response);
 	}
-
-
 	// Estado cuenta BOTON HECHO
 	public function estadoCuenta(){
 
@@ -136,7 +131,6 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->esperandoRegularizacion($idTarBonita,$param);
 		echo json_encode($result);
 	}
-
 	// Precisa Anticipo
 	public function precisaAnticipo(){
 
@@ -156,7 +150,6 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->precisaAnticipo($idTarBonita,$param);
 		echo json_encode($result);
 	}
-
 	public function GuardarComentario(){
 		$comentario = $this->input->post();
 		// trae la cabecera
@@ -170,7 +163,6 @@ class Tarea extends CI_Controller {
 		$response = $this->Tareas->GuardarComentarioBPM($param);
 		echo json_encode($response);
 	}
-
 	// Trae id de tarea de trazajobs segun id de tarea bonita - NO TOCAR
 	public function getIdTareaTraJobs($idTarBonita){
 
@@ -212,7 +204,6 @@ class Tarea extends CI_Controller {
 
 		echo json_encode($response);
 	}
-
 	public function terminarTareaStandarenBPM(){
 
 	 	$idTarBonita = $this->input->post('idTarBonita');
@@ -232,8 +223,6 @@ class Tarea extends CI_Controller {
 
 	 	echo json_encode($response);
 	}
-
-
 	// Trae id de ot por id de BPM
 	public function getIdOT(){
 		$idTarBonita = $this->input->post('idTarBonita');
@@ -241,7 +230,6 @@ class Tarea extends CI_Controller {
 		//dump_exit($response);
 		echo json_encode($response);
 	}
-
 	// terminar planifica
 	public function terminarPlanificacion(){
 		$idTarBonita = $this->input->post('idTarBonita');
@@ -260,7 +248,6 @@ class Tarea extends CI_Controller {
 		$response = $this->Tareas->terminarPlanificacion($idTarBonita,$param);
 		echo json_encode($response);
 	}
-
 	//TODO: AGRAGUE ESTE METODO
 	public function terminarAsigPersPlanificacion(){
 		$idTarBonita = $this->input->post('idTarBonita');
@@ -281,7 +268,6 @@ class Tarea extends CI_Controller {
 		echo json_encode($response);
 
 	}
-
 	// Usr Toma tarea en BPM (Vista de planificacion)
 	public function tomarTareaPlanificacion(){
 
@@ -355,7 +341,6 @@ class Tarea extends CI_Controller {
 		$response = $this->Tareas->soltarTarea($idTarBonita,$param);
 		echo json_encode($response);
 	}
-
 	// trae datos para llenar notificaion estandar y formulario asociado
 	public function detaTarea($permission,$idTarBonita){
 
@@ -486,11 +471,13 @@ class Tarea extends CI_Controller {
 					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
 					$this->load->view('tareas/view_4', $data);
 					break;
-				case 'Planificar Diagnóstico':		
+				case 'Planificar Diagnóstico':
+					$data['nombre_boton_planificacion'] = 'Orden de Trabajo';			
 								//con comentarios listos
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
-				case 'Programar Armado':					//con comentarios listos
+				case 'Programar Armado':
+					$data['nombre_boton_planificacion'] = 'Programar Armado';					//con comentarios listos
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
 				case 'Asignar personal a Planificación':		//con comentarios listo
@@ -527,7 +514,6 @@ class Tarea extends CI_Controller {
 				break;
 			}
 	}
-
 	public function detaTareaRevisionDiagnosticoCoordinador()
 	{
 		$idTareaRevisionB = $this->input->post('idTareaRevisionB');
@@ -780,5 +766,13 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->ValidarObligatorios($form_id,$petr_id);
 		echo $result['result'];
 	}
+
+	public function Programar_Tareas_Formulario(){
+		$petrid = $this->input->post("petr_id");
+		$ordenid = $this->input->post("orden_id");
+		echo $this->Tareas->Programar_Tareas_Formulario($petrid,$ordenid);
+	}
+
+	
 }
 ?>

@@ -261,6 +261,9 @@
 </div>
 
 <script> //Validacion de Formulario
+    function ValidarCampos(){
+        ValidarObligatorios(true);
+    }
 	function ValidarObligatorios(validarOn){
 		console.log("Validando Campos Obligatorios...");
 		var form_id = $('#idform').val();
