@@ -1123,16 +1123,10 @@
       $('#idListTarea').val(idListarea);
       $('#idTarea').val(idTarea);
       $('#idEquip').val(idEquipo);
-      // console.log("id_listarea es:");
-      // console.log(idListarea); 
-      // console.log('id de tarea: ');
-      // console.log(idTarea);      
-      // console.log('id equipo: ');
-      // console.log(idEquipo);
       var descTar = $(this).parents("tr").find("td").eq(2).html();
       var text = '<h5>' + descTar + '</h5>';
       $('#descTareaModal').append(text);
-      var duracion = $(this).parents("tr").find("td").eq(7).html();
+      var duracion = $(this).parents("tr").find("td").eq(5).html();
       $('#duracion').val(duracion);
     }
   });
@@ -1308,7 +1302,6 @@
   $(".fa-cogs").click(function (e) {
     // guarda el id_listarea en input de modal
     var idtar = $(this).parent('td').parent('tr').attr('id');
-    alert(idtar);
     $('#id_listarea').val(idtar);
   });
 

@@ -380,17 +380,19 @@
 	function verOT() {
 		var iort = $('#idOT').val();
 		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		$.ajax({
-			type:'POST',
-			url:'index.php/Tarea/Programar_Tareas_Formulario',
-			data:{petrid:$('#petrid').val(),ordenid:iort},
-			success:function(result){
-				alert('Tareas Programadas');
-			},
-			error: function(result){
-				alert('Error');
-			}
-		});
+		// $.ajax({
+		// 	type:'POST',
+		// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
+		// 	data:{petrid:$('#petrid').val(),ordenid:iort},
+		// 	success:function(result){
+		// 		alert('Tareas Programadas');
+		// 	},
+		// 	error: function(result){
+		// 		console.log(result);
+				
+		// 		alert('Error');
+		// 	}
+		// });
 		WaitingOpen('Cargando Tareas...');
 		$('#content').empty();
 		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
@@ -415,6 +417,7 @@
 		$("#hecho").show();
 		$("#guardarComentario").show();
 		$("#comentario").show();
+		$('#verOT').show();
 		//$("#infoOT").show();
 		//desahilito btn tomar      
 		$("#btontomar").hide();
@@ -423,6 +426,7 @@
 	function deshabilitar() {
 		// habilito btn tomar
 		$("#btontomar").show();
+		$('#verOT').hide();
 		// habilito btn y textarea  
 		$("#btonsoltr").hide();
 		$("#hecho").hide();
@@ -568,6 +572,7 @@
 
 								// guarda id de ot  para usar
 								$('#idOT').val(data['resInsert']);
+
 							}
 
 							// <h5>Se ha generado la Orden de Trabajo Nº <span id="numOT"></span> haga click en el bton OT para modificarla</h5>
@@ -594,6 +599,7 @@
 				// toma a tarea exitosamente
 				if (data['reponse_code'] == 200) {
 					deshabilitar();
+					
 				}
 			},
 			error: function (result) {
