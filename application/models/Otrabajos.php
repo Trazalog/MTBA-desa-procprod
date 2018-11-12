@@ -8,19 +8,17 @@ class Otrabajos extends CI_Model
 		parent::__construct();
 	}
 	
-	function otrabajos_List(){
+	function otrabajos_List($cod_interno = ''){
 
-		$this->db->select('orden_trabajo.id_orden, orden_trabajo.nro,orden_trabajo.fecha_inicio, orden_trabajo.fecha_entrega, orden_trabajo.fecha_terminada, orden_trabajo.fecha_aviso, orden_trabajo.fecha_entregada, orden_trabajo.descripcion, orden_trabajo.cliId, orden_trabajo.estado, orden_trabajo. id_usuario, orden_trabajo.id_usuario_a, user1.usrName AS nombre, orden_trabajo.id_usuario_e, orden_trabajo.id_sucursal, admcustomers.cliLastName,admcustomers.cliName, sisusers.usrName,sucursal.descripc, sisgroups.grpId');
+		$this->db->select('orden_trabajo.id_orden, orden_trabajo.nro,orden_trabajo.fecha_inicio, orden_trabajo.fecha_entrega, orden_trabajo.fecha_terminada, orden_trabajo.fecha_aviso, orden_trabajo.fecha_entregada, orden_trabajo.descripcion, orden_trabajo.cliId, orden_trabajo.estado, orden_trabajo. id_usuario, orden_trabajo.id_usuario_a, user1.usrName AS nombre, orden_trabajo.id_usuario_e, orden_trabajo.id_sucursal,orden_trabajo.usuario, admcustomers.cliLastName,admcustomers.cliName,sucursal.descripc');
 		$this->db->from('orden_trabajo');
 		$this->db->join('admcustomers', 'admcustomers.cliId = orden_trabajo.cliId');
-		$this->db->join('sisusers', 'sisusers.usrId = orden_trabajo.id_usuario');
 		$this->db->join('sisusers AS user1', 'user1.usrId = orden_trabajo.id_usuario_a');
 		$this->db->join('sucursal', 'sucursal.id_sucursal = orden_trabajo.id_sucursal');
-		$this->db->join('sisgroups', 'sisgroups.grpId = sisusers.grpId');
-		$this->db->group_by('orden_trabajo.id_orden');
-						
-		$query= $this->db->get();
+		$this->db->order_by('orden_trabajo.id_orden');
+		if($cod_interno!='')$this->db->where('orden_trabajo.nro',$cod_interno);
 		
+		$query= $this->db->get();
 		if ($query->num_rows()!=0)
 		{
 			return $query->result_array();	
@@ -941,9 +939,13 @@ class Otrabajos extends CI_Model
 
         $query = $this->db->insert("tbl_listarea",$datos);
         return $query;
-    }
-
-
+	}
+	
+	function Obtener_Tipo_OT($id){
+		$this->db->select('cod_interno');
+		$this->db->where('id_orden',$id);
+		return $this->db->get('orden_trabajo')->result_array()[0]['cod_interno'];
+	}
 
 }	
 

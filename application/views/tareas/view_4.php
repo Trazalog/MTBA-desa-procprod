@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-    <?php cargarCabecera($idPedTrabajo); ?>
+    <?php echo cargarCabecera($idPedTrabajo); ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -532,6 +532,40 @@
             guardarPedido();
             
     });
+    function guardarPedido() {
+        if($('#datepicker').val()==''){
+            alert("Campo Fecha de Entrega Obligatorio");
+            return;
+        }
+        var idt = $('#idTarBonita').val();       
+        var formData = new FormData($("#formSi")[0]);
+        formData.append('idtareabonita',idt);
+        var idPedTrabajo= <?php echo $idPedTrabajo; ?>;
+        formData.append('idPedTrabajo',idPedTrabajo);
+        formData.append('presupuesto',$('#linkPresupuesto').attr('href'));
+    
+        $.ajax({
+            url: $("#formSi").attr("action"),
+            type: $("#formSi").attr("method"),
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(result) {
+                  alert(result);
+                if(result!="ErrorBPM"){
+                    $("#formSi")[0].reset();
+                     $('#cerrar').click();
+                }else{
+                    
+                    alert("No se pudo Realizar la Operación");
+                }
+            },
+            error:function(result){
+                alert("Error");
+            }
+        });
+    }
 </script>    
 
 <script>  

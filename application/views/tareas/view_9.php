@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-    <?php cargarCabecera($idPedTrabajo); ?>
+    <?php echo cargarCabecera($idPedTrabajo); ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -929,6 +929,10 @@ function regresa(){
 	              dataType: 'json'
 	      });
   	}
+    
+    function ValidarCampos(){
+        ValidarObligatorios(true);
+    }   
 
   	$('.fecha').datepicker({
         autoclose: true

@@ -234,10 +234,11 @@ class Tarea extends CI_Controller {
 	public function terminarPlanificacion(){
 		$idTarBonita = $this->input->post('idTarBonita');
 		$idOrdenTrabajo =  $this->Tareas->getIdOtPorIdBPM($idTarBonita);
-		//dump_exit($idOrdenTrabajo);
+		$tipo_tarea = "ordenTrabajo".$this->input->post('tipo_tarea');
+		
 		 $idOT = array (
-		 			"ordenTrabajoDiagnostico"	=>	$idOrdenTrabajo
-		 		);
+		 	$tipo_tarea	=>	$idOrdenTrabajo
+		);
 		// trae la cabecera
 		$parametros = $this->Bonitas->conexiones();
 		// Cambio el metodo de la cabecera a "PUT"
@@ -292,12 +293,15 @@ class Tarea extends CI_Controller {
 		$idPedido = $this->input->post('idPedido');
 		$cod_interno = $this->input->post('cod_interno');
 		$detalle = $this->input->post('detalle');
+		$tipo_tarea = $this->input->post('tipo_tarea');
 		// Valida exitencia y genera OT inicial
 		//if (!$this->Tareas->validarEstOT($idTarBonita,$idPedido)) {
-		if (!$this->Tareas->validarEstOTporCodInterno($cod_interno)) {
+		$result = $this->Tareas->validarEstOTporCodInterno($cod_interno,$tipo_tarea);
+		if (!$this->Tareas->validarEstOTporCodInterno($cod_interno,$tipo_tarea)) {
 				//echo "NOOO hay orden guardada";
-				$this->Tareas->setOTInicial($idTarBonita,$idPedido,$cod_interno,$detalle);
+				$this->Tareas->setOTInicial($idTarBonita,$idPedido,$cod_interno,$detalle,$tipo_tarea);
 				$insert_id = $this->db->insert_id();
+				if($tipo_tarea!="Diagnostico")$this->Tareas->Programar_Tareas_Formulario($idPedido,$insert_id,$tipo_tarea);
 		}else{
 				$insert_id = 0;
 		}
@@ -449,7 +453,7 @@ class Tarea extends CI_Controller {
 			//FLEIVA COMENTARIOS
 		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
 			$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
-			//$data['TareaBPM']['displayName'] = 'Programar Armado';
+		//	$data['TareaBPM']['displayName'] = 'Programar Armado';
 			switch ($data['TareaBPM']['displayName']) {
 
 				case 'Evaluación del estado de cuenta del cliente':
@@ -472,12 +476,18 @@ class Tarea extends CI_Controller {
 					$this->load->view('tareas/view_4', $data);
 					break;
 				case 'Planificar Diagnóstico':
-					$data['nombre_boton_planificacion'] = 'Orden de Trabajo';			
-								//con comentarios listos
+					$data['tipo_tarea'] = 'Diagnostico';
+					$data['nombre_boton_planificacion'] = 'Orden de Trabajo';						
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
 				case 'Programar Armado':
-					$data['nombre_boton_planificacion'] = 'Programar Armado';					//con comentarios listos
+					$data['tipo_tarea'] = 'Armado';
+					$data['nombre_boton_planificacion'] = 'Programar Armado';					
+					$this->load->view('tareas/view_planificacion', $data);
+					break;
+				case 'Programar Reparación':
+					$data['tipo_tarea'] = 'Reparacion';
+					$data['nombre_boton_planificacion'] = 'Programar Reparacion';					
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
 				case 'Asignar personal a Planificación':		//con comentarios listo
@@ -509,8 +519,11 @@ class Tarea extends CI_Controller {
 					$data['list']   = $this->Tareas->tareasPorSector($caseId);
                     $this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
 					break;
+				case 'Analiza Vigencia del presupuesto aprobado':
+					$this->load->view('tareas/view_11',$data);
+					break;
 				default:
-				$this->load->view('tareas/view_', $data);
+					$this->load->view('tareas/view_', $data);
 				break;
 			}
 	}
@@ -766,12 +779,27 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->ValidarObligatorios($form_id,$petr_id);
 		echo $result['result'];
 	}
-
-	public function Programar_Tareas_Formulario(){
-		$petrid = $this->input->post("petr_id");
-		$ordenid = $this->input->post("orden_id");
-		echo $this->Tareas->Programar_Tareas_Formulario($petrid,$ordenid);
+	public function Prespuesto_Vigente(){
+		$idTarBonita = $this->input->post('idTarBonita');
+		$valor = $this->input->post('estado');
+		$estado = array (
+		  "presupuestoVigente"	=>	"$valor"
+		);
+		$parametros = $this->Bonitas->conexiones();
+		$parametros["http"]["method"] = "POST";
+		$parametros["http"]["content"] = json_encode($estado);
+		// Variable tipo resource referencia a un recurso externo.
+		$param = stream_context_create($parametros);
+		$result = $this->Tareas->Prespuesto_Vigente($idTarBonita,$param);
+		echo json_encode($result);
+		
 	}
+	// public function Programar_Tareas_Formulario(){
+	// 	$petrid = $this->input->post("petrid");
+	// 	$ordenid = $this->input->post("ordenid");
+	// 	$tipo = $this->input->post("tipo");
+	// 	echo $this->Tareas->Programar_Tareas_Formulario($petrid,$ordenid,$tipo);
+	// }
 
 	
 }

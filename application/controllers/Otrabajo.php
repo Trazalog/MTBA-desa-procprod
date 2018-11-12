@@ -19,8 +19,8 @@ class Otrabajo extends CI_Controller {
 		//$this->load->view('otrabajos/list', $data); //esto es para local 
 	}
 
-	public function listOrden($permission){
-		$data['list'] = $this->Otrabajos->otrabajos_List();
+	public function listOrden($permission,$cod_interno=''){
+		$data['list'] = $this->Otrabajos->otrabajos_List($cod_interno);
 		$data['permission'] = $permission;
 		$this->load->view('otrabajos/list', $data);
 	}
@@ -505,6 +505,7 @@ class Otrabajo extends CI_Controller {
 		//$data['list'] = $this->Otrabajos->cargartareas($idglob);
 		$data['id_orden'] = $idglob;
 		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($idglob);
+		$data['tipo_tarea'] = $this->Otrabajos->Obtener_Tipo_OT($idglob);
 		//$data['idTarBonita'] = $idTarBonita; 
         $data['permission'] = $permission;
         $this->load->view('otrabajos/asignacion_planificar',$data);  

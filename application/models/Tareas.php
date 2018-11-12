@@ -224,11 +224,11 @@ class Tareas extends CI_Model
 		}
 	}
 
-	function validarEstOTporCodInterno($cod_interno){
+	function validarEstOTporCodInterno($cod_interno,$tipo_tarea){
 		$this->db->select('orden_trabajo.id_orden');
 		$this->db->from('orden_trabajo');
 		$this->db->where('orden_trabajo.nro', $cod_interno);
-		//$this->db->where('orden_trabajo.petr_id', $idPedido);
+		$this->db->where('orden_trabajo.cod_interno', $tipo_tarea);
 		$query = $this->db->get();
 
 		if ($query->num_rows()>0){
@@ -239,11 +239,11 @@ class Tareas extends CI_Model
 	}
 
 	// Generar OT vacia
-	function setOTInicial($idTarBonita,$idPedido,$cod_interno,$detalle){
+	function setOTInicial($idTarBonita,$idPedido,$cod_interno,$detalle,$tipo_tarea){
 
 		$userdata = $this->session->userdata('user_data');
 		$usrId    = $userdata[0]['usrId'];
-		//$usrNick  = $userdata[0]['usrNick'];
+		$usrNick  = $userdata[0]['usrNick'];
 
 		$data = array(
 			'nro'=> $cod_interno,
@@ -257,7 +257,9 @@ class Tareas extends CI_Model
 			'id_sucursal' => 1,
 			'id_proveedor' => 1,
 			'petr_id' => $idPedido,
-			'bpm_task_id_plan'=>$idTarBonita
+			'bpm_task_id_plan'=>$idTarBonita,
+			'cod_interno' => $tipo_tarea,
+			'usuario' => $usrNick 
 		   );
 		$query = $this->db->insert("orden_trabajo",$data);
 
@@ -449,8 +451,13 @@ class Tareas extends CI_Model
 		}
 	}
 
-	function Programar_Tareas_Formulario($petrid,$ordenid){
-		return $this->db->query('programar_tareas_form(2500,'.$petrid.','.$ordenid.')');
+	function Programar_Tareas_Formulario($petrid,$ordenid,$tipo){
+		if(strcmp($tipo,"Armado")==0){
+			return $this->db->query('call programar_tareas_armado(2500,'.$petrid.','.$ordenid.');');
+		}elseif(strcmp($tipo,"Reparacion")==0){
+			return $this->db->query('call programar_tareas_reparacion(2500,'.$petrid.','.$ordenid.');');
+		}
+		
 	}
 
 
@@ -922,6 +929,16 @@ class Tareas extends CI_Model
 	function getDatosTarea($nombre){
 		$this->db->where('descripcion',$nombre);
 		return $this->db->get('tareas')->result_array()[0];
+	}
+
+	function Prespuesto_Vigente($idTarBonita,$param){
+
+		$resource = 'API/bpm/userTask/';
+		$com = '/execution';
+		$url = BONITA_URL.$resource.$idTarBonita.$com;
+		file_get_contents($url,false, $param);
+		$response = $this->parseHeaders( $http_response_header );
+		return $response;
 	}
 
 }

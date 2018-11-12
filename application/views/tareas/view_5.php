@@ -1,4 +1,5 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
+
 <section class="content">
 	<?php echo cargarCabecera($idPedTrabajo); ?>
 	<div class="row">
@@ -28,42 +29,36 @@
 											<div class="panel-body">
 
 												<?php
-														//echo"id de form: ";
-														//dump_exit($TareaBPM["assigned_id"]);
-														//$TareaBPM["assigned_id"] = 'asignado';
-														//echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
-												//if ($estadoTarea == "noasignado") {´
-														echo' <input type="hidden"  id="idTareaBPM" name="grpId" value="'.$idTarBonita.'">' ;
-														echo "<input type='hidden' class='' id='caseId' value='". $TareaBPM["caseId"] ."'>";
+                      
+                      echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
+                      //if ($estadoTarea == "noasignado") {´
+                     
+												echo "<button class='btn btn-block btn-success' id='btontomar' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
+                      //}else{
+												echo "&nbsp"; 
+												echo "&nbsp"; 
+												echo "&nbsp";
+												echo "<button class='btn btn-block btn-danger grupNoasignado' id='btonsoltr' style='width: 100px; margin-top: 10px; display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
+                      //}    
+                      echo "</br>"; 
+                      echo "</br>"; 
+                     
+                      $userdata = $this->session->userdata('user_data');
+                      $usrId = $userdata[0]['usrId'];     // guarda usuario logueado
+                      $usrName =  $userdata[0]['usrName'];
+                      $usrLastName = $userdata[0]["usrLastName"];
+                      
+                      echo "<input type='text' class='hidden' id='usrName' value='$usrName' >";
+                      echo "<input type='text' class='hidden' id='usrLastName' value='$usrLastName' >";
+                      
 
-														echo "<input type='hidden' class='' id='idOT' value='". $idOT ."'>";
-
-														echo "<button class='btn btn-block btn-success' id='btontomar' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
-												//}else{
-														echo "&nbsp"; 
-														echo "&nbsp"; 
-														echo "&nbsp";
-														echo "<button class='btn btn-block btn-danger grupNoasignado' id='btonsoltr' style='width: 100px; margin-top: 10px; display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
-												//}    
-														echo "</br>"; 
-														echo "</br>"; 
-
-														$userdata = $this->session->userdata('user_data');
-														$usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
-														$usrName =  $userdata[0]['usrName'];
-														$usrLastName = $userdata[0]["usrLastName"];
-														
-														echo "<input type='text' class='hidden' id='usrName' value='$usrName' >";
-														echo "<input type='text' class='hidden' id='usrLastName' value='$usrLastName' >";
-														echo "<input type='text' class='hidden' id='id_listarea' value='$id_listarea' >";
-
-														echo "<input type='text' class='hidden' id='idPedTrabajo' value='$idPedTrabajo' >";
-												?>
+                      ?>
 												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
 												>
 												<form>
 													<div class="panel panel-default">
 														<h4 class="panel-heading">INFORMACION:</h4>
+
 														<div class="form-group">
 															<div class="col-sm-6 col-md-6">
 																<label for="tarea">Tarea</label>
@@ -76,7 +71,6 @@
 															</div>
 														</div>
 
-
 														<div class="form-group">
 															<div class="col-sm-6 col-md-6">
 																<label for="fecha">Fecha de Creación</label>
@@ -84,7 +78,6 @@
 																 disabled>
 															</div>
 														</div><br>
-
 
 														<div class="form-group ">
 															<div class="col-sm-6 col-md-6 ">
@@ -102,7 +95,6 @@
 																 disabled>
 															</div></br>
 														</div>
-
 														<br>
 
 														<div class="form-group">
@@ -116,12 +108,33 @@
 													<div class="form-group">
 														<div class="col-sm-12 col-md-12">
 															<!-- Modal formulario tarea -->
-															<?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="getformulario()">Completar Formulario</button>';}
-															?>
+															<?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="getformulario()">Completar Formulario </button>';}?>
 														</div>
 													</div>
 
-													
+
+													<!-- Estado de cuenta(inline) -->
+													<div class="form-group">
+														<div class="radioBtn col-sm-12 col-md-12">
+															<center>
+																<label class="control-label">¿La cuenta del cliente
+																	esta
+																	en condiciones?
+																</label>
+																</br>
+																<div class="col-md-12">
+																	<label class="radio-inline" for="radios-0">
+																		<input type="radio" name="estado" id="radios-0" value="true" checked="checked"> Si
+																	</label>
+																	<label class="radio-inline" for="radios-1">
+																		<input type="radio" name="estado" id="radios-1" value="false" checked="checked"> No
+																	</label>
+																</div>
+															</center>
+														</div>
+													</div>
+
+													</br> </br> </br>
 
 												</form>
 
@@ -135,15 +148,15 @@
 													<div class="panel-body" style="max-height: 500px;overflow-y: scroll;">
 														<ul id="listaComentarios">
 															<?php 
-																foreach($comentarios as $f){
+																	foreach($comentarios as $f){
 
-																		if(strcmp($f['userId']['userName'],'System')!=0){
-																		echo '<hr/>';
-																		echo '<li><h4>'.$f['userId']['firstname'].' '.$f['userId']["lastname"].'<small style="float: right">'.date_format(date_create($f['postDate']),'H:i  d/m/Y').'</small></h4>';
-																		echo '<p>'.$f['content'].'</p></li>';
-																		}
+																			if(strcmp($f['userId']['userName'],'System')!=0){
+																			echo '<hr/>';
+																			echo '<li><h4>'.$f['userId']['firstname'].' '.$f['userId']["lastname"].'<small style="float: right">'.date_format(date_create($f['postDate']),'H:i  d/m/Y').'</small></h4>';
+																			echo '<p>'.$f['content'].'</p></li>';
+																			}
 																	}
-														?>
+															?>
 														</ul>
 													</div>
 												</div>
@@ -155,76 +168,70 @@
 
 										<div role="tabpanel" class="tab-pane" id="messages">
 											<div class="panel-body">
-
 												<div class="panel panel-primary">
 													<div class="panel-heading">Línea de Tiempo</div>
 													<div class="panel-body" style="max-height: 500px;overflow-y: scroll;">
+														<style type="text/css">
 
+
+														</style>
 
 														<div class="container">
 															<ul class="timeline">
 																<?php
-																															echo '<h2 style="margin-left:50px;">Actividades Pendientes</h2>';
-																															foreach ($timeline['listAct'] as $f) {       
-																															echo '<li>
-																																	<div class="timeline-badge info"><i class="glyphicon glyphicon-time"></i></div>
-																																	<div class="timeline-panel">
-																																			<div class="timeline-heading">
-																																			<h4 class="timeline-title">'.$f['displayName'].'</h4>
-																																			<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
-																																			</div>
-																																			<div class="timeline-body">';
-																																			if(array_key_exists ( 'assigned_id' , $f ) && $f['assigned_id']!=''){
-																																					echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
-																																			}else{
-																																					echo '<p>Usuario: Sin Asignar</p>';
-																																			}
-																															echo   '<p>Descripción: '.$f['displayDescription'].'</p>
-																																			<p>Case: '.$f['caseId'].'</p>
-																																			</div>
-																																	</div>
-																																	</li>';
-																															}
-																															echo '<h2 style="margin-left:50px;">Actividades Terminadas</h2>';
-																															foreach ($timeline['listArch'] as $f) {
-																															
-																															echo '<li>
-																																	<div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
-																																	<div class="timeline-panel">
-																																			<div class="timeline-heading">
-																																			<h4 class="timeline-title">'.$f['displayName'].'</h4>
-																																			<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
-																																			</div>
-																																			<div class="timeline-body">';
-																																			if(array_key_exists ( 'assigned_id' , $f )){
-																																					echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
-																																			}else{
-																																					echo '<p>Usuario: Sin Asignar</p>';
-																																			}
-																															echo    '<p>Descripción: '.$f['displayDescription'].'</p>           
-																																			<p>Case: '.$f['caseId'].'</p>
-																																			</div>
-																																	</div>
-																																	</li>';
-																															}
-																															?>
+																		echo '<h2 style="margin-left:50px;">Actividades Pendientes</h2>';
+																		foreach ($timeline['listAct'] as $f) {       
+																		echo '<li>
+																				<div class="timeline-badge info"><i class="glyphicon glyphicon-time"></i></div>
+																				<div class="timeline-panel">
+																						<div class="timeline-heading">
+																						<h4 class="timeline-title">'.$f['displayName'].'</h4>
+																						<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
+																						</div>
+																						<div class="timeline-body">';
+																						if(array_key_exists ( 'assigned_id' , $f ) && $f['assigned_id']!=''){
+																								echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
+																						}else{
+																								echo '<p>Usuario: Sin Asignar</p>';
+																						}
+																		echo   '<p>Descripción: '.$f['displayDescription'].'</p>
+																						<p>Case: '.$f['caseId'].'</p>
+																						</div>
+																				</div>
+																				</li>';
+																		}
+																		echo '<h2 style="margin-left:50px;">Actividades Terminadas</h2>';
+																		foreach ($timeline['listArch'] as $f) {
+																		
+																		echo '<li>
+																				<div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+																				<div class="timeline-panel">
+																						<div class="timeline-heading">
+																						<h4 class="timeline-title">'.$f['displayName'].'</h4>
+																						<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
+																						</div>
+																						<div class="timeline-body">';
+																						if(array_key_exists ( 'assigned_id' , $f )){
+																								echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
+																						}else{
+																								echo '<p>Usuario: Sin Asignar</p>';
+																						}
+																		echo    '<p>Descripción: '.$f['displayDescription'].'</p>           
+																						<p>Case: '.$f['caseId'].'</p>
+																						</div>
+																				</div>
+																				</li>';
+																		}
+																		?>
 															</ul>
 														</div>
 
 													</div>
 												</div>
-
-
 											</div>
-											<!--p<nelbody-->
 
 										</div>
-										<div class="col-sm-12 col-md-12" id="infoOT">
-											<h4>Por favor asigne los recursos para las actividades planificadas
-												presionando el botón Orden de Trabajo</h4>
-											<button class="btn btn-primary" id="verOT" onclick="verOT()">Orden de
-												Trabajo</button>
-										</div>
+
 									</div>
 								</div>
 							</div>
@@ -232,9 +239,12 @@
 
 					</div><!-- /.row -->
 
+
+
+
 					<div class="modal-footer">
 						<button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
-						<!-- <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button> -->
+						<button type="button" class="btn btn-success" id="hecho" onclick="estadoCuenta()">Hecho</button>
 					</div> <!-- /.modal footer -->
 
 				</div><!-- /.box body -->
@@ -371,42 +381,11 @@
 </style>
 
 
+
 <script>
-	// Trae id de ot por id tarea BPM (la oT fue generada por la Tarea anterior. Lo vincula por CASE ID)
-	getIdOTporIdBPM();
-	function getIdOTporIdBPM() {
-		var caseId = $('#caseId').val();
-		$.ajax({
-			type: 'POST',
-			data: {
-				'caseId': caseId,
-			},
-			url: 'index.php/Tarea/getIdOTPorCaseId',
-			success: function (data) {
-				console.log('id de ot en vista: ');
-				console.log(data);
-				$('#idOT').val(data);
-			},
-			error: function (data) {
-				console.log(data);
-			},
-			dataType: 'json'
-		});
-	}
-
-	function verOT() {
-
-		var iort = $('#idOT').val();
-		var idTarea = $('#idTarBonita').val();// idde tarea para cerrar la tarea asignacion
-		//alert(iort);
-		//alert(idTarea);  
-		WaitingOpen('Cargando Tareas...');
-		$('#content').empty();
-		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/" + iort + "/" + idTarea + " ");
-		WaitingClose();
-	}
 
 	evaluarEstado();
+	// verific estado para habilitar o desh componentes
 	function evaluarEstado() {
 
 		var asig = $('#asignado').val();
@@ -417,17 +396,16 @@
 			deshabilitar();
 		}
 	}
-
 	function habilitar() {
 		// habilito btn y textarea       
 		$("#btonsoltr").show();
 		$("#hecho").show();
 		$("#guardarComentario").show();
 		$("#comentario").show();
-		$("#infoOT").show();
 		//desahilito btn tomar      
 		$("#btontomar").hide();
 		$("#formulario").show();
+		$(".radioBtn").show();
 	}
 	function deshabilitar() {
 		// habilito btn tomar
@@ -438,10 +416,42 @@
 		$("#guardarComentario").hide();
 		$("#comentario").hide();
 		$("#formulario").hide();
-		$("#infoOT").hide();
-
+		$(".radioBtn").hide();
 	}
 
+	// evento de cierre de modal
+	$('#modalForm').on('hidden.bs.modal', function (e) {
+		alert('modal cerrado!!');
+		// aca guardar el formulario completado parcialmente
+		// $("#genericForm").submit();
+	});
+	// Envia formulario de tarea
+	$('#genericForm').on("submit", function (event) {
+		event.preventDefault();
+		var formData = new FormData($("#genericForm")[0]);
+		console.table(formData);
+		$.ajax({
+			url: 'index.php/Form/guardar',
+			type: 'POST',
+			data: formData,
+			cache: false,
+			contentType: false,
+			processData: false,
+			success: function (respuesta) {
+				if (respuesta === "exito") {
+					alert("Los datos han sido guardados correctamente");
+					//$("#msg-error").hide();
+					//$("#form-create-empleado")[0].reset();
+				} else if (respuesta === "error") {
+					alert("Los datos no se han podido guardar");
+				} else {
+					//$("#msg-error").show();
+					//$(".list-errors").html(respuesta);
+					alert("Los datos no se han guardado");
+				}
+			}
+		});
+	});
 	// Volver al atras
 	$('#cerrar').click(function cargarVista() {
 		WaitingOpen();
@@ -449,7 +459,6 @@
 		$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
 		WaitingClose();
 	});
-
 	/* Funciones BPM */
 	//Ckeck Tarea realizada
 	$('.btncolor').click(function (e) {
@@ -475,20 +484,25 @@
 			}
 		});
 	});
+	// validacion de campo observacion para btn rechazar
+	// $('#rechazar').click(function(e){
+	//   if ($('#observaciones').val() == ""){
+	//     alert('Campo Detalle vacio');
+	//   }
+	// }); 
 
-	//TODO: METODO NUEVO CAMBIADO POR TERNINAR TAREA
-	// para poder probar  terminar la planificacion
-	function terminarAsigPersPlanificacion() {
+	// Terminar tarea
+	function estadoCuenta() {
 		var idTarBonita = $('#idTarBonita').val();
-		alert(idTarBonita);
+		var $estado = $('input[name="estado"]:checked').val();
 		$.ajax({
 			type: 'POST',
 			data: {
 				'idTarBonita': idTarBonita,
+				'estado': $estado
 			},
-			url: 'index.php/Tarea/terminarAsigPersPlanificacion',
+			url: 'index.php/Tarea/estadoCuentaOk',
 			success: function (data) {
-
 				// toma a tarea exitosamente
 				if (data['reponse_code'] == 204) {
 					$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
@@ -501,57 +515,16 @@
 			dataType: 'json'
 		});
 	}
-	// function terminarTarea(){
-	//     var idTarBonita = $('#idTarBonita').val();
-	//     alert(idTarBonita);
-	//     $.ajax({
-	//         type: 'POST',
-	//         data: {
-	//             'idTarBonita': idTarBonita,
-	//         },
-	//         url: 'index.php/Tarea/terminarTarea',
-	//         success: function(data) {
-
-	//                 // toma a tarea exitosamente
-	//                 if(data['reponse_code'] == 204){
-	//                     $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
-	//                 }
-	//         },
-	//         error: function(data) {
-	//             //alert("Noo");
-	//             console.log(data);
-	//         },
-	//         dataType: 'json'
-	//     }); 
-	// }   
 
 
 
-
-	// Boton Hecho generico
-	function estado() {
-		var idTarBonita = $('#idTarBonita').val();
-		$.ajax({
-			type: 'POST',
-			data: {
-				'idTarBonita': idTarBonita,
-			},
-			url: 'index.php/Tarea/estadoCuenta',
-			success: function (result) {
-				console.log(result);
-				alert("SII");
-			},
-			error: function (result) {
-				alert("Noo");
-				console.log(result);
-			},
-			dataType: 'json'
-		});
-	}
 	//Funcion COMENTARIOS
 	function guardarComentario() {
 		console.log("Guardar Comentarios...");
-		var id =<?php echo json_encode($TareaBPM['caseId']);?>;
+		var id = <?php echo json_encode($TareaBPM['caseId']);?>;
+		// TODO: hacer dinamico el id
+
+
 		var nombUsr = $('#usrName').val();
 		var apellUsr = $('#usrLastName').val();;
 
@@ -563,7 +536,7 @@
 			success: function (result) {
 				console.log("Submit");
 				var lista = $('#listaComentarios');
-				lista.prepend(' <hr/><li><h4>' + nombUsr + ' ' + apellUsr + '<small style="float: right">Hace un momento</small></h4><p>' + comentario + '</p></li>');
+				lista.prepend('<hr/><li><h4>' + nombUsr + ' ' + apellUsr + '<small style="float: right">Hace un momento</small></h4><p>' + comentario + '</p></li>');
 				$('#comentario').val('');
 			},
 			error: function (result) {
@@ -571,43 +544,22 @@
 			}
 		});
 	}
-
-	// Toma tarea en BPM y genera OT Inicial
+	// Toma tarea en BPM
 	function tomarTarea() {
 		var idTarBonita = $('#idTarBonita').val();
-		var idPedido = $('#id_pedido').val();   //petr_id
-		var cod_interno = $('#cod_interno').val(); // codigo interno balderramo
-		var detalle = $('#detalle').html();
-
+		// alert(idTarBonita);
 		$.ajax({
 			type: 'POST',
 			data: {
-				idTarBonita: idTarBonita,
-				idPedido: idPedido,
-				cod_interno: cod_interno,
-				detalle: detalle
+				idTarBonita: idTarBonita
 			},
-			url: 'index.php/Tarea/tomarTareaPlanificacion',
+			url: 'index.php/Tarea/tomarTarea',
 			success: function (data) {
-				console.log('codigo de respuesta: ' + data['respRest']['reponse_code']);
-				console.log('respuesta insercion: ' + data['resInsert']);
-
-				// toma a tarea exitosamente en BPM                    
-				if (data['respRest']['reponse_code'] == 200) {
+				console.log(data['reponse_code']);
+				// toma a tarea exitosamente
+				if (data['reponse_code'] == 200) {
 					habilitar();
 				}
-				// inserta OT en BD
-				if (data['resInsert'] != 0) {
-
-					// agrega mensaje sobre boton Orden trabajo 
-					$('#infoOT').after('<h5>Se ha generado la Orden de Trabajo Nº ' + data['resInsert'] + ', haga click en el bton OT para modificarla</h5>');
-
-					// guarda id de ot  para usar
-					$('#idOT').val(data['resInsert']);
-				}
-
-				// <h5>Se ha generado la Orden de Trabajo Nº <span id="numOT"></span> haga click en el bton OT para modificarla</h5>
-				// $('h5 span:last-child').after('<span>'+data['resInsert']+'</span>');
 			},
 			error: function (result) {
 				console.log(result);
@@ -875,12 +827,37 @@
 		});
 	}
 
-	$('.fecha').datepicker({
-		autoclose: true
-	});
 
 
 
+
+	// trae valores validos para llenar form asoc.
+	function getformulario(event) {
+		var estadoTarea = $('#estadoTarea').val();
+		// toma id de form asociado a listarea en TJS
+		var idForm = $('#idform').val();
+		console.log('id de form: ');
+		console.log(idForm);
+		idForm = 1;
+		// trae valores validos para llenar componentes de form asoc.
+		$.ajax({
+			type: 'POST',
+			data: {
+				idForm: idForm
+			},
+			url: 'index.php/Tarea/getValValido',
+			success: function (data) {
+				//console.log('valores de componentes: ');
+				//console.table(data);                   
+				//$(tr).remove();
+				llenaComp(data);
+			},
+			error: function (result) {
+				console.log(result);
+			},
+			dataType: 'json'
+		});
+	}
 </script>
 
 
@@ -896,9 +873,9 @@
 							<div class="row">
 								<div class="col-sm-12 col-md-12">
 									<?php
-                                    if($form != ''){
-                                        cargarFormulario($form);
-                                    }                                    
+                                    	if($form != ''){                                        
+                                          cargarFormulario($form);
+                                        }
                                     ?>
 								</div>
 							</div>
