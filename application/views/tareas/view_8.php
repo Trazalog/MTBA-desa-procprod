@@ -686,9 +686,10 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
 	      var valor = "";
 	      var valorSig = "";      
 
-	      $('#'+idSelect).append($('<option />', 
-	        { value: data[index]['VALOR'], text: data[index]['VALOR'] }));
-
+	      if(data[index]['VALOR']!=$('#' + idSelect).val()){
+				$('#' + idSelect).append($('<option>',
+					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
+			}
 	      valor = data[index]['idValor'];     
 	      valorSig = data[index]['idValor'];
 	    });

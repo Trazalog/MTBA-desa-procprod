@@ -362,6 +362,7 @@
 
 
 <script>
+
   $('#genericForm').bootstrapValidator({ //VALIDADOR
         message: 'This value is not valid',
         feedbackIcons: {
@@ -755,13 +756,19 @@
 			var i = 0;
 			var valor = "";
 			var valorSig = "";
-
-			$('#' + idSelect).append($('<option>',
-				{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
-
+			if(data[index]['VALOR']!=$('#' + idSelect).val()){
+				$('#' + idSelect).append($('<option>',
+					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
+			}
 			valor = data[index]['idValor'];
 			valorSig = data[index]['idValor'];
+			// $('#' + idSelect+" option").val(function(idx, val) {
+			// 	//if(!$(this).is(':selected')){
+			// 		$(this).siblings('[value="'+ val +'"]').remove();
+			// 	//}
+			// });
 		});
+		
 	}
 
 	//Trae valor de las imagenes
@@ -823,7 +830,7 @@
 	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
 	   $('#genericForm').data('bootstrapValidator').validateField($(this));
     });
-	
+
 	function ValidarObligatorios(validarOn){
 		console.log("Validando Campos Obligatorios...");
 		var form_id = $('#idform').val();
