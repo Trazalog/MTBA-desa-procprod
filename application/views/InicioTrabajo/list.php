@@ -11,7 +11,7 @@
 
                     <div class="row">
                         <div class="col-xs-3">
-                            <select id="clientes" class="form-control">
+                            <select id="clientes" class="form-control" placeholder="Seleccionar Clientre">
                                 <option selected="selected">Seleccionar Cliente...</option>
                                 <?php 
 									foreach ($list as $f) {
@@ -366,11 +366,17 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
     $('#clientes').change(function() {
         console.log("Cliente Seleccionado..." + this.selectedIndex);
         var id = this.selectedIndex - 1;
+        if(id==-1){
+            $("#tituloInfo").html('Información del Cliente');
+            if (!$('#collapseDiv').hasClass('collapsed-box')) {
+                $('#infoCliente').click();
+            }
+            return;
+        }else{
         listaClientes = <?php echo json_encode($list); ?>;
         id_cliente_seleccionado = listaClientes[id]['cliId'];
 
-        document.getElementById("tituloInfo").innerHTML = listaClientes[id]['cliName'] +
-            " - Información del Cliente";
+        $("#tituloInfo").html(listaClientes[id]['cliName'] +" - Información del Cliente");
         $('#domicilio').val(listaClientes[id]['cliAddress']);
         $('#celular').val(listaClientes[id]['cliMovil']);
         $('#telefono').val(listaClientes[id]['cliPhone']);
@@ -379,11 +385,12 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
         if ($('#collapseDiv').hasClass('collapsed-box')) {
             $('#infoCliente').click();
         }
-
+        
         // $('#fecha_entrega').datepicker({
         // 	autoclose: true
         // })
         traer_zona();
+        }
     });
 
     function guardarPedido() {
@@ -496,9 +503,10 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
              var d = new Date().sumarLaborables(Math.round(tiempoStandars[i]['dias_habiles']));
              $('#fecha_entrega').val(("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
                 d.getFullYear());
-            ValidarCampo($('#fecha_entrega'),false);
+           // ValidarCampo($('#fecha_entrega'),false);
              
          }
+         ValidarCampo($('#fecha_entrega'),false);
      }
     });
 

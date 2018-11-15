@@ -14,13 +14,9 @@ class Tarea extends CI_Controller {
 		$parametros = $this->Bonitas->conexiones();
 		$param = stream_context_create($parametros);
 		$data['list'] = $this->Tareas->getTareas($param);
-		//dump_exit($data);
-
 		$data['permission'] = "Add-Edit-Del-View-";//$permission;
-
 		$this->load->view('tareas/list',$data);
 	}
-
 	public function getUsuariosBPM(){
 
 		$parametros = $this->Bonitas->LoggerAdmin();
@@ -57,7 +53,6 @@ class Tarea extends CI_Controller {
 
 		return $response;
 	}
-
 	// Trae datos de BPM para notif estandar
 	public function getDatosBPM($idTarBonita){
 
@@ -73,15 +68,12 @@ class Tarea extends CI_Controller {
 
 		return $response;
 	}
-
 	// devuelve id de ot por caseId
 	public function getIdOTPorCaseId(){
 		$caseId = $this->input->post('caseId');
 		$response = $this->Tareas->getIdOTPorCaseId($caseId);
 		echo json_encode($response);
 	}
-
-
 	// Estado cuenta BOTON HECHO
 	public function estadoCuenta(){
 
@@ -139,7 +131,6 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->esperandoRegularizacion($idTarBonita,$param);
 		echo json_encode($result);
 	}
-
 	// Precisa Anticipo
 	public function precisaAnticipo(){
 
@@ -159,7 +150,6 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->precisaAnticipo($idTarBonita,$param);
 		echo json_encode($result);
 	}
-
 	public function GuardarComentario(){
 		$comentario = $this->input->post();
 		// trae la cabecera
@@ -173,13 +163,12 @@ class Tarea extends CI_Controller {
 		$response = $this->Tareas->GuardarComentarioBPM($param);
 		echo json_encode($response);
 	}
-
 	// Trae id de tarea de trazajobs segun id de tarea bonita - NO TOCAR
 	public function getIdTareaTraJobs($idTarBonita){
 
 		try {
-			$metodo = "POST";
-			$parametros = $this->Bonitas->conexiones();
+			$metodo = "GET";
+			$parametros = $this->Bonitas->LoggerAdmin();
 			$param = stream_context_create($parametros);
 			$idTJobs = $this->Tareas->getIdTareaTraJobs($idTarBonita,$param);
 		} catch (Exception $e) {
@@ -215,7 +204,6 @@ class Tarea extends CI_Controller {
 
 		echo json_encode($response);
 	}
-
 	public function terminarTareaStandarenBPM(){
 
 	 	$idTarBonita = $this->input->post('idTarBonita');
@@ -228,13 +216,13 @@ class Tarea extends CI_Controller {
 	 	$param = stream_context_create($parametros);
 	 	$response = $this->Tareas->terminarTareaStandarenBPM($idTarBonita,$param);
 
-	 	// guarda el taskId de BPM en tbl_listareas
-	 	$resp = $this->Tareas->updateTaskEnListarea($id_listarea,$idTarBonita);
+		 // guarda el taskId de BPM en tbl_listareas
+		 if($this->input->post('esTareaStd')==1){
+			 $resp = $this->Tareas->updateTaskEnListarea($id_listarea,$idTarBonita);
+		 }
 
 	 	echo json_encode($response);
 	}
-
-
 	// Trae id de ot por id de BPM
 	public function getIdOT(){
 		$idTarBonita = $this->input->post('idTarBonita');
@@ -242,7 +230,6 @@ class Tarea extends CI_Controller {
 		//dump_exit($response);
 		echo json_encode($response);
 	}
-
 	// terminar planifica
 	public function terminarPlanificacion(){
 		$idTarBonita = $this->input->post('idTarBonita');
@@ -261,7 +248,6 @@ class Tarea extends CI_Controller {
 		$response = $this->Tareas->terminarPlanificacion($idTarBonita,$param);
 		echo json_encode($response);
 	}
-
 	//TODO: AGRAGUE ESTE METODO
 	public function terminarAsigPersPlanificacion(){
 		$idTarBonita = $this->input->post('idTarBonita');
@@ -282,7 +268,6 @@ class Tarea extends CI_Controller {
 		echo json_encode($response);
 
 	}
-
 	// Usr Toma tarea en BPM (Vista de planificacion)
 	public function tomarTareaPlanificacion(){
 
@@ -356,15 +341,23 @@ class Tarea extends CI_Controller {
 		$response = $this->Tareas->soltarTarea($idTarBonita,$param);
 		echo json_encode($response);
 	}
-
 	// trae datos para llenar notificaion estandar y formulario asociado
 	public function detaTarea($permission,$idTarBonita){
 
 			//OBTENER DATOS DE TAREA SELECCIONADA DESDE BONITA
 			$data['TareaBPM'] = json_decode($this->getDatosBPM($idTarBonita),true);
 
+			//Verificar si es tarea Std
+			$data['infoTarea'] = $this->Tareas->getDatosTarea($data['TareaBPM']["displayName"]);
+
+			$id_listarea = 0;
+
+			if($data['infoTarea']['visible']==1){// Pregunta si es Una TareasSTD
+				$id_listarea = $this->getIdTareaTraJobs($idTarBonita); 
+			}
+
 			// Trae id_listarea desde BPM sino '0' si la tarea es solo de BPM(no form asociado)
-			$id_listarea = $this->getIdTareaTraJobs($idTarBonita);
+			
 
 			$idOT = $this->Tareas->getIdOtPorIdBPM($idTarBonita);
 
@@ -474,16 +467,17 @@ class Tarea extends CI_Controller {
 					// $this->load->view('tareas/view_4', $data);
 					break;
 				case 'Evalua y envia presupuesto al cliente':
-					//$this->load->view('tareas/view_6', $data);
 					$this->load->model('AceptacionTrabajos');
 					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
 					$this->load->view('tareas/view_4', $data);
 					break;
-				case 'Planificar Diagnóstico':		
+				case 'Planificar Diagnóstico':
+					$data['nombre_boton_planificacion'] = 'Orden de Trabajo';			
 								//con comentarios listos
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
-				case 'Programar Armado':					//con comentarios listos
+				case 'Programar Armado':
+					$data['nombre_boton_planificacion'] = 'Programar Armado';					//con comentarios listos
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
 				case 'Asignar personal a Planificación':		//con comentarios listo
@@ -514,46 +508,38 @@ class Tarea extends CI_Controller {
                     //dump_exit($data['form']);
 					$data['list']   = $this->Tareas->tareasPorSector($caseId);
                     $this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
-                    break;
+					break;
 				default:
 				$this->load->view('tareas/view_', $data);
 				break;
 			}
 	}
-
 	public function detaTareaRevisionDiagnosticoCoordinador()
 	{
-		//$idOTRevision = 379;
-		//$id_listarea = 333;
 		$idTareaRevisionB = $this->input->post('idTareaRevisionB');
-		//$idTareaRevisionB = 80362;
 		$id_listarea = $this->input->post('id_listarea');
-		//dump($idTareaRevisionB, 'id tarea revision');
-		//dump($id_listarea, 'id listarea');
 
 		// trae id de form asociado a tarea std (las tareas de BPM se cargaran para asociar a form).
 		$idTareaStd = $this->Tareas->getTarea_idListarea($id_listarea);
 		$idForm = $this->Tareas->getIdFormPorIdTareaSTD($idTareaStd); // si es 0 no hay form asociado
-		//dump($idTareaStd, 'tarea std');
-		//dump($idForm, 'id form');
-		return json_encode($idTareaStd);
 
 
 		// // confirma si hay form guardado de esa listarea
 		// //$this->Tareas->getEstadoForm($idTareaRevisionB);
 
 		// // si hay formulario
-		// if($idForm != 0){
-		// 	$data['idForm']	= $idForm;
-		// 	// carga datos del formulario para modal
-		// 	$data['form'] = $this->Tareas->get_form($idTareaRevisionB,$idForm);
-		// 	//dump($data);
-		// }else{
-		// 	$data['idForm'] = 0;
-		// }
-		// //dump_exit($data);
-		// $response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
-		// echo json_encode($response);
+		if($idForm != 0){
+			$data['idForm']	= $idForm;
+			$data['id_listarea'] = $id_listarea;
+			// carga datos del formulario para modal
+			$data['form'] = $this->Tareas->get_form($idTareaRevisionB,$idForm);
+			//dump($data);
+		}else{
+			$data['idForm'] = 0;
+		}
+		//dump_exit($data);
+		$response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
+		echo json_encode($response);
 	}
 
 
@@ -780,5 +766,13 @@ class Tarea extends CI_Controller {
 		$result = $this->Tareas->ValidarObligatorios($form_id,$petr_id);
 		echo $result['result'];
 	}
+
+	public function Programar_Tareas_Formulario(){
+		$petrid = $this->input->post("petr_id");
+		$ordenid = $this->input->post("orden_id");
+		echo $this->Tareas->Programar_Tareas_Formulario($petrid,$ordenid);
+	}
+
+	
 }
 ?>
