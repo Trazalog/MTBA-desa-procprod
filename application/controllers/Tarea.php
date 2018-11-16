@@ -457,14 +457,14 @@ class Tarea extends CI_Controller {
 					break;
 				case 'Entender si seguir esperando':
 					$this->load->view('tareas/view_2', $data);
-					break;
+					break;					
 				case 'Análisis financiero y emisión de reportes':
 					$this->load->view('tareas/view_3', $data);
 					break;
-				case 'Solicita ok del cliente para iniciar diagnostico':
-					// $this->load->model('AceptacionTrabajos');
-					// $data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
-					// $this->load->view('tareas/view_4', $data);
+				case 'Solicita ok al cliente para iniciar diagnostico':					
+					$this->load->model('AceptacionTrabajos');
+					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
+					$this->load->view('tareas/view_4', $data);
 					break;
 				case 'Evalua y envia presupuesto al cliente':
 					$this->load->model('AceptacionTrabajos');
@@ -501,17 +501,17 @@ class Tarea extends CI_Controller {
 					$this->load->view('tareas/view_10', $data);
 					break;
 				case 'Revisión Diagnóstico por el Coordinador':
-					 $idForm = 2500;
-					 $data['idForm'] = $idForm;
+					$idForm = 2500;
+					$data['idForm'] = $idForm;
 					if(!$this->Tareas->getEstadoForm($idTarBonita))$this->Tareas->setFormInicial($idTarBonita,$idForm,$data['idPedTrabajo']);
 					$data['form']   = $this->Tareas->get_form($idTarBonita,$idForm);
                     //dump_exit($data['form']);
 					$data['list']   = $this->Tareas->tareasPorSector($caseId);
-                    $this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
+					$this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
 					break;
-				default:
-				$this->load->view('tareas/view_', $data);
-				break;
+				default:			
+					$this->load->view('tareas/view_', $data);
+					break;
 			}
 	}
 	public function detaTareaRevisionDiagnosticoCoordinador()
