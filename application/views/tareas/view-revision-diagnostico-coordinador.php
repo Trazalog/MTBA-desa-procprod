@@ -50,6 +50,7 @@
                     ?>
 
                     <input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>" >
+                    <input type="text" class="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo ?>">
                     <form>
                       <div class="panel panel-default">
                         <div class="panel-heading"><h4>INFORMACION:</h4></div>
@@ -125,7 +126,7 @@
                                 $id       = $f["id_tarea"];
                                 echo '<tr class="'.$id.'" >';
                                 echo '<td>';
-                                echo '<a href="#" title="Mostrar formulario de tarea" class="getFormularioTarea" data-bpmIdTarea="'.$f['bpm_task_id'].'" data-idListTarea="'.$f['id_listarea'].'" data-idOt="'.$f['id_orden'].'"><i class="fa fa-eye" style="cursor: pointer; margin-left: 15px;" ></i></a>';
+                                echo '<a href="#" title="Mostrar formulario de tarea" class="getFormularioTarea" data-formid="'.$f['form_asoc'].'" data-validado="false" data-bpmIdTarea="'.$f['bpm_task_id'].'" data-idListTarea="'.$f['id_listarea'].'" data-idOt="'.$f['id_orden'].'"><i class="fa fa-eye" style="cursor: pointer; margin-left: 15px;" ></i></a>';
                                       //echo '<a href="#" class="addRepuestos" title="Cargar Pedido de Repuestos" data-ordenDesc="'.$f['orden_descripcion'].'" data-ordenId="'.$f['id_orden'].'"><i class="fa fa-plus" style="cursor: pointer; margin-left: 15px;"></i></a>';
                                       //echo '<a href="#" class="rehacerTarea" title="Rehacer Tarea" data-treaId="'.$f['id_listarea'].'"><i class="fa fa-mail-reply" style="cursor: pointer; margin-left: 15px;"></i></a>';
                                 echo '</td>';
@@ -151,7 +152,7 @@
                             <?php
                             //$idForm = 2500;
                             if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                              data-target=".bs-example-modal-lg" onclick="getformulario()">Completar Formulario</button>';}?>
+                              data-target=".bs-example-modal-lg" data-validado="false" onclick="getformulario()">Completar Formulario</button>';}?>
                           </div>
                         </div>
                       </div>
@@ -316,7 +317,9 @@
 
 <!-- Validacion de Formularios -->
 <script> 
-  $('#genericForm').bootstrapValidator({ //VALIDADOR
+IniciarValidador("genericForm");
+function IniciarValidador(idForm){
+  $('#'+idForm).bootstrapValidator({ //VALIDADOR
         message: 'This value is not valid',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -328,9 +331,9 @@
 				selector: '.fecha',
 				validators:{
 					date: {
-                        format: 'DD-MM-YYYY',
-                        message: '(*) Formato de Fecha Inválido'
-                    }
+                    format: 'DD-MM-YYYY',
+                    message: '(*) Formato de Fecha Inválido'
+                }
 				}
 			},
 			number: {
@@ -345,31 +348,46 @@
         }
     }).on('success.form.bv', function(e) {
             // Prevent form submission
+          
             e.preventDefault();
-			guardarFormulario(true);
+		      	guardarFormulario(true);
            
     });
-    $('#modalForm').on('hidden.bs.modal', function (e) {
-		guardarFormulario(false);
-	});
+}
+
+$('#modalForm').on('hidden.bs.modal', function (e) {
+guardarFormulario(false);
+});
+
+$('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
+  guardarFormulario(false);
+});
+  
 
 	function ValidarCampos(){
-		$('#genericForm').data('bootstrapValidator').validate();
-		if(!$('#genericForm').data('bootstrapValidator').isValid()){
+		$('#'+form_actual_id).data('bootstrapValidator').validate();
+		if(!$('#'+form_actual_id).data('bootstrapValidator').isValid()){
 			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
 		}	
 	}
 	function OcultarModal(){
-		$('#genericForm').data('bootstrapValidator').resetForm();
-		$('#modalForm').modal('hide');
+		$('#'+form_actual_id).data('bootstrapValidator').resetForm();
+		// $('#modalRevDiagCoord').modal('hide');
+    // $('#modalForm').modal('hide');
 		guardarFormulario(false);
+    form_actual_id='';
 	}
 	function guardarFormulario(validarOn){
-		console.log("Guardando Formulario...");
+		console.log("Guardando Formulario..."+form_actual_id);
 		var imgs = $('input.archivo');
 
-		var formData = new FormData($("#genericForm")[0]);
-
+		var formData = new FormData($("#"+form_actual_id)[0]);
+    var i=0;
+    // for (var value of formData.values()) {
+    //   console.log(i+':'+value); 
+    //   i++;
+    // }
+  
 		/** subidad y resubida de imagenes **/
 		// Tomo los inputs auxiliares cargados
 		var aux = $('input.auxiliar');
@@ -432,7 +450,8 @@
 			processData: false,
 
 			success: function (respuesta) {
-
+        console.log(form_actual_id+"...OK");
+        
 				ValidarObligatorios(validarOn);
 				if (respuesta === "exito") {
 
@@ -445,32 +464,38 @@
 					//$(".list-errors").html(respuesta);
 					//alert("Los datos no se han guardado");
 				}
-			}
+			}//VF,
+      // error: function(result){
+      //   console.log(result);
+      //   alert('Error al Guardar Formularios');
+        
+      // }
 		});
 	}
   function ValidarObligatorios(validarOn){
-		console.log("Validando Campos Obligatorios...");
-    //WaitingOpen();
-		var form_id = 2500;//$('#idform').val();
+		console.log("Validando Campos Obligatorios..."+form_actual_id);
+
 		var petr_id = $('#idPedTrabajo').val();
-    alert(petr_id);
-    // $.ajax({
-		// 	type: 'POST',
-		// 	data: {'form_id':form_id,'petr_id':petr_id},
-		// 	url: 'index.php/Tarea/ValidarObligatorios',
-		// 	success: function (result) {
-		// 		validado=(result==1);
-		// 		if(!validarOn) return;
-		// 		if(validado)alert("Formularios Correctamente Validado");
-		// 		else {
-		// 			alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");
-		// 		}
-    //     //WaitingClose();
-		// 	},
-		// 	error: function(result){
-		// 		alert("Fallo la Validación del formularios en el Servidor. Por favor vuelva a intentar.");
-		// 	}
-		// });
+    var form_id = form_actual_data.attr('data-formid');
+    $.ajax({
+			type: 'POST',
+			data: {'form_id':form_id,'petr_id':petr_id},
+			url: 'index.php/Tarea/ValidarObligatorios',
+			success: function (result) {
+        console.log(form_actual_id+"...OK");
+				var validado=(result==1);
+        form_actual_data.attr('data-validado',validado);
+				if(!validarOn) return;
+				if(validado) alert("Formularios Correctamente Validado");
+				else {
+					alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");
+				}
+        //WaitingClose();
+			},
+			error: function(result){
+				alert("Fallo la Validación del formularios en el Servidor. Por favor vuelva a intentar.");
+			}
+		});
 	}
 </script>
 <script>
@@ -540,15 +565,9 @@
           }
       });
   });
-
-  // validacion de campo observacion para btn rechazar
-  // $('#rechazar').click(function(e){
-  //   if ($('#observaciones').val() == ""){
-  //     alert('Campo Detalle vacio');
-  //   }
-  // });
-
   function terminarTarea(){
+   // if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+    return;
     var idTarBonita = $('#idTarBonita').val();
     alert(idTarBonita);
     $.ajax({
@@ -669,105 +688,48 @@
 
 
 
-  // evento de cierre de modal guarda parcialmente los datos
-  // $('#modalForm').on('hidden.bs.modal', function (e) {
-
-  //     $('#error').fadeOut('slow');
-  //     // toma  el valor de todos los input file
-  //     var imgs = $('input.archivo');
-
-  //     var formData = new FormData($("#genericForm")[0]);
-
-  //     /** subidad y resubida de imagenes **/
-  //     // Tomo los inputs auxiliares cargados
-  //     var aux = $('input.auxiliar');
-
-  //     var auxArray = [];
-  //     aux.each(function() {
-  //         auxArray.push($(this).val());
-  //     });
-  //     //console.table(aux);
-  //     for (var i = 0; i < imgs.length; i++){
-
-  //         var inpValor = $(imgs[i]).val();
-  //         var idValor = $(imgs[i]).attr('name');
-  //         //console.log("idValor: "+idValor);
-  //         // si tiene algun valor (antes de subir img)
-  //         if (inpValor != "") {
-  //             //al subir primera img
-  //             formData.append(idValor, inpValor);
-  //         }else{
-  //             // sino sube img guarda la del auxiliar
-  //             inpValor = auxArray[i]; //valor del input auxiliar
-  //             //console.table(inpValor);
-  //             formData.append(idValor, inpValor);
-  //         }
-  //     }
-
-  //     /* text tipo check */
-  //     var check = $('input.check');
-  //     //console.log("aux");
-  //     //console.table(aux);
-  //     var checkArray = [];
-  //     // check.each(function() {
-  //     //     checkArray.push($(this).val());
-  //     // });
-  //     //console.log('array de chech: ');
-  //     //console.table(checkArray);
-
-  //     for (var i = 0; i < check.length; i++){
-  //         //var chekValor = $(check[i]).val();
-  //         var idCheckValor = $(check[i]).attr('name');
-  //         console.log('valor: ');
-  //         console.log(idCheckValor);
-  //         if ($(check[i]).is(':checked')){
-  //             chekValor = 'tilde';
-  //         }else{
-  //             chekValor = 'notilde';
-  //         }
-  //         formData.append(idCheckValor,chekValor);
-  //     }
-  //     // console.log('array de chech: ');
-  //     // console.table(check);
-
-  //     /* Ajax de Grabado en BD */
-  //     $.ajax({
-  //     url:'index.php/Tarea/guardarForm',
-  //     type:'POST',
-  //     data:formData,
-  //     cache:false,
-  //     contentType:false,
-  //     processData:false,
-
-  //     success:function(respuesta){
-
-
-  //         if (respuesta ==="exito") {
-
-  //         }
-  //         else if(respuesta==="error"){
-  //             alert("Los datos no se han podido guardar");
-  //         }
-  //         else{
-  //             //$("#msg-error").show();
-  //             //$(".list-errors").html(respuesta);
-  //             //alert("Los datos no se han guardado");
-  //         }
-  //     }
-  //     });
-  // });
-
   // trae valores validos para llenar form asoc.
   function getformulario(event) {
-    // trae valor de imagenes y llena inputs.
-    //getImgValor();
-
+    console.log("Obteniendo Formulario...");
+    
+     form_actual_data = $('#formulario');
+     form_actual_id = 'genericForm';
     // llena form una sola vez al primer click
     if (click == 0) {
       var estadoTarea = $('#estadoTarea').val();
       // toma id de form asociado a listarea en TJS
       var idForm = $('#idform').val();
       console.log('id de form: '+idForm);
+
+      // guarda el id form asoc a tarea std en modal para guardar
+      $('#idformulario').val(idForm);
+
+      // trae valores validos para llenar componentes de form asoc.
+      $.ajax({
+        type: 'POST',
+        data: { idForm: idForm},
+        url: 'index.php/Tarea/getValValido',
+        success: function(data){
+          console.log('valores de componentes: ');
+          console.table(data);
+          llenaComp(data);
+        },
+        error: function(result){
+          console.log(result);
+        },
+        dataType: 'json'
+      });
+    }
+  }
+
+  function getformularioDiag() {
+    console.log("Obteniendo Formulario Diagnostico...");
+  
+    // llena form una sola vez al primer click
+    if (click == 0) {
+      var estadoTarea = $('#estadoTarea').val();
+      // toma id de form asociado a listarea en TJS
+      var idForm = $(form_actual_data).attr("data-formid")
 
       // guarda el id form asoc a tarea std en modal para guardar
       $('#idformulario').val(idForm);
@@ -800,7 +762,7 @@
     $.each(data,function( index ) {
       //$( "#" + i ).append(  );
       var idSelect = data[index]['idValor'];
-      console.log('idvalor: '+ data[index]['idValor'] + '-- valor: ' + data[index]['VALOR']);
+     // console.log('idvalor: '+ data[index]['idValor'] + '-- valor: ' + data[index]['VALOR']);
       var i        = 0;
       var valor    = "";
       var valorSig = "";
@@ -891,20 +853,23 @@
 
 	$('.fecha').datepicker({
       autoclose: true
-	});
+	}).on('change', function(e) {
+       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
+	   console.log('Validando Campo...'+$(this).attr('name'));
+	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
+	   $('#genericForm').data('bootstrapValidator').validateField($(this));
+    });
 
-
-
-
-
-
+  var form_actual_id = '';
+  var form_actual_data = '';
   //Lama al formulario de cada tarea
   $('.getFormularioTarea').click( function(){
     console.log("Get Formularios Tarea...");
-    
+    form_actual_data = $(this);
     WaitingOpen();
-    var bpmIdTarea   = $(this).attr("data-bpmIdTarea");
-    var idListTarea   = $(this).attr("data-idListTarea");
+    var bpmIdTarea   = form_actual_data.attr("data-bpmIdTarea");
+    var idListTarea   = form_actual_data.attr("data-idListTarea");
+    $('#idformulario').val(form_actual_data.attr("data-formid"));
     console.info("idTarea: "+bpmIdTarea);
     console.info("idListTarea: "+idListTarea);
     $.ajax({
@@ -912,22 +877,32 @@
       dataType: 'json',
       type: 'POST',
       url: 'index.php/Tarea/detaTareaRevisionDiagnosticoCoordinador',
-      success: function(result){
-        alert(result.html);
+      success: function(result){   
+        form_actual_id = 'genericForm'+idListTarea; 
+        
         $("#modalBodyRevDiagCoord").html(result.html);
+        IniciarValidador(form_actual_id);
+        getformularioDiag();
         $('#modalRevDiagCoord').modal('show');
         WaitingClose();
       },
       error: function(result){
         WaitingClose();
-        alert(result);
-        //console.table(result);
+        alert("Error: No se pudo obtener el Formulario");
       },
     });
   });
-  var validado=($('#idform').val()==0);
+
+
   function terminarTareaRevision(){
-    if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+    var ban = true;
+    $('.getFormularioTarea').each(function( index ) {
+      console.log( index + ": " + $( this ).attr('data-validado'));
+      ban = ban && ($( this ).attr('data-validado') == "true");
+    });
+    ban = ban && ($('#formulario').attr('data-validado') == "true");
+    if(ban==false){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+    
     var idsTareaTrazajob = [];
     $("input[name='rehacerTarea[]']:checked").each(function ()
     {
@@ -1040,7 +1015,7 @@
             "<td>"+data['articulos'][indexA]['label']+"</td>"+
             "<td data-artId='"+data['lista'][i]['artId']+"'>"+data['articulos'][indexA]['descripcion']+"</td>"+
             "<td data-provid='"+data['lista'][i]['provid']+"'>"+data['proveedores'][indexP]['provnombre']+"</td>"+
-            "<td>"+data['lista'][i]['cantidad']+" "+data['lista'][i]['medida']+"</td>"+
+            "<td>"+data['lista'][i]['cantidad']+" de "+data['lista'][i]['medida']+"</td>"+
             "<td>"+data['lista'][i]['fechaEntrega']+"</td>"+
             "</tr>";
           $('#pedidoRepuestos tbody').append(tr);
@@ -1067,6 +1042,7 @@
       type: 'POST',
       url: 'index.php/Notapedido/addEditNotaPedido/<?php echo $permission; ?>',
       success: function(result){
+
         WaitingClose();
         $("#modaltitle").html("Agregar");
         $("#modalBodyRepuestos").html(result.html);
@@ -1203,13 +1179,14 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body" id="">
-                <h3>¿Desea Eliminar el Repuesto?</h3>
+                <h3 style="text-align: center;">¿Desea Eliminar el Repuesto?</h3>
             </div><!-- /.modal-body -->
-        </div> <!-- /.modal-content -->
-    </div>  <!-- /.modal-dialog modal-lg -->
-    <div class="modal-footer">
+            <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
       <button type="button" class="botones btn btn-primary" onclick="javascript:Eliminar_Repuestos()">Eliminar</button>
     </div>  <!-- /.modal footer -->
+        </div> <!-- /.modal-content -->
+    </div>  <!-- /.modal-dialog modal-lg -->
+   
 </div>  <!-- /.modal fade -->
 <!-- / Modal -->
