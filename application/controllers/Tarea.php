@@ -450,6 +450,10 @@ class Tarea extends CI_Controller {
 		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
 			$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
 			//$data['TareaBPM']['displayName'] = 'Programar Armado';
+
+			$data['nombre_boton_planificacion'] = 'Orden de Trabajo';			
+			//con comentarios listos
+			
 			switch ($data['TareaBPM']['displayName']) {
 
 				case 'Evaluación del estado de cuenta del cliente':
@@ -461,11 +465,11 @@ class Tarea extends CI_Controller {
 				case 'Análisis financiero y emisión de reportes':
 					$this->load->view('tareas/view_3', $data);
 					break;
-				case 'Solicita ok al cliente para iniciar diagnostico':					
-					$this->load->model('AceptacionTrabajos');
-					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
-					$this->load->view('tareas/view_4', $data);
-					break;
+				// case 'Solicita ok al cliente para iniciar diagnostico':					
+				// 	$this->load->model('AceptacionTrabajos');
+				// 	$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
+				// 	$this->load->view('tareas/view_', $data);
+				// 	break;
 				case 'Evalua y envia presupuesto al cliente':
 					$this->load->model('AceptacionTrabajos');
 					$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
@@ -483,8 +487,8 @@ class Tarea extends CI_Controller {
 				case 'Asignar personal a Planificación':		//con comentarios listo
 					$data['idOT'] = $this->Tareas->getIdOrdenTrabajoPorCaseId($caseId);
 					$this->load->view('tareas/view_asigPersPlanif', $data);
-					break;
-				case 'Revisión Diagnóstico':
+					break;				
+					case 'Revisión Diagnóstico':
 					$this->load->model('Preinformes');
 					$data['formularios'] = $this->Preinformes->ObtenerIdFormulariosCompletados($data['idPedTrabajo']);
 					$this->load->view('tareas/view_8', $data);
@@ -511,7 +515,7 @@ class Tarea extends CI_Controller {
 					break;
 				default:			
 					$this->load->view('tareas/view_', $data);
-					break;
+					break;				
 			}
 	}
 	public function detaTareaRevisionDiagnosticoCoordinador()
