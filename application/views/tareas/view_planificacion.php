@@ -214,14 +214,11 @@
 
 										</div>
 										<div class="col-sm-12 col-md-12" id="infoOT">
-										<?php
-											
+										<?php											
 											if ($idOT != "") {
 												echo '<h4>Se ha generado la Orden de Trabajo Nº  '.$idOT.', haga click en el boton Orden Trabajo para modificarla</h4>';
-											} 
-											
-										?>	
-											
+											} 											
+										?>												
 										</div>
 										<div class="col-sm-12 col-md-12">
 											<button class="btn btn-primary" id="verOT" onclick="verOT()"><?php echo $nombre_boton_planificacion?></button>
