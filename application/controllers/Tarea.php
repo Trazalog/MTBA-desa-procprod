@@ -590,16 +590,15 @@ class Tarea extends CI_Controller {
 	public function GuardarCotizacion(){
 		$idPedTrabajo = $this->input->post('idPedTrabajo');
 		$config = [
-			'upload_path' => "./assets/documentosMTB/cotizaciones",
-			'allowed_types' => "*",
-			'max_size' => "5000"
+			'upload_path' => "./assets/adjuntos",
+			'allowed_types' => "*"
 		];
 		$this->load->library("upload",$config);
 		if($this->upload->do_upload('cotizacion')){
 			$documento = array("upload_data" => $this->upload->data());
 			$data = array(
 				'NOM_VAR' => 'cotizacion',
-				'VALOR' => "./assets/documentosMTB/cotizaciones/".$documento['upload_data']['file_name']
+				'VALOR' => "./assets/adjuntos/".$documento['upload_data']['file_name']
 			);
 		 	$resultBD = $this->Tarea->GuardarCotizacion($idPedTrabajo,$data);
 		 	if($resultBD==false){
@@ -701,7 +700,7 @@ class Tarea extends CI_Controller {
 					if($value != ""){
 						$config = [
 							'upload_path' => './assets/imgformularios/',
-							'allowed_types' => 'png|jpg'
+							'allowed_types' => '*'
 						];
 						$this->load->library("upload",$config);
 						if($this->upload->do_upload($key)){

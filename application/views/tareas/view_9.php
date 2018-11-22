@@ -686,13 +686,16 @@ function regresa(){
 
     // evento de cierre de modal guarda parcialmente los datos
     $('#modalForm').on('hidden.bs.modal', function (e) {   
-        
+        alert("Guardando Form...");
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
         var imgs = $('input.archivo');
-        
+  
         var formData = new FormData($("#genericForm")[0]);
-
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
+   
         /** subidad y resubida de imagenes **/
         // Tomo los inputs auxiliares cargados
         var aux = $('input.auxiliar');
@@ -746,6 +749,7 @@ function regresa(){
         // console.table(check);
     
         /* Ajax de Grabado en BD */
+      
         $.ajax({
         url:'index.php/Tarea/guardarForm',
         type:'POST',
@@ -755,8 +759,9 @@ function regresa(){
         processData:false,
         
         success:function(respuesta){
-            console.log(respuesta);
+            $("#genericForm")[0].reset();
             GuardarValorCotizacion();
+            getImgValor();
             if (respuesta ==="exito") {
                 
             }
@@ -782,7 +787,7 @@ function regresa(){
             type:'POST',
             data:{'PETR_ID':idPed,'FORM_ID':idForm},
             success:function(respuesta){
-                alert("Guardado");
+               // alert("Guardado");
             },
             error:function(respuesta){
                 alert("Error");
@@ -794,7 +799,7 @@ function regresa(){
 
     // trae valores validos para llenar form asoc.  
 	function getformulario(event) {    
-	    
+	    alert("Obteniendo Formularios");
 	    // trae valor de imagenes y llena inputs.
 	    getImgValor();
 
@@ -809,7 +814,7 @@ function regresa(){
 	      // guarda el id form asoc a tarea std en modal para guardar
 	      $('#idformulario').val(idForm);
 
-	      idForm = 1;
+
 	      // trae valores validos para llenar componentes de form asoc.
 	      $.ajax({
 	              type: 'POST',
@@ -817,7 +822,7 @@ function regresa(){
 	              url: 'index.php/Tarea/getValValido', 
 	              success: function(data){               
 	                      //console.log('valores de componentes: ');
-	                      //console.table(data);                   
+	                      console.table(data);                   
 	                     
 	                      llenaComp(data);
 	                    },              
@@ -859,10 +864,14 @@ function regresa(){
 	    var valores; 
 	    // guarda el id form asoc a tarea std en modal para guardar
 	    idForm =  $('#idform').val();
+        idPedido = $('#idPedTrabajo').val();
+       // alert(idForm);
+       // alert(idPedido);
+	
 	    // trae valores validos para llenar componentes input files.
 	    $.ajax({
 	            type: 'POST',
-	            data: { idForm: idForm},
+	            data: { idForm: idForm,idPedTrabajo:idPedido},
 	            url: 'index.php/Tarea/getImgValor', 
 	            success: function(data){               
 	                                       
@@ -886,7 +895,7 @@ function regresa(){
 	      var id = data[index]['valoid'];
 	      var valor = data[index]['valor'];
 	      //carga el valor que viene de DB
-	      $("."+data[index]['valoid']).val(valor);
+	      $("."+data[index]['valoid']).attr('href',valor);
           //$("#"+data[index]['valoid']).val(valor);
 	    });
 	}

@@ -658,18 +658,13 @@ class Tareas extends CI_Model
 
 	// devuelve array con id de valor y url de la imag
 	function getImgValor($idForm,$idPedTrabajo){
-		//frm_formularios_completados.VALO_ID AS valoid,
-		$sql ="SELECT
-				frm_formularios_completados.FOCO_ID AS valoid,
-
-				frm_formularios_completados.VALOR As valor
-				FROM
-				frm_formularios_completados
-				WHERE
-				frm_formularios_completados.FORM_ID = $idForm AND
-				frm_formularios_completados.TIDA_NOMBRE = 'input_archivo'
-				AND PETR_ID = $idPedTrabajo";
-		$query= $this->db->query($sql);
+		//frm_formularios_completados.VALO_ID AS valoid
+		$this->db->select('frm_formularios_completados.FOCO_ID AS valoid, frm_formularios_completados.VALOR As valor');
+		$this->db->from('frm_formularios_completados');
+		$this->db->where('frm_formularios_completados.FORM_ID',$idForm);
+		$this->db->where('frm_formularios_completados.TIDA_NOMBRE','input_archivo');
+		$this->db->where('frm_formularios_completados.petr_id',$idPedTrabajo);
+		$query= $this->db->get();
 
 		if($query->num_rows()>0){
 	    	return $query->result_array();
