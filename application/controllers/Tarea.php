@@ -502,7 +502,7 @@ class Tarea extends CI_Controller {
 				case 'Cotización de trabajo Industrial':
 					$this->load->model('Preinformes');
 					$data['formularios'] = array(2500);
-					$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0][ 'id_orden']);
+					$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0]['id_orden']);
 					$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
 					$this->load->view('tareas/view_9', $data);
 					break;

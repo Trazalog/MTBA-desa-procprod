@@ -373,7 +373,7 @@
         fields: {		
 			fecha:{
 				selector: '.fecha',
-				validators:{
+				validators:{	
 					date: {
                         format: 'DD-MM-YYYY',
                         message: '(*) Formato de Fecha Inválido'

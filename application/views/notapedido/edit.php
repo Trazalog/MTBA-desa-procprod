@@ -42,12 +42,14 @@
   </div></div>
 
   <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group"><label>Fecha de Entrega</label> <strong style="color: #dd4b39">*</strong> :
-    <input type="text" id="fechaEnt" name="fechaEnt" class="form-control datepicker fecha" value="<?php echo date('d/m/Y',strtotime($list[0]['fechaEntrega'])) ?>"/>
+    <input type="text" id="fechaEnt" name="fechaEnt" class="form-control datepicker fecha" value="<?php echo date('d-m-Y',strtotime($list[0]['fechaEntrega'])) ?>"/>
   </div></div>
 
-  <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group"><label>Medida</label> <strong style="color: #dd4b39">*</strong> :
-    <input type="text" id="medida" name="medida" class="form-control numerico" value="<?php echo explode(" ",$list[0]['medida'])[0] ?>"/>
-  </div><select class="select" id="magnitud" placeholder="Medida..." style="float:right;"><?php $o=explode(" ",$list[0]['medida'])[1]; echo '<option selected value="'.$o.'">'.$o.'</option>'?><option value="km">km</option><option value="m">m</option><option value="cm">cm</option></select></div><br>
+  <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group">
+  <label>Medida</label> <strong style="color: #dd4b39">*</strong> :
+    <!-- <input type="text" id="medida" name="medida" class="form-control numerico" value=""/> -->
+  <select class="select form-control"  id="medida" name="medida" placeholder="Medida..."><?php echo '<option selected value="'.$list[0]['medida'].'">'.$list[0]['medida'].'</option>'?><option value="km">km</option><option value="m">m</option><option value="cm">cm</option></select>
+  </div></div><br>
 
   <div class="clearfix"></div>
   <div class="col-xs-12">
@@ -190,7 +192,7 @@ function validarCampos(){
 function enviarOrden() {
   var datos = $("#form_order").serializeArray();
   console.table(datos);
-  datos[6]['value'] = datos[6]['value'] +" "+$('select#magnitud option:selected').html();
+  datos[6]['value'] = $('select#medida option:selected').html();
   
   //WaitingOpen('Guardando cambios');
   $.ajax({
