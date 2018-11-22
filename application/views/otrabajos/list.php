@@ -732,7 +732,7 @@ function traer_clientes(){
               $('#cli').append(opcion); 
             for(var i=0; i < data.length ; i++) 
             {    
-                  var nombre = data[i]['cliLastName']+'. .'+datos['cliName'];
+                  var nombre = data[i]['cliLastName']+'. .'+data['cliName'];
                   var opcion  = "<option value='"+data[i]['cliId']+"'>" +nombre+ "</option>" ; 
 
                 $('#cli').append(opcion); 

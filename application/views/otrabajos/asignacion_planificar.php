@@ -262,7 +262,6 @@
 
     var idTarBonita = $('#idTarBonita').val();
     var tipo_tarea = $('#tipo_tarea').val();
-    alert("tipo_tarea: "+tipo_tarea);
     //var idOT = $('#idOT').val();
     $.ajax({
       type: 'POST',

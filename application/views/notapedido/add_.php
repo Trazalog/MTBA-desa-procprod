@@ -34,7 +34,7 @@
 </div><hr>
 -->
 <input id="id_ordTrabajo" name="" class="hidden" value="<?php echo $id_orden ?>"/>
-<form id="form_articulos">
+<form>
 <div class="row" >
   <div class="col-xs-12 col-sm-6 col-md-4"><label>Código de Artículo</label> <strong style="color: #dd4b39">*</strong> :
     <input type="hidden" id="id_articulo" name="">
@@ -55,9 +55,8 @@
     <input  type="text" id="fechaEnt" name="fechaEnt" class="form-control datepicker fecha" placeholder="Selecciones fecha..."/>
   </div></div>
   <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group"><label>Medida</label> <strong style="color: #dd4b39">*</strong> :
-    <!-- <input  type="text"  placeholder="ingrese medida..."/> -->
-    <select id="medida" name="medida" class="form-control" placeholder="Medida..."><option value="km">km</option><option value="m">m</option><option value="cm">cm</option></select>
-  </div></div><br>
+    <input  type="text" id="medida" name="medida" class="form-control numerico" placeholder="ingrese medida..."/>
+  </div><select id="magnitud" placeholder="Medida..." style="float:right;"><option>kilometro</option><option>decametro</option><option>metro</option></select></div><br>
   <div class="clearfix"></div>
   <div class="col-xs-12">
     <button type="button" class="btn btn-success" id="addcompo" onclick="javascript:armarTabla()" style="margin-top: 15px"><i class="fa fa-check">Agregar</i></button>
@@ -107,7 +106,7 @@
 
 
 <script>
- $('#form_articulos').bootstrapValidator({ //VALIDADOR
+ $('form').bootstrapValidator({ //VALIDADOR
         message: 'This value is not valid',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -115,20 +114,9 @@
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {		
-          art:{
-            selector:'',
-            validators:{
-              notEmpty: {
-                message: 'Campo Obligatorio (*)'
-              }
-            }
-          },
 			fecha:{
 				selector: '.fecha',
 				validators:{
-          notEmpty: {
-                        message: 'Campo Obligatorio (*)'
-                    },
 					date: {
                     format: 'DD-MM-YYYY',
                     message: '(*) Formato de Fecha Inválido'
@@ -138,9 +126,6 @@
 			number: {
 				selector: '.numerico',
                 validators: {
-                  notEmpty: {
-                        message: 'Campo Obligatorio (*)'
-                    },
                     integer: {
                         message: '(*) Solo Valores Numéricos'
                     }
@@ -225,8 +210,8 @@ $.ajax({
 $( "#fechaEnt" ).datepicker().on('change', function(e) {
        // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
 	   console.log('Validando Campo...'+$(this).attr('name'));
-	   $('#form_articulos').data('bootstrapValidator').resetField($(this),false);
-	   $('#form_articulos').data('bootstrapValidator').validateField($(this));
+	   $('form').data('bootstrapValidator').resetField($(this),false);
+	   $('form').data('bootstrapValidator').validateField($(this));
     });;
 
 
@@ -247,7 +232,7 @@ function armarTabla(){   // inserta valores de inputs en la tabla
     var $id_proveedor = $("select#proveedor option:selected").val();
     //var $id_proveedor = $("input#proveedor").val();
     var $fecha        = $("#fechaEnt").val();
-    var $medida       = $('select#medida option:selected').html();
+    var $medida       = $("#medida").val()+" "+$('select#magnitud option:selected').html();
 
     //tabla = $('.tabModInsum').DataTable();
     //$( $.fn.dataTable.tables( true ) ).DataTable().columns.adjust();
@@ -275,8 +260,6 @@ function armarTabla(){   // inserta valores de inputs en la tabla
     '<tr>');
 
     regInsum++;
-    $('#form_articulos')[0].reset();
-    $('#form_articulos').data('bootstrapValidator').resetForm();
   }
 }
 

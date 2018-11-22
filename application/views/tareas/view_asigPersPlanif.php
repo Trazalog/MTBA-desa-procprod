@@ -58,6 +58,7 @@
 														echo "<input type='text' class='hidden' id='id_listarea' value='$id_listarea' >";
 
 														echo "<input type='text' class='hidden' id='idPedTrabajo' value='$idPedTrabajo' >";
+														echo "<input type='text' class='hidden' id='tipo_tarea' value='$tipo_tarea' >";
 												?>
 												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
 												>
@@ -578,14 +579,16 @@
 		var idPedido = $('#id_pedido').val();   //petr_id
 		var cod_interno = $('#cod_interno').val(); // codigo interno balderramo
 		var detalle = $('#detalle').html();
-
+		var tipo_tarea = $('#tipo_tarea').val();
+		alert("idPedido:"+idPedido+"/cod_interno:"+cod_interno+"/tipo_tarea:"+tipo_tarea);
 		$.ajax({
 			type: 'POST',
 			data: {
 				idTarBonita: idTarBonita,
 				idPedido: idPedido,
 				cod_interno: cod_interno,
-				detalle: detalle
+				detalle: detalle,
+				tipo_tarea:tipo_tarea
 			},
 			url: 'index.php/Tarea/tomarTareaPlanificacion',
 			success: function (data) {

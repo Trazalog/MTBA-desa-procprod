@@ -110,7 +110,24 @@
 																<label for="detalle">Detalle</label>
 																<textarea class="form-control" id="detalle" rows="3" disabled><?php echo $TareaBPM['displayDescription']?></textarea>
 															</div>
-														</div></br> </br> </br> </br> </br>
+                            </div></br> </br> </br> 
+                            
+                            <div class="col-sm-12 col-md-12" style="margin-top:15px;"> 
+                              
+                            <?php											
+                                if ($idOT != "") {
+                                  echo '<h4>Se ha generado la Orden de Trabajo Nº  '.$idOT.', haga click en el boton Orden Trabajo para modificarla</h4>';
+                                } 											
+                              ?>
+                                 </br>
+                            <button class="btn btn-primary" id="verOT">Orden Trabajo</button>
+                            </div>
+
+                            <div class="col-sm-12 col-md-12" id="infoOT">
+                              												
+                            </div>
+
+
 													</div>
 
 													<div class="form-group">
@@ -214,19 +231,8 @@
 											</div> <!-- panel-body-->
 
 										</div>
-										<div class="col-sm-12 col-md-12" id="infoOT">
-										<?php
-											
-											if ($idOT != "") {
-												echo '<h4>Se ha generado la Orden de Trabajo Nº  '.$idOT.', haga click en el boton Orden Trabajo para modificarla</h4>';
-											} 
-											
-										?>	
-											
-										</div>
-										<div class="col-sm-12 col-md-12">
-											<button class="btn btn-primary" id="verOT" onclick="verOT()"><?php echo $nombre_boton_planificacion?></button>
-										</div>
+										
+
 									</div>
 								</div>
 							</div>
@@ -378,39 +384,42 @@
 
 <script>
 
-	function verOT() {
+	 $('#verOT').click(function(){
 		var iort = $('#idOT').val();
 		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		// if($('#tipo_tarea').val()=='Armado'){
-		// 		$.ajax({
-		// 		type:'POST',
-		// 		url:'index.php/Tarea/Programar_Tareas_Formulario',
-		// 		data:{cod_interno:$('#cod_interno').val(),petrid:$('#petrid').val(),ordenid:iort,tipo:"Armado"},
-		// 		success:function(result){
-		// 			if(!result){
-		// 				alert('Tareas Programadas');
-		// 			}else{
-		// 				alert('Tareas Ya programadas');
-		// 			}
-		// 			redireccionar_planificacion(iort,idTarBonita);
-		// 		},
-		// 		error: function(result){
-		// 			console.log(result);
-		// 			alert('Error');
-		// 		}
-		// 	});
-		// }else{
-			redireccionar_planificacion(iort,idTarBonita);
-		//}
-		
-		
-	}
+		redireccionar_planificacion(iort,idTarBonita);
+	});
 	function redireccionar_planificacion(ot,idTarBonita){
 		WaitingOpen('Cargando Tareas...');
 		$('#content').empty();
 		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/"+ot+"/"+idTarBonita+"/");
 		WaitingClose();
-	}
+	};
+
+
+
+
+	// function verOT() {
+	// 	var iort = $('#idOT').val();
+	// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
+	// 	// $.ajax({
+	// 	// 	type:'POST',
+	// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
+	// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
+	// 	// 	success:function(result){
+	// 	// 		alert('Tareas Programadas');
+	// 	// 	},
+	// 	// 	error: function(result){
+	// 	// 		console.log(result);
+				
+	// 	// 		alert('Error');
+	// 	// 	}
+	// 	// });
+	// 	WaitingOpen('Cargando Tareas...');
+	// 	$('#content').empty();
+	// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
+	// 	WaitingClose();
+	// }
 
 	evaluarEstado();
 	function evaluarEstado() {
@@ -560,7 +569,6 @@
 		var cod_interno = $('#cod_interno').val(); // codigo interno balderramo
 		var detalle = $('#detalle').html();
 		var tipo_tarea = $('#tipo_tarea').val();
-		alert(tipo_tarea);
 		$.ajax({
 			type: 'POST',
 			data: {
