@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-	<?php cargarCabecera($idPedTrabajo); ?>
+	<?php echo cargarCabecera($idPedTrabajo); ?>
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">
@@ -740,9 +740,10 @@
 			var valor = "";
 			var valorSig = "";
 
-			$('#' + idSelect).append($('<option />',
-				{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
-
+			if(data[index]['VALOR']!=$('#' + idSelect).val()){
+				$('#' + idSelect).append($('<option>',
+					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
+			}
 			valor = data[index]['idValor'];
 			valorSig = data[index]['idValor'];
 		});
@@ -857,27 +858,6 @@
 			dataType: 'json'
 		});
 	}
-	// llena los componentes de form asoc con valores validos
-	function llenaComp(data) {
-		var id_listarea = $('#tbl_listarea').val();
-		$('#id_listarea').val(id_listarea);
-		$.each(data, function (index) {
-			//$( "#" + i ).append(  );
-			var idSelect = data[index]['idValor'];
-			//console.log('idvalor: '+ data[index]['idValor'] + '-- valor: ' + data[index]['VALOR']);
-			var i = 0;
-			var valor = "";
-			var valorSig = "";
-			$('#' + idSelect).append($('<option />', {
-				value: data[index]['VALOR'],
-				text: data[index]['VALOR']
-			}));
-			valor = data[index]['idValor'];
-			valorSig = data[index]['idValor'];
-		});
-	}
-    //}
-    //);
 </script>
 
 

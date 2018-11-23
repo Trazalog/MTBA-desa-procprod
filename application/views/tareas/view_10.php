@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
-    <?php cargarCabecera($idPedTrabajo); ?>
+    <?php echo cargarCabecera($idPedTrabajo); ?>
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -657,9 +657,10 @@
 	      var valor = "";
 	      var valorSig = "";      
 
-	      $('#'+idSelect).append($('<option />', 
-	        { value: data[index]['VALOR'], text: data[index]['VALOR'] }));
-
+	      if(data[index]['VALOR']!=$('#' + idSelect).val()){
+				$('#' + idSelect).append($('<option>',
+					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
+		}
 	      valor = data[index]['idValor'];     
 	      valorSig = data[index]['idValor'];
 	    });

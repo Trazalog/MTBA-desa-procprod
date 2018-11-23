@@ -1,7 +1,6 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <section class="content">
-	<?php cargarCabecera($idPedTrabajo); ?>
-	<input type="text" class="form-control hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo ?>">
+	<?php echo cargarCabecera($idPedTrabajo); ?>
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">
@@ -243,6 +242,9 @@
 
 					<div class="modal-footer">
 						<button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
+
+						<!--TODO: SACAR ESTE BOTON HECHO, SOLO SE TERMINA LA TAREA DESDE ASIGNACION_PLANIFICAR..!!!-->
+						<!-- <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button> -->
 					</div> <!-- /.modal footer -->
 
 				</div><!-- /.box body -->
@@ -382,29 +384,15 @@
 
 <script>
 
-
-
-  // $('#verOT').click(function() {
-  //   //alert('ver ot');
-  //   var iort = $('#idOT').val();
-	//  	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-  //   WaitingOpen('Cargando Tareas...');
-	// 	$('#content').empty();
-	// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
-	// 	WaitingClose();
-	// });
-	
-	$('#verOT').click(function(){
+	 $('#verOT').click(function(){
 		var iort = $('#idOT').val();
 		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		var idPedTrabajo = $('#idPedTrabajo').val(); 
-		//alert(idPedTrabajo);
-		redireccionar_planificacion(iort,idTarBonita,idPedTrabajo);
+		redireccionar_planificacion(iort,idTarBonita);
 	});
-	function redireccionar_planificacion(ot,idTarBonita,idPedTrabajo){
+	function redireccionar_planificacion(ot,idTarBonita){
 		WaitingOpen('Cargando Tareas...');
 		$('#content').empty();
-		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/"+ot+"/"+idPedTrabajo+"/");
+		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/"+ot+"/"+idTarBonita+"/");
 		WaitingClose();
 	};
 
@@ -412,26 +400,26 @@
 
 
 	// function verOT() {
-		// 	var iort = $('#idOT').val();
-		// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		// 	// $.ajax({
-		// 	// 	type:'POST',
-		// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
-		// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
-		// 	// 	success:function(result){
-		// 	// 		alert('Tareas Programadas');
-		// 	// 	},
-		// 	// 	error: function(result){
-		// 	// 		console.log(result);
-					
-		// 	// 		alert('Error');
-		// 	// 	}
-		// 	// });
-		// 	WaitingOpen('Cargando Tareas...');
-		// 	$('#content').empty();
-		// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
-		// 	WaitingClose();
-		// }
+	// 	var iort = $('#idOT').val();
+	// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
+	// 	// $.ajax({
+	// 	// 	type:'POST',
+	// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
+	// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
+	// 	// 	success:function(result){
+	// 	// 		alert('Tareas Programadas');
+	// 	// 	},
+	// 	// 	error: function(result){
+	// 	// 		console.log(result);
+				
+	// 	// 		alert('Error');
+	// 	// 	}
+	// 	// });
+	// 	WaitingOpen('Cargando Tareas...');
+	// 	$('#content').empty();
+	// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
+	// 	WaitingClose();
+	// }
 
 	evaluarEstado();
 	function evaluarEstado() {
@@ -581,7 +569,6 @@
 		var cod_interno = $('#cod_interno').val(); // codigo interno balderramo
 		var detalle = $('#detalle').html();
 		var tipo_tarea = $('#tipo_tarea').val();
-		//alert(idPedido);
 		$.ajax({
 			type: 'POST',
 			data: {
@@ -799,7 +786,6 @@
 				$('#' + idSelect).append($('<option>',
 					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
 			}
-
 			valor = data[index]['idValor'];
 			valorSig = data[index]['idValor'];
 		});

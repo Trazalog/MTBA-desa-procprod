@@ -85,6 +85,7 @@
                             <option value='CA'> CA - cardan </option>
                             <option value='CI'> CI - Cigüeñal </option>
                             <option value='COM'> COM - compresor </option>
+                            <option value='MO'> MO - motor </option>
                             <option value='IT'> IT - intercambiadores </option>
                             <option value='PS'> PS - piezas sueltas </option>
                             <option value='RA'> RA - Radiadores de Aceite </option>

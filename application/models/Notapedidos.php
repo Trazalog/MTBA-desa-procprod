@@ -284,7 +284,7 @@ class Notapedidos extends CI_Model
     $id_articulo   = $data["id_articulo"];
     $cantidad      = $data["cantidad"];
     $proveedor     = $data['proveedor'];
-    $fechaEnt      = $data['fechaEnt'];
+    $fechaEnt      = date('Y-m-d',strtotime($data['fechaEnt']));
     $medida        = $data['medida'];
 
     $datos = array(

@@ -7,15 +7,53 @@
     </div>
   </div>
 </div>
-
 <section class="content">
+<?php cargarCabecera($idPedTrabajo); ?>
+
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
           <h2 class="box-title ">Programación de Tareas (Asignación de Personal)</h2>         
         </div><!-- /.box-header -->
-        <div class="box-body">    
+        <div class="box-body">  
+          
+          <!-- Info de Ot -->
+          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Ver Info Orden Trabajo
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <table id="infoOT" class="table table-bordered table-hover" width="80%">                                
+                    <thead>
+                      <tr>  
+                        <th width="5%">Nro OT</th>   
+                        <th width="10%">Cod Inteno</th>       
+                        <th width="25%">Tarea</th>            
+                        <th width="5%">Fecha</th> 
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><?php echo $infoOT[0]["id_orden"]; ?></td>
+                        <td><?php echo $infoOT[0]["nro"]; ?></td>
+                        <td><?php echo $infoOT[0]["descripcion"]; ?></td>            
+                        <td><?php echo $infoOT[0]["fecha_inicio"]; ?></td>           
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>  
+          <!-- / Info de Ot -->
+
           <?php
         // if (strpos($permission,'Add') !== false) {
           // echo '<button class="btn btn-block btn-success" style="width: 100px;" id="listado">Ver Listado</button>';
@@ -481,7 +519,6 @@ function calendario(){
                               success: function(doc) {
                                   var events = [];
                                   //getTablas(month_);
-
                                 
                                   $(doc).each(function() {
 
@@ -503,7 +540,7 @@ function calendario(){
                                       hasta = hasta.setMinutes(totalminutos);
                                       
                                       var to = new Date(hasta);
-
+                                      var idOT = $(this).attr('id_orden');  
                                       // asigna colores en funcion del tipo de orden
                                       var  Color = '';
                                       // switch ($(this).attr('tipo')) {
@@ -535,7 +572,7 @@ function calendario(){
                                               title:  $(this).attr('tareaDescripcion'),
                                               // codigo: $(this).attr('nro'),
                                               equipo: $(this).attr('equipoDescripcion'),
-                                              // id_orden: $(this).attr('id_orden'),
+                                              id_orden: $(this).attr('id_orden'),
                                               idtarea: $(this).attr('id_listarea'), 
                                               allDay: false,
                                               backgroundColor: Color,
@@ -565,13 +602,21 @@ function calendario(){
             $('#codigo_equipo').remove();
             $('#numero').remove();
             $('#modal_desc').remove();
-            $('#modal_prev tbody').append(
+            // $('#modal_prev tbody').append(
 
-              '<tr id="modal_desc">'+
-              '<td class="tit"><input type="text" class="numero prevent" id="numero" value=" '+ idOT +' " placeholder=""></td>'+              
-              '<td class="cod" id="cod"><input type="text" class="codigo_equipo prevent" id="codigo_equipo" value=" '+ event.equipo +' " placeholder=""></td>'+                  
-              '<td class="tit"><input type="text" class="title prevent" id="title" value=" '+ event.title +' " placeholder=""></td>'+          
-              '</tr>'
+              //   '<tr id="modal_desc">'+
+              //   '<td class="tit"><input type="text" class="numero prevent" id="numero" value=" '+ idOT +' " placeholder=""></td>'+              
+              //   '<td class="cod" id="cod"><input type="text" class="codigo_equipo prevent" id="codigo_equipo" value=" '+ event.equipo +' " placeholder=""></td>'+                  
+              //   '<td class="tit"><input type="text" class="title prevent" id="title" value=" '+ event.title +' " placeholder=""></td>'+          
+              //   '</tr>'
+              //   );
+
+              $('#modal_prev tbody').append(
+                '<tr id="modal_desc">' +
+                '<td class="tit">' +event.id_orden + '</td>' +
+                '<td class="cod" id="cod">' + event.equipo + '</td>' +
+                '<td class="tit">' + event.title + ' </td>' +
+                '</tr>'
               );
 
               $('#modalTarea').modal('show');
