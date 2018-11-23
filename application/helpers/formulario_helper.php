@@ -104,7 +104,7 @@ if (!function_exists('cargarFormulario')) {
                             // link para ver la imagen adjunta
                             
                             if($a['valDefecto'] != ""){
-                              echo "<a href='".base_url.$a['valDefecto']."' class='".$a['idValor']."' target='_blank' ><i class='fa fa-picture-o' style='color: #A4A4A4; cursor: pointer; margin-left: 15px;' title='Imagen'></i> Ver Adjunto</a> ";
+                              echo "<a href='".$a['valDefecto']."' class='".$a['idValor']."' target='_blank' ><i class='fa fa-picture-o' style='color: #A4A4A4; cursor: pointer; margin-left: 15px;' title='Imagen'></i> Ver Adjunto</a> ";
                             }                        
                             break;
                         case "checkbox":

@@ -1,7 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <?php //dump($TareaBPM); ?>
 <section class="content">
-  <?php cargarCabecera($idPedTrabajo); ?>
+  <?php echo cargarCabecera($idPedTrabajo); ?>
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
@@ -567,9 +567,9 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
   });
   function terminarTarea(){
    // if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
-    return;
+  
     var idTarBonita = $('#idTarBonita').val();
-    alert(idTarBonita);
+   // alert(idTarBonita);
     $.ajax({
       type: 'POST',
       data: {
@@ -600,10 +600,10 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
           url: 'index.php/Tarea/estadoCuenta',
           success: function(result) {
               console.log(result);
-              alert("SII");
+             // alert("SII");
           },
           error: function(result) {
-              alert("Noo");
+              //alert("Noo");
               console.log(result);
           },
           dataType: 'json'
@@ -623,7 +623,7 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
   		success:function(result){
   			console.log("Submit");
   			var lista =  $('#listaComentarios');
-  			lista.append(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
+  			lista.prepend(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
   			$('#comentario').val('');
   		},
   		error:function(result){
@@ -767,9 +767,10 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
       var valor    = "";
       var valorSig = "";
 
-      $('#'+idSelect).append($('<option />',
-        { value: data[index]['VALOR'], text: data[index]['VALOR'] }));
-
+      if(data[index]['VALOR']!=$('#' + idSelect).val()){
+				$('#' + idSelect).append($('<option>',
+					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
+			}
       valor    = data[index]['idValor'];
       valorSig = data[index]['idValor'];
     });
@@ -870,6 +871,8 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
     var bpmIdTarea   = form_actual_data.attr("data-bpmIdTarea");
     var idListTarea   = form_actual_data.attr("data-idListTarea");
     $('#idformulario').val(form_actual_data.attr("data-formid"));
+    //alert($('#idformulario').val());
+  
     console.info("idTarea: "+bpmIdTarea);
     console.info("idListTarea: "+idListTarea);
     $.ajax({
@@ -1015,7 +1018,7 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
             "<td>"+data['articulos'][indexA]['label']+"</td>"+
             "<td data-artId='"+data['lista'][i]['artId']+"'>"+data['articulos'][indexA]['descripcion']+"</td>"+
             "<td data-provid='"+data['lista'][i]['provid']+"'>"+data['proveedores'][indexP]['provnombre']+"</td>"+
-            "<td>"+data['lista'][i]['cantidad']+" de "+data['lista'][i]['medida']+"</td>"+
+            "<td>"+data['lista'][i]['cantidad']+" | "+data['lista'][i]['medida']+"</td>"+
             "<td>"+data['lista'][i]['fechaEntrega']+"</td>"+
             "</tr>";
           $('#pedidoRepuestos tbody').append(tr);
@@ -1073,12 +1076,12 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
       url: 'index.php/Notapedido/delDetaNotaPedido', //index.php/
       success: function(data){
         console.info("Repuesto eliminado Eliminado");
-        $('#modalEliminarRepuesto').modal('toggle');  
+        $('#modalEliminarRepuesto').modal('hide');  
         traerPedidosRep();
       },
       error: function(result){
         console.error(result);
-        $('#modalEliminarRepuesto').modal('toggle');  
+        $('#modalEliminarRepuesto').modal('hide');  
       },
     });
   }
@@ -1175,7 +1178,7 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
 <!-- / Modal -->
 
 <!-- Modal forms tareas a revisar -->
-<div class="modal fade" id="modalEliminarRepuesto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-body" id="">
@@ -1183,10 +1186,29 @@ $('#modalRevDiagCoord').on('hidden.bs.modal', function (e) {
             </div><!-- /.modal-body -->
             <div class="modal-footer">
       <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-      <button type="button" class="botones btn btn-primary" onclick="javascript:Eliminar_Repuestos()">Eliminar</button>
+      <button type="button" class="botones btn btn-primary" onclick="">Eliminar</button>
     </div>  <!-- /.modal footer -->
         </div> <!-- /.modal-content -->
     </div>  <!-- /.modal-dialog modal-lg -->
    
 </div>  <!-- /.modal fade -->
 <!-- / Modal -->
+
+<div class="modal" id="modalEliminarRepuesto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">         
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="fa fa-times-circle" style="color: #3C8DBB" > </span> Eliminar Pedido Repuesto </h4>
+        </div> 
+        <center>
+        <h4>¿Confirma Eliminar el Pedido del Repuesto?</h4>
+        </center>
+        
+        <div class="modal-footer">
+          <button  type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>     
+          <button  type="button" class="btn btn-primary" data-dismiss="modal" onclick="javascript:Eliminar_Repuestos()" >Eliminar</button> 
+        </div>   
+    </div>  
+  </div>
+</div>

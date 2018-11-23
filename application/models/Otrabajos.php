@@ -8,19 +8,17 @@ class Otrabajos extends CI_Model
 		parent::__construct();
 	}
 	
-	function otrabajos_List(){
+	function otrabajos_List($cod_interno = ''){
 
-		$this->db->select('orden_trabajo.id_orden, orden_trabajo.nro,orden_trabajo.fecha_inicio, orden_trabajo.fecha_entrega, orden_trabajo.fecha_terminada, orden_trabajo.fecha_aviso, orden_trabajo.fecha_entregada, orden_trabajo.descripcion, orden_trabajo.cliId, orden_trabajo.estado, orden_trabajo. id_usuario, orden_trabajo.id_usuario_a, user1.usrName AS nombre, orden_trabajo.id_usuario_e, orden_trabajo.id_sucursal, admcustomers.cliLastName,admcustomers.cliName, sisusers.usrName,sucursal.descripc, sisgroups.grpId');
+		$this->db->select('orden_trabajo.id_orden, orden_trabajo.nro,orden_trabajo.fecha_inicio, orden_trabajo.fecha_entrega, orden_trabajo.fecha_terminada, orden_trabajo.fecha_aviso, orden_trabajo.fecha_entregada, orden_trabajo.descripcion, orden_trabajo.cliId, orden_trabajo.estado, orden_trabajo. id_usuario, orden_trabajo.id_usuario_a, user1.usrName AS nombre, orden_trabajo.id_usuario_e, orden_trabajo.id_sucursal,orden_trabajo.usuario, admcustomers.cliLastName,admcustomers.cliName,sucursal.descripc');
 		$this->db->from('orden_trabajo');
 		$this->db->join('admcustomers', 'admcustomers.cliId = orden_trabajo.cliId');
-		$this->db->join('sisusers', 'sisusers.usrId = orden_trabajo.id_usuario');
 		$this->db->join('sisusers AS user1', 'user1.usrId = orden_trabajo.id_usuario_a');
 		$this->db->join('sucursal', 'sucursal.id_sucursal = orden_trabajo.id_sucursal');
-		$this->db->join('sisgroups', 'sisgroups.grpId = sisusers.grpId');
-		$this->db->group_by('orden_trabajo.id_orden');
-						
-		$query= $this->db->get();
+		$this->db->order_by('orden_trabajo.id_orden');
+		if($cod_interno!='')$this->db->where('orden_trabajo.nro',$cod_interno);
 		
+		$query= $this->db->get();
 		if ($query->num_rows()!=0)
 		{
 			return $query->result_array();	
@@ -29,9 +27,7 @@ class Otrabajos extends CI_Model
 		{	
 			return false;
 		}
-	}
-
-	
+	}	
 	
 	function getotrabajos($data = null){
 
@@ -236,20 +232,6 @@ class Otrabajos extends CI_Model
 	        return false;
 	    }		
 	}
-
-	/*	  function getusuario(){
-        $query = $this->db->query("SELECT * FROM sisusers");
-        $i=0;
-        foreach ($query->result() as $row)
-        {	
-        	$insumos[$i]['label'] = $row->usrName;
-            $insumos[$i]['value'] = $row->usrId;
-            $i++;
-        }
-        return $insumos;
-    }*/
-
-
 
 	function traer_sucursal(){
 
@@ -529,7 +511,7 @@ class Otrabajos extends CI_Model
 
 /* Asignacion de Tareas */ 
 
-    // Carga tareas en pantala asignacion por id de OT
+  // Carga tareas en pantala asignacion por id de OT
 	function cargartareas($idglob){
 
 		// funcionando!!!!
@@ -565,6 +547,20 @@ class Otrabajos extends CI_Model
 			return false;
 		}
 	} 
+
+	// trae info de OT por id
+	function infoOT($ot){
+		$this->db->select('orden_trabajo.*');
+		$this->db->from('orden_trabajo');
+		$this->db->where('orden_trabajo.id_orden',$ot);		
+		$query= $this->db->get();
+
+		if ($query->num_rows()!=0){	
+			return $query->result_array();			
+		}else{	
+			return array();
+		}
+	}
 
 	// carga tareas para calendario segun id de BPM	
 	function cargartareasParaAsignar($iort){
@@ -632,33 +628,33 @@ class Otrabajos extends CI_Model
 	 	}
 	}
 
-    function getTareaSdt(){
-    	$this->db->select('tareas.*');
+	function getTareaSdt(){
+		$this->db->select('tareas.*');
 		$this->db->from('tareas');
 		$this->db->where('tareas.visible =', 1);
 		$query = $this->db->get();
 		
 		if($query->num_rows()>0){
-            return $query->result_array();
-        }
-        else{
-            return false;
-        }
-    }
+						return $query->result_array();
+				}
+				else{
+						return false;
+				}
+	}
 
-    // trae equipos para asignar tareas 
-    function getEquipos(){
+	// trae equipos para asignar tareas 
+	function getEquipos(){
 
 		$this->db->select('tbl_equipos.*');
 		$this->db->from('tbl_equipos');
 		$query = $this->db->get();
 		
 		if($query->num_rows()>0){
-            return $query->result_array();
-        }
-        else{
-            return false;
-        }
+						return $query->result_array();
+				}
+				else{
+						return false;
+				}
 	}
 
 	// Trae plantillas de tareas paralenar select
@@ -706,21 +702,21 @@ class Otrabajos extends CI_Model
 	}
 
 	// Asigna Usuario a Tarea - listo
-    function ModificarUsuarios($idta,$datos){
-    	
-    	$datos['estado'] = 'AS';
-        $this->db->where('id_listarea', $idta);
-        $query = $this->db->update("tbl_listarea",$datos);
-        return $query;
-    }
+	function ModificarUsuarios($idta,$datos){
+		
+		$datos['estado'] = 'AS';
+			$this->db->where('id_listarea', $idta);
+			$query = $this->db->update("tbl_listarea",$datos);
+			return $query;
+	}
 
-    // Cambia estado a tarea realizada (por id de tarea) - listo 
-    function TareaRealizadas($id, $datos){
+	// Cambia estado a tarea realizada (por id de tarea) - listo 
+	function TareaRealizadas($id, $datos){
 
-        $this->db->where('id_tarea', $id);
-        $query = $this->db->update("tbl_listarea",$datos);
-        return $query;
-    }
+			$this->db->where('id_tarea', $id);
+			$query = $this->db->update("tbl_listarea",$datos);
+			return $query;
+	}
 
 
 
@@ -761,34 +757,104 @@ class Otrabajos extends CI_Model
         }
    	}
 
-   	// Trae tareas por mes y por id de OT para calendario (carga inicial de calendario)
-    function getcalendTareas($data){
-    	$month = $data['month'] + 1 ;
-    	//$idOrden = $data['idOrden'];    
+   	// Trae tareas por mes para calendario (carga inicial de calendario)   
+		function getcalendTareas($data){
+			$month = $data['month'] + 1 ;		  
+			$this->db->select('tbl_listarea.id_listarea,
+												tbl_listarea.id_orden,
+												tbl_listarea.tareadescrip,
+												tbl_listarea.id_tarea,
+												tbl_listarea.fecha,
+												tbl_listarea.id_equipo,
+												tbl_listarea.estado,
+												tbl_listarea.duracion_prog,
+												tbl_equipos.descripcion AS equipoDescripcion,
+												tareas.descripcion AS tareaDescripcion,
+												tareas.duracion_std');
+			$this->db->from('tbl_listarea');
+			$this->db->join('tbl_equipos', 'tbl_equipos.id_equipo = tbl_listarea.id_equipo','left');
+			$this->db->join('tareas', 'tbl_listarea.id_tarea = tareas.id_tarea');
+			$this->db->where('month(tbl_listarea.fecha)', $month);					
+			$this->db->where('tbl_listarea.estado !=','C');
+			$query = $this->db->get();
+			if($query->num_rows()>0){
+				return $query->result_array();
+			}
+			else{
+				return false;
+			} 
 
-			$sql = "SELECT
-					tbl_listarea.id_listarea,
-					tbl_listarea.id_orden,
-					tbl_listarea.tareadescrip,
-					tbl_listarea.id_tarea,
-					tbl_listarea.fecha,
-					tbl_listarea.id_equipo,
-					tbl_listarea.estado,
-					tbl_listarea.duracion_prog,
-					tbl_equipos.descripcion AS equipoDescripcion,
-					tareas.descripcion AS tareaDescripcion,
-					tareas.duracion_std
-					FROM
-					tbl_listarea
-					LEFT JOIN tbl_equipos ON tbl_equipos.id_equipo = tbl_listarea.id_equipo
-					INNER JOIN tareas ON tbl_listarea.id_tarea = tareas.id_tarea
-					WHERE
-					(tbl_listarea.estado = 'PR' OR tbl_listarea.estado = 'AS')
-					AND month(tbl_listarea.fecha)  = $month";
-					//AND id_orden = $idOrden
-					
-			$query= $this->db->query($sql);
+		}
 
+    // Tareas filtradas por sector y mes p/ Calendario - Listo
+    function getcalendTareasSect($data){
+    	
+    	$month = $data['month'] + 1 ;   
+			$idSubsector = $data['idSubsector'];
+			
+			if(isset( $data['idequipo'])){
+				$idequipo = $data['idequipo'];
+			}		
+
+			$this->db->select('tbl_listarea.id_listarea,
+												tbl_listarea.id_orden,
+												tbl_listarea.tareadescrip AS title,
+												tbl_listarea.id_tarea,
+												tbl_listarea.fecha AS start,
+												tbl_listarea.id_equipo,
+												tbl_listarea.estado,
+												tbl_listarea.duracion_prog,
+												tbl_equipos.descripcion AS equipo,
+												tareas.descripcion AS tareaDescripcion,
+												tareas.duracion_std');
+			$this->db->from('tbl_listarea');
+			$this->db->join('tareas', 'tbl_listarea.id_tarea = tareas.id_tarea');
+			$this->db->join('tbl_equipos', 'tbl_equipos.id_equipo = tbl_listarea.id_equipo','left');
+			$this->db->join('tbl_subsector', 'tbl_equipos.id_subsector = tbl_subsector.id_subsector');			
+			$this->db->where('month(tbl_listarea.fecha)', $month);	
+		
+			if ($idSubsector != -1) {	// hay sector
+				
+				if (isset( $data['idequipo'])) {	// hay sector y equipo
+					$this->db->where('tbl_equipos.id_subsector', $idSubsector);
+					$this->db->where('tbl_equipos.id_equipo', $idequipo);
+				}else{				// hay sector y no equipo
+					$this->db->where('tbl_equipos.id_subsector', $idSubsector);
+				}
+			}	//no hay sector ni equipo		
+			$this->db->where('tbl_listarea.estado !=', 'C'); 	
+
+			$query = $this->db->get();
+			if($query->num_rows()>0){
+				return $query->result_array();
+			}
+			else{
+				return false;
+			}    					
+		}
+		
+		function getcalendTareasEquipo($data){
+			$month = $data['month'] + 1 ;
+			$idequipo = $data['idequipo'];    	
+
+			$this->db->select('tbl_listarea.id_listarea,
+												tbl_listarea.id_orden,
+												tbl_listarea.tareadescrip AS title,
+												tbl_listarea.id_tarea,
+												tbl_listarea.fecha AS start,
+												tbl_listarea.id_equipo,
+												tbl_listarea.estado,
+												tbl_listarea.duracion_prog,
+												tbl_equipos.descripcion AS equipo,
+												tareas.descripcion AS tareaDescripcion,
+												tareas.duracion_std');
+			$this->db->from('tbl_listarea');
+			$this->db->join('tbl_equipos', 'tbl_equipos.id_equipo = tbl_listarea.id_equipo','left');
+			$this->db->join('tareas', 'tbl_listarea.id_tarea = tareas.id_tarea');
+			$this->db->where('month(tbl_listarea.fecha)', $month);					
+			$this->db->where('tbl_listarea.estado !=','C');
+			$this->db->where('tbl_equipos.id_equipo', $idequipo);
+			$query = $this->db->get();
 			if($query->num_rows()>0){
 				return $query->result_array();
 			}
@@ -796,101 +862,8 @@ class Otrabajos extends CI_Model
 				return false;
 			}
     }
-
-    // Tareas filtradas por sector y mes p/ Calendario - Listo
-    function getcalendTareasSect($data){
-    	
-    	$month = $data['month'] + 1 ;    	
-    	$idSubsector = $data['idSubsector'];
-			if(isset( $data['idequipo'])){
-				$idequipo = $data['idequipo'];
-			}		
-
-    	$this->db->select('tbl_listarea.id_listarea,
-						tbl_listarea.id_orden,
-						tbl_listarea.tareadescrip AS title,
-						tbl_listarea.id_tarea,
-						tbl_listarea.fecha AS start,
-						tbl_listarea.id_equipo,
-						tbl_listarea.estado,
-						tbl_subsector.id_subsector,
-						tbl_subsector.descripcion,
-						tbl_equipos.id_equipo,
-						tbl_equipos.descripcion,
-						tareas.id_tarea,
-						tareas.descripcion');
-		$this->db->from('tbl_listarea');
-		$this->db->join('tareas', 'tbl_listarea.id_tarea = tareas.id_tarea');
-		$this->db->join('tbl_equipos', 'tbl_equipos.id_equipo = tbl_listarea.id_equipo','left');
-		$this->db->join('tbl_subsector', 'tbl_equipos.id_subsector = tbl_subsector.id_subsector');			
-		$this->db->where('month(tbl_listarea.fecha)', $month);	
-		
-		if ($idSubsector != -1) {	// hay sector
-			
-			if (isset( $data['idequipo'])) {	// hay sector y equipo
-				$this->db->where('tbl_equipos.id_subsector', $idSubsector);
-				$this->db->where('tbl_equipos.id_equipo', $idequipo);
-			}else{				// hay sector y no equipo
-				$this->db->where('tbl_equipos.id_subsector', $idSubsector);
-			}
-		}	//no hay sector ni equipo		
-	
-		$this->db->where('tbl_listarea.estado', 'PR'); 
-		$this->db->or_where('tbl_listarea.estado', 'AS');
-
-		$query = $this->db->get();
-		if($query->num_rows()>0){
-			return $query->result_array();
-		}
-		else{
-			return false;
-		}    					
-	}
-
-		
-    // Trae tareas filtradas por mes y por equipo p/ Calendario - Listo
-    function getcalendTareasEquipo($data){
-    	$month = $data['month'] + 1 ;    	
-    	$idequipo = $data['idequipo'];
-    			
-    	$sql = "SELECT
-				tbl_listarea.id_listarea,
-				tbl_listarea.id_orden,
-				tbl_listarea.tareadescrip AS title,
-				tbl_listarea.id_tarea,
-				tbl_listarea.fecha AS start,
-				tbl_listarea.id_equipo,
-				tbl_listarea.estado,
-				tbl_subsector.id_subsector,
-				tbl_subsector.descripcion,
-				tbl_equipos.id_equipo,
-				tbl_equipos.descripcion,
-				tareas.id_tarea,
-				tareas.descripcion
-				FROM
-				tbl_listarea
-				INNER JOIN tareas ON tbl_listarea.id_tarea = tareas.id_tarea
-				LEFT JOIN tbl_equipos ON tbl_equipos.id_equipo = tbl_listarea.id_equipo
-				INNER JOIN tbl_subsector ON tbl_equipos.id_subsector = tbl_subsector.id_subsector
-				WHERE
-				(tbl_listarea.estado = 'PR' OR tbl_listarea.estado = 'AS') 
-				AND
-				month(tbl_listarea.fecha) = $month
-				AND
-				tbl_equipos.id_equipo =  $idequipo";				
-
-		$query= $this->db->query($sql);
-
-		if($query->num_rows()>0){
-	    	return $query->result_array();
-	    }
-	    else{
-	    	return false;
-	    }
-    }
-
-
-    // Actualiza el nuevo dia programado para una tarea
+   	
+		// Actualiza el nuevo dia programado para una tarea
     function updateDiaProgTareas($id, $diaNuevo){
     	$this->db->set('fecha', $diaNuevo);
 		$this->db->where('id_listarea', $id);
@@ -911,39 +884,43 @@ class Otrabajos extends CI_Model
 	}
 	   
 
-   	// Calendariza Tareas y equipos en calendario
-   	function programTareas($datos){
+	// Calendariza Tareas y equipos en calendario
+	function programTareas($datos){
 		//dump_exit($datos);
-   		$id = $datos['id_listarea'];
-   		$data['id_tarea'] = $datos['id_tarea'];
-   		$data['fecha'] = $datos['fecha'];
-   		$data['duracion_prog'] = $datos['duracion_prog'];
-   		$data['id_equipo'] = $datos['id_equipo'];
+			$id = $datos['id_listarea'];
+			$data['id_tarea'] = $datos['id_tarea'];
+			$data['fecha'] = $datos['fecha'];
+			$data['duracion_prog'] = $datos['duracion_prog'];
+			$data['id_equipo'] = $datos['id_equipo'];
 		$data['estado'] = 'PR';		
 		
 		$this->db->where('id_listarea', $id);
 		$response = $this->db->update('tbl_listarea',$data);
 		return $response;		
-   	}
+	}
 
-   	// Trae duracion STD de tareas 
-   	function getDuracTareaSTD($idTarea){
+	// Trae duracion STD de tareas 
+	function getDuracTareaSTD($idTarea){
 
-  		$this->db->select('tareas.duracion_std');
-  		$this->db->from('tareas');
-  		$this->db->where('tareas.id_tarea',$idTarea);
-  		$query = $this->db->get();
-  		return $query->row('duracion_std');
-  	}
+		$this->db->select('tareas.duracion_std');
+		$this->db->from('tareas');
+		$this->db->where('tareas.id_tarea',$idTarea);
+		$query = $this->db->get();
+		return $query->row('duracion_std');
+	}
 
-   	/// Guarda tarea nueva 
-    function agregar_tareas($datos) {
+	/// Guarda tarea nueva 
+	function agregar_tareas($datos) {
 
-        $query = $this->db->insert("tbl_listarea",$datos);
-        return $query;
-    }
+			$query = $this->db->insert("tbl_listarea",$datos);
+			return $query;
+	}
 
-
+	function Obtener_Tipo_OT($id){
+		$this->db->select('cod_interno');
+		$this->db->where('id_orden',$id);
+		return $this->db->get('orden_trabajo')->result_array()[0]['cod_interno'];
+	}
 
 }	
 

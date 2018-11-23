@@ -1,6 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <section class="content">
 	<?php cargarCabecera($idPedTrabajo); ?>
+	<input type="text" class="form-control hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo ?>">
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">
@@ -58,6 +59,7 @@
 														echo "<input type='text' class='hidden' id='id_listarea' value='$id_listarea' >";
 
 														echo "<input type='text' class='hidden' id='idPedTrabajo' value='$idPedTrabajo' >";
+														echo "<input type='text' class='hidden' id='tipo_tarea' value='$tipo_tarea' >";
 												?>
 												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
 												>
@@ -156,66 +158,66 @@
 										<div role="tabpanel" class="tab-pane" id="messages">
 											<div class="panel-body">
 
-												<div class="panel panel-primary">
-													<div class="panel-heading">Línea de Tiempo</div>
-													<div class="panel-body" style="max-height: 500px;overflow-y: scroll;">
+										<div class="panel panel-primary">
+											<div class="panel-heading">Línea de Tiempo</div>
+											<div class="panel-body" style="max-height: 500px;overflow-y: scroll;">
 
 
-														<div class="container">
-															<ul class="timeline">
-																<?php
-																															echo '<h2 style="margin-left:50px;">Actividades Pendientes</h2>';
-																															foreach ($timeline['listAct'] as $f) {       
-																															echo '<li>
-																																	<div class="timeline-badge info"><i class="glyphicon glyphicon-time"></i></div>
-																																	<div class="timeline-panel">
-																																			<div class="timeline-heading">
-																																			<h4 class="timeline-title">'.$f['displayName'].'</h4>
-																																			<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
-																																			</div>
-																																			<div class="timeline-body">';
-																																			if(array_key_exists ( 'assigned_id' , $f ) && $f['assigned_id']!=''){
-																																					echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
-																																			}else{
-																																					echo '<p>Usuario: Sin Asignar</p>';
-																																			}
-																															echo   '<p>Descripción: '.$f['displayDescription'].'</p>
-																																			<p>Case: '.$f['caseId'].'</p>
-																																			</div>
+												<div class="container">
+													<ul class="timeline">
+														<?php
+																													echo '<h2 style="margin-left:50px;">Actividades Pendientes</h2>';
+																													foreach ($timeline['listAct'] as $f) {       
+																													echo '<li>
+																															<div class="timeline-badge info"><i class="glyphicon glyphicon-time"></i></div>
+																															<div class="timeline-panel">
+																																	<div class="timeline-heading">
+																																	<h4 class="timeline-title">'.$f['displayName'].'</h4>
+																																	<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
 																																	</div>
-																																	</li>';
-																															}
-																															echo '<h2 style="margin-left:50px;">Actividades Terminadas</h2>';
-																															foreach ($timeline['listArch'] as $f) {
-																															
-																															echo '<li>
-																																	<div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
-																																	<div class="timeline-panel">
-																																			<div class="timeline-heading">
-																																			<h4 class="timeline-title">'.$f['displayName'].'</h4>
-																																			<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
-																																			</div>
-																																			<div class="timeline-body">';
-																																			if(array_key_exists ( 'assigned_id' , $f )){
-																																					echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
-																																			}else{
-																																					echo '<p>Usuario: Sin Asignar</p>';
-																																			}
-																															echo    '<p>Descripción: '.$f['displayDescription'].'</p>           
-																																			<p>Case: '.$f['caseId'].'</p>
-																																			</div>
+																																	<div class="timeline-body">';
+																																	if(array_key_exists ( 'assigned_id' , $f ) && $f['assigned_id']!=''){
+																																			echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
+																																	}else{
+																																			echo '<p>Usuario: Sin Asignar</p>';
+																																	}
+																													echo   '<p>Descripción: '.$f['displayDescription'].'</p>
+																																	<p>Case: '.$f['caseId'].'</p>
 																																	</div>
-																																	</li>';
-																															}
-																															?>
-															</ul>
-														</div>
-
-													</div>
+																															</div>
+																															</li>';
+																													}
+																													echo '<h2 style="margin-left:50px;">Actividades Terminadas</h2>';
+																													foreach ($timeline['listArch'] as $f) {
+																													
+																													echo '<li>
+																															<div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+																															<div class="timeline-panel">
+																																	<div class="timeline-heading">
+																																	<h4 class="timeline-title">'.$f['displayName'].'</h4>
+																																	<p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
+																																	</div>
+																																	<div class="timeline-body">';
+																																	if(array_key_exists ( 'assigned_id' , $f )){
+																																			echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
+																																	}else{
+																																			echo '<p>Usuario: Sin Asignar</p>';
+																																	}
+																													echo    '<p>Descripción: '.$f['displayDescription'].'</p>           
+																																	<p>Case: '.$f['caseId'].'</p>
+																																	</div>
+																															</div>
+																															</li>';
+																													}
+																													?>
+													</ul>
 												</div>
 
-
 											</div>
+										</div>
+
+
+									</div>
 											<!--p<nelbody-->
 
 										</div>
@@ -398,11 +400,12 @@
 
 		var iort = $('#idOT').val();
 		var idTarea = $('#idTarBonita').val();// idde tarea para cerrar la tarea asignacion
+		var idPedTrabajo = $('#idPedTrabajo').val();
 		//alert(iort);
 		//alert(idTarea);  
 		WaitingOpen('Cargando Tareas...');
 		$('#content').empty();
-		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/" + iort + "/" + idTarea + " ");
+		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/" + iort + "/" + idTarea + "/"+ idPedTrabajo + "/");
 		WaitingClose();
 	}
 
@@ -480,7 +483,7 @@
 	// para poder probar  terminar la planificacion
 	function terminarAsigPersPlanificacion() {
 		var idTarBonita = $('#idTarBonita').val();
-		alert(idTarBonita);
+		//alert(idTarBonita);
 		$.ajax({
 			type: 'POST',
 			data: {
@@ -539,10 +542,10 @@
 			url: 'index.php/Tarea/estadoCuenta',
 			success: function (result) {
 				console.log(result);
-				alert("SII");
+				//alert("SII");
 			},
 			error: function (result) {
-				alert("Noo");
+				//alert("Noo");
 				console.log(result);
 			},
 			dataType: 'json'
@@ -578,6 +581,8 @@
 		var idPedido = $('#id_pedido').val();   //petr_id
 		var cod_interno = $('#cod_interno').val(); // codigo interno balderramo
 		var detalle = $('#detalle').html();
+		var tipo_tarea = $('#tipo_tarea').val();
+		//alert("idPedido:"+idPedido+"/cod_interno:"+cod_interno+"/tipo_tarea:"+tipo_tarea);
 
 		$.ajax({
 			type: 'POST',
@@ -585,7 +590,8 @@
 				idTarBonita: idTarBonita,
 				idPedido: idPedido,
 				cod_interno: cod_interno,
-				detalle: detalle
+				detalle: detalle,
+				tipo_tarea:tipo_tarea
 			},
 			url: 'index.php/Tarea/tomarTareaPlanificacion',
 			success: function (data) {
@@ -788,8 +794,10 @@
 			var valor = "";
 			var valorSig = "";
 
-			$('#' + idSelect).append($('<option />',
-				{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
+			if(data[index]['VALOR']!=$('#' + idSelect).val()){
+				$('#' + idSelect).append($('<option>',
+					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
+			}
 
 			valor = data[index]['idValor'];
 			valorSig = data[index]['idValor'];
