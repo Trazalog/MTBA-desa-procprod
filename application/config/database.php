@@ -10,7 +10,12 @@ $db['default'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
+<<<<<<< HEAD
 	'database' => 'mtba-desa-procprod-desarrollo',
+=======
+	//'database' => 'mtba-desa-procprod-desarrollo',
+	'database' => 'mtba-test3',
+>>>>>>> fleiva
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

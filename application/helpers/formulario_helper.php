@@ -81,9 +81,12 @@ if (!function_exists('cargarFormulario')) {
                 // muestra el componente a llenar o el select
                   switch ($etiqueta) {
                         case "select":
-                            echo "<select class='form-control sel ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['VALO_ID']."' style='width: 80%'>
-                              <option value= '".(strcmp($a['valDefecto'],'Seleccione...')==0?-1:$a['valDefecto'])."' >".$a['valDefecto']."</option>
-                            </select>";
+                            $valor = $a['valDefecto'];
+                            $html = "<select class='form-control sel ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['VALO_ID']."' style='width: 80%'><option value='-1' ".(strcmp($valor,'Seleccione...')==0?'selected':'').">Seleccione...</option>";
+                            if(strcmp($valor,'Seleccione...')!=0){
+                              $html .= "<option value= '".$valor."' selected>".$valor."</option>";
+                            }
+                            echo $html."</select>";
                             break;
                         case "input_texto":
                             echo "<input type='text' class='form-control inp texto ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";

@@ -909,6 +909,7 @@ class Otrabajos extends CI_Model
 		return $query->row('duracion_std');
 	}
 
+<<<<<<< HEAD
 	/// Guarda tarea nueva 
 	function agregar_tareas($datos) {
 
@@ -916,6 +917,12 @@ class Otrabajos extends CI_Model
 			return $query;
 	}
 
+=======
+        $query = $this->db->insert("tbl_listarea",$datos);
+        return $query;
+	}
+	
+>>>>>>> fleiva
 	function Obtener_Tipo_OT($id){
 		$this->db->select('cod_interno');
 		$this->db->where('id_orden',$id);

@@ -130,7 +130,11 @@
 
 					<div class="modal-footer">
 						<button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
+<<<<<<< HEAD
 						<button type="button" class="btn btn-success hidden" id="hecho" onclick="terminarTarea()">Hecho</button>
+=======
+						<button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button>
+>>>>>>> fleiva
 					</div> <!-- /.modal footer -->
 
 				</div><!-- /.box body -->
