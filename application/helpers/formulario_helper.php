@@ -101,14 +101,14 @@ if (!function_exists('cargarFormulario')) {
 
                         case "input_archivo":
                             // campo auxiliar guarda ultima img en BD
-                            echo "<input type='text' class='auxiliar ' name='' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
+                            echo "<input type='text' class='auxiliar hidden' name='' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             // input tipo file
                             echo "<input type='file' class='inp archivo ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['idValor']."' value='".$a['valDefecto']."' style='width: 80%'>";
                             // link para ver la imagen adjunta
                             
-                            if($a['valDefecto'] != ""){
-                              echo "<a href='".$a['valDefecto']."' class='".$a['idValor']."' target='_blank' ><i class='fa fa-picture-o' style='color: #A4A4A4; cursor: pointer; margin-left: 15px;' title='Imagen'></i> Ver Adjunto</a> ";
-                            }                        
+                          //  if($a['valDefecto'] != ""){
+                              echo "<a href='".$a['valDefecto']."' class='".$a['idValor'].($a['valDefecto']!=""?"":" hidden")."' target='_blank' ><i class='fa fa-picture-o' style='color: #A4A4A4; cursor: pointer; margin-left: 15px;' title='Imagen'></i> Ver Adjunto</a> ";
+                            //}                        
                             break;
                         case "checkbox":
                              echo "<input class='check ".($a['obligatorio']?"requerido":"")."' type='checkbox' value='tilde' name='".$a['idValor']."' ".($a['valDefecto'] == 'tilde' ? "checked" : "")." style='transform: scale(1.4);'>";

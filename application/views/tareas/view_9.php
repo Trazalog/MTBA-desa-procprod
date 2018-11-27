@@ -692,9 +692,9 @@ function regresa(){
         var imgs = $('input.archivo');
   
         var formData = new FormData($("#genericForm")[0]);
-        for (var pair of formData.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
-        }
+        // for (var pair of formData.entries()) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // }
    
         /** subidad y resubida de imagenes **/
         // Tomo los inputs auxiliares cargados
@@ -709,17 +709,11 @@ function regresa(){
         
             var inpValor = $(imgs[i]).val();
             var idValor = $(imgs[i]).attr('name');
-            //console.log("idValor: "+idValor);
             // si tiene algun valor (antes de subir img)
             if (inpValor != "") {
                 //al subir primera img
                 formData.append(idValor, inpValor);
-            }else{
-                // sino sube img guarda la del auxiliar         
-                inpValor = auxArray[i]; //valor del input auxiliar
-                //console.table(inpValor);
-                formData.append(idValor, inpValor);
-            }      
+            }   
         }   
 
         /* text tipo check */
@@ -759,7 +753,6 @@ function regresa(){
         processData:false,
         
         success:function(respuesta){
-            $("#genericForm")[0].reset();
             GuardarValorCotizacion();
             getImgValor();
             if (respuesta ==="exito") {
@@ -895,8 +888,13 @@ function regresa(){
 	      var id = data[index]['valoid'];
 	      var valor = data[index]['valor'];
 	      //carga el valor que viene de DB
-	      $("."+data[index]['valoid']).attr('href',valor);
-          //$("#"+data[index]['valoid']).val(valor);
+          if(valor!=""){
+              $("."+data[index]['valoid']).removeClass('hidden');
+              $("."+data[index]['valoid']).attr('href',valor);
+          }else{
+            $("."+data[index]['valoid']).addClass('hidden');
+          }
+        
 	    });
 	}
 

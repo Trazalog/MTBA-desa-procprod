@@ -19,6 +19,7 @@ class AceptacionTrabajo extends CI_Controller
 		$fecha_entrega = date_format(date_create($this->input->post('fecha_entrega')),'Y-m-d');
 		$presupuesto = $this->input->post('presupuesto');
 		$id = $this->input->post('idtareabonita');
+		$idPedidoTrabajo = $this->input->post('idPedTrabajo');
 
 		$cuerpoBPM = array(
 			"fecCompromisoEntrega"=>$fecha_entrega."T00:00",

@@ -512,24 +512,20 @@
         
         var auxArray = [];
         aux.each(function() {
+    
             auxArray.push($(this).val());
+            
         });
         //console.table(aux);
         for (var i = 0; i < imgs.length; i++){
         
             var inpValor = $(imgs[i]).val();
             var idValor = $(imgs[i]).attr('name');
-            //console.log("idValor: "+idValor);
             // si tiene algun valor (antes de subir img)
             if (inpValor != "") {
                 //al subir primera img
                 formData.append(idValor, inpValor);
-            }else{
-                // sino sube img guarda la del auxiliar         
-                inpValor = auxArray[i]; //valor del input auxiliar
-                //console.table(inpValor);
-                formData.append(idValor, inpValor);
-            }      
+            }    
         }   
 
         /* text tipo check */
@@ -569,7 +565,8 @@
         
         success:function(respuesta){
             getImgValor();
-            $("#genericForm")[0].reset();
+
+         
            // console.log(respuesta);
             GuardarValorPresupuesto();
             if (respuesta ==="exito") {
@@ -701,8 +698,13 @@
 
 	      var id = data[index]['valoid'];
 	      var valor = data[index]['valor'];
-	      //carga el valor que viene de DB
-	      $("."+data[index]['valoid']).attr('href',valor);
+          //carga el valor que viene de DB
+          if(valor!=""){
+              $("."+data[index]['valoid']).removeClass('hidden');
+              $("."+data[index]['valoid']).attr('href',valor);
+          }else{
+            $("."+data[index]['valoid']).addClass('hidden');
+          }
           //$("#"+data[index]['valoid']).val(valor);
 	    });
 	}

@@ -244,11 +244,8 @@ class Tareas extends CI_Model
 		$userdata = $this->session->userdata('user_data');
 		$usrId    = $userdata[0]['usrId'];
 		$usrNick  = $userdata[0]['usrNick'];
-<<<<<<< HEAD
 		$this->db->where('petr_id',$idPedido);
 		$cliente_id = $this->db->get('trj_pedido_trabajo')->result_array()[0]['clie_id'];
-=======
->>>>>>> fleiva
 
 		$data = array(
 			'nro'=> $cod_interno,
