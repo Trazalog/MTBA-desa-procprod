@@ -19,9 +19,7 @@ if(!function_exists('cargarCabecera')){
             if($query->num_rows() > 0){
                 $result = $query->row_array();
             }
-            echo '
-        
-                            <div id="collapseDivCli" class="box box-default collapsed-box box-solid">
+            $html= '<div id="collapseDivCli" class="box box-default collapsed-box box-solid">
                                 <div class="box-header with-border">
                                     <h3 id="tituloInfo" class="box-title">Cliente: '.$result['cliName'].' / Mas Detalles</h3>
         
@@ -154,6 +152,7 @@ if(!function_exists('cargarCabecera')){
                             <!-- /.box-body -->
                         </div>
                         <!-- /.box-body -->';
+                    return $html;    
 } } 
 
 ?>

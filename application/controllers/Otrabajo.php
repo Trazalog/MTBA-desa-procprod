@@ -499,11 +499,18 @@ class Otrabajo extends CI_Controller {
 		// arma un array con ambos array
 		$list = $this->getListadoArmado($tareas,$usrs);
 		$data['list'] = $list;
+<<<<<<< HEAD
 		$data['id_orden'] = $ot;
 		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($ot);
 		$data['idPedTrabajo'] = $idPedTrabajo;
 		$data['tipo_tarea'] = $this->Otrabajos->Obtener_Tipo_OT($ot);
 		$data['infoOT'] = $this->Otrabajos->infoOT($ot);
+=======
+		//$data['list'] = $this->Otrabajos->cargartareas($idglob);
+		$data['id_orden'] = $idglob;
+		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($idglob);
+		$data['tipo_tarea'] = $this->Otrabajos->Obtener_Tipo_OT($idglob);
+>>>>>>> fleiva
 		//$data['idTarBonita'] = $idTarBonita; 
 		$data['permission'] = $permission;
 		

@@ -1,5 +1,5 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
-
+<input type="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo;?>">
 <section class="content">
     <?php echo cargarCabecera($idPedTrabajo); ?>
     <div class="row">
@@ -277,6 +277,10 @@
 </style>
 
 <script> //Validacion de Formulario
+
+    function ValidarCampos(){
+        ValidarObligatorios(true);
+    }   
 	function ValidarObligatorios(validarOn){
 		console.log("Validando Campos Obligatorios...");
 		var form_id = $('#idform').val();
@@ -373,7 +377,7 @@
     function terminarTarea(){
         if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
         var idTarBonita = $('#idTarBonita').val();
-        alert(idTarBonita);
+        //alert(idTarBonita);
         $.ajax({
             type: 'POST',
             data: {
@@ -508,24 +512,20 @@
         
         var auxArray = [];
         aux.each(function() {
+    
             auxArray.push($(this).val());
+            
         });
         //console.table(aux);
         for (var i = 0; i < imgs.length; i++){
         
             var inpValor = $(imgs[i]).val();
             var idValor = $(imgs[i]).attr('name');
-            //console.log("idValor: "+idValor);
             // si tiene algun valor (antes de subir img)
             if (inpValor != "") {
                 //al subir primera img
                 formData.append(idValor, inpValor);
-            }else{
-                // sino sube img guarda la del auxiliar         
-                inpValor = auxArray[i]; //valor del input auxiliar
-                //console.table(inpValor);
-                formData.append(idValor, inpValor);
-            }      
+            }    
         }   
 
         /* text tipo check */
@@ -564,8 +564,10 @@
         processData:false,
         
         success:function(respuesta){
-            
-            console.log(respuesta);
+            getImgValor();
+
+         
+           // console.log(respuesta);
             GuardarValorPresupuesto();
             if (respuesta ==="exito") {
                 
@@ -671,20 +673,20 @@
 	    var valores; 
 	    // guarda el id form asoc a tarea std en modal para guardar
 	    idForm =  $('#idform').val();
+        idPedido = $('#idPedTrabajo').val();
+     
 	    // trae valores validos para llenar componentes input files.
 	    $.ajax({
 	            type: 'POST',
-	            data: { idForm: idForm},
+	            data: { idForm: idForm,idPedTrabajo:idPedido},
 	            url: 'index.php/Tarea/getImgValor', 
 	            success: function(data){               
-	                                       
-	                    valores = data;
-	                    llenarInputFile(valores);
-	                  },              
+	                llenarInputFile(data);
+	            },              
 	            error: function(result){
 	                  
 	                  console.log(result);
-	                },
+	            },
 	            dataType: 'json'
 	    });
 	}
@@ -692,13 +694,17 @@
 	// carga inputs auxiliares con url de imagen desde BD
 	function llenarInputFile(data){
 	    var id_listarea = $('inptut.archivo').val();
-
 	    $.each(data,function( index ) {
 
 	      var id = data[index]['valoid'];
 	      var valor = data[index]['valor'];
-	      //carga el valor que viene de DB
-	      $("."+data[index]['valoid']).val(valor);
+          //carga el valor que viene de DB
+          if(valor!=""){
+              $("."+data[index]['valoid']).removeClass('hidden');
+              $("."+data[index]['valoid']).attr('href',valor);
+          }else{
+            $("."+data[index]['valoid']).addClass('hidden');
+          }
           //$("#"+data[index]['valoid']).val(valor);
 	    });
 	}
