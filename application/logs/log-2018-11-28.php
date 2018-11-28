@@ -182,3 +182,34 @@ INFO - 2018-11-28 13:46:14 --> Model Class Initialized
 INFO - 2018-11-28 13:46:15 --> File loaded: C:\xampp\htdocs\MTBA-desa-procprod\application\views\tareas/list.php
 INFO - 2018-11-28 13:46:15 --> Final output sent to browser
 DEBUG - 2018-11-28 13:46:15 --> Total execution time: 1.3820
+INFO - 2018-11-28 14:59:37 --> Config Class Initialized
+INFO - 2018-11-28 14:59:37 --> Hooks Class Initialized
+DEBUG - 2018-11-28 14:59:37 --> UTF-8 Support Enabled
+INFO - 2018-11-28 14:59:37 --> Utf8 Class Initialized
+INFO - 2018-11-28 14:59:37 --> URI Class Initialized
+INFO - 2018-11-28 14:59:37 --> Router Class Initialized
+INFO - 2018-11-28 14:59:37 --> Output Class Initialized
+INFO - 2018-11-28 14:59:37 --> Security Class Initialized
+DEBUG - 2018-11-28 14:59:37 --> Global POST, GET and COOKIE data sanitized
+INFO - 2018-11-28 14:59:37 --> Input Class Initialized
+INFO - 2018-11-28 14:59:37 --> Language Class Initialized
+INFO - 2018-11-28 14:59:37 --> Loader Class Initialized
+INFO - 2018-11-28 14:59:37 --> Helper loaded: url_helper
+INFO - 2018-11-28 14:59:37 --> Helper loaded: directory_helper
+INFO - 2018-11-28 14:59:37 --> Helper loaded: file_helper
+INFO - 2018-11-28 14:59:37 --> Helper loaded: form_helper
+INFO - 2018-11-28 14:59:37 --> Helper loaded: general_helper
+INFO - 2018-11-28 14:59:37 --> Helper loaded: formulario_helper
+INFO - 2018-11-28 14:59:37 --> Helper loaded: cabecera_helper
+INFO - 2018-11-28 14:59:37 --> Helper loaded: popup_helper
+INFO - 2018-11-28 14:59:37 --> Database Driver Class Initialized
+DEBUG - 2018-11-28 14:59:38 --> Session: "sess_save_path" is empty; using "session.save_path" value from php.ini.
+INFO - 2018-11-28 14:59:38 --> Session: Class initialized using 'files' driver.
+INFO - 2018-11-28 14:59:38 --> Controller Class Initialized
+INFO - 2018-11-28 14:59:38 --> Model Class Initialized
+INFO - 2018-11-28 14:59:38 --> Model Class Initialized
+INFO - 2018-11-28 14:59:38 --> Model Class Initialized
+INFO - 2018-11-28 14:59:38 --> Model Class Initialized
+INFO - 2018-11-28 14:59:40 --> File loaded: C:\xampp\htdocs\MTBA-desa-procprod\application\views\tareas/list.php
+INFO - 2018-11-28 14:59:40 --> Final output sent to browser
+DEBUG - 2018-11-28 14:59:40 --> Total execution time: 2.6780

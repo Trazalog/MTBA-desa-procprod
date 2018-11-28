@@ -1,11 +1,9 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <section class="content">
-<<<<<<< HEAD
+
 	<?php cargarCabecera($idPedTrabajo); ?>
 	<input type="text" class="form-control hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo ?>">
-=======
-	<?php echo cargarCabecera($idPedTrabajo); ?>
->>>>>>> fleiva
+
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">
@@ -386,19 +384,6 @@
 
 <script>
 
-<<<<<<< HEAD
-
-
-  // $('#verOT').click(function() {
-  //   //alert('ver ot');
-  //   var iort = $('#idOT').val();
-	//  	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-  //   WaitingOpen('Cargando Tareas...');
-	// 	$('#content').empty();
-	// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
-	// 	WaitingClose();
-	// });
-	
 	$('#verOT').click(function(){
 		var iort = $('#idOT').val();
 		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
@@ -410,67 +395,8 @@
 		WaitingOpen('Cargando Tareas...');
 		$('#content').empty();
 		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/"+ot+"/"+idPedTrabajo+"/");
-=======
-	 $('#verOT').click(function(){
-		var iort = $('#idOT').val();
-		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		redireccionar_planificacion(iort,idTarBonita);
-	});
-	function redireccionar_planificacion(ot,idTarBonita){
-		WaitingOpen('Cargando Tareas...');
-		$('#content').empty();
-		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/"+ot+"/"+idTarBonita+"/");
->>>>>>> fleiva
 		WaitingClose();
 	};
-
-
-
-
-	// function verOT() {
-<<<<<<< HEAD
-		// 	var iort = $('#idOT').val();
-		// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		// 	// $.ajax({
-		// 	// 	type:'POST',
-		// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
-		// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
-		// 	// 	success:function(result){
-		// 	// 		alert('Tareas Programadas');
-		// 	// 	},
-		// 	// 	error: function(result){
-		// 	// 		console.log(result);
-					
-		// 	// 		alert('Error');
-		// 	// 	}
-		// 	// });
-		// 	WaitingOpen('Cargando Tareas...');
-		// 	$('#content').empty();
-		// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
-		// 	WaitingClose();
-		// }
-=======
-	// 	var iort = $('#idOT').val();
-	// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-	// 	// $.ajax({
-	// 	// 	type:'POST',
-	// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
-	// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
-	// 	// 	success:function(result){
-	// 	// 		alert('Tareas Programadas');
-	// 	// 	},
-	// 	// 	error: function(result){
-	// 	// 		console.log(result);
-				
-	// 	// 		alert('Error');
-	// 	// 	}
-	// 	// });
-	// 	WaitingOpen('Cargando Tareas...');
-	// 	$('#content').empty();
-	// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
-	// 	WaitingClose();
-	// }
->>>>>>> fleiva
 
 	evaluarEstado();
 	function evaluarEstado() {
@@ -620,10 +546,7 @@
 		var cod_interno = $('#cod_interno').val(); // codigo interno balderramo
 		var detalle = $('#detalle').html();
 		var tipo_tarea = $('#tipo_tarea').val();
-<<<<<<< HEAD
-		//alert(idPedido);
-=======
->>>>>>> fleiva
+
 		$.ajax({
 			type: 'POST',
 			data: {
@@ -841,10 +764,6 @@
 				$('#' + idSelect).append($('<option>',
 					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
 			}
-<<<<<<< HEAD
-
-=======
->>>>>>> fleiva
 			valor = data[index]['idValor'];
 			valorSig = data[index]['idValor'];
 		});
