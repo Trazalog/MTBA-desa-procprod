@@ -1,9 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <section class="content">
-
 	<?php cargarCabecera($idPedTrabajo); ?>
 	<input type="text" class="form-control hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo ?>">
-
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">
@@ -584,12 +582,8 @@
 		var cod_interno = $('#cod_interno').val(); // codigo interno balderramo
 		var detalle = $('#detalle').html();
 		var tipo_tarea = $('#tipo_tarea').val();
-<<<<<<< HEAD
 		//alert("idPedido:"+idPedido+"/cod_interno:"+cod_interno+"/tipo_tarea:"+tipo_tarea);
 
-=======
-		alert("idPedido:"+idPedido+"/cod_interno:"+cod_interno+"/tipo_tarea:"+tipo_tarea);
->>>>>>> fleiva
 		$.ajax({
 			type: 'POST',
 			data: {
@@ -804,10 +798,6 @@
 				$('#' + idSelect).append($('<option>',
 					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
 			}
-<<<<<<< HEAD
-
-=======
->>>>>>> fleiva
 			valor = data[index]['idValor'];
 			valorSig = data[index]['idValor'];
 		});

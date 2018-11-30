@@ -1,5 +1,5 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
-
+<input type="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo;?>">
 <section class="content">
     <?php echo cargarCabecera($idPedTrabajo); ?>
     <div class="row">
@@ -529,7 +529,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
     });
 
     // evento de cierre de modal guarda parcialmente los datos
-    $('#modalForm').on('hidden.bs.modal', function (e) {   
+    function GuardarFormulario() {   
         
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
@@ -600,7 +600,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         
         success:function(respuesta){
         GuardarValorInfoTecnico();
-
+        getImgValor();
             if (respuesta ==="exito") {
                 
             }
@@ -700,10 +700,11 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
 	    var valores; 
 	    // guarda el id form asoc a tarea std en modal para guardar
 	    idForm =  $('#idform').val();
+        idPedido = $('#idPedTrabajo').val();
 	    // trae valores validos para llenar componentes input files.
 	    $.ajax({
 	            type: 'POST',
-	            data: { idForm: idForm},
+	            data: { idForm: idForm,idPedTrabajo:idPedido},
 	            url: 'index.php/Tarea/getImgValor', 
 	            success: function(data){               
 	                                       
@@ -719,7 +720,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
 	}
 
 	// carga inputs auxiliares con url de imagen desde BD
-	function llenarInputFile(data){
+        function llenarInputFile(data){
 	    var id_listarea = $('inptut.archivo').val();
 
 	    $.each(data,function( index ) {
@@ -727,8 +728,13 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
 	      var id = data[index]['valoid'];
 	      var valor = data[index]['valor'];
 	      //carga el valor que viene de DB
-	      $("."+data[index]['valoid']).val(valor);
-          //$("#"+data[index]['valoid']).val(valor);
+          if(valor!=""){
+              $("."+data[index]['valoid']).removeClass('hidden');
+              $("."+data[index]['valoid']).attr('href',valor);
+          }else{
+            $("."+data[index]['valoid']).addClass('hidden');
+          }
+        
 	    });
 	}
 
@@ -775,7 +781,13 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         autoclose: true
   	});
 
-
+    function CerrarModal(){
+        //WaitingOpen('Guardando Formulario');
+        GuardarFormulario();
+        //WaitingClose();
+        $('#modalForm').modal('hide');
+        
+    }
 
 </script>
 

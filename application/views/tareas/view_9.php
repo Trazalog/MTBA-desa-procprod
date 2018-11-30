@@ -1,5 +1,5 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
-
+<input type="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo;?>">
 <section class="content">
     <?php echo cargarCabecera($idPedTrabajo); ?>
     <div class="row">
@@ -685,8 +685,7 @@ function regresa(){
     });
 
     // evento de cierre de modal guarda parcialmente los datos
-    $('#modalForm').on('hidden.bs.modal', function (e) {   
-        alert("Guardando Form...");
+   function GuardarFormulario() {   
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
         var imgs = $('input.archivo');
@@ -745,6 +744,7 @@ function regresa(){
         /* Ajax de Grabado en BD */
       
         $.ajax({
+        async:false,
         url:'index.php/Tarea/guardarForm',
         type:'POST',
         data:formData,
@@ -755,6 +755,7 @@ function regresa(){
         success:function(respuesta){
             GuardarValorCotizacion();
             getImgValor();
+            alert('Formulario Guardado');
             if (respuesta ==="exito") {
                 
             }
@@ -769,7 +770,7 @@ function regresa(){
         }
         });
 
-    });
+    };
 
     //Cotizacion
     function GuardarValorCotizacion(){
@@ -792,7 +793,6 @@ function regresa(){
 
     // trae valores validos para llenar form asoc.  
 	function getformulario(event) {    
-	    alert("Obteniendo Formularios");
 	    // trae valor de imagenes y llena inputs.
 	    getImgValor();
 
@@ -858,10 +858,6 @@ function regresa(){
 	    // guarda el id form asoc a tarea std en modal para guardar
 	    idForm =  $('#idform').val();
         idPedido = $('#idPedTrabajo').val();
-       // alert(idForm);
-       // alert(idPedido);
-	
-	    // trae valores validos para llenar componentes input files.
 	    $.ajax({
 	            type: 'POST',
 	            data: { idForm: idForm,idPedTrabajo:idPedido},
@@ -970,6 +966,14 @@ data();
         }
   })
 };
+
+function CerrarModal(){
+    //WaitingOpen('Guardando Formulario');
+    GuardarFormulario();
+    //WaitingClose();
+    $('#modalForm').modal('hide');
+    
+}
 
 
 </script>

@@ -21,5 +21,8 @@
                 </div><script>function popup(){ $("modalPopup").modal("show"); }</script>';
             return $html;
         }
+        function alert($value){
+            echo '<script>alert('.$value.');</script>';
+        }
     }
 ?>

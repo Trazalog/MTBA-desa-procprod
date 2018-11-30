@@ -67,10 +67,7 @@
           echo' <input type="hidden"  id="grpId" name="grpId" value="'.$grpId.'">' ;
           echo' <input type="hidden"  id="idTarBonita" name="idTarBonita" value="'.$idTarBonita.'">' ;
           echo' <input type="hidden"  id="tipo_tarea"  value="'.$tipo_tarea.'">' ;
-<<<<<<< HEAD
           
-=======
->>>>>>> fleiva
           ?>
           <br><br>
           <div class="row">
@@ -283,20 +280,12 @@
   function cerrarPlanificacion() {
 
     var idTarBonita = $('#idTarBonita').val();
-<<<<<<< HEAD
     var idOT = $('#idOT').val();
     var tipo_tarea = $('#tipo_tarea').val();
     //alert(tipo_tarea);
     $.ajax({
       type: 'POST',
       data: { idTarBonita: idTarBonita, tipo_tarea:tipo_tarea  },
-=======
-    var tipo_tarea = $('#tipo_tarea').val();
-    //var idOT = $('#idOT').val();
-    $.ajax({
-      type: 'POST',
-      data: { idTarBonita: idTarBonita, tipo_tarea:tipo_tarea },
->>>>>>> fleiva
       //idOT: idOT},
       url: 'index.php/Tarea/terminarPlanificacion',
       success: function (data) {

@@ -193,15 +193,9 @@
 
 <script>
    
-    // evento de cierre de modal
-    $('#modalForm').on('hidden.bs.modal', function(e) {
-        alert('modal cerrado!!');
-        // aca guardar el formulario completado parcialmente
-        // $("#genericForm").submit();
-    });
 
     // Envia formulario de tarea
-    $('#genericForm').on("submit", function(event) {
+    function GuardarFormulario() {
         event.preventDefault();
         var formData = new FormData($("#genericForm")[0]);
 
@@ -228,7 +222,7 @@
                 }
             }
         });
-    });
+    };
 
 
     // Volver al atras
@@ -416,8 +410,14 @@
         });
     }
 
-    //}
-    //);
+    function CerrarModal(){
+        //WaitingOpen('Guardando Formulario');
+        GuardarFormulario();
+        //WaitingClose();
+        $('#modalForm').modal('hide');
+        
+    }
+
 </script>
 
 

@@ -207,7 +207,7 @@ function guardarTarea(){
           }
       });
     });</script>
-<<div class="modal" id="modalAgregar">
+<div class="modal" id="modalAgregar">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

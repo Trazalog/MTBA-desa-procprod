@@ -290,8 +290,10 @@ class Tarea extends CI_Controller {
 		// Variable tipo resource referencia a un recurso externo.
 		$param = stream_context_create($parametros);
 		$response['respRest'] = $this->Tareas->tomarTarea($idTarBonita,$param);
+		
 		$idPedido = $this->input->post('idPedido');
 		$cod_interno = $this->input->post('cod_interno');
+		alert('cod_interno:'.$cod_interno);
 		$detalle = $this->input->post('detalle');
 		$tipo_tarea = $this->input->post('tipo_tarea');
 		// Valida exitencia y genera OT inicial

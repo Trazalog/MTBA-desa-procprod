@@ -371,7 +371,7 @@
     });
 
     // evento de cierre de modal guarda parcialmente los datos
-    $('#modalForm').on('hidden.bs.modal', function (e) {   
+    function GuardarFormulario() {   
         
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
@@ -457,7 +457,7 @@
         }
         });
 
-    });
+    };
 
     // trae valores validos para llenar form asoc.  
 	function getformulario(event) {    
@@ -601,8 +601,15 @@
         autoclose: true
   	});
 
+    function CerrarModal(){
+        //WaitingOpen('Guardando Formulario');
+        GuardarFormulario();
+        //WaitingClose();
+        $('#modalForm').modal('hide');
+        
+    }
 
-
+      
 </script>
 
 

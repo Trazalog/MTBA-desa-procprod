@@ -641,9 +641,9 @@
 	});
 	
 	// evento de cierre de modal guarda parcialmente los datos
-	$('#modalForm').on('hidden.bs.modal', function (e) {
-		guardarFormulario(false);
-	});
+	// $('#modalForm').on('hidden.bs.modal', function (e) {
+		
+	// });
 
 	function ValidarCampos(){
 		$('#genericForm').data('bootstrapValidator').validate();
@@ -892,6 +892,14 @@
 			}
 		});
 	}
+
+	function CerrarModal(){
+        //WaitingOpen('Guardando Formulario');
+        guardarFormulario(false);
+        //WaitingClose();
+        $('#modalForm').modal('hide');
+        
+    }
 </script>
 
 

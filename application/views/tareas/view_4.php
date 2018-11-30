@@ -636,37 +636,7 @@
 			}
 		});
 	}
-	// $('#subirArchivo').click(function() {
-	//     event.preventDefault();
-	//     var formData = new FormData($("#formPresupuesto")[0]); 
-	//     var idPedTrabajo=
-	//     formData.append('idPedTrabajo',idPedTrabajo);
-	//     $.ajax({
-	//         url:'index.php/AceptacionTrabajo/GuardarPresupuesto',
-	//         type: 'POST',
-	//         data: formData,
-	//         cache: false,
-	//         contentType: false,
-	//         processData: false,
-	//         success: function(result) {
-	//             alert(result);
 
-	//          if(result=='error'){
-	//              alert("No se pudo Guardar Archivo");
-	//          }else{
-	//             $("#formPresupuesto")[0].reset();
-	//             $('#subirArchivo').addClass("hidden");
-	//             $('#presupuesto').addClass("hidden")
-	//             $('#linkPresupuesto').attr("href",result);    
-	//             alert("Archivo Guardado");
-	//          }
-
-	//         }
-	//     });
-	// });
-
-	/* Funciones BPM */
-	//Ckeck Tarea realizada
 	$('.btncolor').click(function (e) {
 		//var id = <?php //echo $idorden?>; //tomo valor de id_orden
 		console.log(id);
@@ -815,7 +785,7 @@
 	});
 
 	// evento de cierre de modal guarda parcialmente los datos
-	$('#modalForm').on('hidden.bs.modal', function (e) {
+	function GuardarFormulario() {
 
 		$('#error').fadeOut('slow');
 		// toma  el valor de todos los input file 
@@ -901,7 +871,7 @@
 			}
 		});
 
-	});
+	};
 
 	// trae valores validos para llenar form asoc.  
 	function getformulario(event) {
@@ -1125,6 +1095,14 @@
 	$('#presupuesto').on('change', function () {
 		subirPresupuesto();
 	});
+
+	function CerrarModal(){
+        //WaitingOpen('Guardando Formulario');
+        GuardarFormulario();
+        //WaitingClose();
+        $('#modalForm').modal('hide');
+        
+    }
 
 </script>
 
