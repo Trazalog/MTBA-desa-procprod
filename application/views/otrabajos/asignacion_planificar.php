@@ -385,10 +385,8 @@
           var month_ = date_.getMonth();
         
           var idOrden = $('#numord').val();
-
           var evento = $.ajax({
-            //url: 'index.php/Otrabajo/getcalendTareasSector',
-            url: 'index.php/Otrabajo/getcalendTareas',
+            url: 'index.php/Otrabajo/getcalendTareas/<?php echo $FiltrarOT ?>',
             data: {
               month: month_,
               idOrden: idOrden

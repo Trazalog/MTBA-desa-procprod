@@ -8,6 +8,7 @@ class Otrabajo extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Otrabajos');
 		$this->load->model('Bonitas');
+	//	$this->load->model('PedidoTrabajos');
 	}
 
 	public function index($permission)
@@ -21,7 +22,8 @@ class Otrabajo extends CI_Controller {
 
 	public function listOrden($permission,$cod_interno=''){
 		$data['list'] = $this->Otrabajos->otrabajos_List($cod_interno);
-		$data['permission'] = $permission;
+		//$data['PedidoTrabajo'] = $this->PedidoTrabajos->Obterner_Pedido($cod_interno);
+		$data['permission'] = 'View';
 		$this->load->view('otrabajos/list', $data);
 	}	
 
@@ -504,7 +506,7 @@ class Otrabajo extends CI_Controller {
 		$data['idPedTrabajo'] = $idPedTrabajo;
 		$data['tipo_tarea'] = $this->Otrabajos->Obtener_Tipo_OT($ot);
 		$data['infoOT'] = $this->Otrabajos->infoOT($ot);
-		//$data['idTarBonita'] = $idTarBonita; 
+		$data['FiltrarOT'] = strpos($permission,'FiltrarOT')==true; 
 		$data['permission'] = $permission;
 		
 		$this->load->view('otrabajos/asignacion_planificar',$data);  
@@ -671,9 +673,9 @@ class Otrabajo extends CI_Controller {
 	}
 	
 	// Trae tareas por mes para calendario (carga inicial de calendario)
-	public function getcalendTareas(){
-		
-		$data = $this->Otrabajos->getcalendTareas($this->input->post());
+	public function getcalendTareas($FiltrarOT){
+		$idOrden = $this->input->post('idOrden');
+		$data = $this->Otrabajos->getcalendTareas($this->input->post(),$FiltrarOT);
 		if($data  == false){
 			echo json_encode(false);
 		}
