@@ -293,7 +293,6 @@ class Tarea extends CI_Controller {
 		
 		$idPedido = $this->input->post('idPedido');
 		$cod_interno = $this->input->post('cod_interno');
-		alert('cod_interno:'.$cod_interno);
 		$detalle = $this->input->post('detalle');
 		$tipo_tarea = $this->input->post('tipo_tarea');
 		// Valida exitencia y genera OT inicial
