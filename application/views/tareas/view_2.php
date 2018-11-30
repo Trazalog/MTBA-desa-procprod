@@ -283,14 +283,13 @@
 
 <script>
     // evento de cierre de modal
-    $('#modalForm').on('hidden.bs.modal', function(e) {
-        alert('modal cerrado!!');
-        // aca guardar el formulario completado parcialmente
-        // $("#genericForm").submit();
-    });
+    // $('#modalForm').on('hidden.bs.modal', function(e) {
+    //     alert('modal cerrado!!');
+    //     // aca guardar el formulario completado parcialmente
+    //     // $("#genericForm").submit();
+    // });
     // Envia formulario de tarea
-    $('#genericForm').on("submit", function(event) {
-        event.preventDefault();
+    function GuardarFormulario() {
         var formData = new FormData($("#genericForm")[0]);
         console.table(formData);
         $.ajax({
@@ -314,7 +313,7 @@
                 }
             }
         });
-    });
+    };
     // Volver al atras
     $('#cerrar').click(function cargarVista() {
         WaitingOpen();
@@ -479,8 +478,14 @@
             valorSig = data[index]['idValor'];
         });
     }
-    //}
-    //);
+    
+    function CerrarModal(){
+        //WaitingOpen('Guardando Formulario');
+        GuardarFormulario();
+        //WaitingClose();
+        $('#modalForm').modal('hide');
+        
+    }
 </script>
 
 

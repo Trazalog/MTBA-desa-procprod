@@ -498,7 +498,7 @@
     });
 
     // evento de cierre de modal guarda parcialmente los datos
-    $('#modalForm').on('hidden.bs.modal', function (e) {   
+    function GuardarFormulario(){   
         
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
@@ -583,7 +583,7 @@
         }
         });
         
-    });
+    };
 
 
 
@@ -757,6 +757,13 @@
 	   $('#genericForm').data('bootstrapValidator').validateField($(this));
     });
 
+    function CerrarModal(){
+        //WaitingOpen('Guardando Formulario');
+        GuardarFormulario();
+        //WaitingClose();
+        $('#modalForm').modal('hide');
+        
+    }
 
 
 </script>

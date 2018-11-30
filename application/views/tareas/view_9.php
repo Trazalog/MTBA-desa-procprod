@@ -755,7 +755,6 @@ function regresa(){
         success:function(respuesta){
             GuardarValorCotizacion();
             getImgValor();
-            WaitingClose();
             alert('Formulario Guardado');
             if (respuesta ==="exito") {
                 
@@ -969,10 +968,11 @@ data();
 };
 
 function CerrarModal(){
-    WaitingOpen('Guardando Formulario');
-     GuardarFormulario();
+    //WaitingOpen('Guardando Formulario');
+    GuardarFormulario();
+    //WaitingClose();
+    $('#modalForm').modal('hide');
     
-    // $('#modalForm').modal('hide');
 }
 
 

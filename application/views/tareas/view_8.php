@@ -529,7 +529,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
     });
 
     // evento de cierre de modal guarda parcialmente los datos
-    $('#modalForm').on('hidden.bs.modal', function (e) {   
+    function GuardarFormulario() {   
         
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
@@ -781,7 +781,13 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         autoclose: true
   	});
 
-
+    function CerrarModal(){
+        //WaitingOpen('Guardando Formulario');
+        GuardarFormulario();
+        //WaitingClose();
+        $('#modalForm').modal('hide');
+        
+    }
 
 </script>
 
