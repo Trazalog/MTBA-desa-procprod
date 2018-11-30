@@ -758,7 +758,7 @@ class Otrabajos extends CI_Model
    	}
 
    	// Trae tareas por mes para calendario (carga inicial de calendario)   
-		function getcalendTareas($data){
+		function getcalendTareas($data,$filtrar=false){
 			$month = $data['month'] + 1 ;		  
 			$this->db->select('tbl_listarea.id_listarea,
 												tbl_listarea.id_orden,
@@ -776,6 +776,7 @@ class Otrabajos extends CI_Model
 			$this->db->join('tareas', 'tbl_listarea.id_tarea = tareas.id_tarea');
 			$this->db->where('month(tbl_listarea.fecha)', $month);					
 			$this->db->where('tbl_listarea.estado !=','C');
+			if($filtrar==true)$this->db->where('tbl_listarea.id_orden',$data['idOrden']);
 			$query = $this->db->get();
 			if($query->num_rows()>0){
 				return $query->result_array();

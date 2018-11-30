@@ -21,8 +21,8 @@
             <thead>
               <tr>
                 <th width="1%" class="acc">Acciones</th>
-                <th>Id </th>
-                <th>Nro</th>
+                <th width="1%">Id </th>
+                <th width="10%">Nro</th>
                 <th>Fecha</th>
                 <th>Fecha Entrega</th>
                 <th>Fecha Terminada </th>
@@ -51,7 +51,10 @@
                      
                         $id=$a['id_orden'];
                         echo '<tr id="'.$id.'" class="'.$id.'">';
-      	                echo '<td class="acc">';
+                        echo '<td class="acc">';
+                        if (strpos($permission,'View') !== false) {//Ver Pantalla Planificación
+      	                	echo '<i class="fa fa-fw fa-eye ver-calendario" style="color: #006400; cursor: pointer; margin-left: 15px;" title="Ver en Calendario"></i>';
+                        }  
 
                         if (strpos($permission,'Edit') !== false) {
       	                	echo '<i class="fa fa-fw fa-pencil" style="color: #f39c12; cursor: pointer; margin-left: 15px;" title="Editar" data-toggle="modal" data-target="#modaleditar" ></i>';
@@ -111,7 +114,17 @@
 </section><!-- /.content -->
 
 <script>
-<?php echo strcmp($permission,'View')==0?'$(".acc").remove();':''?>
+if($(".acc").html()==''){$(".acc").remove()};
+$('.ver-calendario').click(function(){
+  var row = $(this).parent().parent();
+  var ot = $(row).attr('id');
+  var idPedTrabajo = $(row).find('td:eq(2)').html();
+  WaitingOpen('Cargando Tareas...');
+		$('#content').empty();
+		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/View-FiltrarOT/"+ot+"/"+idPedTrabajo+"/");
+		WaitingClose();
+});
+
 var iort= "";
 var ido ="";
 var idp ="";
