@@ -592,9 +592,10 @@
 				detalle: detalle,
 				tipo_tarea: tipo_tarea
 			},
+			dataType:'json',
 			url: 'index.php/Tarea/tomarTareaPlanificacion',
 			success: function (data) {
-							alert('Success');
+							
 							console.log('codigo de respuesta: ' + data['respRest']['reponse_code']);
 							console.log('respuesta insercion: ' + data['resInsert']);
 
@@ -617,7 +618,7 @@
 							// $('h5 span:last-child').after('<span>'+data['resInsert']+'</span>');
 						},
 			error: function (result) {
-				alert('Error');
+				alert("Error");
 				console.log(result);
 			},
 			dataType: 'json'
