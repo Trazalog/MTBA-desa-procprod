@@ -152,7 +152,7 @@ if(!function_exists('cargarCabecera')){
                             <!-- /.box-body -->
                         </div>
                         <!-- /.box-body -->';
-                    return $html;    
+                    echo $html;    
 } } 
 
 ?>

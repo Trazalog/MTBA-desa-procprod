@@ -8,7 +8,7 @@ class Otrabajo extends CI_Controller {
 		parent::__construct();
 		$this->load->model('Otrabajos');
 		$this->load->model('Bonitas');
-	//	$this->load->model('PedidoTrabajos');
+		$this->load->model('PedidoTrabajos');
 	}
 
 	public function index($permission)
@@ -480,19 +480,8 @@ class Otrabajo extends CI_Controller {
         $data['permission'] = $permission;
         $this->load->view('otrabajos/asignacion',$data);  
 	}
-	// TODO: METODO NUEVO
-		// carga vista asignacion para planificar
-			// public function cargarPlanificacion($permission,$idglob,$idTarBonita){ 
-			// 	//$idglob = 17;
-				
-			// 	$data['list'] = $this->Otrabajos->cargartareas($idglob);
-			// 	$data['id_orden'] = $idglob;
-			// 	$data['idTarBonita'] = $idTarBonita; 
-		 //        $data['permission'] = $permission;
-		 //        $this->load->view('otrabajos/asignacion_planificar',$data);  
-			// }
 
-	public function cargarPlanificacion($permission,$ot,$idPedTrabajo){ 
+	public function cargarPlanificacion($permission,$ot,$cod_interno){ 
 
 		// trae tareas de TJobs
 		$tareas = $this->Otrabajos->cargartareas($ot);
@@ -503,7 +492,7 @@ class Otrabajo extends CI_Controller {
 		$data['list'] = $list;
 		$data['id_orden'] = $ot;
 		$data['idTarBonita'] = $this->Otrabajos->getIdBPMPorIdOt($ot);
-		$data['idPedTrabajo'] = $idPedTrabajo;
+		$data['idPedTrabajo'] = $this->PedidoTrabajos->Obterner_Pedido($cod_interno)['petr_id'];
 		$data['tipo_tarea'] = $this->Otrabajos->Obtener_Tipo_OT($ot);
 		$data['infoOT'] = $this->Otrabajos->infoOT($ot);
 		$data['FiltrarOT'] = strpos($permission,'FiltrarOT')==true; 

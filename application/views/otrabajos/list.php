@@ -118,10 +118,10 @@ if($(".acc").html()==''){$(".acc").remove()};
 $('.ver-calendario').click(function(){
   var row = $(this).parent().parent();
   var ot = $(row).attr('id');
-  var idPedTrabajo = $(row).find('td:eq(2)').html();
+  var cod_interno = $(row).find('td:eq(2)').html();
   WaitingOpen('Cargando Tareas...');
 		$('#content').empty();
-		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/View-FiltrarOT/"+ot+"/"+idPedTrabajo+"/");
+		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/View-FiltrarOT/"+ot+"/"+cod_interno+"/");
 		WaitingClose();
 });
 
