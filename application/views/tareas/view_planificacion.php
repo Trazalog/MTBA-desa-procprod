@@ -398,7 +398,7 @@
 	$('#verOT').click(function(){
 		var iort = $('#idOT').val();
 		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		var idPedTrabajo = $('#idPedTrabajo').val(); 
+		var idPedTrabajo = $('#cod_interno').val(); 
 		//alert(idPedTrabajo);
 		redireccionar_planificacion(iort,idTarBonita,idPedTrabajo);
 	});
