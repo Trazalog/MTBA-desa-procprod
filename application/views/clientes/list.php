@@ -4,50 +4,50 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Clientes</h3>
+          <h3 class="box-title">Cliente</h3>
           <?php
-            if (strpos($permission,'Add') !== false) {
-              echo '<button class="btn btn-block btn-success" style="width: 100px; margin-top: 10px;" data-toggle="modal" data-target="#modaltarea" id="btnAdd">Agregar</button>';
-            }
+          if (strpos($permission,'Add') !== false) {
+            echo '<button class="btn btn-block btn-primary" style="width: 100px; margin-top: 10px;" data-toggle="modal" data-target="#modalAgregar" id="btnAdd" title="Nueva">Agregar</button>';
+          }
           ?>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <table id="deposito" class="table table-bordered table-hover" style="text-align: center">
+          <table id="Cliente" class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th  width="20%" style="text-align: center">Acciones</th>
-                <th style="text-align: center">Cliente</th>
-                <th style="text-align: center">CUIT/DNI</th>
-                <th style="text-align: center">Domicilio</th>
-                <th style="text-align: center">Tel. Celular</th>
-                <th style="text-align: center">Tel. Fijo</th>
-                
+                <th width="1%">Acciones</th>
+                <th>RazonSocial</th>
+                <th>C.U.I.L/C.U.I.T</th>
+                <th>Dirección Legal</th>
+                <th>Teléfono</th>
+                <th>Email</th>
+
               </tr>
             </thead>
             <tbody>
               <?php
-                foreach($list as $z){
+                foreach($list as $f)
+                {
 
-                  if ($z['estado'] != "AN") {
+                  echo '<tr id="'.$f['cliId'].'">';
+                  echo '<td>';
+                  
+                  if (strpos($permission,'Edit') !== false) {
+                    echo '<i class="glyphicon glyphicon-pencil text-light-blue edit" style="cursor: pointer;" title="Editar"></i>';
+                  }
+                  if (strpos($permission,'Del') !== false) {
+                   echo '<i class="fa fa-fw fa-times-circle text-light-blue" title="Eliminar" style="cursor: pointer; margin: 5px;" ></i>';
+                  }
+                  echo '</td>';
+                  echo '<td style="text-align: left">'.$f['cliRazonSocial'].'</td>';
+                  echo '<td style="text-align: left">'.$f['cuil_cuit'].'</td>';
+                  echo '<td style="text-align: left">'.$f['cliAddress'].'</td>';
+                  echo '<td style="text-align: left">'.$f['cliPhone'].'</td>';
+                  echo '<td style="text-align: left">'.$f['cliEmail'].'</td>';               
+                  echo '</tr>';
 
-                    $id=$z['cliId']; 
-                    echo '<tr id="'.$id.'" class="'.$id.'" >';
-                    echo '<td>';
-
-                    if (strpos($permission,'Edit') !== false) {
-                      echo '<i class="fa fa-fw fa-pencil" style="color: #f39c12; cursor: pointer; margin-left: 15px;" title="Editar" data-toggle="modal" data-target="#modaleditar"></i>';
-                      echo '<i class="fa fa-fw fa-times-circle" style="color: #dd4b39; cursor: pointer; margin-left: 15px;" title="Eliminar" data-toggle="modal" data-target="#modaleliminar"></i>';
-                    }
-                            
-                    echo '</td>';
-                    echo '<td style="text-align: center">'.$z['cliLastName'].'  '.$z['cliName'].'</td>';
-                    echo '<td style="text-align: center">'.$z['cliDni'].'</td>';
-                    echo '<td style="text-align: center">'.$z['cliAddress'].'</td>';     
-                    echo '<td style="text-align: center">'.$z['cliMovil'].'</td>';
-                    echo '<td style="text-align: center">'.$z['cliPhone'].'</td>';
-                    echo '</tr>';
-                  }  
                 }
+
               ?>
             </tbody>
           </table>
@@ -58,557 +58,317 @@
 </section><!-- /.content -->
 
 <script>
-var ed="";
-var edelim="";
-$(document).ready(function(event) {
-   //Editar
-  $(".fa-pencil").click(function (e) { 
-     
-    var idord = $(this).parent('td').parent('tr').attr('id');
-    console.log("ID de banco");
-    console.log(idord);
-    ed=idord;
-    $.ajax({
-        type: 'GET',
-        data: { idord:idord},
-        url: 'index.php/Cliente/getpencil', //index.php/
-        success: function(data){
-                console.log("Estoy editando");           
-                console.log(data);  
-                console.log(data[0]['cliDateOfBirth']);
-                datos={
-             
-                  'nom':data[0]['cliName'],
-                  'ape':data[0]['cliLastName'],
-                  'dn':data[0]['cliDni'],
-                  'fech':data[0]['cliDateOfBirth'],
-                  'dire':data[0]['cliAddress'],
-                  'tel1':data[0]['cliPhone'],
-                  'cel':data[0]['cliMovil'],
-                  'emil':data[0]['cliEmail'],
-                  'idzo':data[0]['zonaId'],
-                  'zo':data[0]['zonaName'],
-                  'di':data[0]['cliDay'],
-                  'col':data[0]['cliColor']
-    
-                }
-              completarEdit(datos);
-                             
-              },
-          
-        error: function(result){
-              
-              console.log(result);
-            },
-            dataType: 'json'
-        });
-  
-  });
 
-  //Cambio de estado a un cliente/ estado=AN
-  $(".fa-times-circle").click(function (e) { 
-                        
-    console.log("Esto eliminando"); 
-    var ord = $(this).parent('td').parent('tr').attr('id');
-    console.log("El id de Cliente es:");
-    console.log(ord);
-    edelim=ord;
-  
-  });
-
-  //Datepicker de fecha
-  
-  /*$('#cliDateOfBirth').datepicker({
-    format: 'mm/dd/yyyy',
-    startDate: '-3d'
-  });*/
-
-  //Datatable
-  $('#deposito').DataTable({
-          "paging": true,
-          "lengthChange": true,
-          "searching": true,
-          "ordering": true,
-          "info": true,
-          "autoWidth": true,
-          "language": {
-                "lengthMenu": "Ver _MENU_ filas por página",
-                "zeroRecords": "No hay registros",
-                "info": "Mostrando pagina _PAGE_ de _PAGES_",
-                "infoEmpty": "No hay registros disponibles",
-                "infoFiltered": "(filtrando de un total de _MAX_ registros)",
-                "sSearch": "Buscar:  ",
-                "oPaginate": {
-                    "sNext": "Sig.",
-                    "sPrevious": "Ant."
-                  }
+  $('#form_cliente').bootstrapValidator({ //VALIDADOR
+    message: 'This value is not valid',
+    feedbackIcons: {
+      valid: 'glyphicon glyphicon-ok',
+      invalid: 'glyphicon glyphicon-remove',
+      validating: 'glyphicon glyphicon-refresh'
+    },
+    fields: {
+      obligatorio: {
+        message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+        selector: '.form-control',
+        validators: {
+          notEmpty: {
+            message: 'Los campos obligatorios(*) deben estar completos'
           }
+        }
+      }
+    }
+  }).on('success.form.bv', function (e) {
+    // Prevent form submission
+    e.preventDefault();
+
   });
 
-});
 
-  traer_zona();
-  function traer_zona(){
-
-    $('#zonaId').html(""); 
+  function guardarCliente() {
+    if(!ValidarCampos())return;
+    var formData = new FormData($('#form_cliente')[0]);
     $.ajax({
-        type: 'POST',
-        data: { },
-        url: 'index.php/Cliente/getzona', //index.php/
-        success: function(data){
-               
-                 //var opcion  = "<option value='-1'>Seleccione...</option>" ; 
-                $('#zonaId').append(opcion); 
-                for(var i=0; i < data.length ; i++) 
-                {    
-                  var nombre = data[i]['zonaName'];
-                  var opcion  = "<option value='"+data[i]['zonaId']+"'>" +nombre+ "</option>" ; 
-
-                  $('#zonaId').append(opcion); 
-                                   
-                }
-                
-              },
-        error: function(result){
-              
-              console.log(result);
-            },
-            dataType: 'json'
-    });
-  }
-
-  function traer_zona1(){
-
-    $('#zona').val("");
-    $.ajax({ 
-        type: 'POST',
-        data: { },
-        url: 'index.php/Cliente/getzona', //index.php/
-        success: function(data){
-               
-                 //var opcion  = "<option value='-1'>Seleccione...</option>" ; 
-                $('#zona').append(opcion); 
-                for(var i=0; i < data.length ; i++) 
-                {    
-                  var nombre = data[i]['zonaName'];
-                  var opcion  = "<option value='"+data[i]['zonaId']+"'>" +nombre+ "</option>" ; 
-
-                  $('#zona').append(opcion); 
-                                   
-                }
-                
-              },
-        error: function(result){
-              
-              console.log(result);
-            },
-            dataType: 'json'
-    });
-  }
-
-  function completarEdit(datos,fecha){
-
-    console.log("datos que llegaron");
-    $('#nombre1').val(datos['nom']);
-    $('#Apellido1').val(datos['ape']);
-    $('#dni1').val(datos['dn']);
-    $('#dom1').val(datos['dire']);
-    $('#fecha1').val(datos['fech']);
-    $('#tel1').val(datos['tel1']);
-    $('#cel').val(datos['cel']);
-    $('#mail').val(datos['emil']);
-    $('#dia1').val(datos['di']);
-    $('select#dia1').append($('<option />', { value: datos['di'],text: datos['di']}));
-    //$('#zona').val(datos['zo']);
-    $('select#zona').append($('<option />', { value: datos['idzo'],text: datos['zo']}));
-    $('select#color1').append($('<option />', { value: datos['col']}));
-    traer_zona1();
-
-  }
-
-  function guardar(){
-
-    console.log("Estoy guardando");
-    var nombre = $('#cliName').val();
-    var apellido = $('#cliLastName').val();
-    var dni = $('#cliDni').val();
-    var fecha = $('#cliDateOfBirth').val();
-    var direccion = $('#cliAddress').val();
-    var fijo = $('#cliPhone').val();
-    var movil = $('#cliMovil').val();
-    var email = $('#cliMovil').val();
-    var zona = $('#zonaId').val();
-    var dia = $('#cliDay').val();
-   // var color = $('#cliColor').val();
-    var parametros = {
-      'cliName': nombre,
-      'cliLastName': apellido,
-      'cliDni': dni,
-      'cliDateOfBirth': fecha,
-      'cliAddress': direccion,
-      'cliPhone': fijo,
-      'cliMovil': movil,
-      'cliEmail': email,
-      'zonaId': zona,
-      'cliDay': dia,
-      //'cliColor': color,
-      'estado': 'C'
-
-    };                                              
-    console.log(parametros);                                
-    $.ajax({
-      type:"POST",
-      url: "index.php/Cliente/agregar_cliente", 
-      data:{parametros:parametros},
-      success: function(data){
-        console.log("exito en agregar un nuevo banco ");
-        regresa();
-
-        },
-      error: function(result){
-          console.log("entro por el error");
-          console.log(result);
+      type: 'POST',
+      data: formData, cache: false, contentType: false, processData: false,
+      url: 'index.php/Cliente/Guardar_Cliente',
+      success: function (result) {
+        WaitingClose();
+        $('#modalAgregar').modal('hide');
+        ActualizarPagina();
+      },
+      error: function (result) {
+        alert("OPERACIÓN FALLIDA");
       }
-    
+    });
+  }
+
+
+  function editarCliente() {
+    if(!ValidarCampos())return;
+    var formData = new FormData($('#form_cliente_editar')[0]);
+    $.ajax({
+      type: 'POST',
+      data: formData, cache: false, contentType: false, processData: false,
+      url: 'index.php/Cliente/Modificar_Cliente',
+      success: function (result) {
+        WaitingClose();
+        $('#modalEditar').modal('hide');
+        ActualizarPagina();
+      },
+      error: function (result) {
+        alert("OPERACIÓN FALLIDA");
+      }
+
     });
 
   }
 
-  function guardareditar(){
-    console.log("Estoy editando");
-    console.log("El id de Cliente es:"); 
-    console.log(ed);
-      
-    var nomb = $('#nombre1').val();
-    var apell = $('#Apellido1').val();
-    var dni = $('#dni1').val();
-    var fecha = $('#fecha1').val();
-    var dom = $('#dom1').val();
-    var tel = $('#tel1').val();
-    var cel = $('#cel').val();
-    var email = $('#mail').val();
-    var zon = $('#zona').val();
-    var dia = $('#dia1').val();
-    var tipcli = $('#color1').val();   
-    var parametros = {
-          'cliName': nomb,
-          'cliLastName': apell,
-          'cliDni': dni,
-          'cliDateOfBirth': fecha,
-          'cliAddress': dom,
-          'cliPhone': tel,
-          'cliMovil': cel,
-          'cliEmail': email,
-          'zonaId': zon,
-          'cliDay': dia
-          //'cliColor': tipcli
-      
-    };                                              
-    console.log(parametros);
-    var hayError = false; 
+  $(".fa-times-circle").click(function (e) {
+    id_ = $(this).parents('tr').attr('id');
+    $('#modalEliminar').modal('show');
+  });
 
-    if( parametros !=0)
-      {                                     
-      $.ajax({
-        type:"POST",
-        url: "index.php/Cliente/edit_banco", //controlador /metodo
-        data:{parametros:parametros, ed:ed},
-        success: function(data){
-          console.log("exito en editar");
-          regresa();     
-          },
-        
-        error: function(result){
-            console.log("entro por el error");
-            console.log(result);
-        }
-       
-      });
-     
-    }
-    else 
-    { 
-      alert("Por favor complete todos los campos solicitados");
-    }
-
-  }
-
-  function guardareliminar(){
-    console.log("Estoy guardando el eliminar , el id de cliente es:");
-    console.log(edelim);
+  $('.edit').click(function() {
+    id_ = $(this).parents('tr').attr('id');
     $.ajax({
-            type: 'POST',
-            data: { edelim: edelim},
-            url: 'index.php/Cliente/BajaCliente', //index.php/
-            success: function(data){
-                    console.log(data);
-                    alert("CLIENTE Eliminado");
-                    regresa();
-                  
-                  },
-              
-            error: function(result){
-                  
-                  console.log(result);
-                }
-      });  
-  } 
+      type: 'POST',
+      url: 'index.php/Cliente/Obtener_Cliente',
+      data: {id:id_},
+      dataType: 'json',
+      success: function(responce){
+        console.table(responce);
+        $.each(responce, function(key, value){
+          $('#form_cliente_editar [name=' + key + ']').val(value);
+        });
+        $('#modalEditar').modal('show');
+      },
+      error: function(err){
+        alert('Error al Editar');
+      }
+    });
+  }); 
 
-  function regresa(){
+  	function ValidarCampos(){
+        $('#form_cliente').data('bootstrapValidator').validate();
+        if(!$('#form_cliente').data('bootstrapValidator').isValid()){
+          alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
+          return false;
+        }	
+        return true;
+	  }
 
+  function eliminarCliente() {
+    alert(id_);
+    $.ajax({
+      type: 'POST',
+      data: { id: id_ },
+      url: 'index.php/Cliente/Eliminar_Cliente',
+      success: function (data) {
+        WaitingClose();
+        ActualizarPagina();
+      },
+
+      error: function (result) {
+        alert("OPERACION FALLIDA");
+      }
+    });
+
+  } function ActualizarPagina() { //Funcion Resfresca
+    $('#content').empty();
     $("#content").load("<?php echo base_url(); ?>index.php/Cliente/index/<?php echo $permission; ?>");
-     WaitingClose();
 
-  }
+  } $(function () {
+
+    $('#Cliente').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": true,
+      "language": {
+        "lengthMenu": "Ver MENU filas por página",
+        "zeroRecords": "No hay registros",
+        "info": "Mostrando pagina PAGE de PAGES",
+        "infoEmpty": "No hay registros disponibles",
+        "infoFiltered": "(filtrando de un total de MAX registros)",
+        "sSearch": "Buscar:  ",
+        "oPaginate": {
+          "sNext": "Sig.",
+          "sPrevious": "Ant."
+        }
+      }
+    });
+  });
 
 </script>
-<script>     
 
-</script>
-<!-- Modal alta de cliente-->
-<div class="modal fade" id="modaltarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document" style="width: 40%">
+<div class="modal" id="modalAgregar">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="fa fa-plus-square" style="color: #008000" > </span>  Agregar Cliente</h4>
-      </div> <!-- /.modal-header  -->
-
-      <div class="modal-body input-group ui-widget" id="modalBodyArticle">
-        
-        <div class="row" >
-          <div class="col-sm-12 col-md-12">
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Nombre <strong style="color: #dd4b39">*</strong>: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="Nombre" id="cliName" name="cliName" value="<?php echo $data['customer']['cliName'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>  >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Apellido <strong style="color: #dd4b39">*</strong>: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="Apellido" id="cliLastName"  name="cliLastName"value="<?php echo $data['customer']['cliLastName'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>  >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Dni <strong style="color: #dd4b39">*</strong>: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="12345678" id="cliDni" name="cliDni" value="<?php echo $data['customer']['cliDni'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>  maxlength="8">
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Fec. Nacimiento <strong style="color: #dd4b39">*</strong>: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="date" class="form-control" id="cliDateOfBirth" name="cliDateOfBirth" placeholder="dd-mm-aaaa" value="<?php //echo $data['customer']['cliDateOfBirth'];?>" <?php //echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-               <!-- <input type="text" name="cliDateOfBirth" class="datepicker" id="cliDateOfBirth">-->
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Domicilio: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="input" class="form-control" placeholder="ej: Barrio Los Olivos M/E Casa/23" id="cliAddress" name="cliAddress"value="<?php echo $data['customer']['cliAddress'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>  >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Teléfono: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="0264 - 4961020" id="cliPhone" name="cliPhone" value="<?php echo $data['customer']['cliPhone'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Celular: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="0264 - 155095888" id="cliMovil" name="cliMovil"value="<?php echo $data['customer']['cliMovil'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Mail: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="claudia.perez@hotmail.com" id="cliEmail"  name="cliEmail" value="<?php echo $data['customer']['cliEmail'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Zona: </label>
-              </div>
-              <div class="col-xs-8">
-                <select class="form-control" id="zonaId"  name="zonaId" value="">
-                    
-                </select>
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Días proxímo cobro: </label>
-              </div>
-              <div class="col-xs-8">
-                <select class="form-control" id="cliDay" name="cliDay" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-                    <?php 
-                      for ($i = 1; $i < 31; $i++) {
-                        echo '<option value="'.$i.'" '.($data['customer']['cliDay'] == $i ? 'selected' : '').'>'.$i.'</option>';
-                      }
-                    ?>
-                </select>
-              </div>
-            </div><br>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Agregar Cliente</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="alert alert-danger alert-dismissable" id="error" style="display: none">
+              <h4><i class="icon fa fa-ban"></i> Error!</h4>
+              Revise que todos los campos esten completos
+            </div>
           </div>
-        </div>                   
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" onclick="guardar()" >Guardar</button>
-        </div>  <!-- /.modal footer -->
-      </div>  <!-- /.modal-body -->
-    </div> <!-- /.modal-content -->
-  </div>  <!-- /.modal-dialog modal-lg -->
-</div>  <!-- /.modal fade -->
-<!-- / Modal -->
-
-<!-- Modal editar-->
-<div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document" style="width: 40%">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="fa fa-fw fa-pencil" style="color: #f39c12" > </span> Editar Cliente</h4>
-      </div> 
-      <div class="modal-body input-group ui-widget" id="modalBodyArticle">  
-        <div class="row" >
-          <div class="col-sm-12 col-md-12">
-            <div class="row">
-              <div class="col-xs-4">
-                  <label style="margin-top: 7px;">Nombre <strong style="color: #dd4b39">*</strong>: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="Nombre" id="nombre1" name="nombre1" value="<?php echo $data['customer']['cliName'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>  >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Apellido <strong style="color: #dd4b39">*</strong>: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="Apellido" id="Apellido1"  name="Apellido1" value="<?php echo $data['customer']['cliLastName'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>  >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Dni <strong style="color: #dd4b39">*</strong>: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="12345678" id="dni1" name="dni1" value="<?php echo $data['customer']['cliDni'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>  maxlength="8">
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Fec. Nacimiento <strong style="color: #dd4b39">*</strong>: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="date" class="form-control" id="fecha1" name="fecha1" placeholder="dd-mm-aaaa" value="<?php echo $data['customer']['cliDateOfBirth'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Domicilio: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="input" class="form-control" placeholder="ej: Barrio Los Olivos M/E Casa/23" id="dom1" name="dom1"value="<?php echo $data['customer']['cliAddress'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?>  >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Teléfono: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="0264 - 4961020" id="tel1" name="tel1" value="<?php echo $data['customer']['cliPhone'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Celular: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="0264 - 155095888" id="cel" name="cel" value="<?php echo $data['customer']['cliMovil'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                <label style="margin-top: 7px;">Mail: </label>
-              </div>
-              <div class="col-xs-8">
-                <input type="text" class="form-control" placeholder="claudia.perez@hotmail.com" id="mail"  name="mail" value="<?php echo $data['customer']['cliEmail'];?>" <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                  <label style="margin-top: 7px;">Zona: </label>
-              </div>
-              <div class="col-xs-8">
-                  <select class="form-control" id="zona"  name="zona" value="" >
-               
-                  </select>
-              </div>
-            </div><br>
-            <div class="row">
-              <div class="col-xs-4">
-                  <label style="margin-top: 7px;">Días proxímo cobro: </label>
-                </div>
-              <div class="col-xs-8">
-                  <select class="form-control" id="dia1" name="dia1"  <?php echo ($data['read'] == true ? 'disabled="disabled"' : '');?> >
-                    <?php 
-                      for ($i = 1; $i < 31; $i++) {
-                        echo '<option value="'.$i.'" '.($data['customer']['cliDay'] == $i ? 'selected' : '').'>'.$i.'</option>';
-                      }
-                    ?>
-                  </select>
-                </div>
-            </div><br>
-          </div>  
         </div>
-        <div class="modal-footer">  
-          <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" onclick="guardareditar()" >Guardar</button>
-        </div>  <!-- /.modal footer -->
+          <div width="10%">
 
-      </div> <!-- /.modal-body -->
-    </div> <!-- /.modal-content -->
-  </div> <!-- /.modal-dialog modal-lg -->
-</div> <!-- /.modal fade -->
-<!-- / Modal -->
+            <form id="form_cliente">
+              
+              <div class="form-group">
 
-<!-- Modal eliminar-->
-<div class="modal fade" id="modaleliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog modal-lg" role="document" style="width: 50%">
+                <label style="margin-top: 7px;">Razon Social <strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cliRazonSocial">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">C.U.I.L/C.U.I.T <strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cuil_cuit">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Dirección Legal<strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cliAddress">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Tipo Inscripción<strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="tipo_inscripcion">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Telefono <strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cliPhone">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Email <strong style="color: #dd4b39">*</strong>: </label>
+                <input type="text" class="form-control" name="cliEmail">
+
+
+              </div>
+            </form>
+          </div>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" onclick="guardarCliente()">Guardar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+<div class="modal" id="modalEditar">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="fa fa-fw fa-times-circle" style="color: #dd4b39" > </span> Eliminar Cliente</h4>
-      </div> <!-- /.modal-header  -->
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Editar Cliente</h4>
+      </div>
+      <div class="modal-body" id="cuerpoModalEditar">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="alert alert-danger alert-dismissable" id="error" style="display: none">
+              <h4><i class="icon fa fa-ban"></i> Error!</h4>
+              Revise que todos los campos esten completos
+            </div>
+          </div>
+        </div>
 
-      <div class="modal-body input-group ui-widget" id="modalBodyArticle">
-             
-        <label >¿Realmente desea ELIMINAR CLIENTE?  </label>
-            
-      </div>  <!-- /.modal-body -->
-      <div class="modal-footer">         
-        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-        <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" onclick="guardareliminar()" >SI</button>
-      </div>  <!-- /.modal footer -->     
-    </div> <!-- /.modal-content -->
-  </div>  <!-- /.modal-dialog modal-lg -->
-</div>  <!-- /.modal fade -->
-<!-- / Modal -->
+        <form id="form_cliente_editar">
+        <input class="hidden" name="cliId">
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Razon Social <strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cliRazonSocial">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">C.U.I.L/C.U.I.T <strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cuil_cuit">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Dirección Legal<strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cliAddress">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Tipo Inscripción<strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="tipo_inscripcion">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Telefono <strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cliPhone">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Email <strong style="color: #dd4b39">*</strong>: </label>
+                <input type="text" class="form-control" name="cliEmail">
+
+
+              </div>
+            </form>
+
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" onclick="editarCliente()">Guardar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->
+<div class="modal" id="modalEliminar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Eliminar Cliente</h4>
+      </div>
+      <div class="modal-body" id="cuerpoModalEditar">
+        <h5>¿Desea eliminar el registro?</h5>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="eliminarCliente()">Eliminar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

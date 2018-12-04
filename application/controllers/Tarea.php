@@ -783,9 +783,8 @@ class Tarea extends CI_Controller {
 	}
 	public function Prespuesto_Vigente(){
 		$idTarBonita = $this->input->post('idTarBonita');
-		$valor = $this->input->post('estado');
 		$estado = array (
-		  "presupuestoVigente"	=>	"$valor"
+		  "presupuestoVigente"	=>	$this->input->post('estado')
 		);
 		$parametros = $this->Bonitas->conexiones();
 		$parametros["http"]["method"] = "POST";
