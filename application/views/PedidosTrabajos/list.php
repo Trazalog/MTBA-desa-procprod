@@ -24,7 +24,7 @@
                         
                             foreach ($list as $o) {
                                 echo '<tr id="'.$o['petr_id'].'" data-case="'.$o['bpm_id'].'">';
-                                echo '<td><i onclick="mostrar_detalles(this)" class="fa fa-fw fa-search" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Consultar"></i><i onclick="verOT(\''.$o['cod_interno'].'\')" class="fa fa-fw fa-eye" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Ver OT"></i></td>';
+                                echo '<td><i onclick="mostrar_detalles(this)" class="fa fa-fw fa-search" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Consultar"></i><i onclick="verOT(\''.$o['cod_interno'].'\')" class="fa fa-fw fa-eye" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Ver OT"></i><i onclick="ver_formularios(\''.$o['petr_id'].'\')" class="glyphicon glyphicon-list-alt" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Ver Formularios"></i></td>';
                                 echo '<td>#'.$o['petr_id'].'</td>';
                                 echo '<td>'.$o['cod_interno'].'</td>';
                                 echo '<td>'.$o['nombre'].'</td>';
@@ -58,6 +58,14 @@
         WaitingOpen('Cargando Detalles...');
         $('#content').empty();
         $("#content").load("<?php echo base_url(); ?>index.php/PedidoTrabajo/Detalles_Pedido/"+id+"/"+case_id);
+        WaitingClose();
+    }
+
+    function ver_formularios(id){
+        alert(id);
+        WaitingOpen('Cargando Detalles...');
+        $('#content').empty();
+        $("#content").load("<?php echo base_url(); ?>index.php/PedidoTrabajo/Ver_Formularios/"+id);
         WaitingClose();
     }
     $('table').DataTable({

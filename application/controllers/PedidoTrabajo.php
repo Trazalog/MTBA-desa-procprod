@@ -35,5 +35,10 @@ class PedidoTrabajo extends CI_Controller {
         $data['listArch'] = $this->Overviews->ObtenerActividadesArchivadas($caseId,$param);
         return $data;
     }
+
+    public function Ver_Formularios($id){
+      $data['list']   = $this->Tareas->tareasPorSector(6010);
+      $this->load->view('PedidosTrabajos/list_formularios',$data);
+    }
 }
 ?>
