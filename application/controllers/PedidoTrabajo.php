@@ -36,9 +36,20 @@ class PedidoTrabajo extends CI_Controller {
         return $data;
     }
 
-    public function Ver_Formularios($id){
-      $data['list']   = $this->Tareas->tareasPorSector(6010);
+    public function Ver_Formularios($idPedidoTrabajo, $case_id){
+      $data['list'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($idPedidoTrabajo);
+      $data['idPedTrabajo'] = $idPedidoTrabajo;
       $this->load->view('PedidosTrabajos/list_formularios',$data);
+    }
+
+    public function Obtener_Formulario(){
+      $lita_id = $this->input->post('id_listarea');
+      $id_form = $this->input->post('form_id');
+      $data['idForm']	= $this->input->post('form_id');
+      $data['id_listarea'] = $this->input->post('id_listarea');
+      $data['form'] = $this->Tareas->get_form($lita_id,$id_form);
+      $response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
+      echo json_encode($response);
     }
 }
 ?>
