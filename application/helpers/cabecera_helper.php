@@ -21,7 +21,7 @@ if(!function_exists('cargarCabecera')){
             }
             $html= '<div id="collapseDivCli" class="box box-default collapsed-box box-solid">
                                 <div class="box-header with-border">
-                                    <h3 id="tituloInfo" class="box-title">Cliente: '.$result['cliName'].' / Mas Detalles</h3>
+                                    <h3 id="tituloInfo" class="box-title">Cliente: '.$result['cliRazonSocial'].' / Mas Detalles</h3>
         
                                     <div class="box-tools pull-right">
                                         <button id="infoCliente" type="button" class="btn btn-box-tool" data-widget="collapse" onclick="mostrarCliente()">
@@ -39,14 +39,14 @@ if(!function_exists('cargarCabecera')){
                                         </div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="form-group">
-                                                <label style="margin-top: 7px;">Teléfono: </label>
-                                                <input type="text" id="telefono" class="form-control" value="'.$result['cliMovil'].'" disabled/>
+                                                <label style="margin-top: 7px;">C.U.I.L/C.U.I.T: </label>
+                                                <input type="text" id="cuil_cuit" class="form-control" value="'.$result['cuil_cuit'].'" disabled/>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="form-group">
-                                                <label style="margin-top: 7px;">Celular: </label>
-                                                <input type="text" id="celular" class="form-control" value="'.$result['cliPhone'].'" disabled/>
+                                                <label style="margin-top: 7px;">Teléfono: </label>
+                                                <input type="text" id="telefono" class="form-control" value="'.$result['cliPhone'].'" disabled/>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-4">

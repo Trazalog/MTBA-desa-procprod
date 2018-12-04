@@ -566,63 +566,12 @@ class Tareas extends CI_Model
 	// Trae form para dibujar pantalla (agregar where de id de form)
 	function get_form($bpm_task_id,$idFormAsoc){
 
-		// para buscar buscar por id de form agregar:
-
-		// $sql = "SELECT	form.form_id,
-			// 	form.nombre,
-			// 	form.habilitado,
-			// 	form.fec_creacion,
-			// 	cate.NOMBRE AS nomCategoria,
-			// 	cate.CATE_ID AS idCategoria,
-			// 	grup.NOMBRE AS nomGrupo,
-			// 	tida.NOMBRE AS nomTipoDatos,
-			// 	grup.GRUP_ID AS idGrupo,
-			// 	valo.NOMBRE AS nomValor,
-			// 	valo.VALO_ID AS idValor,
-			// 	valo.VALOR_DEFECTO,
-			// 	valo.LONGITUD,
-			// 	valo.OBLIGATORIO,
-			// 	valo.PISTA
-			// 	FROM
-			// 	frm_formularios form,
-			// 	frm_categorias cate,
-			// 	frm_grupos grup ,
-			// 	frm_tipos_dato tida,
-			// 	frm_valores valo
-			// 	where form.FORM_ID = cate.FORM_ID
-			// 	AND cate.CATE_ID = grup.CATE_ID
-			// 	AND grup.GRUP_ID = valo.GRUP_ID
-			// 	AND tida.TIDA_ID = valo.TIDA_ID
-			// 	AND form.form_id = $idFormAsoc
-			// 	ORDER BY cate.ORDEN,grup.ORDEN,valo.ORDEN";
-
-		$sql = "SELECT foco.FOCO_ID AS idValor,
-					foco.FORM_ID,
-					foco.FORM_NOMBRE,
-					'' AS habilitado,
-					foco.FEC_CREACION,
-					foco.CATE_NOMBRE AS nomCategoria,
-					'' AS idCategoria,
-					foco.GRUP_NOMBRE AS nomGrupo,
-					foco.TIDA_NOMBRE AS nomTipoDatos,
-					'' AS idGrupo,
-					foco.VALO_NOMBRE AS nomValor,
-					foco.TIDA_ID,
-
-					foco.VALOR AS valDefecto,
-					'' AS LONGITUD,
-					'' AS PISTA,
-					foco.VALO_ID,
-					foco.OBLIGATORIO as obligatorio,
-					foco.ORDEN
-					FROM
-					frm_formularios_completados foco
-					where foco.FORM_ID = $idFormAsoc
-					AND foco.LITA_ID = $bpm_task_id
-					ORDER BY foco.ORDEN";
-
-		$query= $this->db->query($sql);
-
+		$this->db->select("foco.FOCO_ID AS idValor,foco.FORM_ID,foco.FORM_NOMBRE,\"\"  AS habilitado,foco.FEC_CREACION,foco.CATE_NOMBRE AS nomCategoria,\"\" AS idCategoria,foco.GRUP_NOMBRE AS nomGrupo,foco.TIDA_NOMBRE AS nomTipoDatos,\"\"  AS idGrupo,foco.VALO_NOMBRE AS nomValor,foco.TIDA_ID,foco.VALOR AS valDefecto,\"\" AS LONGITUD,\"\"  AS PISTA,foco.VALO_ID,foco.OBLIGATORIO as obligatorio,foco.ORDEN");
+		$this->db->from('frm_formularios_completados foco');
+		$this->db->where('foco.FORM_ID',$idFormAsoc);
+		$this->db->where('foco.LITA_ID',$bpm_task_id);	
+		$this->db->order_by('foco.ORDEN');
+		$query = $this->db->get();
 		if($query->num_rows()>0){
 	    	return $query->result_array();
 	    }

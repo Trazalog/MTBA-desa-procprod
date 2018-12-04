@@ -19,5 +19,12 @@ class PedidoTrabajos extends CI_Model
         $this->db->where('cod_interno',$cod);
         return $this->db->get('trj_pedido_trabajo')->result_array()[0];
     }
+
+    function Lista_Formularios_Pedido($id_pedido){
+        $this->db->select('form_nombre,form_id,lita_id');
+        $this->db->where('petr_id',$id_pedido);
+        $this->db->group_by('form_id');
+        return $this->db->get('frm_formularios_completados')->result_array();
+    }
 }
 ?>
