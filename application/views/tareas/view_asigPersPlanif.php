@@ -61,7 +61,7 @@
 														echo "<input type='text' class='hidden' id='idPedTrabajo' value='$idPedTrabajo' >";
 														echo "<input type='text' class='hidden' id='tipo_tarea' value='$tipo_tarea' >";
 												?>
-												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
+												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>"
 												>
 												<form>
 													<div class="panel panel-default">

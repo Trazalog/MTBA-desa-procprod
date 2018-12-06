@@ -454,7 +454,7 @@ class Tarea extends CI_Controller {
 			//FLEIVA COMENTARIOS
 		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
 			$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
-		//	$data['TareaBPM']['displayName'] = 'Programar Armado';
+			$data['TareaBPM']['displayName'] = 'Análisis financiero y emisión de reportes';
 			switch ($data['TareaBPM']['displayName']) {
 
 				case 'Evaluación del estado de cuenta del cliente':

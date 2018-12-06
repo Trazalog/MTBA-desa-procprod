@@ -577,7 +577,6 @@ function regresa(){
                     }
             },
             error: function(data) {
-                //alert("Noo");
                 console.log(data);
             },
             dataType: 'json'

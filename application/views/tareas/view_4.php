@@ -49,7 +49,7 @@
                                                         echo "<input type='text' class='hidden' id='usrName' value='$usrName' >";
                                                         echo "<input type='text' class='hidden' id='usrLastName' value='$usrLastName' >";
                                                     ?>
-												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
+												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>"
 												>
 												<form>
 													<div class="panel panel-default">

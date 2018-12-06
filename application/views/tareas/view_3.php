@@ -55,7 +55,7 @@
 														echo "<input type='text' class='hidden' id='id_listarea' value='$id_listarea' >";
 														echo "<input type='text' class='hidden' id='idPedTrabajo' value='$idPedTrabajo' >";
 												?>
-												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
+												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>"
 												>
 												<form>
 													<div class="panel panel-default">
@@ -116,16 +116,18 @@
 														<div class="col-sm-12 col-md-12">
 															<!-- Modal formulario tarea -->
 															<?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"data-target=".bs-example-modal-lg" onclick="getformulario()">Completar Formulario </button>';}?>
-                                                    <!-- Precisa Anticipo(inline) -->
-                              <div class="form-group">
-                                <div class="col-sm-12 col-md-12">
-                                  <center>
+													<!-- Precisa Anticipo(inline) -->
+													
+														<div class="form-group pregunta">
+																<center>
+															
+																
 																	<label class="control-label">
 																			¿Precisa anticipo?
 																	</label>
 																	</br>
-																</div>		
-																<div class="col-md-12">
+																
+															
 																	<label class="radio-inline" for="radios-0">
 																		<input type="radio" name="precisa" id="radios-0"
 																				value="true" checked="checked"> Si
@@ -134,8 +136,8 @@
 																		<input type="radio" name="precisa" id="radios-1"
 																				value="false" checked="checked"> No
 																	</label>
-																</div>
-                                  </center>
+															
+															</center>
 															</div>
 														</div>
 													</div>
@@ -437,6 +439,7 @@
 		//desahilito btn tomar      
 		$("#btontomar").hide();
 		$("#formulario").show();
+		$(".pregunta").show();
 	}
 
 	function deshabilitar() {
@@ -448,6 +451,7 @@
 		$("#guardarComentario").hide();
 		$("#comentario").hide();
 		$("#formulario").hide();
+		$(".pregunta").hide();
 	}
 
 	// Volver al atras

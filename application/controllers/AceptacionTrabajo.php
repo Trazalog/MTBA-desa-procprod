@@ -53,7 +53,7 @@ class AceptacionTrabajo extends CI_Controller
 				'direccion_entrega' => $direccion_entrega,
 				'tipo_cliente' => $tipo_cliente,
 				'proveedor_repuesto' => $proveedor_repuesto,
-				'fec_entrega' => $fecha_entrega,
+				'fec_entrega_componente' => $fecha_entrega,
 				'orden_compra' =>  $documento['upload_data']['file_name']
 			);
 			$resultBD = $this->AceptacionTrabajos->Guardar($this->input->post('idPedTrabajo'),$data);

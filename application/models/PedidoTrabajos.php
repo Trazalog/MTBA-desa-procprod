@@ -9,7 +9,7 @@ class PedidoTrabajos extends CI_Model
     }
 
     function Obtener_Todos(){
-        $this->db->select('A.*,B.cliName as nombre');
+        $this->db->select('A.*,B.cliRazonSocial as nombre');
         $this->db->from('trj_pedido_trabajo as A');
         $this->db->join('admcustomers as B','A.clie_id=B.cliId');
         return $this->db->get()->result_array();

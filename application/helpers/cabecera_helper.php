@@ -51,7 +51,7 @@ if(!function_exists('cargarCabecera')){
                                         </div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="form-group">
-                                                <label style="margin-top: 7px;">Contacto: </label>
+                                                <label style="margin-top: 7px;">Email: </label>
                                                 <input type="text" id="contacto" class="form-control" value="'.$result['cliEmail'].'" disabled/>
                                             </div>
                                         </div>

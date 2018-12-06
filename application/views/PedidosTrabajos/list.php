@@ -11,12 +11,12 @@
                         <thead>
                             <tr>
                                 <th>Accciones</th>
-                                <th>N°</th>
                                 <th>Codigo Interno</th>
-                                <th>Cliente</th>
-                                <th>Fecha Entrega</th>
-                                <th>Condición</th>
+                                <th>Cliente</th>      
                                 <th>Tipo</th>
+                                <th>Condición</th>
+                                <th>Fecha Entrega Informe</th>
+                                <th>Fecha Entrega Componente</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,12 +25,12 @@
                             foreach ($list as $o) {
                                 echo '<tr id="'.$o['petr_id'].'" data-case="'.$o['bpm_id'].'">';
                                 echo '<td><i onclick="mostrar_detalles(this)" class="fa fa-fw fa-search" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Consultar"></i><i onclick="verOT(\''.$o['cod_interno'].'\')" class="fa fa-fw fa-eye" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Ver OT"></i><i onclick="ver_formularios(this)" class="glyphicon glyphicon-list-alt" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Ver Formularios"></i></td>';
-                                echo '<td>#'.$o['petr_id'].'</td>';
                                 echo '<td>'.$o['cod_interno'].'</td>';
                                 echo '<td>'.$o['nombre'].'</td>';
-                                echo '<td>'.$o['fec_entrega'].'</td>';
-                                echo '<td>'.$o['condicion'].'</td>';
                                 echo '<td>'.$o['familia_producto'].'|'.$o['subfamilia'].'</td>';
+                                echo '<td>'.$o['condicion'].'</td>';
+                                echo '<td>'.$o['fec_entrega'].'</td>';
+                                echo '<td>'.$o['fec_entrega_componente'].'</td>';
                                 echo '</tr>';
 
                             }
