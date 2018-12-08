@@ -4,25 +4,21 @@
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-
                     <h2> Crear Nota de Pedido </h2>
-
-
-
                     <div class="row">
                         <div class="col-xs-3">
-                            <select id="clientes" class="form-control">
-                                <option selected="selected">Seleccionar Cliente...</option>
+                            <select id="clientes" class="form-control" placeholder="Seleccionar Clientre">
+                                <option selected="selected" value="0">Seleccionar Cliente...</option>
                                 <?php 
 									foreach ($list as $f) {
-									echo '<option value="' . $f['cliId'] . '">' . $f['cliName'] . '</option>';
+									echo '<option value="' . $f['cliId'] . '">' . $f['cliRazonSocial'] . '</option>';
 									}
 								?>
                             </select>
                         </div>
                         <div class="col-xs-3">
-                            <button class="btn btn-success" data-toggle="modal" data-target="#modaleditar" onclick="rellenarModal()">
-                                <i class="fa fa-fw fa-pencil" style="color: #00000; cursor: pointer;" title="Editar"></i>
+                            <button class="btn btn-success edit">
+                                <i class="glyphicon glyphicon-pencil" style="color: #00000; cursor: pointer;" title="Editar"></i>
                                 Editar</button>
                         </div>
 
@@ -53,19 +49,19 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
+                                        <label style="margin-top: 7px;">C.U.I.L/C.U.I.T: </label>
+                                        <input type="text" id="cuil_cuit" class="form-control" readonly/>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-4">
+                                    <div class="form-group">
                                         <label style="margin-top: 7px;">Teléfono: </label>
                                         <input type="text" id="telefono" class="form-control" readonly/>
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-4">
                                     <div class="form-group">
-                                        <label style="margin-top: 7px;">Celular: </label>
-                                        <input type="text" id="celular" class="form-control" readonly/>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-4">
-                                    <div class="form-group">
-                                        <label style="margin-top: 7px;">Contacto: </label>
+                                        <label style="margin-top: 7px;">Email: </label>
                                         <input type="text" id="contacto" class="form-control" readonly/>
                                     </div>
                                 </div>
@@ -85,6 +81,7 @@
                             <option value='CA'> CA - cardan </option>
                             <option value='CI'> CI - Cigüeñal </option>
                             <option value='COM'> COM - compresor </option>
+                            <option value='MO'> MO - motor </option>
                             <option value='IT'> IT - intercambiadores </option>
                             <option value='PS'> PS - piezas sueltas </option>
                             <option value='RA'> RA - Radiadores de Aceite </option>
@@ -111,9 +108,8 @@
 
                             <div class="col-xs-12 col-sm-4">
                                 <div class="form-group">
-                                    <label>N° de Motor
-                                        <strong style="color: #dd4b39">*</strong>: </label>
-                                    <input type="text" id="num_motor" class="form-control obligatorio" />
+                                    <label>N° de Motor </label>
+                                    <input type="text" id="num_motor" class="form-control" />
                                 </div>
                             </div>
 
@@ -185,7 +181,7 @@
 
                             <div class="col-xs-12 col-sm-4">
                                 <div class="form-group">
-                                    <label style="margin-top: 7px;">Familia de Productos
+                                    <label >Familia de Productos
                                         <strong style="color: #dd4b39">*</strong>: </label>
                                     <select id="familia_productos" class="form-control">
                                         <option value="0" selected="selected">Seleccionar...</option>
@@ -197,39 +193,34 @@
                             </div>
 
                             <div class="col-xs-12 col-sm-4">
-                                <div class="form-group" style="margin-left:50px;">
-                                    <label style="margin-top: 7px;">SubFamilia
+                                <div class="form-group">
+                                    <label >SubFamilia
                                         <strong style="color: #dd4b39">*</strong>: </label>
                                     <select id="subfamilia" class="form-control">
                                         <option selected="selected">Seleccionar...</option>
                                     </select>
                                 </div>
                             </div>
+                            <!-- Fecha Entrega -->
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="form-group">
+                                <label >Fecha Entrega Informe <strong style="color: #dd4b39">*</strong>: </label>
+                                <input type="text" id="fecha_entrega" name="fechaEntrega" class="form-control fecha" />
+
+                                </div>
+                            </div>
 
                         </div>
                         <!--FIN ROW   -->
                         <br>
-                        <div class="row">
 
-                            <div class="col-xs-12 col-sm-5">
-                                <label style="margin-top: 7px;">Fecha Compromiso Entrega Informe: </label>
-                            </div>
-                            <div class="col-xs-12 col-sm-5">
-                                <input type="text" id="fecha_entrega" class="form-control" />
-
-                            </div>
-                        </div>
-                        <br>
                         <div class="form-group">
                             <label>Observaciones:</label>
                             <textarea id="observacion" class="form-control"></textarea>
                         </div>
-
-
-
-
-                        <button type="submit" style="float: right;" class="btn btn-success" onclick="guardarPedido()" disabled>Guardar</button>
                     </form>
+                    <button id="lanzarProceso" style="float: right;" class="btn btn-success" >Inicio Proceso</button>
+
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -244,13 +235,6 @@
 <!-- /.content -->
 
 <script> 
-// function e(q,br) { 
-// document.body.appendChild( document.createTextNode(q) ); 
-// if(!br) document.body.appendChild( document.createElement("BR") ); 
-// } 
-
-// Creo una fecha 
-//var hoy = new Date(); 
 
 // Nuestro método para sumar n dias (que no sean ni Sábado ni Domingo) 
 Date.prototype.sumarLaborables = function(n) { 
@@ -274,96 +258,149 @@ Date.prototype.getMinutesZeroFilled = function() { return this.getXXXzeroFilled(
 Date.prototype.getSecondsZeroFilled = function() { return this.getXXXzeroFilled("Seconds"); } 
 Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFilled("Milliseconds"); } 
 
-
-
-// // REESCRIBIMOS EL MÉTODO TOSTRING() PARA REPRESENTARLO EN CASTELLANO BONITO 
-// Date.prototype.toString = function() { 
-//     var diaSem = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"][ this.getDay() ]; 
-//     var mes = "Enero;Febrero;Marzo;Abril;Mayo;Junio;Julio;Agosto;Septiembre;Octubre;Noviembre;Diciembre".split(";")[this.getMonth()]; 
-//     var str = diaSem+", "+this.getDate()+" de "+mes+" de "+this.getFullYear()+" a las "+this.getHoursZeroFilled()+":"+this.getMinutesZeroFilled()+":"+this.getSecondsZeroFilled()+" "+this.getMillisecondsZeroFilled()+"."; 
-//     return str; 
-// } 
-
-// e(hoy); 
-// for(var i=0; i<15; i++) { 
-//     hoy.sumarLaborables(1); 
-//     e( hoy ); 
-// } 
-
-// e(""); e(""); 
-//e( new Date().sumarLaborables(15) ); 
-
 </script> 
 
 <script>
-    $("form").submit(function(event) {
-        event.preventDefault();
+    $('#lanzarProceso').click(function(){
+        $('#form').data('bootstrapValidator').validate();
+		if(!$('#form').data('bootstrapValidator').isValid()){
+			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
+		}	
+    });
+ 
+    $('.edit').click(function() {
+        id_ = $('#clientes').val();
+        if(id_=="0"){ alert("Debe Seleccionar Cliente");return;}
+        $.ajax({
+        type: 'POST',
+        url: 'index.php/Cliente/Obtener_Cliente',
+        data: {id:id_},
+        dataType: 'json',
+        success: function(responce){
+            console.table(responce);
+            $.each(responce, function(key, value){
+              $('#form_cliente_editar [name=' + key + ']').val(value);
+            });
+            $('#modalEditar').modal('show');
+        },
+        error: function(err){
+            alert('Error al Editar');
+        }
+        });
+    }); 
+
+    function ValidarCampo(e,reset){
+       $('#form').data('bootstrapValidator').resetField(e,reset);
+	   $('#form').data('bootstrapValidator').validateField(e);
+    }
+
+    $('#fecha_entrega').datepicker({
+		autoclose: true
+	}).on('change', function(e) {
+	   console.log('Validando Campo...'+$(this).attr('name'));
+        ValidarCampo($(this),false);
     });
 
-    
-        $('#fecha_entrega').datepicker({
-            autoclose: true
-        });
+    var sourceArray = <?php echo json_encode($listaIndices); ?>
 
-        var sourceArray = <?php echo json_encode($listaIndices); ?>
+    $('#indice').autocomplete({
+        source: sourceArray,
+        select: function(event, ui) {
+            $('#motor').val(ui.item.data);
+            ValidarCampo($('#motor'),false);
+        }
+    });
 
-        $('#indice').autocomplete({
-            source: sourceArray,
-            select: function(event, ui) {
-                $('#motor').val(ui.item.data);
+     $('#form_cliente_editar').bootstrapValidator({ //VALIDADOR
+        message: 'This value is not valid',
+        feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        obligatorio: {
+            message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+            selector: '#form_cliente_editar .form-control',
+            validators: {
+            notEmpty: {
+                message: 'Los campos obligatorios(*) deben estar completos'
             }
-        });
+            }
+        }
+        }
+    });
 
-        $('#form').bootstrapValidator({ //VALIDADOR
-            message: 'This value is not valid',
-            feedbackIcons: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                obligatorio: {
-                    message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
-                    selector: '.obligatorio',
-                    validators: {
-                        notEmpty: {
-                            message: 'Los campos obligatorios(*) deben estar completos'
-                        }
+    $('#form').bootstrapValidator({ //VALIDADOR
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+            fecha:{
+				selector: '.fecha',
+				validators:{
+					date: {
+                        format: 'DD-MM-YYYY',
+                        message: '(*) Formato de Fecha Inválido'
+                    },
+                    notEmpty: {
+                        message: 'Los campos obligatorios(*) deben estar completos'
                     }
-                },
-                optionsRadios: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Alguna de las opciones debe estar seleccionada'
-                        }
+				}
+			},
+            obligatorio: {
+                message: 'NOSE DONDE MUESTRA ESTE MENSAJE',
+                selector: '.obligatorio',
+                validators: {
+                    notEmpty: {
+                        message: 'Los campos obligatorios(*) deben estar completos'
+                    }
+                }
+            },
+            optionsRadios: {
+                validators: {
+                    notEmpty: {
+                        message: 'Alguna de las opciones debe estar seleccionada'
                     }
                 }
             }
-        });
+        }
+    }) .on('success.form.bv', function(e) {
+            // Prevent form submission
+            e.preventDefault();
+            guardarPedido();
+            
+    });
+
 
     var id_cliente_seleccionado = '';
     var listaClientes;
     $('#clientes').change(function() {
         console.log("Cliente Seleccionado..." + this.selectedIndex);
         var id = this.selectedIndex - 1;
+        if(id==-1){
+            $("#tituloInfo").html('Información del Cliente');
+            if (!$('#collapseDiv').hasClass('collapsed-box')) {
+                $('#infoCliente').click();
+            }
+            return;
+        }else{
         listaClientes = <?php echo json_encode($list); ?>;
         id_cliente_seleccionado = listaClientes[id]['cliId'];
 
-        document.getElementById("tituloInfo").innerHTML = listaClientes[id]['cliName'] +
-            " - Información del Cliente";
+        $("#tituloInfo").html(listaClientes[id]['cliRazonSocial'] +" - Información del Cliente");
         $('#domicilio').val(listaClientes[id]['cliAddress']);
-        $('#celular').val(listaClientes[id]['cliMovil']);
+        $('#cuil_cuit').val(listaClientes[id]['cuil_cuit']);
         $('#telefono').val(listaClientes[id]['cliPhone']);
         $('#contacto').val(listaClientes[id]['cliEmail']);
         // box.hasClass("")
         if ($('#collapseDiv').hasClass('collapsed-box')) {
             $('#infoCliente').click();
         }
-
-        // $('#fecha_entrega').datepicker({
-        // 	autoclose: true
-        // })
-        traer_zona();
+        }
     });
 
     function guardarPedido() {
@@ -381,19 +418,6 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
         var subfamilia = $('#subfamilia option:selected').text();
         var observacion = $('#observacion').val();
         var clie_id = id_cliente_seleccionado;
-
-        console.log(codigoI);
-        console.log(parte_vehiculo);
-        console.log(patente);
-        console.log(indice);
-        console.log(motor);
-        console.log(num_motor);
-        console.log(num_chasis);
-        console.log(condicion);
-        console.log(fec_entrega);
-        console.log(familia);
-        console.log(subfamilia);
-        console.log(observacion);
 
         if (!ValidarCampos()) {
             return
@@ -420,24 +444,23 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
             url: 'index.php/InicioTrabajo/Guardar_Pedido',
             success: function(result) {
                 console.log(result);
-
-                alert("Formulario Guardado.");
+                alert("Proceso Iniciado!\nCódigo de Interno: "+result);     
                 ActualizarPagina();
-
             },
             error: function(result) {
                 console.log(result);
-
-                alert("El Formulario contiene error, por favor cargar datos correctamente.");
+                alert("No se pudo Inciar el Proceso, por favor cargar datos correctamente.");
             }
         });
     }
 
     $('#familia_productos').change(function() {
-
+        
         var opc = this.value;
         var subfamilia = $('#subfamilia');
         subfamilia.html('');
+       // $('#fecha_entrega').val('');
+        $('#fecha_entrega').prop('disabled', false);
         subfamilia.append("<option selected='selected'>Seleccionar...</option>");
         switch (opc) {
             case "1":
@@ -460,6 +483,7 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
 
                 break;
         }
+        ValidarCampo($('#fecha_entrega'),true);
 
     });
 
@@ -467,19 +491,20 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
      var tiempoStandars = <?php echo json_encode($tiempoStandars); ?>;
      var subfamilia = this.value.split(" - ")[0];
      var familia = $('#familia_productos option:selected').text().split(" - ")[0];
+     $('#fecha_entrega').val('');
+     $('#fecha_entrega').prop('disabled', false);
      for(i = 0; i < tiempoStandars.length; i++){
          if(familia+"-"+subfamilia==tiempoStandars[i]['tipo_motor_id']){
              console.log(tiempoStandars[i]['dias_habiles']);
              console.log(new Date().sumarLaborables(Math.round((tiempoStandars[i]['dias_habiles']))));
              var d = new Date().sumarLaborables(Math.round(tiempoStandars[i]['dias_habiles']));
-             
              $('#fecha_entrega').val(("0" + d.getDate()).slice(-2) + "-" + ("0"+(d.getMonth()+1)).slice(-2) + "-" +
                 d.getFullYear());
+           // ValidarCampo($('#fecha_entrega'),false);
              
          }
+         ValidarCampo($('#fecha_entrega'),false);
      }
-     
-    
     });
 
     function ValidarCampos() {
@@ -508,80 +533,34 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
         return true;
     }
 
-    function guardareditar() {
-        console.log("Estoy editando");
-        console.log("El id de Cliente es:");
-        //  console.log(ed);
+    function ValidarCamposCliente(){
+        $('#form_cliente_editar').data('bootstrapValidator').validate();
+        if(!$('#form_cliente_editar').data('bootstrapValidator').isValid()){
+          alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
+          return false;
+        }	
+        return true;
+	  }
 
-        var nomb = $('#nombre1').val();
-        var apell = $('#Apellido1').val();
-        var dni = $('#dni1').val();
-        var fecha = $('#fecha1').val();
-        var dom = $('#dom1').val();
-        var tel = $('#tel1').val();
-        var cel = $('#cel').val();
-        var email = $('#mail').val();
-        var zon = $('#zona').val();
-        var dia = $('#dia1').val();
-        //var tipcli = $('#color1').val();   
-        var parametros = {
-            'cliName': nomb,
-            'cliLastName': apell,
-            'cliDni': dni,
-            'cliDateOfBirth': fecha,
-            'cliAddress': dom,
-            'cliPhone': tel,
-            'cliMovil': cel,
-            'cliEmail': email,
-            'zonaId': zon,
-            'cliDay': dia
-            //'cliColor': tipcli
 
-        };
-        console.log(parametros);
-        var hayError = false;
+     function editarCliente() {
+        if(!ValidarCamposCliente())return;
+        var formData = new FormData($('#form_cliente_editar')[0]);
+        $.ajax({
+        type: 'POST',
+        data: formData, cache: false, contentType: false, processData: false,
+        url: 'index.php/Cliente/Modificar_Cliente',
+        success: function (result) {
+            WaitingClose();
+            ActualizarPagina();
+            $('#modalEditar').modal('hide');
 
-        if (parametros != 0) {
-            $.ajax({
-                type: "POST",
-                url: "index.php/Cliente/edit_banco", //controlador /metodo
-                data: {
-                    parametros: parametros,
-                    ed: id_cliente_seleccionado
-                },
-                success: function(data) {
-                    console.log("exito en editar");
-                    ActualizarPagina();
-                },
-
-                error: function(result) {
-                    console.log("entro por el error");
-                    console.log(result);
-                }
-
-            });
-
-        } else {
-            alert("Por favor complete todos los campos solicitados");
+        },
+        error: function (result) {
+            alert("OPERACIÓN FALLIDA");
         }
 
-    }
-
-
-
-    function rellenarModal() {
-        var id = $('#clientes').prop('selectedIndex') - 1;
-
-        $('#nombre1').val(listaClientes[id]['cliName']);
-        $('#Apellido1').val(listaClientes[id]['cliLastName']);
-        $('#dni1').val(listaClientes[id]['cliDni']);
-        $('#fecha1').val(listaClientes[id]['cliDateOfBirth']);
-        $('#dom1').val(listaClientes[id]['cliAddress']);
-        $('#tel1').val(listaClientes[id]['cliPhone']);
-        $('#cel').val(listaClientes[id]['cliMovil']);
-        $('#mail').val(listaClientes[id]['cliEmail']);
-        $('#zona').val(listaClientes[id]['zonaId']);
-        $('#dia1').val(listaClientes[id]['cliDay']);
+        });
     }
 
     function ActualizarPagina() { //Funcion Resfresca
@@ -591,165 +570,81 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
         );
 
     }
-
-    function traer_zona() {
-
-        $('#zona').html("");
-        $.ajax({
-            type: 'POST',
-            data: {},
-            url: 'index.php/Cliente/getzona', //index.php/
-            success: function(data) {
-
-                //var opcion  = "<option value='-1'>Seleccione...</option>" ; 
-                $('#zona').append(opcion);
-                for (var i = 0; i < data.length; i++) {
-                    var nombre = data[i]['zonaName'];
-                    var opcion = "<option value='" + data[i]['zonaId'] + "'>" + nombre + "</option>";
-
-                    $('#zona').append(opcion);
-
-                }
-
-            },
-            error: function(result) {
-
-                console.log(result);
-            },
-            dataType: 'json'
-        });
-    }
 </script>
 
-<!-- Modal editar-->
-<div class="modal fade" id="modaleditar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog modal-lg" role="document" style="width: 40%">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    <span id="modalAction" class="fa fa-fw fa-pencil" style="color: #f39c12"> </span> Editar Cliente</h4>
+<!-- Modal -->
+<div class="modal" id="modalEditar">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Editar Cliente</h4>
+      </div>
+      <div class="modal-body" id="cuerpoModalEditar">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="alert alert-danger alert-dismissable" id="error" style="display: none">
+              <h4><i class="icon fa fa-ban"></i> Error!</h4>
+              Revise que todos los campos esten completos
             </div>
-            <div class="modal-body input-group ui-widget" id="modalBodyArticle">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12">
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Nombre
-                                    <strong style="color: #dd4b39">*</strong>: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" placeholder="Nombre" id="nombre1" name="nombreE">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Apellido
-                                    <strong style="color: #dd4b39">*</strong>: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" placeholder="Apellido" id="Apellido1" name="Apellido1">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Dni
-                                    <strong style="color: #dd4b39">*</strong>: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" placeholder="12345678" id="dni1" name="dni1" maxlength="8">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Fec. Nacimiento
-                                    <strong style="color: #dd4b39">*</strong>: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <input type="date" class="form-control" id="fecha1" name="fecha1" placeholder="dd-mm-aaaa">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Domicilio: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <input type="input" class="form-control" placeholder="ej: Barrio Los Olivos M/E Casa/23" id="dom1" name="dom1">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Teléfono: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" placeholder="0264 - 4961020" id="tel1" name="tel1">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Celular: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" placeholder="0264 - 155095888" id="cel" name="cel">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Mail: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" placeholder="claudia.perez@hotmail.com" id="mail" name="mail">
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Zona: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <select class="form-control" id="zona" name="zona" value="">
-
-                                </select>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                            <div class="col-xs-4">
-                                <label style="margin-top: 7px;">Días proxímo cobro: </label>
-                            </div>
-                            <div class="col-xs-8">
-                                <select class="form-control" id="dia1" name="dia1">
-                                    <?php 
-                  for ($i = 1; $i < 31; $i++) {
-                    echo '<option value="' . $i . '">' . $i . '</option>';
-                  }
-                  ?>
-                                </select>
-                            </div>
-                        </div>
-                        <br>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" onclick="guardareditar()">Guardar</button>
-                </div>
-                <!-- /.modal footer -->
-
-            </div>
-            <!-- /.modal-body -->
+          </div>
         </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog modal-lg -->
-</div>
-<!-- /.modal fade -->
-<!-- / Modal -->
+
+        <form id="form_cliente_editar">
+        <input class="hidden" name="cliId">
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Razon Social <strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cliRazonSocial">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">C.U.I.L/C.U.I.T <strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cuil_cuit">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Dirección Legal<strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cliAddress">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Tipo Inscripción<strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="tipo_inscripcion">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Telefono <strong style="color: #dd4b39">*</strong>: </label>
+
+                <input type="text" class="form-control" name="cliPhone">
+
+              </div>
+              <div class="form-group">
+
+                <label style="margin-top: 7px;">Email <strong style="color: #dd4b39">*</strong>: </label>
+                <input type="text" class="form-control" name="cliEmail">
+
+
+              </div>
+            </form>
+
+
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-primary" onclick="editarCliente()">Guardar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- Modal -->

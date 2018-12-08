@@ -19,11 +19,9 @@ if(!function_exists('cargarCabecera')){
             if($query->num_rows() > 0){
                 $result = $query->row_array();
             }
-            echo '
-        
-                            <div id="collapseDivCli" class="box box-default collapsed-box box-solid">
+            $html= '<div id="collapseDivCli" class="box box-default collapsed-box box-solid">
                                 <div class="box-header with-border">
-                                    <h3 id="tituloInfo" class="box-title">Cliente: '.$result['cliName'].' / Mas Detalles</h3>
+                                    <h3 id="tituloInfo" class="box-title">Cliente: '.$result['cliRazonSocial'].' / Mas Detalles</h3>
         
                                     <div class="box-tools pull-right">
                                         <button id="infoCliente" type="button" class="btn btn-box-tool" data-widget="collapse" onclick="mostrarCliente()">
@@ -41,19 +39,19 @@ if(!function_exists('cargarCabecera')){
                                         </div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="form-group">
+                                                <label style="margin-top: 7px;">C.U.I.L/C.U.I.T: </label>
+                                                <input type="text" id="cuil_cuit" class="form-control" value="'.$result['cuil_cuit'].'" disabled/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4">
+                                            <div class="form-group">
                                                 <label style="margin-top: 7px;">Teléfono: </label>
-                                                <input type="text" id="telefono" class="form-control" value="'.$result['cliMovil'].'" disabled/>
+                                                <input type="text" id="telefono" class="form-control" value="'.$result['cliPhone'].'" disabled/>
                                             </div>
                                         </div>
                                         <div class="col-xs-12 col-sm-4">
                                             <div class="form-group">
-                                                <label style="margin-top: 7px;">Celular: </label>
-                                                <input type="text" id="celular" class="form-control" value="'.$result['cliPhone'].'" disabled/>
-                                            </div>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-4">
-                                            <div class="form-group">
-                                                <label style="margin-top: 7px;">Contacto: </label>
+                                                <label style="margin-top: 7px;">Email: </label>
                                                 <input type="text" id="contacto" class="form-control" value="'.$result['cliEmail'].'" disabled/>
                                             </div>
                                         </div>
@@ -154,6 +152,7 @@ if(!function_exists('cargarCabecera')){
                             <!-- /.box-body -->
                         </div>
                         <!-- /.box-body -->';
+                    echo $html;    
 } } 
 
 ?>

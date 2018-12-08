@@ -1,4 +1,4 @@
-<input type="hidden" id="permission" value="<?php echo $permission;?>">
+<input type="" id="permission" class="hidden" value="<?php echo $permission;?>">
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
@@ -20,46 +20,47 @@
           <table id="otrabajo" class="table table-bordered table-hover">
             <thead>
               <tr>
-                <th width="20%">Acciones</th>
-                <th>Id </th>
-                <th>Nro</th>
+                <th width="1%" class="acc">Acciones</th>
+                <th width="1%">Id </th>
+                <th width="10%">Nro</th>
                 <th>Fecha</th>
                 <th>Fecha Entrega</th>
                 <th>Fecha Terminada </th>
                 <th>Detalle </th>
                 <th>Cliente </th>
-                <th>Solicita </th>
                 <th>Asignado </th>
                 <th>Estado </th>
               </tr>
             </thead>
             <tbody>
               <?php
-                if(count($list) > 0) { 
+                if($list!=0) { 
 
                   $userdata = $this->session->userdata('user_data');
                   $usrId= $userdata[0]['usrId']; 
-
+                  
                	  foreach($list as $a){
                     
-                    $gr=$a['grpId'];
-                    //echo "grupo";
-                    //echo $gr;
-                    if($gr=='1') { 
-                      
+                    echo '<i class="fa fa-check-square-o" style="color:#3c8dbc; cursor: pointer; margin-left: 15px;"  title="Asignar tarea " id="btnAddtarea"></i>';
+
+
+
                     //if($a['id_usuario_a'] == $usrId  &&  (($a['grpId']==='1') || ($a['grpId']=== '5'))){ //$a['grpId']==1 //o el grupo es supervisor tarea//if($a['id_usuario_a'] == $usrId || $a['id_usuario_a']== 1){ 
                                          
                       if (($a['estado'] !=='T') && ($a['estado'] !=='E')  && ($a['estado'] !=='TE')) {
                        
                         $id=$a['id_orden'];
                         echo '<tr id="'.$id.'" class="'.$id.'">';
-      	                echo '<td>';
+                        echo '<td class="acc">';
+                        if (strpos($permission,'View') !== false) {//Ver Pantalla Planificación
+      	                	echo '<i class="fa fa-fw fa-eye ver-calendario" style="color: #006400; cursor: pointer; margin-left: 15px;" title="Ver en Calendario"></i>';
+                        }  
 
                         if (strpos($permission,'Edit') !== false) {
       	                	echo '<i class="fa fa-fw fa-pencil" style="color: #f39c12; cursor: pointer; margin-left: 15px;" title="Editar" data-toggle="modal" data-target="#modaleditar" ></i>';
                         }  
                           
-                          echo '<i class="fa fa-check-square-o" style="color:#3c8dbc; cursor: pointer; margin-left: 15px;"  title="Asignar tarea " id="btnAddtarea"></i>';
+                          // echo '<i class="fa fa-check-square-o" style="color:#3c8dbc; cursor: pointer; margin-left: 15px;"  title="Asignar tarea " id="btnAddtarea"></i>';
                         
                         if (strpos($permission,'Del') !== false) {
       	                	echo '<i class="fa fa-fw fa-times-circle" style="color: #dd4b39; cursor: pointer; margin-left: 15px;" title="Eliminar"></i>';
@@ -89,73 +90,19 @@
                           echo '<i  href="#"class="fa fa-fw fa fa-toggle-on" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Finalizar Orden" data-toggle="modal" data-target="#modalfinalizar"></i>';
                         }
                             
-						echo '</td>';
-						echo  '<td style="text-align: right">'.$a['petr_id'].'</td>';
-                        echo '<td style="text-align: right">'.$a['id_orden'].'</td>';
+      	                echo '</td>';
+                        echo '<td style="text-align: right">#'.$a['id_orden'].'</td>';
                         echo '<td style="text-align: right">'.$a['nro'].'</td>';
       	                echo '<td style="text-align: left">'.$a['fecha_inicio'].'</td>';
                         echo '<td style="text-align: right">'.$a['fecha_entrega'].'</td>';
                         echo '<td style="text-align: right">'.$a['fecha_terminada'].'</td>';
                         echo '<td style="text-align: right">'.$a['descripcion'].'</td>';
                         echo '<td style="text-align: left">'.$a['cliLastName'].' , '.$a['cliName'].'</td>';
-                        echo '<td style="text-align: right">'.$a['usrName'].'</td>';
-                        echo '<td style="text-align: right">'.$a['nombre'].'</td>';
+                        echo '<td style="text-align: right">'.$a['usuario'].'</td>';
                         echo '<td style="text-align: center">'.($a['estado'] == 'C' ? '<small class="label pull-left bg-green">Curso</small>' : ($a['estado'] == 'P' ? '<small class="label pull-left bg-red">Pedido</small>' : '<small class="label pull-left bg-yellow">Asignado</small>')).'</td>';
       	                echo '</tr>';                      
         		          }
                     }   
-
-                   /* else {
-                      if($a['id_usuario_a'] == $usrId ){
-                        if ( (($a['estado'] =='As') || ($a['estado'] =='P'))  && ($a['estado'] !=='T') || ($a['estado'] !=='E')  || ($a['estado'] !=='TE')) {
-                         
-                            $id=$a['id_orden'];
-                            echo '<tr id="'.$id.'" class="'.$id.'">';
-                            echo '<td>';
-
-                            if (strpos($permission,'Edit') !== false) {
-                              echo '<i class="fa fa-fw fa-pencil" style="color: #f39c12; cursor: pointer; margin-left: 15px;" title="Editar" data-toggle="modal" data-target="#modaleditar" ></i>';
-                              
-                              echo '<i class="fa fa-check-square-o" style="color:#3c8dbc; cursor: pointer; margin-left: 15px;"  title="Asignar tarea " id="btnAddtarea"></i>';
-                            }
-                            if (strpos($permission,'Del') !== false) {
-                              echo '<i class="fa fa-fw fa-times-circle" style="color: #dd4b39; cursor: pointer; margin-left: 15px;" title="Eliminar"></i>';
-                            }
-                           
-                            if (strpos($permission,'Asignar') !== false) {
-                              echo '<i class="fa fa-thumb-tack " style="color: #006400; cursor: pointer; margin-left: 15px;" title="Asignar a Taller" ></i>';
-                             
-                            }
-
-                            if (strpos($permission,'OP') !== false) {
-                              echo '<i class="fa fa-tags" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;"  title="Cargar Pedido " data-toggle="modal" data-target="#modalpedido"></i>';
-                            }
-                            if (strpos($permission,'Pedidos') !== false) {
-                              echo '<i class="fa fa-truck" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;"  title="Mostrar Perdido " data-toggle="modal" data-target="#modallista"></i>';
-                                                     
-                             
-                            }
-                            if(($a['estado'] == 'As' || $a['estado'] == 'P') && ($a['id_usuario_a'] == $usrId)){
-                            //if($a['estado'] == 'As' ){
-                              echo '<i  href="#"class="fa fa-fw fa fa-toggle-on" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Finalizar Orden" data-toggle="modal" data-target="#modalfinalizar"></i>';
-                            }
-                                
-                            echo '</td>';
-                            echo '<td style="text-align: right">'.$a['nro'].'</td>';
-                            echo '<td style="text-align: left">'.$a['fecha_inicio'].'</td>';
-                            echo '<td style="text-align: right">'.$a['fecha_entrega'].'</td>';
-                            echo '<td style="text-align: right">'.$a['fecha_terminada'].'</td>';
-                            echo '<td style="text-align: right">'.$a['descripcion'].'</td>';
-                            echo '<td style="text-align: left">'.$a['cliLastName'].' , '.$a['cliName'].'</td>';
-                            echo '<td style="text-align: right">'.$a['usrName'].'</td>';
-                            echo '<td style="text-align: right">'.$a['nombre'].'</td>';
-                            echo '<td style="text-align: center">'.($a['estado'] == 'C' ? '<small class="label pull-left bg-green">Curso</small>' : ($a['estado'] == 'P' ? '<small class="label pull-left bg-red">Pedido</small>' : '<small class="label pull-left bg-yellow">Asignado</small>')).'</td>';
-                            echo '</tr>';
-                          
-                        } 
-                      } 
-                    } */            
-                  }
                 }
               ?>
             </tbody>
@@ -167,6 +114,17 @@
 </section><!-- /.content -->
 
 <script>
+if($(".acc").html()==''){$(".acc").remove()};
+$('.ver-calendario').click(function(){
+  var row = $(this).parent().parent();
+  var ot = $(row).attr('id');
+  var cod_interno = $(row).find('td:eq(2)').html();
+  WaitingOpen('Cargando Tareas...');
+		$('#content').empty();
+		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/View-FiltrarOT/"+ot+"/"+cod_interno+"/");
+		WaitingClose();
+});
+
 var iort= "";
 var ido ="";
 var idp ="";
@@ -787,7 +745,7 @@ function traer_clientes(){
               $('#cli').append(opcion); 
             for(var i=0; i < data.length ; i++) 
             {    
-                  var nombre = data[i]['cliLastName']+'. .'+datos['cliName'];
+                  var nombre = data[i]['cliLastName']+'. .'+data['cliName'];
                   var opcion  = "<option value='"+data[i]['cliId']+"'>" +nombre+ "</option>" ; 
 
                 $('#cli').append(opcion); 

@@ -193,15 +193,9 @@
 
 <script>
    
-    // evento de cierre de modal
-    $('#modalForm').on('hidden.bs.modal', function(e) {
-        alert('modal cerrado!!');
-        // aca guardar el formulario completado parcialmente
-        // $("#genericForm").submit();
-    });
 
     // Envia formulario de tarea
-    $('#genericForm').on("submit", function(event) {
+    function GuardarFormulario() {
         event.preventDefault();
         var formData = new FormData($("#genericForm")[0]);
 
@@ -228,7 +222,7 @@
                 }
             }
         });
-    });
+    };
 
 
     // Volver al atras
@@ -406,23 +400,29 @@
             var valor = "";
             var valorSig = "";
 
-            $('#' + idSelect).append($('<option />', {
-                value: data[index]['VALOR'],
-                text: data[index]['VALOR']
-            }));
+            if(data[index]['VALOR']!=$('#' + idSelect).val()){
+				$('#' + idSelect).append($('<option>',
+					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
+			}
 
             valor = data[index]['idValor'];
             valorSig = data[index]['idValor'];
         });
     }
 
-    //}
-    //);
+    function CerrarModal(){
+        //WaitingOpen('Guardando Formulario');
+        GuardarFormulario();
+        //WaitingClose();
+        $('#modalForm').modal('hide');
+        
+    }
+
 </script>
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 

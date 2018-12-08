@@ -7,14 +7,14 @@ class InicioTrabajo extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Customers');
+		$this->load->model('Clientes');
 		$this->load->model('InicioTrabajos');
 		$this->load->model('Bonitas');
 	}
 
 	public function index($permission)
 	{
-		$data['list'] = $this->Customers->Customers_List();
+		$data['list'] = $this->Clientes->Listado_Clientes();
 		$data['listaIndices'] = $this->InicioTrabajos->Obtener_Indices();
 		$data['tiempoStandars'] = $this->InicioTrabajos->ObtenerTiemposStandars();
 		$data['permission'] = $permission;
@@ -47,7 +47,7 @@ class InicioTrabajo extends CI_Controller
 		}else{
 			$data['bpm_id'] = json_decode($result, true)['caseId'];
 			$resultBD = $this->InicioTrabajos->Guardar($data);
-			echo json_encode($resultBD);
+			echo json_encode($data['cod_interno']);
 		}
 		
 	}

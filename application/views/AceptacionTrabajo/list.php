@@ -158,8 +158,9 @@
                                                     <strong style="color: #dd4b39">*</strong>: </label>
                                                 <select name="proveedor_repuesto" class="form-control">
                                                     <option value="0"> Seleccionar... </option>
-                                                    <option> Cliente </option>
-                                                    <option> Motores Balderramo </option>
+                                                    <option value="CLIENTE"> Cliente </option>
+                                                    <option value="BALDERRAMO"> Motores Balderramo </option>
+                                                    <option value="AMBOS"> Ambos </option>
 
                                                 </select>
                                             </div>

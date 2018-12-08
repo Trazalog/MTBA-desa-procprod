@@ -18,12 +18,13 @@ class Preinformes extends CI_Model {
         parent::__construct();
     }
 
-    function getFormularios($idForms)
+    function getFormularios($idForms,$ptrId)
     {
         //dump_exit($idForms);
         $this->db->select('FORM_ID, FORM_NOMBRE, CATE_NOMBRE, GRUP_NOMBRE, VALO_NOMBRE, TIDA_NOMBRE, VALOR');
         $this->db->from('frm_formularios_completados');
         $this->db->where_in('FORM_ID', $idForms);
+        $this->db->where('frm_formularios_completados.PETR_ID', $ptrId);
   
         $query = $this->db->get();
         //dump_exit($query);
@@ -82,7 +83,7 @@ class Preinformes extends CI_Model {
     function ObtenerIdFormulariosCompletados($idPedTrabajo){
         $this->db->select('FORM_ID');
         $this->db->where('PETR_ID',$idPedTrabajo);
-        $this->db->where_in(unserialize (ID_FORMULARIOS));
+        $this->db->where_in('FORM_ID',array(1,2,3,4,5,6,7,8,9));
         $this->db->group_by('FORM_ID');
         $query = $this->db->get('frm_formularios_completados')->result_array();
         $result = array();
