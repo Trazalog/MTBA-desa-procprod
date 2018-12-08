@@ -14,7 +14,7 @@
 
 									<!-- Nav tabs -->
 									<ul class="nav nav-tabs" role="tablist">
-										<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Tareasvista 3</a></li>
+										<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Tareas</a></li>
 										<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Comentarios</a></li>
 										<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Vista
 												Global
@@ -55,7 +55,7 @@
 														echo "<input type='text' class='hidden' id='id_listarea' value='$id_listarea' >";
 														echo "<input type='text' class='hidden' id='idPedTrabajo' value='$idPedTrabajo' >";
 												?>
-												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
+												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>"
 												>
 												<form>
 													<div class="panel panel-default">
@@ -116,16 +116,18 @@
 														<div class="col-sm-12 col-md-12">
 															<!-- Modal formulario tarea -->
 															<?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"data-target=".bs-example-modal-lg" onclick="getformulario()">Completar Formulario </button>';}?>
-                                                    <!-- Precisa Anticipo(inline) -->
-                              <div class="form-group">
-                                <div class="col-sm-12 col-md-12">
-                                  <center>
+													<!-- Precisa Anticipo(inline) -->
+													
+														<div class="form-group pregunta">
+																<center>
+															
+																
 																	<label class="control-label">
 																			¿Precisa anticipo?
 																	</label>
 																	</br>
-																</div>		
-																<div class="col-md-12">
+																
+															
 																	<label class="radio-inline" for="radios-0">
 																		<input type="radio" name="precisa" id="radios-0"
 																				value="true" checked="checked"> Si
@@ -134,8 +136,8 @@
 																		<input type="radio" name="precisa" id="radios-1"
 																				value="false" checked="checked"> No
 																	</label>
-																</div>
-                                  </center>
+															
+															</center>
 															</div>
 														</div>
 													</div>
@@ -437,6 +439,7 @@
 		//desahilito btn tomar      
 		$("#btontomar").hide();
 		$("#formulario").show();
+		$(".pregunta").show();
 	}
 
 	function deshabilitar() {
@@ -448,6 +451,7 @@
 		$("#guardarComentario").hide();
 		$("#comentario").hide();
 		$("#formulario").hide();
+		$(".pregunta").hide();
 	}
 
 	// Volver al atras
@@ -464,6 +468,7 @@
   // cierra tarea
   // Precisa Anticipo
   function precisaAnti() {
+	    WaitingOpen('Cerrando Tarea');
 		var idTarBonita = $('#idTarBonita').val();
 		var $precisa = $('input[name="precisa"]:checked').val();
 		$.ajax({
@@ -474,11 +479,12 @@
 				},
 				url: 'index.php/Tarea/precisaAnticipo',
 				success: function(result) {
-						console.log(result);
-						//alert("SII");
+					$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
+				    WaitingClose();
 				},
 				error: function(result) {
 						//alert("Noo");
+						WaitingClose();
 						console.log(result);
 				},
 				dataType: 'json'
@@ -512,8 +518,10 @@
 	});
 
 	var validado=($('#idform').val()==0);
+
 	function terminarTarea() {
 		if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+		WaitingOpen('Cerrando Tarea');
 		var idTarBonita = $('#idTarBonita').val();
 		var id_listarea = $('#id_listarea').val();
 		var esTareaStd = $('#esTareaStd').val();
@@ -532,9 +540,11 @@
 				if (data['reponse_code'] == 204) {
 					$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
 				}
+				WaitingClose();
 			},
 			error: function (data) {
 				//alert("Noo");
+				WaitingClose();
 				console.log(data);
 			},
 			dataType: 'json'
@@ -904,7 +914,7 @@
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="row">

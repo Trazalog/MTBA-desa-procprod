@@ -156,7 +156,7 @@
 
 
 
-                        <div id="collapseDivCli" class="box box-default collapsed-box box-solid">
+                        <div id="collapseDivCli" class="box box-default collapsed-box box-solid lista_pedidos">
                                 <div class="box-header with-border">
                                     <h3 id="tituloInfo" class="box-title">Nota de Pedido</h3>
         
@@ -375,13 +375,15 @@
 			url: 'index.php/Tarea/ValidarObligatorios',
 			success: function (result) {
 				validado=(result==1);
+                WaitingClose();
 				if(!validarOn) return;
-				if(validado)alert("Formularios Correctamente Validado");
+				if(validado)$('#modalForm').modal('hide');
 				else {
 					alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");
 				}
 			},
 			error: function(result){
+                WaitingClose();
 				alert("Fallo la Validación del formularios en el Servidor. Por favor vuelva a intentar.");
 			}
 		});
@@ -510,6 +512,8 @@ function regresa(){
         //desahilito btn tomar      
         $("#btontomar").hide();
         $("#formulario").show();
+        $('.modal-close').show();
+        $('.lista_pedidos').show();
     }
     function deshabilitar(){
         // habilito btn tomar
@@ -517,6 +521,8 @@ function regresa(){
         // habilito btn y textarea  
         $("#btonsoltr").hide();       
         $("#hecho").hide();       
+        $('.modal-close').hide();
+        $('.lista_pedidos').hide();
         //$("#guardarComentario").hide();
         //$("#comentario").hide();
         //$("#formulario").hide();
@@ -561,6 +567,7 @@ function regresa(){
     var validado=($('#idform').val()==0);
     function terminarTarea(){
         if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+        WaitingOpen('Cerrando Tarea');
         var idTarBonita = $('#idTarBonita').val();
         //alert(idTarBonita);
         $.ajax({
@@ -575,9 +582,10 @@ function regresa(){
                     if(data['reponse_code'] == 204){
                         $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
                     }
+                WaitingClose();
             },
             error: function(data) {
-                //alert("Noo");
+                WaitingClose();
                 console.log(data);
             },
             dataType: 'json'
@@ -712,6 +720,8 @@ function regresa(){
             if (inpValor != "") {
                 //al subir primera img
                 formData.append(idValor, inpValor);
+            }else{
+                formData.delete(idValor);
             }   
         }   
 
@@ -753,9 +763,10 @@ function regresa(){
         processData:false,
         
         success:function(respuesta){
+           
             GuardarValorCotizacion();
             getImgValor();
-            alert('Formulario Guardado');
+            WaitingClose();
             if (respuesta ==="exito") {
                 
             }
@@ -781,10 +792,11 @@ function regresa(){
             type:'POST',
             data:{'PETR_ID':idPed,'FORM_ID':idForm},
             success:function(respuesta){
-               // alert("Guardado");
+                WaitingClose();
             },
             error:function(respuesta){
                 alert("Error");
+                WaitingClose();
             }
         });
     }
@@ -934,6 +946,7 @@ function regresa(){
   	}
     
     function ValidarCampos(){
+        WaitingOpen('Validando Formulario');
         ValidarObligatorios(true);
     }   
 
@@ -968,10 +981,11 @@ data();
 };
 
 function CerrarModal(){
-    //WaitingOpen('Guardando Formulario');
+    $('#modalForm').modal('hide');
+    WaitingOpen('Guardando Cambios');
     GuardarFormulario();
     //WaitingClose();
-    $('#modalForm').modal('hide');
+   
     
 }
 
@@ -980,7 +994,7 @@ function CerrarModal(){
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 

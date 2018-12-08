@@ -362,15 +362,17 @@ function IniciarValidador(idForm){
 // });
 
     function CerrarModal() {
+      WaitingOpen('Guardando Cambios');
       $('#modalRevDiagCoord').modal('hide');
       $('modalForm').modal('hide');
-      WaitingOpen('Guardando Cambios');
       guardarFormulario(false);
-    }
+     
+     
+     
+    };
   
 
 	function ValidarCampos(){
-    WaitingOpen('Validando Formulario');
 		$('#'+form_actual_id).data('bootstrapValidator').validate();
 		if(!$('#'+form_actual_id).data('bootstrapValidator').isValid()){
 			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
@@ -489,11 +491,10 @@ function IniciarValidador(idForm){
 			url: 'index.php/Tarea/ValidarObligatorios',
 			success: function (result) {
         console.log(form_actual_id+"...OK");
-        WaitingClose();
 				var validado=(result==1);
         form_actual_data.attr('data-validado',validado);
 				if(!validarOn) return;
-				if(validado){$('#modalForm').modal('hide');$('#modalRevDiagCoord').modal('hide');}
+				if(validado) alert("Formularios Correctamente Validado");
 				else {
 					alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");
 				}
@@ -585,7 +586,6 @@ function IniciarValidador(idForm){
       url: 'index.php/Tarea/terminarTarea',
       success: function(data) {
         // toma a tarea exitosamente
-        WaitingClose();
         if(data['reponse_code'] == 204){
           $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
         }
@@ -907,7 +907,6 @@ function IniciarValidador(idForm){
 
 
   function terminarTareaRevision(){
-   // 
     var ban = true;
     $('.getFormularioTarea').each(function( index ) {
       if($( this ).attr('data-open')=="true"){
@@ -917,7 +916,7 @@ function IniciarValidador(idForm){
     });
     ban = ban && ($('#formulario').attr('data-validado') == "true");
     if(ban==false){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
-    WaitingOpen('Cerrando Tarea');
+    
     var idsTareaTrazajob = [];
     $("input[name='rehacerTarea[]']:checked").each(function ()
     {
@@ -939,13 +938,13 @@ function IniciarValidador(idForm){
           console.table(data);
           terminarTarea();
           //redirecciona a listado de tareas
+          WaitingOpen();
           $('#content').empty();
           $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
           WaitingClose();
         }
       },
       error: function(data) {
-        //WaitingClose();
         console.info("ERROR EN Llama a terminar tarea - con rehacer");
         console.info(data);
       },

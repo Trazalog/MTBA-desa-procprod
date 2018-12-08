@@ -55,7 +55,7 @@
 														echo "<input type='text' class='hidden' id='id_listarea' value='$id_listarea' >";
 														echo "<input type='text' class='hidden' id='idPedTrabajo' value='$idPedTrabajo' >";
 												?>
-												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
+												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>"
 												>
 												<form>
 													<div class="panel panel-default">
@@ -396,7 +396,6 @@
 			guardarFormulario(true);
            
     });
-
 	evaluarEstado();
 	function evaluarEstado() {
 
@@ -466,7 +465,9 @@
 	});
 	var validado=($('#idform').val()==0);
 	function terminarTarea() {
+		
 		if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+		WaitingOpen('Cerrando Tarea');
 		var idTarBonita = $('#idTarBonita').val();
 		var id_listarea = $('#id_listarea').val();
 		var esTareaStd = $('#esTareaStd').val();
@@ -480,14 +481,17 @@
 			},
 			url: 'index.php/Tarea/terminarTareaStandarenBPM',
 			success: function (data) {
-
+				WaitingClose();
 				// toma a tarea exitosamente
 				if (data['reponse_code'] == 204) {
 					$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
+				
 				}
+					
+			
 			},
 			error: function (data) {
-				//alert("Noo");
+				WaitingClose();
 				console.log(data);
 			},
 			dataType: 'json'
@@ -602,10 +606,13 @@
 	// });
 
 	function ValidarCampos(){
+		WaitingOpen('Validando Formulario');
 		$('#genericForm').data('bootstrapValidator').validate();
 		if(!$('#genericForm').data('bootstrapValidator').isValid()){
 			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
+		return false;
 		}	
+		return true;
 	}
 	function OcultarModal(){
 		$('#genericForm').data('bootstrapValidator').resetForm();
@@ -686,8 +693,9 @@
 			processData: false,
 
 			success: function (respuesta) {
-				
+				WaitingClose();
 				ValidarObligatorios(validarOn);
+				
 				if (respuesta === "exito") {
 
 				}
@@ -841,11 +849,13 @@
 			url: 'index.php/Tarea/ValidarObligatorios',
 			success: function (result) {
 				validado=(result==1);
+				WaitingClose();
 				if(!validarOn) return;
-				if(validado)alert("Formularios Correctamente Validado");
+				if(validado)$('#modalForm').modal('hide');
 				else {
 					alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");
 				}
+
 			},
 			error: function(result){
 				alert("Fallo la Validación del formularios en el Servidor. Por favor vuelva a intentar.");
@@ -854,17 +864,15 @@
 	}
 
 	function CerrarModal(){
-        //WaitingOpen('Guardando Formulario');
-        guardarFormulario(false);
-        //WaitingClose();
-        $('#modalForm').modal('hide');
-        
+		$('#modalForm').modal('hide');
+		WaitingOpen('Guardando Cambios');
+        guardarFormulario(false);        
     }
 </script>
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" data-backdrop="static" aria-labelledby="myLargeModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 

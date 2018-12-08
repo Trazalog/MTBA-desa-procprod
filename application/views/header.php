@@ -130,7 +130,7 @@
             </div>
             <!-- Loading (remove the following to stop the loading)-->
             <div class="overlay">
-                <i class="fa fa-refresh fa-spin"></i>
+                <i class="fa fa-spinner fa-spin"></i>
             </div>
             <!-- end loading -->
         </div>

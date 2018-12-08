@@ -9,7 +9,7 @@
 </div>
 
 <section class="content">
-<?php echo cargarCabecera($idPedTrabajo);?>
+<?php cargarCabecera($idPedTrabajo); ?>
   <div class="row">
     <div class="col-xs-12">
       <div class="box">
@@ -385,8 +385,10 @@
           var month_ = date_.getMonth();
         
           var idOrden = $('#numord').val();
+
           var evento = $.ajax({
-            url: 'index.php/Otrabajo/getcalendTareas/<?php echo $FiltrarOT ?>',
+            //url: 'index.php/Otrabajo/getcalendTareasSector',
+            url: 'index.php/Otrabajo/getcalendTareas',
             data: {
               month: month_,
               idOrden: idOrden

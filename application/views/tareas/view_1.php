@@ -53,7 +53,7 @@
                       
 
                       ?>
-												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
+												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>"
 												>
 												<form>
 													<div class="panel panel-default">
@@ -493,6 +493,7 @@
 
 	// Terminar tarea
 	function estadoCuenta() {
+		WaitingOpen('Cerrando Tarea');
 		var idTarBonita = $('#idTarBonita').val();
 		var $estado = $('input[name="estado"]:checked').val();
 		$.ajax({
@@ -503,12 +504,14 @@
 			},
 			url: 'index.php/Tarea/estadoCuentaOk',
 			success: function (data) {
+				WaitingClose();
 				// toma a tarea exitosamente
 				if (data['reponse_code'] == 204) {
 					$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
 				}
 			},
 			error: function (data) {
+				WaitingClose();
 				//alert("Noo");
 				console.log(data);
 			},
@@ -870,7 +873,7 @@
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 

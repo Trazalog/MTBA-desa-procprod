@@ -92,8 +92,7 @@
 														<div class="form-group ">
 															<div class="col-sm-6 col-md-6 ">
 																<label for="ot ">Orden de Trabajo:</label>
-																<input type="text " class="form-control " id="ot"
-																 placeholder=" " value="<?php echo $idOT ?>" disabled>
+																<input type="text " class="form-control " id="ot" placeholder=" " value="<?php echo $idOT ?>" disabled>
 															</div>
 														</div><br>
 
@@ -112,22 +111,22 @@
 																<label for="detalle">Detalle</label>
 																<textarea class="form-control" id="detalle" rows="3" disabled><?php echo $TareaBPM['displayDescription']?></textarea>
 															</div>
-                            </div></br> </br> </br> 
-                            
-                            <div class="col-sm-12 col-md-12" style="margin-top:15px;"> 
-                              
-                            <?php											
-                                if ($idOT != "") {
-                                  echo '<h4>Se ha generado la Orden de Trabajo Nº  '.$idOT.', haga click en el boton Orden Trabajo para modificarla</h4>';
-                                } 											
-                              ?>
-                                 </br>
-                            <button class="btn btn-primary" id="verOT">Orden Trabajo</button>
-                            </div>
+														</div></br> </br> </br>
 
-                            <div class="col-sm-12 col-md-12" id="infoOT">
-                              												
-                            </div>
+														<div class="col-sm-12 col-md-12" style="margin-top:15px;">
+
+															<?php											
+																if ($idOT != "") {
+																echo '<h4>Se ha generado la Orden de Trabajo Nº  '.$idOT.', haga click en el boton Orden Trabajo para modificarla</h4>';
+																} 											
+															?>
+															</br>
+															<button class="btn btn-primary" id="verOT">Orden Trabajo</button>
+														</div>
+
+														<div class="col-sm-12 col-md-12" id="infoOT">
+
+														</div>
 
 
 													</div>
@@ -233,7 +232,7 @@
 											</div> <!-- panel-body-->
 
 										</div>
-										
+
 
 									</div>
 								</div>
@@ -385,26 +384,27 @@
 
 
 
-  // $('#verOT').click(function() {
-  //   //alert('ver ot');
-  //   var iort = $('#idOT').val();
+	// $('#verOT').click(function() {
+	//   //alert('ver ot');
+	//   var iort = $('#idOT').val();
 	//  	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-  //   WaitingOpen('Cargando Tareas...');
+	//   WaitingOpen('Cargando Tareas...');
 	// 	$('#content').empty();
 	// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
 	// 	WaitingClose();
 	// });
-	
-	$('#verOT').click(function(){
+
+	$('#verOT').click(function () {
 		var iort = $('#idOT').val();
 		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
 		var idPedTrabajo = $('#cod_interno').val();
-		redireccionar_planificacion(iort,idTarBonita,idPedTrabajo);
+		//alert(idPedTrabajo);
+		redireccionar_planificacion(iort, idTarBonita, idPedTrabajo);
 	});
-	function redireccionar_planificacion(ot,idTarBonita,idPedTrabajo){
+	function redireccionar_planificacion(ot, idTarBonita, idPedTrabajo) {
 		WaitingOpen('Cargando Tareas...');
 		$('#content').empty();
-		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/"+ot+"/"+idPedTrabajo+"/");
+		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/" + ot + "/" + idPedTrabajo + "/");
 		WaitingClose();
 	};
 
@@ -412,26 +412,26 @@
 
 
 	// function verOT() {
-		// 	var iort = $('#idOT').val();
-		// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		// 	// $.ajax({
-		// 	// 	type:'POST',
-		// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
-		// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
-		// 	// 	success:function(result){
-		// 	// 		alert('Tareas Programadas');
-		// 	// 	},
-		// 	// 	error: function(result){
-		// 	// 		console.log(result);
-					
-		// 	// 		alert('Error');
-		// 	// 	}
-		// 	// });
-		// 	WaitingOpen('Cargando Tareas...');
-		// 	$('#content').empty();
-		// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
-		// 	WaitingClose();
-		// }
+	// 	var iort = $('#idOT').val();
+	// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
+	// 	// $.ajax({
+	// 	// 	type:'POST',
+	// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
+	// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
+	// 	// 	success:function(result){
+	// 	// 		alert('Tareas Programadas');
+	// 	// 	},
+	// 	// 	error: function(result){
+	// 	// 		console.log(result);
+
+	// 	// 		alert('Error');
+	// 	// 	}
+	// 	// });
+	// 	WaitingOpen('Cargando Tareas...');
+	// 	$('#content').empty();
+	// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
+	// 	WaitingClose();
+	// }
 
 	evaluarEstado();
 	function evaluarEstado() {
@@ -549,7 +549,7 @@
 			dataType: 'json'
 		});
 	}
-	
+
 	//Funcion COMENTARIOS
 	function guardarComentario() {
 		console.log("Guardar Comentarios...");
@@ -591,31 +591,31 @@
 				detalle: detalle,
 				tipo_tarea: tipo_tarea
 			},
-			dataType:'json',
+			dataType: 'json',
 			url: 'index.php/Tarea/tomarTareaPlanificacion',
 			success: function (data) {
-							
-							console.log('codigo de respuesta: ' + data['respRest']['reponse_code']);
-							console.log('respuesta insercion: ' + data['resInsert']);
 
-							// toma a tarea exitosamente en BPM                    
-							if (data['respRest']['reponse_code'] == 200) {
-								habilitar();
-							}
-							// inserta OT en BD
-							if (data['resInsert'] != 0) {
+				console.log('codigo de respuesta: ' + data['respRest']['reponse_code']);
+				console.log('respuesta insercion: ' + data['resInsert']);
 
-								// agrega mensaje sobre boton Orden trabajo 
-								$('#infoOT').after('<h4>Se ha generado la Orden de Trabajo Nº ' + data['resInsert'] + ', haga click en el boton Orden Trabajo para modificarla</h4>');
+				// toma a tarea exitosamente en BPM                    
+				if (data['respRest']['reponse_code'] == 200) {
+					habilitar();
+				}
+				// inserta OT en BD
+				if (data['resInsert'] != 0) {
 
-								// guarda id de ot  para usar
-								$('#idOT').val(data['resInsert']);
+					// agrega mensaje sobre boton Orden trabajo 
+					$('#infoOT').after('<h4>Se ha generado la Orden de Trabajo Nº ' + data['resInsert'] + ', haga click en el boton Orden Trabajo para modificarla</h4>');
 
-							}
+					// guarda id de ot  para usar
+					$('#idOT').val(data['resInsert']);
 
-							// <h5>Se ha generado la Orden de Trabajo Nº <span id="numOT"></span> haga click en el bton OT para modificarla</h5>
-							// $('h5 span:last-child').after('<span>'+data['resInsert']+'</span>');
-						},
+				}
+
+				// <h5>Se ha generado la Orden de Trabajo Nº <span id="numOT"></span> haga click en el bton OT para modificarla</h5>
+				// $('h5 span:last-child').after('<span>'+data['resInsert']+'</span>');
+			},
 			error: function (result) {
 				alert("Error");
 				console.log(result);
@@ -638,7 +638,7 @@
 				// toma a tarea exitosamente
 				if (data['reponse_code'] == 200) {
 					deshabilitar();
-					
+
 				}
 			},
 			error: function (result) {
@@ -798,7 +798,7 @@
 			var valor = "";
 			var valorSig = "";
 
-			if(data[index]['VALOR']!=$('#' + idSelect).val()){
+			if (data[index]['VALOR'] != $('#' + idSelect).val()) {
 				$('#' + idSelect).append($('<option>',
 					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
 			}
@@ -888,12 +888,12 @@
 
 	$('.fecha').datepicker({
 		autoclose: true
-	}).on('change', function(e) {
-       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
-	   console.log('Validando Campo...'+$(this).attr('name'));
-	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
-	   $('#genericForm').data('bootstrapValidator').validateField($(this));
-    });
+	}).on('change', function (e) {
+		// $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
+		console.log('Validando Campo...' + $(this).attr('name'));
+		$('#genericForm').data('bootstrapValidator').resetField($(this), false);
+		$('#genericForm').data('bootstrapValidator').validateField($(this));
+	});
 
 
 
@@ -901,7 +901,7 @@
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 

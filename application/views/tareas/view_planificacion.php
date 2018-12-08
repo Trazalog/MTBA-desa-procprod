@@ -1,8 +1,8 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <input type="hidden" id="cod_interno" value="<?php echo $codInterno;?>">
+
 <section class="content">
-	<?php cargarCabecera($idPedTrabajo);?>
-	<input type="text" class="form-control hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo ?>">
+	<?php echo cargarCabecera($idPedTrabajo); ?>
 	<div class="row">
 		<div class="col-xs-12">
 			<div class="box">
@@ -30,17 +30,15 @@
 											<div class="panel-body">
 
 												<?php
-														//echo"id de form: ";
-														//dump_exit($TareaBPM["assigned_id"]);
-														//$TareaBPM["assigned_id"] = 'asignado';
+												//echo"id de form: ";
+												//dump_exit($TareaBPM["assigned_id"]);
+												//$TareaBPM["assigned_id"] = 'asignado';
 														//echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
 												//if ($estadoTarea == "noasignado") {´
-													// echo "asigacion";
-													// dump_exit($TareaBPM["assigned_id"]);
-														echo "<input type='text' class='hidden' id='idOT' value='". $idOT ."'>";
+													echo "<input type='text' class='hidden' id='idOT' value='". $idOT ."'>";
 
 														echo "<input type='text' class='hidden' id='petrid' value='". $idPedTrabajo ."'>";
-													
+
 														echo "<button class='btn btn-block btn-success' id='btontomar' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
 												//}else{
 														echo "&nbsp"; 
@@ -48,8 +46,8 @@
 														echo "&nbsp";
 														echo "<button class='btn btn-block btn-danger grupNoasignado' id='btonsoltr' style='width: 100px; margin-top: 10px; display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
 												//}    
-														echo "</br>"; 
-														echo "</br>"; 
+														echo "<br>"; 
+														echo "<br>"; 
 
 														$userdata = $this->session->userdata('user_data');
 														$usrId = $userdata[0]['usrId'];     // guarda usuario logueado 
@@ -67,6 +65,8 @@
 												<form>
 													<div class="panel panel-default">
 														<h4 class="panel-heading">INFORMACION:</h4>
+
+
 														<div class="form-group">
 															<div class="col-sm-6 col-md-6">
 																<label for="tarea">Tarea</label>
@@ -76,6 +76,7 @@
 																<input type="text" class="hidden" id="idform" value="<?php echo $idForm ?>">
 																<!-- id de task en bonita -->
 																<input type="text" class="hidden" id="idTarBonita" value="<?php echo $idTarBonita ?>">
+																<input type="text" class="hidden" id="esTareaStd" value="<?php echo $infoTarea['visible'] ?>">
 															</div>
 														</div>
 
@@ -92,8 +93,9 @@
 														<div class="form-group ">
 															<div class="col-sm-6 col-md-6 ">
 																<label for="ot ">Orden de Trabajo:</label>
-																<input type="text " class="form-control " id="ot"
-																 placeholder=" " value="<?php echo $idOT ?>" disabled>
+																<input type="text " class="form-control " id="ot
+                                                                    "
+																 placeholder=" " value="<?php echo $datos[0][ 'id_orden'] ?>" disabled>
 															</div>
 														</div><br>
 
@@ -102,7 +104,7 @@
 																<label for="duracion_std">Duracion Estandar (minutos):</label>
 																<input type="text" class="form-control" id="duracion_std" placeholder="" value="<?php echo $datos[0]['duracion_std']  ?>"
 																 disabled>
-															</div></br>
+															</div><br>
 														</div>
 
 														<br>
@@ -112,35 +114,28 @@
 																<label for="detalle">Detalle</label>
 																<textarea class="form-control" id="detalle" rows="3" disabled><?php echo $TareaBPM['displayDescription']?></textarea>
 															</div>
-                            </div></br> </br> </br> 
-                            
-                            <div class="col-sm-12 col-md-12" style="margin-top:15px;"> 
-                              
-                            <?php											
-                                if ($idOT != "") {
-                                  echo '<h4>Se ha generado la Orden de Trabajo Nº  '.$idOT.', haga click en el boton Orden Trabajo para modificarla</h4>';
-                                } 											
-                              ?>
-                                 </br>
-                            <button class="btn btn-primary" id="verOT">Orden Trabajo</button>
-                            </div>
-
-                            <div class="col-sm-12 col-md-12" id="infoOT">
-                              												
-                            </div>
-
-
+														</div><br> <br> <br> <br> <br>
 													</div>
 
 													<div class="form-group">
 														<div class="col-sm-12 col-md-12">
 															<!-- Modal formulario tarea -->
-															<?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg" onclick="getformulario()">Completar  Formulario </button>';}?>
+															<?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"data-target=".bs-example-modal-lg" onclick="getformulario()">Completar Formulario </button>';}?>
 														</div>
 													</div>
 
 												</form>
 
+											</div>
+											<div class="col-sm-12 col-md-12" style="margin-top:15px;" id="infoOT">
+
+											<?php											
+												if ($idOT != "") {
+												echo '<h4>Se ha generado la Orden de Trabajo Nº  '.$idOT.', haga click en el boton Orden Trabajo para modificarla</h4>';
+												} 											
+											?>
+											<br>
+											<button class="btn btn-primary" id="verOT">Orden Trabajo</button>
 											</div>
 										</div>
 
@@ -174,7 +169,10 @@
 												<div class="panel panel-primary">
 													<div class="panel-heading">Línea de Tiempo</div>
 													<div class="panel-body" style="max-height: 500px;overflow-y: scroll;">
+														<style type="text/css">
 
+
+														</style>
 
 														<div class="container">
 															<ul class="timeline">
@@ -201,8 +199,8 @@
 																				</li>';
 																		}
 																		echo '<h2 style="margin-left:50px;">Actividades Terminadas</h2>';
-																	foreach ($timeline['listArch'] as $f) {
-																	
+																		foreach ($timeline['listArch'] as $f) {
+																		
 																		echo '<li>
 																				<div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
 																				<div class="timeline-panel">
@@ -228,12 +226,9 @@
 
 													</div>
 												</div>
-
-
-											</div> <!-- panel-body-->
+											</div>
 
 										</div>
-										
 
 									</div>
 								</div>
@@ -242,8 +237,11 @@
 
 					</div><!-- /.row -->
 
+					
+
 					<div class="modal-footer">
 						<button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
+						<!-- <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button> -->
 					</div> <!-- /.modal footer -->
 
 				</div><!-- /.box body -->
@@ -252,7 +250,6 @@
 	</div><!-- /.row -->
 </section><!-- /.content -->
 
-<!-- estilos de linea de tiempo -->
 <style type="text/css">
 	.timeline {
 		list-style: ;
@@ -385,27 +382,27 @@
 
 
 
-  // $('#verOT').click(function() {
-  //   //alert('ver ot');
-  //   var iort = $('#idOT').val();
+	// $('#verOT').click(function() {
+	//   //alert('ver ot');
+	//   var iort = $('#idOT').val();
 	//  	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-  //   WaitingOpen('Cargando Tareas...');
+	//   WaitingOpen('Cargando Tareas...');
 	// 	$('#content').empty();
 	// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
 	// 	WaitingClose();
 	// });
-	
-	$('#verOT').click(function(){
+
+	$('#verOT').click(function () {
 		var iort = $('#idOT').val();
 		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		var idPedTrabajo = $('#cod_interno').val(); 
+		var idPedTrabajo = $('#cod_interno').val();
 		//alert(idPedTrabajo);
-		redireccionar_planificacion(iort,idTarBonita,idPedTrabajo);
+		redireccionar_planificacion(iort, idTarBonita, idPedTrabajo);
 	});
-	function redireccionar_planificacion(ot,idTarBonita,idPedTrabajo){
+	function redireccionar_planificacion(ot, idTarBonita, idPedTrabajo) {
 		WaitingOpen('Cargando Tareas...');
 		$('#content').empty();
-		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/"+ot+"/"+idPedTrabajo+"/");
+		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/" + ot + "/" + idPedTrabajo + "/");
 		WaitingClose();
 	};
 
@@ -413,26 +410,26 @@
 
 
 	// function verOT() {
-		// 	var iort = $('#idOT').val();
-		// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		// 	// $.ajax({
-		// 	// 	type:'POST',
-		// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
-		// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
-		// 	// 	success:function(result){
-		// 	// 		alert('Tareas Programadas');
-		// 	// 	},
-		// 	// 	error: function(result){
-		// 	// 		console.log(result);
-					
-		// 	// 		alert('Error');
-		// 	// 	}
-		// 	// });
-		// 	WaitingOpen('Cargando Tareas...');
-		// 	$('#content').empty();
-		// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
-		// 	WaitingClose();
-		// }
+	// 	var iort = $('#idOT').val();
+	// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
+	// 	// $.ajax({
+	// 	// 	type:'POST',
+	// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
+	// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
+	// 	// 	success:function(result){
+	// 	// 		alert('Tareas Programadas');
+	// 	// 	},
+	// 	// 	error: function(result){
+	// 	// 		console.log(result);
+
+	// 	// 		alert('Error');
+	// 	// 	}
+	// 	// });
+	// 	WaitingOpen('Cargando Tareas...');
+	// 	$('#content').empty();
+	// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
+	// 	WaitingClose();
+	// }
 
 	evaluarEstado();
 	function evaluarEstado() {
@@ -550,7 +547,7 @@
 			dataType: 'json'
 		});
 	}
-	
+
 	//Funcion COMENTARIOS
 	function guardarComentario() {
 		console.log("Guardar Comentarios...");
@@ -592,31 +589,31 @@
 				detalle: detalle,
 				tipo_tarea: tipo_tarea
 			},
-			dataType:'json',
+			dataType: 'json',
 			url: 'index.php/Tarea/tomarTareaPlanificacion',
 			success: function (data) {
-							
-							console.log('codigo de respuesta: ' + data['respRest']['reponse_code']);
-							console.log('respuesta insercion: ' + data['resInsert']);
 
-							// toma a tarea exitosamente en BPM                    
-							if (data['respRest']['reponse_code'] == 200) {
-								habilitar();
-							}
-							// inserta OT en BD
-							if (data['resInsert'] != 0) {
+				console.log('codigo de respuesta: ' + data['respRest']['reponse_code']);
+				console.log('respuesta insercion: ' + data['resInsert']);
 
-								// agrega mensaje sobre boton Orden trabajo 
-								$('#infoOT').after('<h4>Se ha generado la Orden de Trabajo Nº ' + data['resInsert'] + ', haga click en el boton Orden Trabajo para modificarla</h4>');
+				// toma a tarea exitosamente en BPM                    
+				if (data['respRest']['reponse_code'] == 200) {
+					habilitar();
+				}
+				// inserta OT en BD
+				if (data['resInsert'] != 0) {
 
-								// guarda id de ot  para usar
-								$('#idOT').val(data['resInsert']);
+					// agrega mensaje sobre boton Orden trabajo 
+					$('#infoOT').prepend('<h4>Se ha generado la Orden de Trabajo Nº ' + data['resInsert'] + ', haga click en el boton Orden Trabajo para modificarla</h4>');
 
-							}
+					// guarda id de ot  para usar
+					$('#idOT').val(data['resInsert']);
 
-							// <h5>Se ha generado la Orden de Trabajo Nº <span id="numOT"></span> haga click en el bton OT para modificarla</h5>
-							// $('h5 span:last-child').after('<span>'+data['resInsert']+'</span>');
-						},
+				}
+
+				// <h5>Se ha generado la Orden de Trabajo Nº <span id="numOT"></span> haga click en el bton OT para modificarla</h5>
+				// $('h5 span:last-child').after('<span>'+data['resInsert']+'</span>');
+			},
 			error: function (result) {
 				alert("Error");
 				console.log(result);
@@ -639,7 +636,7 @@
 				// toma a tarea exitosamente
 				if (data['reponse_code'] == 200) {
 					deshabilitar();
-					
+
 				}
 			},
 			error: function (result) {
@@ -799,7 +796,7 @@
 			var valor = "";
 			var valorSig = "";
 
-			if(data[index]['VALOR']!=$('#' + idSelect).val()){
+			if (data[index]['VALOR'] != $('#' + idSelect).val()) {
 				$('#' + idSelect).append($('<option>',
 					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
 			}
@@ -889,41 +886,13 @@
 
 	$('.fecha').datepicker({
 		autoclose: true
-	}).on('change', function(e) {
-       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
-	   console.log('Validando Campo...'+$(this).attr('name'));
-	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
-	   $('#genericForm').data('bootstrapValidator').validateField($(this));
-    });
+	}).on('change', function (e) {
+		// $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
+		console.log('Validando Campo...' + $(this).attr('name'));
+		$('#genericForm').data('bootstrapValidator').resetField($(this), false);
+		$('#genericForm').data('bootstrapValidator').validateField($(this));
+	});
 
 
 
 </script>
-
-
-
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-	<div class="modal-dialog modal-lg" role="document">
-		<div class="modal-content">
-
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="box">
-						<div class="box-body">
-							<div class="row">
-								<div class="col-sm-12 col-md-12">
-									<?php
-                                    if($form != ''){
-                                        cargarFormulario($form);
-                                    }                                    
-                                    ?>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div>

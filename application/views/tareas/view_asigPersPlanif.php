@@ -61,7 +61,7 @@
 														echo "<input type='text' class='hidden' id='idPedTrabajo' value='$idPedTrabajo' >";
 														echo "<input type='text' class='hidden' id='tipo_tarea' value='$tipo_tarea' >";
 												?>
-												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM[" assigned_id"] ?>"
+												<input type="text" class="form-control hidden" id="asignado" value="<?php echo $TareaBPM["assigned_id"] ?>"
 												>
 												<form>
 													<div class="panel panel-default">
@@ -128,6 +128,12 @@
 												</form>
 
 											</div>
+											<div class="col-sm-12 col-md-12" id="infoOT">
+											<h4>Por favor asigne los recursos para las actividades planificadas
+												presionando el botón Orden de Trabajo</h4>
+											<button class="btn btn-primary" id="verOT" onclick="verOT()">Orden de
+												Trabajo</button>
+										</div>
 										</div>
 
 										<div role="tabpanel" class="tab-pane" id="profile">
@@ -221,12 +227,7 @@
 											<!--p<nelbody-->
 
 										</div>
-										<div class="col-sm-12 col-md-12" id="infoOT">
-											<h4>Por favor asigne los recursos para las actividades planificadas
-												presionando el botón Orden de Trabajo</h4>
-											<button class="btn btn-primary" id="verOT" onclick="verOT()">Orden de
-												Trabajo</button>
-										</div>
+									
 									</div>
 								</div>
 							</div>
@@ -375,7 +376,7 @@
 
 <script>
 	// Trae id de ot por id tarea BPM (la oT fue generada por la Tarea anterior. Lo vincula por CASE ID)
-	getIdOTporIdBPM();
+	//getIdOTporIdBPM();
 	function getIdOTporIdBPM() {
 		var caseId = $('#caseId').val();
 		$.ajax({
@@ -891,7 +892,7 @@
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 

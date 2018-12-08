@@ -33,7 +33,7 @@
                   if (strpos($permission,'Edit') !== false) {
                    echo '<i class="fa fa-plus" style="color:#8eb29a; cursor: pointer; margin-left: 15px;"  title="Ver y Agregar tareas" id="btnAddtarea" ></i>';
 
-                   echo '<i class="fa fa-fw fa-pencil" style="color: #8eb29a; cursor: pointer; margin-left: 15px;" title="Editar" onclick="Loadplantilla('.$f['id_plantilla'].',\'Edit\')"  ></i>';
+                   echo '<i class="glyphicon glyphicon-pencil" style="color: #8eb29a; cursor: pointer; margin-left: 15px;" title="Editar" onclick="Loadplantilla('.$f['id_plantilla'].',\'Edit\')"  ></i>';
                    
                   } 
 
