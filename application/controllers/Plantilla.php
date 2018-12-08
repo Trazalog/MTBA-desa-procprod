@@ -35,7 +35,7 @@ class plantilla extends CI_Controller {
 	public function cargartarea($permission,$idglob){ 
 	$data['list'] = $this->Plantillas->cargartareas($idglob);
 	$data['id_plantilla'] = $idglob; 
-	$data['permission'] = $permission;    // envia permisos      
+    $data['permission'] = $permission;    // envia permisos       
     $this->load->view('plantillas/asignacion',$data); //equipo controlador 
     }
 

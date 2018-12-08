@@ -241,8 +241,9 @@
 																										<strong style="color: #dd4b39">*</strong>: </label>
 																									<select name="proveedor_repuesto" class="form-control">
 																										<option value="0"> Seleccionar... </option>
-																										<option> Cliente </option>
-																										<option> Motores Balderramo </option>
+																										<option value="CLIENTE"> Cliente </option>
+																										<option value="BALDERRAMO"> Balderramo </option>
+																										<option value="AMBOS"> Ambos </option>
 
 																									</select>
 																								</div>
@@ -612,6 +613,7 @@
 	});
 	function subirPresupuesto() {
 		event.preventDefault();
+		WaitingOpen('Subiendo Archivo');
 		var formData = new FormData();
 
 		var idPedTrabajo =<?php echo $idPedTrabajo;?>;
@@ -625,6 +627,7 @@
 			contentType: false,
 			processData: false,
 			success: function (result) {
+				WaitingClose();
 				if (result == 'error') {
 					alert("No se pudo Guardar Archivo");
 				} else {
@@ -663,6 +666,7 @@
 	var validado = ($('#idform').val() == 0);
 	function terminarTarea() {
 		if (!validado) { alert("Para concluir esta actividad primero debe Validar el Formulario"); return; }
+		WaitingOpen('Cerrando Tarea');
 		var idTarBonita = $('#idTarBonita').val();
 		//alert(idTarBonita);
 		$.ajax({
@@ -677,9 +681,10 @@
 				if (data['reponse_code'] == 204) {
 					$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
 				}
+				WaitingClose();
 			},
 			error: function (data) {
-				//alert("Noo");
+				WaitingClose();
 				console.log(data);
 			},
 			dataType: 'json'
@@ -1033,12 +1038,14 @@
 			alert("Campo Fecha de Entrega Obligatorio");
 			return;
 		}
+		WaitingOpen('Cerrando Tarea');
 		var idt = $('#idTarBonita').val();
 		var formData = new FormData($("#form_si")[0]);
 		formData.append('idtareabonita', idt);
 		var idPedTrabajo = <?php echo $idPedTrabajo; ?>;
 		formData.append('idPedTrabajo', idPedTrabajo);
 		formData.append('presupuesto', $('#linkPresupuesto').attr('href'));
+		
 		$.ajax({
 			url: 'index.php/AceptacionTrabajo/GuardarAceptacionTrabajoBPM',
 			type:'POST',
@@ -1047,7 +1054,7 @@
 			contentType: false,
 			processData: false,
 			success: function (result) {
-				//  alert(result);
+				WaitingClose();
 				if (result != "ErrorBPM") {
 					$('#cerrar').click();
 				} else {
@@ -1055,20 +1062,23 @@
 				}
 			},
 			error: function (result) {
+				console.log(result);				
+				WaitingClose();
 				alert("Error");
 			}
 		});
 	};
 
 	function guardarNo() {
+		WaitingOpen('Cerrando Tarea');
 		var opcion = $('input[name="a_d"]:checked').val();
-		console.log(opcion);
 		var idt = $('#idTarBonita').val();
 		$.ajax({
 			type: 'post',
 			data: { 'idTarbonita': idt, 'estado': opcion },
 			url: 'index.php/AceptacionTrabajo/NoAceptaTrabajoBPM',
 			success: function (result) {
+				WaitingClose();
 				if (result == "ErrorBPM") {
 					alert("No se puedo Completar la Operación");
 				} else {
@@ -1108,7 +1118,7 @@
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 

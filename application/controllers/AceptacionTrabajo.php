@@ -24,7 +24,7 @@ class AceptacionTrabajo extends CI_Controller
 		$cuerpoBPM = array(
 			"fecCompromisoEntrega"=>$fecha_entrega."T00:00",
 			"tipoEntrega"=>$entrega_servicio,
-			"quienProveeRespuestos"=>$proveedor_repuesto,
+			"quienProveeRespuestos"=>strtoupper($proveedor_repuesto),
 			"presupuesto"=>	$presupuesto
 		);
 		$dataBPM =array(
@@ -53,7 +53,7 @@ class AceptacionTrabajo extends CI_Controller
 				'direccion_entrega' => $direccion_entrega,
 				'tipo_cliente' => $tipo_cliente,
 				'proveedor_repuesto' => $proveedor_repuesto,
-				'fec_entrega_componente' => $fecha_entrega,
+				'fecha_entrega_componente' => $fecha_entrega,
 				'orden_compra' =>  $documento['upload_data']['file_name']
 			);
 			$resultBD = $this->AceptacionTrabajos->Guardar($this->input->post('idPedTrabajo'),$data);
@@ -88,8 +88,7 @@ class AceptacionTrabajo extends CI_Controller
 		$idPedTrabajo = $this->input->post('idPedTrabajo');
 		$config = [
 			'upload_path' => "./assets/imgformularios",
-			'allowed_types' => "*",
-			'max_size' => "5000"
+			'allowed_types' => "*"
 		];
 		$this->load->library("upload",$config);
 		if($this->upload->do_upload('presupuesto')){

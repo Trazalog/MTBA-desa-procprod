@@ -1,6 +1,7 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
+<input type="hidden" id="cod_interno" value="<?php echo $codInterno;?>">
 <section class="content">
-	<?php cargarCabecera($idPedTrabajo); ?>
+	<?php cargarCabecera($idPedTrabajo);?>
 	<input type="text" class="form-control hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo ?>">
 	<div class="row">
 		<div class="col-xs-12">
@@ -397,8 +398,7 @@
 	$('#verOT').click(function(){
 		var iort = $('#idOT').val();
 		var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
-		var idPedTrabajo = $('#idPedTrabajo').val(); 
-		//alert(idPedTrabajo);
+		var idPedTrabajo = $('#cod_interno').val();
 		redireccionar_planificacion(iort,idTarBonita,idPedTrabajo);
 	});
 	function redireccionar_planificacion(ot,idTarBonita,idPedTrabajo){
@@ -407,6 +407,32 @@
 		$("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php echo $permission; ?>/"+ot+"/"+idPedTrabajo+"/");
 		WaitingClose();
 	};
+
+
+
+
+	// function verOT() {
+		// 	var iort = $('#idOT').val();
+		// 	var idTarBonita = $('#idTarBonita').val();// task id para guardar en tbl listarea
+		// 	// $.ajax({
+		// 	// 	type:'POST',
+		// 	// 	url:'index.php/Tarea/Programar_Tareas_Formulario',
+		// 	// 	data:{petrid:$('#petrid').val(),ordenid:iort},
+		// 	// 	success:function(result){
+		// 	// 		alert('Tareas Programadas');
+		// 	// 	},
+		// 	// 	error: function(result){
+		// 	// 		console.log(result);
+					
+		// 	// 		alert('Error');
+		// 	// 	}
+		// 	// });
+		// 	WaitingOpen('Cargando Tareas...');
+		// 	$('#content').empty();
+		// 	$("#content").load("<?php //echo base_url(); ?>index.php/Otrabajo/cargarPlanificacion/<?php //echo $permission; ?>/" + iort + "/" + idTarBonita + "/");
+		// 	WaitingClose();
+		// }
+
 	evaluarEstado();
 	function evaluarEstado() {
 
@@ -555,6 +581,7 @@
 		var cod_interno = $('#cod_interno').val(); // codigo interno balderramo
 		var detalle = $('#detalle').html();
 		var tipo_tarea = $('#tipo_tarea').val();
+		//alert(idPedido);
 		$.ajax({
 			type: 'POST',
 			data: {
@@ -564,8 +591,10 @@
 				detalle: detalle,
 				tipo_tarea: tipo_tarea
 			},
+			dataType:'json',
 			url: 'index.php/Tarea/tomarTareaPlanificacion',
 			success: function (data) {
+							
 							console.log('codigo de respuesta: ' + data['respRest']['reponse_code']);
 							console.log('respuesta insercion: ' + data['resInsert']);
 
@@ -588,6 +617,7 @@
 							// $('h5 span:last-child').after('<span>'+data['resInsert']+'</span>');
 						},
 			error: function (result) {
+				alert("Error");
 				console.log(result);
 			},
 			dataType: 'json'
@@ -772,6 +802,7 @@
 				$('#' + idSelect).append($('<option>',
 					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
 			}
+
 			valor = data[index]['idValor'];
 			valorSig = data[index]['idValor'];
 		});

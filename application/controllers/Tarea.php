@@ -454,7 +454,7 @@ class Tarea extends CI_Controller {
 			//FLEIVA COMENTARIOS
 		 	$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
 			$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
-			$data['TareaBPM']['displayName'] = 'Análisis financiero y emisión de reportes';
+		//	$data['TareaBPM']['displayName'] = 'Análisis financiero y emisión de reportes';
 			switch ($data['TareaBPM']['displayName']) {
 
 				case 'Evaluación del estado de cuenta del cliente':
@@ -492,9 +492,9 @@ class Tarea extends CI_Controller {
 					$this->load->view('tareas/view_planificacion', $data);
 					break;
 				case 'Asignar personal a Planificación':		//con comentarios listo
-					$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId);
+					$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId,'Diagnostico');
 					$data['idOT'] = $ot['id_orden'];
-					$data['tipo_tarea'] = $ot['tipo'];
+					$data['tipo_tarea'] = 'Diagnostico';
 					$this->load->view('tareas/view_asigPersPlanif', $data);
 					break;				
 					case 'Revisión Diagnóstico':
@@ -525,6 +525,18 @@ class Tarea extends CI_Controller {
 				case 'Analiza Vigencia del presupuesto aprobado':
 					$this->load->view('tareas/view_11',$data);
 					break;
+				case 'Asignar Recursos para Reparación':
+					$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId,'Reparacion');
+					$data['idOT'] = $ot['id_orden'];
+					$data['tipo_tarea'] = 'Reparacion';
+					$this->load->view('tareas/view_asigPersPlanif', $data);
+				break;
+				case 'Asignar Recursos para Armado':
+					$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId,'Armado');
+					$data['idOT'] = $ot['id_orden'];
+					$data['tipo_tarea'] = 'Armado';
+					$this->load->view('tareas/view_asigPersPlanif', $data);
+				break;
 				default:
 					$this->load->view('tareas/view_', $data);
 				break;

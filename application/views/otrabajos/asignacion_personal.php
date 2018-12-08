@@ -8,7 +8,7 @@
   </div>
 </div>
 <section class="content">
-<?php cargarCabecera($idPedTrabajo); ?>
+<?php echo cargarCabecera($idPedTrabajo); ?>
 
   <div class="row">
     <div class="col-xs-12">

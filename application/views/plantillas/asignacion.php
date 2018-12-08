@@ -12,15 +12,22 @@
     <div class="col-sm-12 col-md-12">
       <div class="box">
         <div class="box-header">
-        <center>
-        <h2> Plantilla </h2>  
-        </center>
-        <button class="btn btn-block btn-success" style="width: 100px; margin-top: 10px;" onclick="regresa()">Volver</button>
-
+          <center>
+          <h2> Plantilla </h2>  
+          </center>
+          <?php
+            if (strpos($permission,'Add') !== false) {
+              echo '<button class="btn btn-block btn-success" style="width: 100px; margin-top: 10px;" onclick="regresa()">Volver</button>';           
+            }
+            ?>
+             </br>
+              </br>
         </div><!-- /.box-header -->
         <div class="box-body">
           <div class="row" >
             <div class="col-sm-12 col-md-12">
+            </br>
+
 
               <h4><div class="col-sm-8">Nueva Tarea:
               <select type="text" class="form-control" id="tareas"  name="tarea" >
@@ -30,6 +37,7 @@
               <div class="col-xs-4">
                 &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<input type="hidden"  id="numord" name="numord" value="<?php echo $id_plantilla;?>"> </input>
               </div> 
+            </br>
 
               <div class="col-xs-4">
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

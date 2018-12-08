@@ -445,8 +445,8 @@
 		});
 	};
 	// Volver al atras
-	$('#cerrar').click(function cargarVista() {
-		WaitingOpen();
+	$('#cerrar').click(function() {
+		WaitingOpen('Cerrando Tarea');
 		$('#content').empty();
 		$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
 		WaitingClose();
@@ -485,6 +485,7 @@
 
 	// Terminar tarea
 	function estadoCuenta() {
+		WaitingOpen('Cerrando Tarea');
 		var idTarBonita = $('#idTarBonita').val();
 		var $estado = $('input[name="estado"]:checked').val();
 		$.ajax({
@@ -495,13 +496,14 @@
 			},
 			url: 'index.php/Tarea/Prespuesto_Vigente',
 			success: function (data) {
-				console.log(data);
+				//console.log(data);
 				
-				alert(data);
+			
 				// toma a tarea exitosamente
 				if (data['reponse_code'] == 204) {
 					$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
 				}
+				WaitingClose();
 			},
 			error: function (data) {
 				//alert("Noo");
@@ -586,286 +588,11 @@
 		});
 	}
 
-	/** Formulario **/
-
-	var click = 0;
-	$('#formulario').click(function () {
-		click = 1;
-	});
-
-	// evento de cierre de modal guarda parcialmente los datos
-	$('#modalForm').on('hidden.bs.modal', function (e) {
-
-		$('#error').fadeOut('slow');
-		// toma  el valor de todos los input file 
-		var imgs = $('input.archivo');
-
-		var formData = new FormData($("#genericForm")[0]);
-
-		/** subidad y resubida de imagenes **/
-		// Tomo los inputs auxiliares cargados
-		var aux = $('input.auxiliar');
-
-		var auxArray = [];
-		aux.each(function () {
-			auxArray.push($(this).val());
-		});
-		//console.table(aux);
-		for (var i = 0; i < imgs.length; i++) {
-
-			var inpValor = $(imgs[i]).val();
-			var idValor = $(imgs[i]).attr('name');
-			//console.log("idValor: "+idValor);
-			// si tiene algun valor (antes de subir img)
-			if (inpValor != "") {
-				//al subir primera img
-				formData.append(idValor, inpValor);
-			} else {
-				// sino sube img guarda la del auxiliar         
-				inpValor = auxArray[i]; //valor del input auxiliar
-				//console.table(inpValor);
-				formData.append(idValor, inpValor);
-			}
-		}
-
-		/* text tipo check */
-		var check = $('input.check');
-		//console.log("aux");
-		//console.table(aux);
-		var checkArray = [];
-		// check.each(function() {
-		//     checkArray.push($(this).val());
-		// });
-		//console.log('array de chech: ');
-		//console.table(checkArray);
-
-		for (var i = 0; i < check.length; i++) {
-			//var chekValor = $(check[i]).val();
-			var idCheckValor = $(check[i]).attr('name');
-			console.log('valor: ');
-			console.log(idCheckValor);
-			if ($(check[i]).is(':checked')) {
-				chekValor = 'tilde';
-			} else {
-				chekValor = 'notilde';
-			}
-			formData.append(idCheckValor, chekValor);
-		}
-		// console.log('array de chech: ');
-		// console.table(check);
-
-		/* Ajax de Grabado en BD */
-		$.ajax({
-			url: 'index.php/Tarea/guardarForm',
-			type: 'POST',
-			data: formData,
-			cache: false,
-			contentType: false,
-			processData: false,
-
-			success: function (respuesta) {
-
-
-				if (respuesta === "exito") {
-
-				}
-				else if (respuesta === "error") {
-					alert("Los datos no se han podido guardar");
-				}
-				else {
-					//$("#msg-error").show();
-					//$(".list-errors").html(respuesta);
-					//alert("Los datos no se han guardado");
-				}
-			}
-		});
-
-	});
-
-	// trae valores validos para llenar form asoc.  
-	function getformulario(event) {
-
-		// trae valor de imagenes y llena inputs.
-		getImgValor();
-
-		// llena form una sola vez al primer click
-		if (click == 0) {
-			var estadoTarea = $('#estadoTarea').val();
-			// toma id de form asociado a listarea en TJS
-			var idForm = $('#idform').val();
-			console.log('id de form: ');
-			console.log(idForm);
-
-			// guarda el id form asoc a tarea std en modal para guardar
-			$('#idformulario').val(idForm);
-
-			idForm = 1;
-			// trae valores validos para llenar componentes de form asoc.
-			$.ajax({
-				type: 'POST',
-				data: { idForm: idForm },
-				url: 'index.php/Tarea/getValValido',
-				success: function (data) {
-					//console.log('valores de componentes: ');
-					//console.table(data);                   
-
-					llenaComp(data);
-				},
-				error: function (result) {
-
-					console.log(result);
-				},
-				dataType: 'json'
-			});
-		}
-	}
-
-	// llena los componentes de form asoc con valores validos
-	function llenaComp(data) {
-
-		var id_listarea = $('#tbl_listarea').val();
-		$('#id_listarea').val(id_listarea);
-
-
-		$.each(data, function (index) {
-			//$( "#" + i ).append(  );
-			var idSelect = data[index]['idValor'];
-			//console.log('idvalor: '+ data[index]['idValor'] + '-- valor: ' + data[index]['VALOR']);
-			var i = 0;
-			var valor = "";
-			var valorSig = "";
-
-			if(data[index]['VALOR']!=$('#' + idSelect).val()){
-				$('#' + idSelect).append($('<option>',
-					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
-			}
-			valor = data[index]['idValor'];
-			valorSig = data[index]['idValor'];
-		});
-	}
-
-	//Trae valor de las imagenes
-	function getImgValor() {
-		var valores;
-		// guarda el id form asoc a tarea std en modal para guardar
-		idForm = $('#idform').val();
-		// trae valores validos para llenar componentes input files.
-		$.ajax({
-			type: 'POST',
-			data: { idForm: idForm },
-			url: 'index.php/Tarea/getImgValor',
-			success: function (data) {
-
-				valores = data;
-				llenarInputFile(valores);
-			},
-			error: function (result) {
-
-				console.log(result);
-			},
-			dataType: 'json'
-		});
-	}
-
-	// carga inputs auxiliares con url de imagen desde BD
-	function llenarInputFile(data) {
-		var id_listarea = $('inptut.archivo').val();
-
-		$.each(data, function (index) {
-
-			var id = data[index]['valoid'];
-			var valor = data[index]['valor'];
-			//carga el valor que viene de DB
-			$("." + data[index]['valoid']).val(valor);
-			//$("#"+data[index]['valoid']).val(valor);
-		});
-	}
-
-	// Validacion de campos obligatorios y vacios
-	function validarFormGuardado() {
-
-		var id_listarea = $('#id_listarea').val();
-
-		var oblig = $('.requerido');
-		//console.log("oblig");
-		//console.table(oblig);
-		var obligArrayIds = [];
-		oblig.each(function () {
-			obligArrayIds.push($(this).attr('name'));
-		});
-		//console.log('obligatorios: ');
-		//console.log(obligArray),
-		$.ajax({
-			type: 'POST',
-			data: {
-				obligArrayIds: obligArrayIds,
-				id_listarea: id_listarea
-			},
-			url: 'index.php/Tarea/validarFormGuardado',
-			success: function (data) {
-				console.log('por sucess: ');
-				console.log(data);
-				if (data == false) {
-					$('#error').fadeIn('slow');
-				}
-				else {
-					$('#error').fadeOut('slow');
-				}
-
-			},
-			error: function (result) {
-				console.log('por error: ');
-				console.log(data);
-				console.log(result);
-			},
-			dataType: 'json'
-		});
-	}
-
-
-
-
-
-	// trae valores validos para llenar form asoc.
-	function getformulario(event) {
-		var estadoTarea = $('#estadoTarea').val();
-		// toma id de form asociado a listarea en TJS
-		var idForm = $('#idform').val();
-		console.log('id de form: ');
-		console.log(idForm);
-		idForm = 1;
-		// trae valores validos para llenar componentes de form asoc.
-		$.ajax({
-			type: 'POST',
-			data: {
-				idForm: idForm
-			},
-			url: 'index.php/Tarea/getValValido',
-			success: function (data) {
-				//console.log('valores de componentes: ');
-				//console.table(data);                   
-				//$(tr).remove();
-				llenaComp(data);
-			},
-			error: function (result) {
-				console.log(result);
-			},
-			dataType: 'json'
-		});
-	}
-
-	function CerrarModal(){
-        //WaitingOpen('Guardando Formulario');
-        GuardarFormulario();
-        //WaitingClose();
-        $('#modalForm').modal('hide');
-        
-    }
 </script>
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 

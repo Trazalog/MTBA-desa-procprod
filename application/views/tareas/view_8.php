@@ -262,6 +262,8 @@
 
 <script> //Validacion de Formulario
     function ValidarCampos(){
+        WaitingOpen('Validando Formulario');
+        GuardarFormulario(true);
         ValidarObligatorios(true);
     }
 	function ValidarObligatorios(validarOn){
@@ -273,9 +275,10 @@
 			data: {'form_id':form_id,'petr_id':petr_id},
 			url: 'index.php/Tarea/ValidarObligatorios',
 			success: function (result) {
+                WaitingClose();
 				validado=(result==1);
 				if(!validarOn) return;
-				if(validado)alert("Formularios Correctamente Validado");
+				if(validado)$('#modalForm').modal('hide');
 				else {
 					alert("Fallo Validación: Campos Obligatorios Incompletos. Por favor verifique que todos los campos obligatorios marcados con (*) esten completos.");
 				}
@@ -351,6 +354,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         //desahilito btn tomar      
         $("#btontomar").hide();
         $("#formulario").show();
+        $('#crearPDF').show();
     }
     function deshabilitar(){
         // habilito btn tomar
@@ -361,6 +365,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         $("#guardarComentario").hide();
         $("#comentario").hide();
         $("#formulario").hide();
+        $('#crearPDF').hide();
     }    
 
     // Volver al atras
@@ -408,6 +413,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
     var validado=($('#idform').val()==0);           
     function terminarTarea(){
         if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+        WaitingOpen('Cerrando Tarea');
         var idTarBonita = $('#idTarBonita').val();
         //alert(idTarBonita);
         $.ajax({
@@ -417,7 +423,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
             },
             url: 'index.php/Tarea/terminarTarea',
             success: function(data) {
-                    
+                     WaitingClose();
                     // toma a tarea exitosamente
                     if(data['reponse_code'] == 204){
                         $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
@@ -529,7 +535,7 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
     });
 
     // evento de cierre de modal guarda parcialmente los datos
-    function GuardarFormulario() {   
+    function GuardarFormulario(validarOn) {   
         
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
@@ -550,16 +556,18 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         
             var inpValor = $(imgs[i]).val();
             var idValor = $(imgs[i]).attr('name');
-            //console.log("idValor: "+idValor);
+            
             // si tiene algun valor (antes de subir img)
             if (inpValor != "") {
                 //al subir primera img
+                console.log("T: "+idValor+" >> "+inpValor);
                 formData.append(idValor, inpValor);
             }else{
                 // sino sube img guarda la del auxiliar         
-                inpValor = auxArray[i]; //valor del input auxiliar
-                //console.table(inpValor);
-                formData.append(idValor, inpValor);
+                // inpValor = auxArray[i]; //valor del input auxiliar
+                // console.log("F": idValor+" >> "+inpValor);
+                // formData.append(idValor, inpValor);
+                formData.delete(idValor);
             }      
         }   
 
@@ -577,8 +585,8 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         for (var i = 0; i < check.length; i++){
             //var chekValor = $(check[i]).val();
             var idCheckValor = $(check[i]).attr('name');
-            console.log('valor: ');
-            console.log(idCheckValor);
+            // console.log('valor: ');
+            // console.log(idCheckValor);
             if ($(check[i]).is(':checked')){
                 chekValor = 'tilde';
             }else{
@@ -599,23 +607,23 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
         processData:false,
         
         success:function(respuesta){
-        GuardarValorInfoTecnico();
-        getImgValor();
+            ValidarObligatorios(validarOn);
+            GuardarValorInfoTecnico();
+            getImgValor();
             if (respuesta ==="exito") {
                 
             }
             else if(respuesta==="error"){
                 alert("Los datos no se han podido guardar");
+                
             }
             else{
-                //$("#msg-error").show();
-                //$(".list-errors").html(respuesta);
-                //alert("Los datos no se han guardado");
+           
             }
         }
         });
 
-    });
+    };
 
     function GuardarValorInfoTecnico(){
         var idForm = <?php echo $idForm;?>;
@@ -625,10 +633,12 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
             type:'POST',
             data:{'PETR_ID':idPed,'FORM_ID':idForm},
             success:function(respuesta){
-                alert("Guardado");
+               WaitingClose();
             },
             error:function(respuesta){
+                WaitingClose();
                 alert("Error");
+
             }
         });
     }
@@ -644,8 +654,8 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
 	      var estadoTarea = $('#estadoTarea').val();
 	      // toma id de form asociado a listarea en TJS
 	      var idForm = $('#idform').val();
-	      console.log('id de form: ');
-	      console.log(idForm);
+	    //   console.log('id de form: ');
+	    //   console.log(idForm);
 
 	      // guarda el id form asoc a tarea std en modal para guardar
 	      $('#idformulario').val(idForm);
@@ -758,8 +768,8 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
 	                      id_listarea:id_listarea},
 	              url: 'index.php/Tarea/validarFormGuardado', 
 	              success: function(data){               
-	                      console.log('por sucess: ');
-	                      console.log(data);                   
+	                    //   console.log('por sucess: ');
+	                    //   console.log(data);                   
 	                      if (data == false) {
 	                        $('#error').fadeIn('slow');
 	                      }
@@ -782,18 +792,16 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
   	});
 
     function CerrarModal(){
-        //WaitingOpen('Guardando Formulario');
-        GuardarFormulario();
-        //WaitingClose();
         $('#modalForm').modal('hide');
-        
+        WaitingOpen('Guardando Cambios');
+        GuardarFormulario(false);
     }
 
 </script>
 
 
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 

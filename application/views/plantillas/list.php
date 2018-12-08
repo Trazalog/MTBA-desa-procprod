@@ -18,7 +18,7 @@
             <thead>
               <tr>
                 <th width="20%">Acciones</th>
-                <th width="1%">N°</th>
+                <th>Numero</th>
                 <th>Descripcion</th>
               </tr>
             </thead>
@@ -27,7 +27,7 @@
                 foreach($list as $f)
                 {
 
-                  echo '<tr id="'.$f['id_plantilla'].'">';
+                  echo '<tr>';
                   echo '<td>';
                   
                   if (strpos($permission,'Edit') !== false) {
@@ -44,7 +44,7 @@
                     echo '<i class="fa fa-eye" style="color: #8eb29a; cursor: pointer; margin-left: 15px;" title="Consultar" onclick="Loadplantilla('.$f['id_plantilla'].',\'View\')"></i>';
                   }
                   echo '</td>';
-                  echo '<td style="text-align: left">#'.$f['id_plantilla'].'</td>';
+                  echo '<td style="text-align: left">'.$f['id_plantilla'].'</td>';
                   echo '<td style="text-align: left">'.$f['descripcion'].'</td>';
                   
                   echo '</tr>';
@@ -132,12 +132,16 @@
         });
   });
 
-$(".fa-plus").click(function (e) {  
-    var id = $(this).parents('tr').attr('id');
-    var nombre_plantilla = $(this).parents('tr').find('td:eq(2)').html();
+$(".fa-plus").click(function (e) { 
+  
+    var id = $(this).parents('tr').find('td').eq(1).html();
+    console.log("El id de Plantilla es:");
+    console.log(id);
+    iort= id;
     WaitingOpen();
     $('#content').empty();
-    $("#content").load("<?php echo base_url(); ?>index.php/Plantilla/cargartarea/<?php echo $permission; ?>/"+id+"/");
+    $("#content").load("<?php echo base_url(); ?>index.php/Plantilla/cargartarea/<?php echo $permission; ?>/"+iort+"");
+    
     WaitingClose(); 
 });
 

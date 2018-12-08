@@ -604,7 +604,7 @@
 				if (data['resInsert'] != 0) {
 
 					// agrega mensaje sobre boton Orden trabajo 
-					$('#infoOT').append('<h4>Se ha generado la Orden de Trabajo Nº ' + data['resInsert'] + ', haga click en el boton Orden Trabajo para modificarla</h4>');
+					$('#infoOT').prepend('<h4>Se ha generado la Orden de Trabajo Nº ' + data['resInsert'] + ', haga click en el boton Orden Trabajo para modificarla</h4>');
 
 					// guarda id de ot  para usar
 					$('#idOT').val(data['resInsert']);

@@ -108,8 +108,7 @@
 
                             <div class="col-xs-12 col-sm-4">
                                 <div class="form-group">
-                                    <label>N° de Motor
-                                        <strong style="color: #dd4b39">*</strong>: </label>
+                                    <label>N° de Motor </label>
                                     <input type="text" id="num_motor" class="form-control" />
                                 </div>
                             </div>

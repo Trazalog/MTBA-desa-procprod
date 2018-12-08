@@ -294,12 +294,14 @@ class Tareas extends CI_Model
 	}
 
 	// devuelve id de OT por case_id
-	function getOrdenTrabajoPorCaseId($caseId){
+	function getOrdenTrabajoPorCaseId($caseId,$tipo){
 
 		$this->db->select('orden_trabajo.id_orden,orden_trabajo.cod_interno as tipo');
 		$this->db->from('orden_trabajo');
 		$this->db->join('trj_pedido_trabajo', 'orden_trabajo.petr_id = trj_pedido_trabajo.petr_id');
 		$this->db->where('trj_pedido_trabajo.bpm_id', $caseId);
+		$this->db->where('orden_trabajo.cod_interno',$tipo);
+		
 		$query = $this->db->get();
 
 		if($query->num_rows()>0){
