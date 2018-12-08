@@ -1416,7 +1416,7 @@ $('#fechaProgNueva').datetimepicker(
 </script>
 
 <!-- Modal Asigna usuario -->
-<div class="modal fade" id="modalSale" tabindex="2000" aria-labelledby="myModalLabel" style="display: none;">
+<div class="modal" id="modalSale" tabindex="2000" aria-labelledby="myModalLabel" style="display: none;">
   <div class="modal-dialog" role="document" style="width: 40%">
     <div class="modal-content">
       

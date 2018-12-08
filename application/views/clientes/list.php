@@ -87,6 +87,10 @@
   function guardarCliente() {
     if(!ValidarCampos())return;
     var formData = new FormData($('#form_cliente')[0]);
+    // for (var pair of formData.entries()) {
+    // console.log(pair[0]+ ', ' + pair[1]); 
+    // }
+    // return;
     $.ajax({
       type: 'POST',
       data: formData, cache: false, contentType: false, processData: false,
@@ -172,8 +176,18 @@
         alert("OPERACION FALLIDA");
       }
     });
+    
 
-  } function ActualizarPagina() { //Funcion Resfresca
+  }
+  
+  function ResetForm(){
+    $('#form_cliente')[0].reset();
+    $('#form_cliente').data('bootstrapValidator').resetForm();
+    $('#form_cliente_editar')[0].reset();
+    $('#form_cliente_editar').data('bootstrapValidator').resetForm();
+  }
+
+   function ActualizarPagina() { //Funcion Resfresca
     $('#content').empty();
     $("#content").load("<?php echo base_url(); ?>index.php/Cliente/index/<?php echo $permission; ?>");
 
@@ -248,7 +262,23 @@
 
                 <label style="margin-top: 7px;">Tipo Inscripción<strong style="color: #dd4b39">*</strong>: </label>
 
-                <input type="text" class="form-control" name="tipo_inscripcion">
+                <select class="form-control" name="tipo_inscripcion">
+                  <option value="0"> Seleccionar...</option>
+                  <option value="1"> IVA Responsable Inscripto </option>
+                  <option value="2"> IVA Responsable no Inscripto </option>
+                  <option value="3"> IVA no Responsable </option>
+                  <option value="4"> IVA Sujeto Exento </option>
+                  <option value="5"> Consumidor Final </option>
+                  <option value="6"> Responsable Monotributo </option>
+                  <option value="7"> Sujeto no Categorizado </option>
+                  <option value="8"> Proveedor del Exterior </option>
+                  <option value="9"> Cliente del Exterior </option>
+                  <option value="10"> IVA Liberado – Ley Nº 19.640 </option>
+                  <option value="11"> IVA Responsable Inscripto – Agente de Percepción </option>
+                  <option value="12"> Pequeño Contribuyente Eventual </option>
+                  <option value="13"> Monotributista Social </option>
+                  <option value="14"> Pequeño Contribuyente Eventual Social </option>
+                </select>
 
               </div>
               <div class="form-group">
@@ -271,7 +301,7 @@
       <div class="modal-footer">
 
         <button type="button" class="btn btn-primary" onclick="guardarCliente()">Guardar</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="ResetForm()">Cerrar</button>
 
       </div>
     </div><!-- /.modal-content -->
@@ -322,7 +352,23 @@
 
                 <label style="margin-top: 7px;">Tipo Inscripción<strong style="color: #dd4b39">*</strong>: </label>
 
-                <input type="text" class="form-control" name="tipo_inscripcion">
+                <select class="form-control" name="tipo_inscripcion">
+                  <option value="0"> Seleccionar...</option>
+                  <option value="1"> IVA Responsable Inscripto </option>
+                  <option value="2"> IVA Responsable no Inscripto </option>
+                  <option value="3"> IVA no Responsable </option>
+                  <option value="4"> IVA Sujeto Exento </option>
+                  <option value="5"> Consumidor Final </option>
+                  <option value="6"> Responsable Monotributo </option>
+                  <option value="7"> Sujeto no Categorizado </option>
+                  <option value="8"> Proveedor del Exterior </option>
+                  <option value="9"> Cliente del Exterior </option>
+                  <option value="10"> IVA Liberado – Ley Nº 19.640 </option>
+                  <option value="11"> IVA Responsable Inscripto – Agente de Percepción </option>
+                  <option value="12"> Pequeño Contribuyente Eventual </option>
+                  <option value="13"> Monotributista Social </option>
+                  <option value="14"> Pequeño Contribuyente Eventual Social </option>
+                </select>
 
               </div>
               <div class="form-group">
@@ -366,7 +412,7 @@
       <div class="modal-footer">
 
         <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="eliminarCliente()">Eliminar</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="ResetForm()">Cerrar</button>
 
       </div>
     </div><!-- /.modal-content -->
