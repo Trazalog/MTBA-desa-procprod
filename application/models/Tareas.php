@@ -783,7 +783,7 @@ class Tareas extends CI_Model
 		}
 
 		//Ver OCS en otras pantallas
-		function ObteneRepuesto($idPedido){
+		function ObtenerRepuesto($idPedido){
 			$this->db->select('VALOR');
 			$this->db->where('PETR_ID',$idPedido);
 			$this->db->where('NOM_VAR',"repuesto");

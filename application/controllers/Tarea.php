@@ -540,7 +540,11 @@ class Tarea extends CI_Controller {
 				case 'Confecciona OCs para compra de respuestos':
 					$this->load->view('tareas/view_12',$data);
 					break;
-				case 'Autoriza OCs para compra de respuestos':
+				case 'Autoriza OCs para compra de repuestos':
+					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_13',$data);
+					break;
+				case 'Revisa OCs para compra de repuestos':
 					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
 					$this->load->view('tareas/view_13',$data);
 					break;
@@ -548,19 +552,19 @@ class Tarea extends CI_Controller {
 					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
 					$this->load->view('tareas/view_15',$data);
 					break;
-				case 'Recepción y control de repuestos del cliente para Rectificación':
+				case 'Recepción y control de repuestos del cliente para rectificación':
 					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
 					$this->load->view('tareas/view_16',$data);
 					break;
-				case 'Recepción y Control de Repuestos del Cliente para Armado':
+				case 'Recepción y control de repuestos del cliente para armado':
 					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
 					$this->load->view('tareas/view_16',$data);
 					break;
-				case 'Recepción y control de Repuestos comprados para Rectificación':
+				case 'Recepción y control de repuestos comprados para rectficación':
 					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
 					$this->load->view('tareas/view_16',$data);
 					break;
-				case 'Recepción y control de Repuestos comprados para Armado':
+				case 'Recepción y control de repuestos comprados para armado':
 					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
 					$this->load->view('tareas/view_16',$data);
 					break;
