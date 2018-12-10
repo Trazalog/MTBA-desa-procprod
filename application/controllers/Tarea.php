@@ -537,6 +537,33 @@ class Tarea extends CI_Controller {
 					$data['tipo_tarea'] = 'Armado';
 					$this->load->view('tareas/view_asigPersPlanif', $data);
 				break;
+				case 'Confecciona OCs para compra de respuestos':
+					$this->load->view('tareas/view_12',$data);
+					break;
+				case 'Autoriza OCs para compra de respuestos':
+					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_13',$data);
+					break;
+				case 'Emite OCs a proveedores de repuestos':
+					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_15',$data);
+					break;
+				case 'Recepción y control de repuestos del cliente para Rectificación':
+					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_16',$data);
+					break;
+				case 'Recepción y Control de Repuestos del Cliente para Armado':
+					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_16',$data);
+					break;
+				case 'Recepción y control de Repuestos comprados para Rectificación':
+					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_16',$data);
+					break;
+				case 'Recepción y control de Repuestos comprados para Armado':
+					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_16',$data);
+					break;
 				default:
 					$this->load->view('tareas/view_', $data);
 				break;
@@ -769,7 +796,19 @@ class Tarea extends CI_Controller {
         $data['listAct'] = $this->Overviews->ObtenerActividades($caseId,$param);
         $data['listArch'] = $this->Overviews->ObtenerActividadesArchivadas($caseId,$param);
         return $data;
-    }
+	}
+	
+	public function GuardarValorRepuesto(){
+		$data = $this->input->post();
+		$result = $this->Tareas->GuardarValorRepuesto($data);
+		echo json_encode($result);
+	}
+
+	public function GuardarValorOcRepuesto(){
+		$data = $this->input->post();
+		$result = $this->Tareas->GuardarValorOcRepuesto($data);
+		echo json_encode($result);
+	}
 
     public function GuardarValorPresupuesto(){
 		$data = $this->input->post();
