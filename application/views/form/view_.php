@@ -1,8 +1,10 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 
 <section class="content">
+
 	<div class="row">
 		<div class="col-xs-12">
+			
 			<div class="box">
 				<div class="box-header">
 					<select id="formularios">
@@ -164,6 +166,7 @@
 
 
 <script>
+
 	$('#formularios').change(function() {
 		console.log("Formulario Seleccionado..." + this.value);
 		var idForm = this.value;

@@ -540,7 +540,6 @@ class Tareas extends CI_Model
 		$this->db->from('tareas');
 		$this->db->where('tareas.id_tarea', $idTareaStd);
 		$query = $this->db->get();
-
 		if ($query->num_rows()!=0){
 	 		return $query->row('form_asoc');
 	 	}else{
@@ -767,7 +766,35 @@ class Tareas extends CI_Model
 					return '';
 				}
 
+		}
+
+		//Ver OCS en otras pantallas
+		function ObtenerOc_repuesto($idPedido){
+			$this->db->select('VALOR');
+			$this->db->where('PETR_ID',$idPedido);
+			$this->db->where('NOM_VAR',"Oc_repuesto");
+			$query = $this->db->get('frm_formularios_completados');
+			if($query->num_rows()!=0){
+				return $query->result_array()[0]['VALOR'];
+			}else{
+				return '';
 			}
+
+		}
+
+		//Ver OCS en otras pantallas
+		function ObtenerRepuesto($idPedido){
+			$this->db->select('VALOR');
+			$this->db->where('PETR_ID',$idPedido);
+			$this->db->where('NOM_VAR',"repuesto");
+			$query = $this->db->get('frm_formularios_completados');
+			if($query->num_rows()!=0){
+				return $query->result_array()[0]['VALOR'];
+			}else{
+				return '';
+			}
+
+		}
 
 
 	/**
@@ -826,10 +853,29 @@ class Tareas extends CI_Model
         $response = $this->parseHeaders( $http_response_header );
         //dump($response);
 		return $response;
-    }
+	}
+	
 
 
-    public function GuardarValorPresupuesto($data){
+	//Repuesto
+	public function GuardarValorRepuesto($data){
+		$this->db->where('PETR_ID',$data['PETR_ID']);
+		$this->db->where('FORM_ID',$data['FORM_ID']);
+		$query = $this->db->update('frm_formularios_completados',array('NOM_VAR'=>'repuesto'));
+	return $query;
+}
+ // Repuesto
+
+ 	//Oc Repuesto
+	    public function GuardarValorOcRepuesto($data){
+			$this->db->where('PETR_ID',$data['PETR_ID']);
+			$this->db->where('FORM_ID',$data['FORM_ID']);
+			$query = $this->db->update('frm_formularios_completados',array('NOM_VAR'=>'Oc_repuesto'));
+		return $query;
+	}
+	 //Oc Repuesto
+
+    	public function GuardarValorPresupuesto($data){
 			$this->db->where('PETR_ID',$data['PETR_ID']);
 			$this->db->where('FORM_ID',$data['FORM_ID']);
 			$query = $this->db->update('frm_formularios_completados',array('NOM_VAR'=>'presupuesto'));

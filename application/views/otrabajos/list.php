@@ -7,7 +7,7 @@
           <h3 class="box-title">Orden de trabajo</h3>
           <?php
           if (strpos($permission,'Add') !== false) {
-            echo '<button class="btn btn-block btn-success" style="width: 100px; margin-top: 10px;"  data-toggle="modal" data-target="#modalagregar" id="btnAdd">Agregar</button>'; 
+            echo '<button class="btn btn-block btn-success" style="width: 100px; margin-top: 10px;"  data-toggle="modal">Agregar</button>'; 
           }
 
           //// USUARIO LOGUEADO Y GRUPO DE USUARIO
@@ -48,7 +48,7 @@
                     //if($a['id_usuario_a'] == $usrId  &&  (($a['grpId']==='1') || ($a['grpId']=== '5'))){ //$a['grpId']==1 //o el grupo es supervisor tarea//if($a['id_usuario_a'] == $usrId || $a['id_usuario_a']== 1){ 
                                          
                       if (($a['estado'] !=='T') && ($a['estado'] !=='E')  && ($a['estado'] !=='TE')) {
-                     
+                       
                         $id=$a['id_orden'];
                         echo '<tr id="'.$id.'" class="'.$id.'">';
                         echo '<td class="acc">';
