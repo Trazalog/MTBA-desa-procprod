@@ -1359,7 +1359,8 @@ function guardarmodif(){
                 url: 'index.php/Otrabajo/ModificarUsuario', //index.php/
                 success: function(data){
 
-                        console.log(data);                        
+                        console.log(data);         
+                        $('#modalSale').modal('hide');                
                         recargaAsignaPersPlanif();                      
                       },
                   
@@ -1416,12 +1417,12 @@ $('#fechaProgNueva').datetimepicker(
 </script>
 
 <!-- Modal Asigna usuario -->
-<div class="modal fade" id="modalSale" tabindex="2000" aria-labelledby="myModalLabel" style="display: none;">
+<div class="modal" id="modalSale" tabindex="2000" aria-labelledby="myModalLabel" style="display: none;">
   <div class="modal-dialog" role="document" style="width: 40%">
     <div class="modal-content">
       
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerro()"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel"><span id="modalActionSale" class="fa fa-user" style="color: #A9A9A9" > </span> Asignación de usuario</h4> 
       </div>
        
@@ -1443,7 +1444,7 @@ $('#fechaProgNueva').datetimepicker(
         </div>
       </div>       
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerro()">Cancelar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
         <button type="button" class="btn btn-primary" id="reset" onclick="guardarmodif()">Guardar</button>
       </div>
 
@@ -1452,12 +1453,12 @@ $('#fechaProgNueva').datetimepicker(
 </div>
 
 <!-- Modal Asignación de Fecha -->
-<div class="modal fade" id="modalfecha" tabindex="2000" aria-labelledby="myModalLabel" style="display: none;">
+<div class="hidden modal fade" id="modalfecha" tabindex="2000" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document" style="width: 40%">
     <div class="modal-content">
       
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="cerro()"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel"><span id="modalActionSale" class="fa fa-user" style="color: #A9A9A9" > </span> Asignación de Fecha</h4> 
       </div>
 
@@ -1474,7 +1475,7 @@ $('#fechaProgNueva').datetimepicker(
         </div>
       </div>       
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cerro()">Cancelar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
         <button type="button" class="btn btn-primary" id="reset" data-dismiss="modal" onclick="guardarfecha()">Guardar</button>
       </div>
 

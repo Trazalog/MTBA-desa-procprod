@@ -552,8 +552,9 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
         url: 'index.php/Cliente/Modificar_Cliente',
         success: function (result) {
             WaitingClose();
-            ActualizarPagina();
             $('#modalEditar').modal('hide');
+            ActualizarPagina();
+            
 
         },
         error: function (result) {
@@ -570,6 +571,12 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
         );
 
     }
+
+    function ResetForm(){
+        $('#form_cliente_editar')[0].reset();
+        $('#form_cliente_editar').data('bootstrapValidator').resetForm();
+    }
+
 </script>
 
 <!-- Modal -->
@@ -617,7 +624,23 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
 
                 <label style="margin-top: 7px;">Tipo Inscripción<strong style="color: #dd4b39">*</strong>: </label>
 
-                <input type="text" class="form-control" name="tipo_inscripcion">
+                <select class="form-control" name="tipo_inscripcion">
+                  <option value="0"> Seleccionar...</option>
+                  <option value="1"> IVA Responsable Inscripto </option>
+                  <option value="2"> IVA Responsable no Inscripto </option>
+                  <option value="3"> IVA no Responsable </option>
+                  <option value="4"> IVA Sujeto Exento </option>
+                  <option value="5"> Consumidor Final </option>
+                  <option value="6"> Responsable Monotributo </option>
+                  <option value="7"> Sujeto no Categorizado </option>
+                  <option value="8"> Proveedor del Exterior </option>
+                  <option value="9"> Cliente del Exterior </option>
+                  <option value="10"> IVA Liberado – Ley Nº 19.640 </option>
+                  <option value="11"> IVA Responsable Inscripto – Agente de Percepción </option>
+                  <option value="12"> Pequeño Contribuyente Eventual </option>
+                  <option value="13"> Monotributista Social </option>
+                  <option value="14"> Pequeño Contribuyente Eventual Social </option>
+                </select>
 
               </div>
               <div class="form-group">
@@ -647,4 +670,3 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-<!-- Modal -->
