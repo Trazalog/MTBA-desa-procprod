@@ -7,7 +7,7 @@
           <h3 class="box-title">Orden de trabajo</h3>
           <?php
           if (strpos($permission,'Add') !== false) {
-            echo '<button class="btn btn-block btn-success" style="width: 100px; margin-top: 10px;"  data-toggle="modal">Agregar</button>'; 
+               echo '<button class="btn btn-block btn-success" style="width: 100px; margin-top: 10px;"  data-toggle="modal" data-target="#modalagregar" id="btnAdd">Agregar</button>';  
           }
 
           //// USUARIO LOGUEADO Y GRUPO DE USUARIO
