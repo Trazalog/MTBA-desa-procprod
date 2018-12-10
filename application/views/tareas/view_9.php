@@ -693,7 +693,7 @@ function regresa(){
     });
 
     // evento de cierre de modal guarda parcialmente los datos
-   function GuardarFormulario() {   
+   function GuardarFormulario(validarOn) {   
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
         var imgs = $('input.archivo');
@@ -754,7 +754,6 @@ function regresa(){
         /* Ajax de Grabado en BD */
       
         $.ajax({
-        async:false,
         url:'index.php/Tarea/guardarForm',
         type:'POST',
         data:formData,
@@ -765,8 +764,8 @@ function regresa(){
         success:function(respuesta){
            
             GuardarValorCotizacion();
+            ValidarObligatorios(validarOn);
             getImgValor();
-            WaitingClose();
             if (respuesta ==="exito") {
                 
             }
@@ -947,7 +946,7 @@ function regresa(){
     
     function ValidarCampos(){
         WaitingOpen('Validando Formulario');
-        ValidarObligatorios(true);
+        GuardarFormulario(true);
     }   
 
   	$('.fecha').datepicker({
@@ -983,7 +982,7 @@ data();
 function CerrarModal(){
     $('#modalForm').modal('hide');
     WaitingOpen('Guardando Cambios');
-    GuardarFormulario();
+    GuardarFormulario(false);
     //WaitingClose();
    
     

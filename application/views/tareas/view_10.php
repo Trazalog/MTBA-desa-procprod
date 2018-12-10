@@ -280,7 +280,7 @@
 
     function ValidarCampos(){
         WaitingOpen('Validando Formulario');
-        ValidarObligatorios(true);
+        GuardarFormulario(true);
     }   
 	function ValidarObligatorios(validarOn){
 		console.log("Validando Campos Obligatorios...");
@@ -503,7 +503,7 @@
     });
 
     // evento de cierre de modal guarda parcialmente los datos
-    function GuardarFormulario(){   
+    function GuardarFormulario(validarOn){   
         
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
@@ -569,12 +569,12 @@
         processData:false,
         
         success:function(respuesta){
-            WaitingClose();
             getImgValor();
 
 
            // console.log(respuesta);
             GuardarValorPresupuesto();
+            ValidarObligatorios(validarOn);
             if (respuesta ==="exito") {
                 
             }
@@ -602,7 +602,7 @@
             type:'POST',
             data:{'PETR_ID':idPed,'FORM_ID':idForm},
             success:function(respuesta){
-                alert("Guardado");
+                
             },
             error:function(respuesta){
                 alert("Error");
@@ -766,7 +766,7 @@
    function CerrarModal(){
     $('#modalForm').modal('hide');
     WaitingOpen('Guardando Cambios');
-    GuardarFormulario();
+    GuardarFormulario(false);
     //WaitingClose();
    
     
