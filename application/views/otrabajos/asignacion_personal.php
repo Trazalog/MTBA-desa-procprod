@@ -1339,6 +1339,7 @@ function traer_usuarios(){
 function guardarmodif(){
 
   console.log("Estoy guardando usuario asignado");
+ 
   var idusu= $('#nomusu').val();
 
   if (idusu == -1) {
@@ -1348,6 +1349,7 @@ function guardarmodif(){
     $('.errorSelec').hide();
     $('#modalSale').modal('hide'); 
   }
+  WaitingOpen('Guardando Cambios');
   
   console.log("El id de usuario es:");
   console.log(idusu);
@@ -1361,7 +1363,8 @@ function guardarmodif(){
 
                         console.log(data);         
                         $('#modalSale').modal('hide');                
-                        recargaAsignaPersPlanif();                      
+                        recargaAsignaPersPlanif();          
+                                 
                       },
                   
                 error: function(result){
@@ -1406,6 +1409,8 @@ function recargaAsignaPersPlanif(){
 
   var numord= $('#numord').val();
   $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/"+numord+"/"+idTarea+"/");  
+  WaitingClose();  
+  $('#modalSale').modal('hide'); 
 }
 
 $('#fechaProgNueva').datetimepicker(
