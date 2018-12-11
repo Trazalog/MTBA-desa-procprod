@@ -131,7 +131,7 @@
                                                 <div class="col-xs-12">
                                                     <!-- Modal formulario tarea -->
                                                     <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjunte OCs para compra de repuestos
+                                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjunte Repuestos al Cliente
                                                     </button>';}?>
                                                 </div>
                                             </div>
@@ -767,7 +767,6 @@
         WaitingOpen('Guardando Cambios');
         GuardarFormulario(false);
     }
-
 
 </script>
 

@@ -545,11 +545,42 @@ class Tarea extends CI_Controller
 			case 'Analiza Vigencia del presupuesto aprobado':
 				$this->load->view('tareas/view_11', $data);
 				break;
-			case 'Asignar Recursos para Reparación':
-				$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId, 'Reparacion');
-				$data['idOT'] = $ot['id_orden'];
-				$data['tipo_tarea'] = 'Reparacion';
-				$this->load->view('tareas/view_asigPersPlanif', $data);
+				case 'Confecciona OCs para compra de respuestos':
+					$this->load->view('tareas/view_12',$data);
+					break;
+				case 'Autoriza OCs para compra de repuestos':
+					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_13',$data);
+					break;
+				case 'Revisa OCs para compra de repuestos':
+					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_13',$data);
+					break;
+				case 'Solicitar el envio de repuestos al cliente':
+					$this->load->view('tareas/view_14',$data);
+					break;
+				case 'Recepción y control de repuestos del cliente para rectificación':
+					$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
+					$this->load->view('tareas/view_17',$data);
+					break;
+				case 'Recepción y control de repuestos del cliente para armado':
+					$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
+					$this->load->view('tareas/view_17',$data);
+					break;
+				case 'Emite OCs a proveedores de repuestos':
+					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_15',$data);
+					break;
+				case 'Recepción y control de repuestos comprados para rectficación':
+					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_16',$data);
+					break;
+				case 'Recepción y control de repuestos comprados para armado':
+					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
+					$this->load->view('tareas/view_16',$data);
+					break;
+				default:
+					$this->load->view('tareas/view_', $data);
 				break;
 			case 'Asignar Recursos para Armado':
 				$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId, 'Armado');

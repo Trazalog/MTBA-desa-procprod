@@ -125,13 +125,15 @@
                                     
                                         <div class="box-body"> 
 
-                                           
+                                            <div class="form-group">
+                                                <label style="margin-top: 7px;"> Archivo Adjunto de Repuestos del Cliente: <a id="linkRepuestoCliente" target="_blank" <?php echo ($repuestocliente==''? '':'href="'.base_url().$repuestocliente.'"');?>>Ver y Descargar</a></label>
+                                            </div>
                                                             
                                             <div class="form-group">
                                                 <div class="col-xs-12">
                                                     <!-- Modal formulario tarea -->
                                                     <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjunte OCs para compra de repuestos
+                                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Repuestos
                                                     </button>';}?>
                                                 </div>
                                             </div>
@@ -276,10 +278,10 @@
 
 <script> //Validacion de Formulario
 
-    function ValidarCampos(){
+     function ValidarCampos(){
         WaitingOpen('Validando Formulario');
         GuardarFormulario(true);
-    }   
+    }  
 	function ValidarObligatorios(validarOn){
 		console.log("Validando Campos Obligatorios...");
 		var form_id = $('#idform').val();
@@ -567,12 +569,12 @@
         processData:false,
         
         success:function(respuesta){
-            //WaitingClose();
+            WaitingClose();
             getImgValor();
 
 
            // console.log(respuesta);
-            GuardarValorOcRepuesto();
+            GuardarValorRepuesto1();
             ValidarObligatorios(validarOn);
             if (respuesta ==="exito") {
                 
@@ -592,12 +594,12 @@
 
 
 
-    //Ocs de Repuesto
-    function GuardarValorOcRepuesto(){
+   //Repuestos
+   function GuardarValorRepuesto1(){
         var idForm = <?php echo $idForm;?>;
         var idPed = <?php echo $idPedTrabajo;?>;
         $.ajax({
-            url:'index.php/Tarea/GuardarValorOcRepuesto',
+            url:'index.php/Tarea/GuardarValorRepuesto1',
             type:'POST',
             data:{'PETR_ID':idPed,'FORM_ID':idForm},
             success:function(respuesta){
@@ -608,7 +610,7 @@
             }
         });
     }
-    //Fin de Ocs de repuesto
+    //Fin de Repuestos
 
 
     // trae valores validos para llenar form asoc.  
@@ -767,6 +769,7 @@
         WaitingOpen('Guardando Cambios');
         GuardarFormulario(false);
     }
+}
 
 
 </script>
