@@ -9,6 +9,7 @@ class Tarea extends CI_Controller
 		$this->load->model('Bonitas');
 		$this->load->model('Notapedidos');
 		$this->load->model('Overviews');
+		$this->load->model('PedidoTrabajos');
 	}
 	// Carga lista de OT
 	public function index($permission)
@@ -525,7 +526,7 @@ class Tarea extends CI_Controller
 			case 'Cotización de trabajo Industrial':
 				$this->load->model('Preinformes');
 				$data['formularios'] = array(2500);
-				$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0][ 'id_orden']);
+				//$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0][ 'id_orden']);
 				$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
 				$this->load->view('tareas/view_9', $data);
 				break;
@@ -568,8 +569,9 @@ class Tarea extends CI_Controller
 				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
 				$this->load->view('tareas/view_13',$data);
 				break;
-			case 'Solicitar el envio de repuestos al cliente':
-				$this->load->view('tareas/view_14',$data);
+			case 'Emite OCs a proveedores de repuestos':
+				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
+				$this->load->view('tareas/view_15', $data);
 				break;
 			case 'Recepción y control de repuestos del cliente para rectificación':
 				$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
@@ -590,6 +592,11 @@ class Tarea extends CI_Controller
 			case 'Recepción y control de repuestos comprados para armado':
 				$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
 				$this->load->view('tareas/view_16',$data);
+				break;
+			case 'Cotización, confección de presupuesto y envio al ciente de Trabajo Liviano':
+				//$data['list'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($data['idPedTrabajo']);
+				$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
+				$this->load->view('tareas/view_18',$data);
 				break;
 			default:
 				$this->load->view('tareas/view_', $data);
@@ -831,6 +838,12 @@ class Tarea extends CI_Controller
 		$data['listAct'] = $this->Overviews->ObtenerActividades($caseId, $param);
 		$data['listArch'] = $this->Overviews->ObtenerActividadesArchivadas($caseId, $param);
 		return $data;
+	}
+
+	public function GuardarValorRepuesto1(){
+		$data = $this->input->post();
+		$result = $this->Tareas->GuardarValorRepuesto1($data);
+		echo json_encode($result);
 	}
 
 	public function GuardarValorRepuesto()

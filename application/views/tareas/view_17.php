@@ -569,7 +569,7 @@
         processData:false,
         
         success:function(respuesta){
-            WaitingClose();
+          
             getImgValor();
 
 
@@ -769,7 +769,7 @@
         WaitingOpen('Guardando Cambios');
         GuardarFormulario(false);
     }
-}
+
 
 
 </script>

@@ -572,7 +572,7 @@
 
 
            // console.log(respuesta);
-            GuardarValorOcRepuesto();
+            GuardarValorRepuesto1();
             ValidarObligatorios(validarOn);
             if (respuesta ==="exito") {
                 
@@ -593,11 +593,11 @@
 
 
     //Ocs de Repuesto
-    function GuardarValorOcRepuesto(){
+    function GuardarValorRepuesto1(){
         var idForm = <?php echo $idForm;?>;
         var idPed = <?php echo $idPedTrabajo;?>;
         $.ajax({
-            url:'index.php/Tarea/GuardarValorOcRepuesto',
+            url:'index.php/Tarea/GuardarValorRepuesto1',
             type:'POST',
             data:{'PETR_ID':idPed,'FORM_ID':idForm},
             success:function(respuesta){
