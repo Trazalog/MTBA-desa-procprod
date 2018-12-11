@@ -782,7 +782,21 @@ class Tareas extends CI_Model
 
 		}
 
-		//Ver OCS en otras pantallas
+			//repuesto cliente
+			function ObtenerRepuesto1($idPedido){
+				$this->db->select('VALOR');
+				$this->db->where('PETR_ID',$idPedido);
+				$this->db->where('NOM_VAR',"repuestocliente");
+				$query = $this->db->get('frm_formularios_completados');
+				if($query->num_rows()!=0){
+					return $query->result_array()[0]['VALOR'];
+				}else{
+					return '';
+				}
+	
+			}
+
+		//Ver repuestos balderramo
 		function ObtenerRepuesto($idPedido){
 			$this->db->select('VALOR');
 			$this->db->where('PETR_ID',$idPedido);
@@ -855,16 +869,23 @@ class Tareas extends CI_Model
 		return $response;
 	}
 	
+	//Repuesto del cliente
+	public function GuardarValorRepuesto1($data){
+		$this->db->where('PETR_ID',$data['PETR_ID']);
+		$this->db->where('FORM_ID',$data['FORM_ID']);
+		$query = $this->db->update('frm_formularios_completados',array('NOM_VAR'=>'repuestocliente'));
+	return $query;
+	}
+	 // Repuesto
 
-
-	//Repuesto
+	//Repuesto de balderramo
 	public function GuardarValorRepuesto($data){
 		$this->db->where('PETR_ID',$data['PETR_ID']);
 		$this->db->where('FORM_ID',$data['FORM_ID']);
 		$query = $this->db->update('frm_formularios_completados',array('NOM_VAR'=>'repuesto'));
 	return $query;
-}
- // Repuesto
+	}
+ 	// Repuesto
 
  	//Oc Repuesto
 	    public function GuardarValorOcRepuesto($data){

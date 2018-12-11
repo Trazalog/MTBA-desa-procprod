@@ -126,7 +126,7 @@
                                         <div class="box-body"> 
 
                                             <div class="form-group">
-                                                <label style="margin-top: 7px;"> Archivo Adjunto de Repuestos: <a id="linkRepuesto" target="_blank" <?php echo ($repuesto==''? '':'href="'.base_url().$repuesto.'"');?>>Ver y Descargar</a></label>
+                                                <label style="margin-top: 7px;"> Archivo Adjunto de Repuestos Balderramo: <a id="linkRepuesto" target="_blank" <?php echo ($repuesto==''? '':'href="'.base_url().$repuesto.'"');?>>Ver y Descargar</a></label>
                                             </div>
                                                             
                                             <div class="form-group">
