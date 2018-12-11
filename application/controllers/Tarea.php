@@ -482,15 +482,15 @@ class Tarea extends CI_Controller
 				break;
 			case 'Entender si seguir esperando':
 				$this->load->view('tareas/view_2', $data);
-				break;
+				break;					
 			case 'Análisis financiero y emisión de reportes':
 				$this->load->view('tareas/view_3', $data);
 				break;
-				// case 'Solicita ok al cliente para iniciar diagnostico':					
-				// 	$this->load->model('AceptacionTrabajos');
-				// 	$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
-				// 	$this->load->view('tareas/view_', $data);
-				// 	break;
+			// case 'Solicita ok al cliente para iniciar diagnostico':					
+			// 	$this->load->model('AceptacionTrabajos');
+			// 	$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
+			// 	$this->load->view('tareas/view_', $data);
+			// 	break;
 			case 'Evalua y envia presupuesto al cliente':
 				$this->load->model('AceptacionTrabajos');
 				$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
@@ -498,26 +498,26 @@ class Tarea extends CI_Controller
 				break;
 			case 'Planificar Diagnóstico':
 				$data['tipo_tarea'] = 'Diagnostico';
-				$data['nombre_boton_planificacion'] = 'Orden de Trabajo';
+				$data['nombre_boton_planificacion'] = 'Orden de Trabajo';						
 				$this->load->view('tareas/view_planificacion', $data);
 				break;
 			case 'Programar Armado':
 				$data['tipo_tarea'] = 'Armado';
-				$data['nombre_boton_planificacion'] = 'Programar Armado';
+				$data['nombre_boton_planificacion'] = 'Programar Armado';					
 				$this->load->view('tareas/view_planificacion', $data);
 				break;
 			case 'Programar Reparación':
 				$data['tipo_tarea'] = 'Reparacion';
-				$data['nombre_boton_planificacion'] = 'Programar Reparacion';
+				$data['nombre_boton_planificacion'] = 'Programar Reparacion';					
 				$this->load->view('tareas/view_planificacion', $data);
 				break;
 			case 'Asignar personal a Planificación':		//con comentarios listo
-				$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId, 'Diagnostico');
+				$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId,'Diagnostico');
 				$data['idOT'] = $ot['id_orden'];
 				$data['tipo_tarea'] = 'Diagnostico';
 				$this->load->view('tareas/view_asigPersPlanif', $data);
-				break;
-			case 'Revisión Diagnóstico':
+				break;				
+				case 'Revisión Diagnóstico':
 				$this->load->model('Preinformes');
 				$data['formularios'] = $this->Preinformes->ObtenerIdFormulariosCompletados($data['idPedTrabajo']);
 				$this->load->view('tareas/view_8', $data);
@@ -525,7 +525,7 @@ class Tarea extends CI_Controller
 			case 'Cotización de trabajo Industrial':
 				$this->load->model('Preinformes');
 				$data['formularios'] = array(2500);
-				$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0]['id_orden']);
+				$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0][ 'id_orden']);
 				$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
 				$this->load->view('tareas/view_9', $data);
 				break;
@@ -536,92 +536,64 @@ class Tarea extends CI_Controller
 			case 'Revisión Diagnóstico por el Coordinador':
 				$idForm = 2500;
 				$data['idForm'] = $idForm;
-				if (!$this->Tareas->getEstadoForm($idTarBonita)) $this->Tareas->setFormInicial($idTarBonita, $idForm, $data['idPedTrabajo']);
-				$data['form'] = $this->Tareas->get_form($idTarBonita, $idForm);
-                    //dump_exit($data['form']);
-				$data['list'] = $this->Tareas->tareasPorSector($caseId);
+				if(!$this->Tareas->getEstadoForm($idTarBonita))$this->Tareas->setFormInicial($idTarBonita,$idForm,$data['idPedTrabajo']);
+				$data['form']   = $this->Tareas->get_form($idTarBonita,$idForm);
+				//dump_exit($data['form']);
+				$data['list']   = $this->Tareas->tareasPorSector($caseId);
 				$this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
 				break;
 			case 'Analiza Vigencia del presupuesto aprobado':
-				$this->load->view('tareas/view_11', $data);
+				$this->load->view('tareas/view_11',$data);
 				break;
-				case 'Confecciona OCs para compra de respuestos':
-					$this->load->view('tareas/view_12',$data);
-					break;
-				case 'Autoriza OCs para compra de repuestos':
-					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
-					$this->load->view('tareas/view_13',$data);
-					break;
-				case 'Revisa OCs para compra de repuestos':
-					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
-					$this->load->view('tareas/view_13',$data);
-					break;
-				case 'Solicitar el envio de repuestos al cliente':
-					$this->load->view('tareas/view_14',$data);
-					break;
-				case 'Recepción y control de repuestos del cliente para rectificación':
-					$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
-					$this->load->view('tareas/view_17',$data);
-					break;
-				case 'Recepción y control de repuestos del cliente para armado':
-					$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
-					$this->load->view('tareas/view_17',$data);
-					break;
-				case 'Emite OCs a proveedores de repuestos':
-					$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
-					$this->load->view('tareas/view_15',$data);
-					break;
-				case 'Recepción y control de repuestos comprados para rectficación':
-					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
-					$this->load->view('tareas/view_16',$data);
-					break;
-				case 'Recepción y control de repuestos comprados para armado':
-					$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
-					$this->load->view('tareas/view_16',$data);
-					break;
-				default:
-					$this->load->view('tareas/view_', $data);
-				break;
+			case 'Asignar Recursos para Reparación':
+				$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId,'Reparacion');
+				$data['idOT'] = $ot['id_orden'];
+				$data['tipo_tarea'] = 'Reparacion';
+				$this->load->view('tareas/view_asigPersPlanif', $data);
+			break;
 			case 'Asignar Recursos para Armado':
-				$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId, 'Armado');
+				$ot = $this->Tareas->getOrdenTrabajoPorCaseId($caseId,'Armado');
 				$data['idOT'] = $ot['id_orden'];
 				$data['tipo_tarea'] = 'Armado';
 				$this->load->view('tareas/view_asigPersPlanif', $data);
-				break;
+			break;
 			case 'Confecciona OCs para compra de respuestos':
-				$this->load->view('tareas/view_12', $data);
+				$this->load->view('tareas/view_12',$data);
 				break;
 			case 'Autoriza OCs para compra de repuestos':
 				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
-				$this->load->view('tareas/view_13', $data);
+				$this->load->view('tareas/view_13',$data);
 				break;
 			case 'Revisa OCs para compra de repuestos':
 				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
-				$this->load->view('tareas/view_13', $data);
+				$this->load->view('tareas/view_13',$data);
+				break;
+			case 'Solicitar el envio de repuestos al cliente':
+				$this->load->view('tareas/view_14',$data);
+				break;
+			case 'Recepción y control de repuestos del cliente para rectificación':
+				$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
+				$this->load->view('tareas/view_17',$data);
+				break;
+			case 'Recepción y control de repuestos del cliente para armado':
+				$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
+				$this->load->view('tareas/view_17',$data);
 				break;
 			case 'Emite OCs a proveedores de repuestos':
 				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
-				$this->load->view('tareas/view_15', $data);
-				break;
-			case 'Recepción y control de repuestos del cliente para rectificación':
-				$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
-				$this->load->view('tareas/view_16', $data);
-				break;
-			case 'Recepción y control de repuestos del cliente para armado':
-				$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
-				$this->load->view('tareas/view_16', $data);
+				$this->load->view('tareas/view_15',$data);
 				break;
 			case 'Recepción y control de repuestos comprados para rectficación':
 				$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
-				$this->load->view('tareas/view_16', $data);
+				$this->load->view('tareas/view_16',$data);
 				break;
 			case 'Recepción y control de repuestos comprados para armado':
 				$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
-				$this->load->view('tareas/view_16', $data);
+				$this->load->view('tareas/view_16',$data);
 				break;
 			default:
 				$this->load->view('tareas/view_', $data);
-				break;
+			break;
 		}
 	}
 	public function detaTareaRevisionDiagnosticoCoordinador()
