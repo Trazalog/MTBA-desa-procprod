@@ -93,7 +93,7 @@
 																<label for="ot ">Orden de Trabajo:</label>
 																<input type="text " class="form-control " id="ot
                                                                     "
-																 placeholder=" " value="<?php echo $datos[0][ 'id_orden'] ?>" disabled>
+																 placeholder=" " value="<?php echo $idOT ?>" disabled>
 															</div>
 														</div><br>
 

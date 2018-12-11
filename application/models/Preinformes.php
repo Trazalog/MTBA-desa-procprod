@@ -51,7 +51,7 @@ class Preinformes extends CI_Model {
                             if($formularios[$i]['TIDA_NOMBRE'] == 'input_archivo'){
                                 $informe = $informe.'<p>'.$formularios[$i]['VALO_NOMBRE'].':<br><img src="'.base_url().$formularios[$i]['VALOR'].'" style="max-width:100%"></p>';
                             } else {
-                                $informe = $informe.'<p>'.$formularios[$i]['VALO_NOMBRE'].' '.$formularios[$i]['VALOR'].'</p>';
+                                $informe = $informe.'<p>'.$formularios[$i]['VALO_NOMBRE'].' '.($formularios[$i]['VALOR']!='notilde'?$formularios[$i]['VALOR']:'').'</p>';
                             }
 
                         } else {
