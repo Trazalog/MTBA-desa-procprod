@@ -763,14 +763,10 @@
     });
 
    function CerrarModal(){
-    $('#modalForm').modal('hide');
-    WaitingOpen('Guardando Cambios');
-    GuardarFormulario(false);
-    //WaitingClose();
-   
-    
-}
-
+        $('#modalForm').modal('hide');
+        WaitingOpen('Guardando Cambios');
+        GuardarFormulario(false);
+    }
 
 </script>
 
