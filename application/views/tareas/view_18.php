@@ -117,47 +117,137 @@
                                                             </div></br> </br> </br> </br> </br>
                                                         </div>
 
-                        
-                        <section class="content">
-                            <div class="row">
-                                <div class="col-xs-12">
-                                    <div class="box">
-                                    
-                                        <div class="box-body"> 
+                                                       
 
-                                            <div class="form-group">
-                                                <label style="margin-top: 7px;"> Archivo Adjunto de Repuestos del Cliente: <a id="linkRepuestoCliente" target="_blank" <?php echo ($repuestocliente==''? '':'href="'.base_url().$repuestocliente.'"');?>>Ver y Descargar</a></label>
-                                            </div>
-                                                            
-                                            <div class="form-group">
-                                                <div class="col-xs-12">
-                                                    <!-- Modal formulario tarea -->
-                                                    <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Repuestos
-                                                    </button>';}?>
-                                                </div>
-                                            </div>
-                                                <br> <br>  
-                                                
-                                        </div>
+                                                       
 
+
+
+
+ <section class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                    
+                    </br>
+                        <div class="box-body">
                                             
-                
+                            
+                            <div class="modal-close">
+                                
+                                    <!-- Modal formulario tarea -->
+                                    <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
+                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Presupuesto
+                                    </button>';}?>
+                                
                                     
-                                    </div>
-                                </div>
+                                
+                                <!-- <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Ver Formulario RE-TAL-010</button> -->
+                               
                             </div>
+                            </br>
+                            
+  
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                                      
-                </section>
+
+
+
+                        <div id="collapseDivCli" class="box box-default collapsed-box box-solid lista_pedidos">
+                                <div class="box-header with-border">
+                                    <h3 id="tituloInfo" class="box-title">Nota de Pedido</h3>
+        
+                                    <div class="box-tools pull-right">
+                                        <button id="infoCliente" type="button" class="btn btn-box-tool" data-widget="collapse" >
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </div>
+                                    <!-- /.box-tools -->
+                             </div>
+                                <!-- /.box-header -->
+ <div class="box-body">
+                             
+
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+        <div class="box-header">
+          <!-- <h3 class="box-title">Nota de Pedido</h3> -->
+    
+        </div><!-- /.box-header -->
+        <div class="box-body">
+          <table id="deposito" class="table table-bordered table-hover" style="text-align: center">
+            <thead>
+              <tr>
+                <th width="20%" style="text-align: center">Acciones</th>
+                
+                <th style="text-align: center">Orden de Trabajo</th>
+                <th style="text-align: center">Detalle</th>
+                <th style="text-align: center">Fecha Nota</th>              
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+                foreach($list as $z)
+                {
+                  $id=$z['id_notaPedido'];
+                
+                    echo '<tr id="'.$id.'" class="'.$id.'" >';
+                    echo '<td>';
+                  // if (strpos($permission,'Edit') !== false) {
+                  //     echo '<i class="fa fa-fw fa-pencil" style="color: #f39c12; cursor: pointer; margin-left: 15px;" title="Editar" data-toggle="modal" data-target="#modaleditar"></i>';
+                  // }
+                  // if (strpos($permission,'Del') !== false) {
+                  //     echo '<i class="fa fa-fw fa-times-circle" style="color: #dd4b39; cursor: pointer; margin-left: 15px;"></i>';
+                  // } 
+                  if (strpos($permission,'View') !== false) {
+                    echo '<i class="fa fa-fw fa-search" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Ver Nota Pedido" data-toggle="modal" data-target="#modaltarea"></i>';
+                  }                     
+                  echo '</td>';
+                 
+                  echo '<td style="text-align: center">'.$z['id_ordTrabajo'].'</td>';
+                  echo '<td style="text-align: center">'.$z['descripcion'].'</td>';
+                  echo '<td style="text-align: center">'.$z['fecha'].'</td>';
+                  // echo '<td style="text-align: center">'.$z['marcadescrip'].'</td>';
+                  // echo '<td style="text-align: center">'.$z['depositodescrip'].'</td>';
+
+                  // echo '<td style="text-align: center">'.($z['equip_estad']  == 'AC' ? '<small class="label pull-left bg-green" >Activa</small>' :'<small class="label pull-left bg-blue">Transito</small>').'</td>';
+
+                  echo '</tr>';
+                  
+                }
+              ?>
+            </tbody>
+          </table>
+        </div><!-- /.box-body -->
+    </div><!-- /.col -->
+  </div><!-- /.row -->
+</section><!-- /.content -->
+        
+    </div>
+                                <!-- /.box-body -->
+</div>
+
+
+
+
+</section>
+
+
+
+
                                                         
+
                                                                     
-                                                    </form>
+            </form>
 
-                                                </div>
-                                            </div>    
+         </div>
+     </div>    
 
-                                            <div role="tabpanel" class="tab-pane" id="profile">
+                                           <div role="tabpanel" class="tab-pane" id="profile">
                                               <div class="panel-body">
                                                <div class="panel panel-primary">
                                                 <div class="panel-heading">Comentarios</div>
@@ -254,11 +344,9 @@
             </div>
 
         </div><!-- /.row -->
+
+
        
-
-                
-
-
         <div class="modal-footer">
             <button type="button" id="cerrar" class="btn btn-primary" onclick="cargarVista()">Cerrar</button>
             <button type="button" class="btn btn-success" id="hecho" onclick="terminarTarea()">Hecho</button>
@@ -277,11 +365,6 @@
 </style>
 
 <script> //Validacion de Formulario
-
-     function ValidarCampos(){
-        WaitingOpen('Validando Formulario');
-        GuardarFormulario(true);
-    }  
 	function ValidarObligatorios(validarOn){
 		console.log("Validando Campos Obligatorios...");
 		var form_id = $('#idform').val();
@@ -307,10 +390,70 @@
 	}
 </script>
 
-<script>  
+
+                
+
+<script>
+var ed="";
+
+  //Ver Orden
+  $(".fa-search").click(function (e) { 
+      
+      var id_nota = $(this).parent('td').parent('tr').attr('id');
+     
+      $.ajax({
+              type: 'POST',
+              data: { id: id_nota},
+              url: 'index.php/Notapedido/getNotaPedidoId',
+              success: function(data){
+
+                      $('tr.celdas').remove();
+                      for (var i = 0; i < data.length; i++) {            
+                         var tr = "<tr class='celdas'>"+
+                                 "<td>"+data[i]['artDescription']+"</td>"+
+                                 "<td>"+data[i]['cantidad']+"</td>"+
+                                 "<td>"+data[i]['fecha']+"</td>"+ 
+                                 "<td>"+data[i]['fechaEntrega']+"</td>"+ 
+                                 "<td>"+data[i]['fechaEntregado']+"</td>"+     
+                                 "<td>"+data[i]['provnombre']+"</td>"+                                 
+                                 "<td>"+data[i]['estado']+"</td>"+                             
+                                 "</tr>";
+                         $('#tabladetalle tbody').append(tr);
+                      }
+                    },                
+              error: function(result){
+                    
+                    console.log(result);
+                  },
+                  dataType: 'json'
+      });
+  });
+
+
+
+function regresa(){
+
+  //WaitingOpen();
+  //$('#modaldeposito').empty();
+  //$('#modaleditar').empty(); 
+  //$('#content').empty();
+  $("#content").load("<?php echo base_url(); ?>index.php/Herramienta/index/<?php echo $permission; ?>");
+   WaitingClose();
+}
+
+  
+
+ 
+
+    function NotaPedido() {
+		$('.content').empty();
+		$(".content").load(
+			"<?php echo base_url(); ?>index.php/Notapedido/index/<?php echo $permission; ?>/true"
+		);
+	}
           
     evaluarEstado();    
-    function evaluarEstado(){     
+    function evaluarEstado(){
        
         var asig = $('#asignado').val();       
         // si esta tomada la tarea
@@ -330,6 +473,8 @@
         //desahilito btn tomar      
         $("#btontomar").hide();
         $("#formulario").show();
+        $('.modal-close').show();
+        $('.lista_pedidos').show();
     }
     function deshabilitar(){
         // habilito btn tomar
@@ -337,9 +482,11 @@
         // habilito btn y textarea  
         $("#btonsoltr").hide();       
         $("#hecho").hide();       
-        $("#guardarComentario").hide();
-        $("#comentario").hide();
-        $("#formulario").hide();
+        $('.modal-close').hide();
+        $('.lista_pedidos').hide();
+        //$("#guardarComentario").hide();
+        //$("#comentario").hide();
+        //$("#formulario").hide();
     }    
 
     // Volver al atras
@@ -375,8 +522,10 @@
             }
         });
     });
+           
 
-    var validado=($('#idform').val()==0);    
+
+    var validado=($('#idform').val()==0);
     function terminarTarea(){
         if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
         WaitingOpen('Cerrando Tarea');
@@ -394,7 +543,7 @@
                     if(data['reponse_code'] == 204){
                         $("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
                     }
-                    WaitingClose();
+                WaitingClose();
             },
             error: function(data) {
                 WaitingClose();
@@ -415,23 +564,24 @@
             url: 'index.php/Tarea/estadoCuenta',
             success: function(result) {
                 console.log(result);
-                alert("SII");
+                //alert("SII");
             },
             error: function(result) {
-                alert("Noo");
+                //alert("Noo");
                 console.log(result);
             },
             dataType: 'json'
         });
     }
+
     //Funcion COMENTARIOS
     function guardarComentario() {
-			
-            console.log("Guardar Comentarios...");
+			console.log("Guardar Comentarios...");            
             var id=<?php echo json_encode($TareaBPM['caseId']);?>;
-			var comentario=$('#comentario').val();
             var nombUsr = $('#usrName').val();
             var apellUsr = $('#usrLastName').val();;
+			 
+			var comentario=$('#comentario').val();
 			$.ajax({
 			type:'POST',
 			data:{'processInstanceId':id, 'content':comentario},
@@ -439,7 +589,7 @@
 			success:function(result){
 				console.log("Submit");
 				var lista =  $('#listaComentarios');
-				lista.prepend('<hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
+				lista.prepend(' <hr/><li><h4>'+nombUsr+' '+apellUsr +'<small style="float: right">Hace un momento</small></h4><p>'+comentario+'</p></li>');
 				$('#comentario').val('');
 			},
 			error:function(result){
@@ -447,6 +597,7 @@
 			}
 			});
 		}
+
     // Toma tarea en BPM
     function tomarTarea() {
         var idTarBonita = $('#idTarBonita').val();
@@ -503,23 +654,23 @@
     });
 
     // evento de cierre de modal guarda parcialmente los datos
-    function GuardarFormulario(validarOn){   
-        
+   function GuardarFormulario(validarOn) {   
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
         var imgs = $('input.archivo');
-        
+  
         var formData = new FormData($("#genericForm")[0]);
-
+        // for (var pair of formData.entries()) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // }
+   
         /** subidad y resubida de imagenes **/
         // Tomo los inputs auxiliares cargados
         var aux = $('input.auxiliar');
         
         var auxArray = [];
         aux.each(function() {
-    
             auxArray.push($(this).val());
-            
         });
         //console.table(aux);
         for (var i = 0; i < imgs.length; i++){
@@ -530,7 +681,9 @@
             if (inpValor != "") {
                 //al subir primera img
                 formData.append(idValor, inpValor);
-            }    
+            }else{
+                formData.delete(idValor);
+            }   
         }   
 
         /* text tipo check */
@@ -560,6 +713,7 @@
         // console.table(check);
     
         /* Ajax de Grabado en BD */
+      
         $.ajax({
         url:'index.php/Tarea/guardarForm',
         type:'POST',
@@ -569,13 +723,10 @@
         processData:false,
         
         success:function(respuesta){
-          
-            getImgValor();
-
-
-           // console.log(respuesta);
-            GuardarValorRepuesto1();
+           
+            GuardarValorPresupuesto();
             ValidarObligatorios(validarOn);
+            getImgValor();
             if (respuesta ==="exito") {
                 
             }
@@ -589,33 +740,30 @@
             }
         }
         });
-        
+
     };
 
-
-
-   //Repuestos
-   function GuardarValorRepuesto1(){
+    //Presupuesto
+    function GuardarValorPresupuesto(){
         var idForm = <?php echo $idForm;?>;
         var idPed = <?php echo $idPedTrabajo;?>;
         $.ajax({
-            url:'index.php/Tarea/GuardarValorRepuesto1',
+            url:'index.php/Tarea/GuardarValorPresupuesto',
             type:'POST',
             data:{'PETR_ID':idPed,'FORM_ID':idForm},
             success:function(respuesta){
-                //alert("Guardado");
+                
             },
             error:function(respuesta){
                 alert("Error");
             }
         });
     }
-    //Fin de Repuestos
+    //Fin Presupuesto
 
 
     // trae valores validos para llenar form asoc.  
 	function getformulario(event) {    
-	    
 	    // trae valor de imagenes y llena inputs.
 	    getImgValor();
 
@@ -630,7 +778,7 @@
 	      // guarda el id form asoc a tarea std en modal para guardar
 	      $('#idformulario').val(idForm);
 
-	      idForm = 1;
+
 	      // trae valores validos para llenar componentes de form asoc.
 	      $.ajax({
 	              type: 'POST',
@@ -638,7 +786,7 @@
 	              url: 'index.php/Tarea/getValValido', 
 	              success: function(data){               
 	                      //console.log('valores de componentes: ');
-	                      //console.table(data);                   
+	                      console.table(data);                   
 	                     
 	                      llenaComp(data);
 	                    },              
@@ -669,7 +817,7 @@
 	      if(data[index]['VALOR']!=$('#' + idSelect).val()){
 				$('#' + idSelect).append($('<option>',
 					{ value: data[index]['VALOR'], text: data[index]['VALOR'] }));
-		}
+			}
 	      valor = data[index]['idValor'];     
 	      valorSig = data[index]['idValor'];
 	    });
@@ -681,19 +829,19 @@
 	    // guarda el id form asoc a tarea std en modal para guardar
 	    idForm =  $('#idform').val();
         idPedido = $('#idPedTrabajo').val();
-     
-	    // trae valores validos para llenar componentes input files.
 	    $.ajax({
 	            type: 'POST',
 	            data: { idForm: idForm,idPedTrabajo:idPedido},
 	            url: 'index.php/Tarea/getImgValor', 
 	            success: function(data){               
-	                llenarInputFile(data);
-	            },              
+	                                       
+	                    valores = data;
+	                    llenarInputFile(valores);
+	                  },              
 	            error: function(result){
 	                  
 	                  console.log(result);
-	            },
+	                },
 	            dataType: 'json'
 	    });
 	}
@@ -701,18 +849,19 @@
 	// carga inputs auxiliares con url de imagen desde BD
 	function llenarInputFile(data){
 	    var id_listarea = $('inptut.archivo').val();
+
 	    $.each(data,function( index ) {
 
 	      var id = data[index]['valoid'];
 	      var valor = data[index]['valor'];
-          //carga el valor que viene de DB
+	      //carga el valor que viene de DB
           if(valor!=""){
               $("."+data[index]['valoid']).removeClass('hidden');
               $("."+data[index]['valoid']).attr('href',valor);
           }else{
             $("."+data[index]['valoid']).addClass('hidden');
           }
-          //$("#"+data[index]['valoid']).val(valor);
+        
 	    });
 	}
 
@@ -754,27 +903,57 @@
 	              dataType: 'json'
 	      });
   	}
+    
+    function ValidarCampos(){
+        WaitingOpen('Validando Formulario');
+        GuardarFormulario(true);
+    }   
 
   	$('.fecha').datepicker({
         autoclose: true
-  	}).on('change', function(e) {
-       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
-	   console.log('Validando Campo...'+$(this).attr('name'));
-	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
-	   $('#genericForm').data('bootstrapValidator').validateField($(this));
-    });
+  	});
 
-   function CerrarModal(){
-        $('#modalForm').modal('hide');
-        WaitingOpen('Guardando Cambios');
-        GuardarFormulario(false);
-    }
+data();
+ function data(){
+    console.log("DataTable");
 
+  $('#deposito').DataTable({
+        "paging": true,
+        "lengthChange": true,
+        "searching": true,
+        "ordering": true,
+        "info": true,
+        "autoWidth": true,
+        "language": {
+              "lengthMenu": "Ver _MENU_ filas por página",
+              "zeroRecords": "No hay registros",
+              "info": "Mostrando pagina _PAGE_ de _PAGES_",
+              "infoEmpty": "No hay registros disponibles",
+              "infoFiltered": "(filtrando de un total de _MAX_ registros)",
+              "sSearch": "Buscar:  ",
+              "oPaginate": {
+                  "sNext": "Sig.",
+                  "sPrevious": "Ant."
+                }
+        }
+  })
+};
+
+function CerrarModal(){
+    $('#modalForm').modal('hide');
+    WaitingOpen('Guardando Cambios');
+    GuardarFormulario(false);
+    //WaitingClose();
+   
+    
+}
 
 
 </script>
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+
+
+<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static"  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
@@ -800,3 +979,69 @@
     </div>
 </div>
 
+
+
+
+
+
+<!-- Modal ver nota pedido-->
+<div class="modal fade" id="modaltarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document" style="width: 60%">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="fa fa-plus-square" style="color: #008000" > </span> Ver Nota de Pedido</h4>
+      </div> <!-- /.modal-header  -->
+
+      <div class="modal-body input-group ui-widget" id="modalBodyArticle">
+        
+        <div class="row" >
+          <div class="col-sm-12 col-md-12">
+             <table id="tabladetalle" class="table table-bordered table-hover">
+               <thead>
+                  <tr>
+                    <th width="20%" style="text-align: center">Articulo</th>
+                    <th style="text-align: center">Cantidad</th>                    
+                    <th style="text-align: center">Fecha Nota</th>
+                    <th style="text-align: center">Fecha de Entrega</th>
+                    <th style="text-align: center">Fecha Entregado</th>
+                    <th style="text-align: center">Proveedor</th>
+                    <th style="text-align: center">Estado</th>                  
+                  </tr>
+                </thead>
+               <tbody>
+                 
+               </tbody>
+             </table>             
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">       
+        <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal">Ok</button>
+      </div>  <!-- /.modal footer -->
+
+       </div>  <!-- /.modal-body -->
+    </div> <!-- /.modal-content -->
+  </div>  <!-- /.modal-dialog modal-lg -->
+</div>  <!-- /.modal fade -->
+<!-- / Modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalPDF" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><span id="modalAction"> </span> Registro de Trabajos a Realizar RE-TAL-010</h4> 
+      </div>
+      <div class="modal-body" id="modalBodyPdf">
+        <object id="pdf" data="" width="100%" height="500px" type="application/pdf"> Plugin de PDF no instalado </object>        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
