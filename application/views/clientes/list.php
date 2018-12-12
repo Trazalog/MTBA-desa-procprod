@@ -156,6 +156,7 @@
         $('#form_cliente').data('bootstrapValidator').validate();
         if(!$('#form_cliente').data('bootstrapValidator').isValid()){
           alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
+          WaitingClose();
           return false;
         }	
         return true;

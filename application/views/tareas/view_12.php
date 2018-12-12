@@ -218,7 +218,7 @@
                                                         foreach ($timeline['listArch'] as $f) {
                                                         
                                                         echo '<li>
-                                                            <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+                                                            <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
                                                                 <h4 class="timeline-title">'.$f['displayName'].'</h4>

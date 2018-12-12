@@ -187,7 +187,7 @@
 																		foreach ($timeline['listArch'] as $f) {
 																		
 																		echo '<li>
-																				<div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+																				<div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
 																				<div class="timeline-panel">
 																						<div class="timeline-heading">
 																						<h4 class="timeline-title">'.$f['displayName'].'</h4>
@@ -610,15 +610,12 @@
 		$('#genericForm').data('bootstrapValidator').validate();
 		if(!$('#genericForm').data('bootstrapValidator').isValid()){
 			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
+			WaitingClose();
 		return false;
 		}	
 		return true;
 	}
-	function OcultarModal(){
-		$('#genericForm').data('bootstrapValidator').resetForm();
-		$('#modalForm').modal('hide');
-		guardarFormulario(false);
-	}
+
 	function guardarFormulario(validarOn){
 		console.log("Guardando Formulario...");
 		var imgs = $('input.archivo');

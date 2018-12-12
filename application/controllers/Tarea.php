@@ -610,6 +610,7 @@ class Tarea extends CI_Controller
 				break;
 			case 'Cotización, confección de presupuesto y envio al ciente de Trabajo Liviano':
 				//$data['list'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($data['idPedTrabajo']);
+				$data['formularios'] = array(2500);
 				$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
 				$this->load->view('tareas/view_18',$data);
 				break;

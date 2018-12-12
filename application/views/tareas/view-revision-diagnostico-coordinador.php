@@ -219,7 +219,7 @@
                             echo '<h2 style="margin-left:50px;">Actividades Terminadas</h2>';
                             foreach ($timeline['listArch'] as $f) {
                               echo '<li>
-                              <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+                              <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
                               <div class="timeline-panel">
                               <div class="timeline-heading">
                               <h4 class="timeline-title">'.$f['displayName'].'</h4>
@@ -374,7 +374,8 @@ function IniciarValidador(idForm){
 		$('#'+form_actual_id).data('bootstrapValidator').validate();
 		if(!$('#'+form_actual_id).data('bootstrapValidator').isValid()){
 			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
-		}	
+      WaitingClose();
+    }	
 	}
 	function OcultarModal(){
 		$('#'+form_actual_id).data('bootstrapValidator').resetForm();
