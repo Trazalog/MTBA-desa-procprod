@@ -88,7 +88,9 @@
 														<div class="form-group ">
 															<div class="col-sm-6 col-md-6 ">
 																<label for="ot ">Orden de Trabajo:</label>
-																<input type="text " class="form-control " id="ot" placeholder=" " value="<?php echo $datos[0][ 'id_orden'] ?>" disabled>
+																<input type="text " class="form-control " id="ot
+                                                                    "
+																 placeholder=" " value="<?php echo $datos[0][ 'id_orden'] ?>" disabled>
 															</div>
 														</div><br>
 

@@ -9,8 +9,7 @@ class plantilla extends CI_Controller {
 		$this->load->model('Plantillas');
 	}
 
-	public function ObtenerTareas()
-	{
+	public function ObtenerTareas(){
 		$result = $this->Plantillas->ObtenerTareas();
 		echo json_encode($result);
 	}
@@ -33,12 +32,11 @@ class plantilla extends CI_Controller {
 	}
 
 		//NUEVA
-	public function cargartarea($permission,$idglob)
-	{ 
-		$data['list'] = $this->Plantillas->cargartareas($idglob);
-		$data['id_plantilla'] = $idglob; 
-		$data['permission'] = $permission;    // envia permisos       
-		$this->load->view('plantillas/asignacion',$data); //equipo controlador 
+	public function cargartarea($permission,$idglob){ 
+	$data['list'] = $this->Plantillas->cargartareas($idglob);
+	$data['id_plantilla'] = $idglob; 
+    $data['permission'] = $permission;    // envia permisos       
+    $this->load->view('plantillas/asignacion',$data); //equipo controlador 
     }
 
 
@@ -49,16 +47,14 @@ class plantilla extends CI_Controller {
 		$this->load->view('plantillas/list', $data);
 	}
 	
-	public function getplantillas()
-	{
+	public function getplantillas(){
 		$data['data'] = $this->Plantillas->getplantilla($this->input->post());
 		$response['html'] = $this->load->view('plantillas/view_', $data, true);
 
 		echo json_encode($response);
 	}
 	
-	public function setplantillas()
-	{
+	public function setplantillas(){
 		$data = $this->Plantillas->setplantilla($this->input->post());
 		if($data  == false)
 		{
