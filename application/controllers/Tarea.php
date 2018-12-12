@@ -569,8 +569,9 @@ class Tarea extends CI_Controller
 				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
 				$this->load->view('tareas/view_13',$data);
 				break;
-			case 'Solicitar envio de repuestos al cliente':
-				$this->load->view('tareas/view_14',$data);
+			case 'Emite OCs a proveedores de repuestos':
+				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
+				$this->load->view('tareas/view_15', $data);
 				break;
 			case 'Recepción y control de repuestos del cliente para rectificación':
 				$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
