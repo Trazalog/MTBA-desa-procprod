@@ -1,5 +1,6 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <input type="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo;?>">
+<input type="hidden" id="lita_id" value="<?php echo $lita_id;?>">
 <section class="content">
     <?php echo cargarCabecera($idPedTrabajo); ?>
     <div class="row">
@@ -132,9 +133,7 @@
                                             <div class="form-group">
                                                 <div class="col-xs-12">
                                                     <!-- Modal formulario tarea -->
-                                                    <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Repuestos
-                                                    </button>';}?>
+                                                    <button type="button" id="formulario" class="btn btn-primary" onclick="getformulario()">Adjuntar Repuestos</button>
                                                 </div>
                                             </div>
                                                 <br> <br>  
@@ -504,12 +503,13 @@
 
     // evento de cierre de modal guarda parcialmente los datos
     function GuardarFormulario(validarOn){   
+        console.log('Guardando Formulario...');
         
         $('#error').fadeOut('slow');
         // toma  el valor de todos los input file 
         var imgs = $('input.archivo');
         
-        var formData = new FormData($("#genericForm")[0]);
+        var formData = new FormData($('#genericForm'+$('#lita_id').val())[0]);
 
         /** subidad y resubida de imagenes **/
         // Tomo los inputs auxiliares cargados
@@ -560,6 +560,11 @@
         // console.table(check);
     
         /* Ajax de Grabado en BD */
+
+        for (var pair of formData.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
+
         $.ajax({
         url:'index.php/Tarea/guardarForm',
         type:'POST',
@@ -569,7 +574,8 @@
         processData:false,
         
         success:function(respuesta){
-          
+            console.log("...ok");
+            
             getImgValor();
 
 
@@ -613,43 +619,7 @@
     //Fin de Repuestos
 
 
-    // trae valores validos para llenar form asoc.  
-	function getformulario(event) {    
-	    
-	    // trae valor de imagenes y llena inputs.
-	    getImgValor();
-
-	    // llena form una sola vez al primer click
-	    if (click == 0) {    
-	      var estadoTarea = $('#estadoTarea').val();
-	      // toma id de form asociado a listarea en TJS
-	      var idForm = $('#idform').val();
-	      console.log('id de form: ');
-	      console.log(idForm);
-
-	      // guarda el id form asoc a tarea std en modal para guardar
-	      $('#idformulario').val(idForm);
-
-	      idForm = 1;
-	      // trae valores validos para llenar componentes de form asoc.
-	      $.ajax({
-	              type: 'POST',
-	              data: { idForm: idForm},
-	              url: 'index.php/Tarea/getValValido', 
-	              success: function(data){               
-	                      //console.log('valores de componentes: ');
-	                      //console.table(data);                   
-	                     
-	                      llenaComp(data);
-	                    },              
-	              error: function(result){
-	                    
-	                    console.log(result);
-	                  },
-	              dataType: 'json'
-	      });
-	    }
-	}
+  
 
     // llena los componentes de form asoc con valores validos
 	function llenaComp(data){
@@ -700,7 +670,7 @@
 
 	// carga inputs auxiliares con url de imagen desde BD
 	function llenarInputFile(data){
-	    var id_listarea = $('inptut.archivo').val();
+	    var id_listarea = $('#lita_id').val();
 	    $.each(data,function( index ) {
 
 	      var id = data[index]['valoid'];
@@ -755,14 +725,6 @@
 	      });
   	}
 
-  	$('.fecha').datepicker({
-        autoclose: true
-  	}).on('change', function(e) {
-       // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
-	   console.log('Validando Campo...'+$(this).attr('name'));
-	   $('#genericForm').data('bootstrapValidator').resetField($(this),false);
-	   $('#genericForm').data('bootstrapValidator').validateField($(this));
-    });
 
    function CerrarModal(){
         $('#modalForm').modal('hide');
@@ -770,33 +732,45 @@
         GuardarFormulario(false);
     }
 
-
+    function getformulario(){
+    console.log("Get Formularios Tarea...");
+   // form_actual_data = $(this);
+    WaitingOpen();
+    var idListTarea = $('#lita_id').val();
+    var form_id = $('#idform').val();
+    
+   // $('#idformulario').val(form_id);
+    $.ajax({
+      data: {form_id:form_id, id_listarea: idListTarea },
+      dataType: 'json',
+      type: 'POST',
+      url: 'index.php/PedidoTrabajo/Obtener_Formulario',
+      success: function(result){   
+        //form_actual_id = 'genericForm'+idListTarea; 
+        
+        $("#modalBodyRevDiagCoord").html(result.html);
+      
+        //getformularioDiag();
+        $('#modalForm').modal('show');
+        WaitingClose();
+      },
+      error: function(result){
+        WaitingClose();
+        alert("Error: No se pudo obtener el Formulario");
+      },
+    });
+  };
 
 </script>
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<!-- Modal forms tareas a revisar -->
+<div class="modal fade" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
+            <div class="modal-body" id="modalBodyRevDiagCoord">
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="box">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12">
-                                    <?php
-                                    if($form != ''){
-                                     cargarFormulario($form);
-                                    }                                    
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
+            </div><!-- /.modal-body -->
+        </div> <!-- /.modal-content -->
+    </div>  <!-- /.modal-dialog modal-lg -->
+</div>  <!-- /.modal fade -->
+<!-- / Modal -->
