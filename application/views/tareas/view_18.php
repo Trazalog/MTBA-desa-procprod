@@ -1,4 +1,5 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
+<input type="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo;?>">
 
 <section class="content">
 	<?php echo cargarCabecera($idPedTrabajo); ?>
@@ -677,34 +678,7 @@
 		$("#content").load("<?php echo base_url(); ?>index.php/Tarea/index/<?php echo $permission; ?>");
 		WaitingClose();
 	});
-	function subirPresupuesto() {
-		event.preventDefault();
-		WaitingOpen('Subiendo Archivo');
-		var formData = new FormData();
 
-		var idPedTrabajo =<?php echo $idPedTrabajo;?>;
-		formData.append('presupuesto', $('#presupuesto').prop('files')[0]);
-		formData.append('idPedTrabajo', idPedTrabajo);
-		$.ajax({
-			url: 'index.php/AceptacionTrabajo/GuardarPresupuesto',
-			type: 'POST',
-			data: formData,
-			cache: false,
-			contentType: false,
-			processData: false,
-			success: function (result) {
-				WaitingClose();
-				if (result == 'error') {
-					alert("No se pudo Guardar Archivo");
-				} else {
-					$('#presupuesto').val('');
-					$('#linkPresupuesto').attr("href", result);
-					alert("Archivo Guardado");
-				}
-
-			}
-		});
-	}
 
 	$('.btncolor').click(function (e) {
 		//var id = <?php //echo $idorden?>; //tomo valor de id_orden
@@ -920,81 +894,44 @@
 	}
 
 	//Trae valor de las imagenes
-	function getImgValor() {
-		var valores;
-		// guarda el id form asoc a tarea std en modal para guardar
-		idForm = $('#idform').val();
-		// trae valores validos para llenar componentes input files.
-		$.ajax({
-			type: 'POST',
-			data: { idForm: idForm },
-			url: 'index.php/Tarea/getImgValor',
-			success: function (data) {
+	function getImgValor(){
+	    var valores; 
+	    // guarda el id form asoc a tarea std en modal para guardar
+	    idForm =  $('#idform').val();
+        idPedido = $('#idPedTrabajo').val();
 
-				valores = data;
-				llenarInputFile(valores);
-			},
-			error: function (result) {
-
-				console.log(result);
-			},
-			dataType: 'json'
-		});
+	    // trae valores validos para llenar componentes input files.
+	    $.ajax({
+	            type: 'POST',
+	            data: { idForm: idForm,idPedTrabajo:idPedido},
+	            url: 'index.php/Tarea/getImgValor', 
+	            success: function(data){               
+	                llenarInputFile(data);
+	            },              
+	            error: function(result){
+	                  
+	                  console.log(result);
+	            },
+	            dataType: 'json'
+	    });
 	}
 
 	// carga inputs auxiliares con url de imagen desde BD
-	function llenarInputFile(data) {
-		var id_listarea = $('inptut.archivo').val();
+	function llenarInputFile(data){
+	    var id_listarea = $('inptut.archivo').val();
+	    $.each(data,function( index ) {
 
-		$.each(data, function (index) {
-
-			var id = data[index]['valoid'];
-			var valor = data[index]['valor'];
-			//carga el valor que viene de DB
-			$("." + data[index]['valoid']).val(valor);
-			//$("#"+data[index]['valoid']).val(valor);
-		});
-	}
-
-	// Validacion de campos obligatorios y vacios
-	function validarFormGuardado() {
-
-		var id_listarea = $('#id_listarea').val();
-
-		var oblig = $('.requerido');
-		//console.log("oblig");
-		//console.table(oblig);
-		var obligArrayIds = [];
-		oblig.each(function () {
-			obligArrayIds.push($(this).attr('name'));
-		});
-		//console.log('obligatorios: ');
-		//console.log(obligArray),
-		$.ajax({
-			type: 'POST',
-			data: {
-				obligArrayIds: obligArrayIds,
-				id_listarea: id_listarea
-			},
-			url: 'index.php/Tarea/validarFormGuardado',
-			success: function (data) {
-				console.log('por sucess: ');
-				console.log(data);
-				if (data == false) {
-					$('#error').fadeIn('slow');
-				}
-				else {
-					$('#error').fadeOut('slow');
-				}
-
-			},
-			error: function (result) {
-				console.log('por error: ');
-				console.log(data);
-				console.log(result);
-			},
-			dataType: 'json'
-		});
+	      var id = data[index]['valoid'];
+	      var valor = data[index]['valor'];
+          //carga el valor que viene de DB
+          if(valor!=""){
+              $("."+data[index]['valoid']).removeClass('hidden');
+              $("."+data[index]['valoid']).attr('href',valor);
+          }else{
+            $("."+data[index]['valoid']).addClass('hidden');
+          }
+          //$("#"+data[index]['valoid']).val(valor);
+	    });
 	}
 
 	function hecho() {
@@ -1139,7 +1076,7 @@
         // for (var pair of formData.entries()) {
         //     console.log(pair[0]+ ', ' + pair[1]); 
         // }
-   
+		// return;
         /** subidad y resubida de imagenes **/
         // Tomo los inputs auxiliares cargados
         var aux = $('input.auxiliar');
@@ -1199,10 +1136,10 @@
         processData:false,
         
         success:function(respuesta){
-           
+			getImgValor();
             GuardarValorPresupuesto();
             ValidarObligatorios(validarOn);
-            getImgValor();
+            
             if (respuesta ==="exito") {
                 
             }
@@ -1238,13 +1175,7 @@
 
   function ValidarCampos(){
 		WaitingOpen('Validando Formulario');
-		$('#genericForm').data('bootstrapValidator').validate();
-		if(!$('#genericForm').data('bootstrapValidator').isValid()){
-			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
-			WaitingClose();
-			return false;
-		}	
-		return true;
+		GuardarFormulario(true);
 	}
 
   function CerrarModal(){
@@ -1296,6 +1227,39 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
     }
   });
 });
+
+$(".fa-search").click(function (e) { 
+      
+      var id_nota = $(this).parent('td').parent('tr').attr('id');
+     
+      $.ajax({
+              type: 'POST',
+              data: { id: id_nota},
+              url: 'index.php/Notapedido/getNotaPedidoId',
+              success: function(data){
+
+                      $('tr.celdas').remove();
+                      for (var i = 0; i < data.length; i++) {            
+                         var tr = "<tr class='celdas'>"+
+                                 "<td>"+data[i]['artDescription']+"</td>"+
+                                 "<td>"+data[i]['cantidad']+"</td>"+
+                                 "<td>"+data[i]['fecha']+"</td>"+ 
+                                 "<td>"+data[i]['fechaEntrega']+"</td>"+ 
+                                 "<td>"+data[i]['fechaEntregado']+"</td>"+     
+                                 "<td>"+data[i]['provnombre']+"</td>"+                                 
+                                 "<td>"+data[i]['estado']+"</td>"+                             
+                                 "</tr>";
+                         $('#tabladetalle tbody').append(tr);
+                      }
+                    },                
+              error: function(result){
+                    
+                    console.log(result);
+                  },
+                  dataType: 'json'
+      });
+  });
+
 </script>
 
 
@@ -1354,3 +1318,46 @@ $('#modalPDF').on('hidden.bs.modal', function (e) {
     </div>
   </div>
 </div>
+
+<!-- Modal ver nota pedido-->
+<div class="modal fade" id="modaltarea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document" style="width: 60%">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"  id="myModalLabel"><span id="modalAction" class="fa fa-plus-square" style="color: #008000" > </span> Ver Nota de Pedido</h4>
+      </div> <!-- /.modal-header  -->
+
+      <div class="modal-body input-group ui-widget" id="modalBodyArticle">
+        
+        <div class="row" >
+          <div class="col-sm-12 col-md-12">
+             <table id="tabladetalle" class="table table-bordered table-hover">
+               <thead>
+                  <tr>
+                    <th width="20%" style="text-align: center">Articulo</th>
+                    <th style="text-align: center">Cantidad</th>                    
+                    <th style="text-align: center">Fecha Nota</th>
+                    <th style="text-align: center">Fecha de Entrega</th>
+                    <th style="text-align: center">Fecha Entregado</th>
+                    <th style="text-align: center">Proveedor</th>
+                    <th style="text-align: center">Estado</th>                  
+                  </tr>
+                </thead>
+               <tbody>
+                 
+               </tbody>
+             </table>             
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">       
+        <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal">Ok</button>
+      </div>  <!-- /.modal footer -->
+
+       </div>  <!-- /.modal-body -->
+    </div> <!-- /.modal-content -->
+  </div>  <!-- /.modal-dialog modal-lg -->
+</div>  <!-- /.modal fade -->
+<!-- / Modal -->
