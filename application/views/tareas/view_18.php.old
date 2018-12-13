@@ -137,12 +137,12 @@
                                 
                                     <!-- Modal formulario tarea -->
                                     <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Cotizacion
+                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Presupuesto
                                     </button>';}?>
                                 
                                     
                                 
-                                <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Ver Formulario RE-TAL-010</button>
+                                <!-- <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Ver Formulario RE-TAL-010</button> -->
                                
                             </div>
                             </br>
@@ -390,46 +390,7 @@
 	}
 </script>
 
-<script>
-//genero el preinforme 
-//(paragenerarlo automáticamente comentar lineas 15, 46 y 65)
-$('#crearPDF').on("click", function (e) {
-  WaitingOpen('Generando preinforme');
-  var formularios = '<?php echo json_encode($formularios) ?>';
-  console.log( formularios );
-  var petr = <?php echo $idPedTrabajo;?>;
-  $.ajax({
-    type: 'POST',
-    data: { idForms: formularios,petr_id:petr },
-    url: 'index.php/Preinforme/generar',
-    async: false,
-    success: function(data) {
-      $("#pdf").attr("data", '<?php echo base_url() ?>'+'assets/preinforme.pdf');
-      $('#modalPDF').modal('show');
-      WaitingClose();
-    },
-    error: function(data) {
-      console.error("error al crear el preinforme en pdf");
-      WaitingClose();
-    }
-  });
-});
 
-//elimino el archivo al salir del modal
-$('#modalPDF').on('hidden.bs.modal', function (e) { 
-  $.ajax({
-    type: 'POST',
-    data: {},
-    url: 'index.php/Preinforme/eliminarPDF',
-    success: function(data) {
-      console.log("archivo borrado. "+data);
-    },
-    error: function(data) {
-      console.error("error al eliminar el pdf: "+data);
-    }
-  });
-});
-</script>
                 
 
 <script>
@@ -763,7 +724,7 @@ function regresa(){
         
         success:function(respuesta){
            
-            GuardarValorCotizacion();
+            GuardarValorPresupuesto();
             ValidarObligatorios(validarOn);
             getImgValor();
             if (respuesta ==="exito") {
@@ -782,24 +743,23 @@ function regresa(){
 
     };
 
-    //Cotizacion
-    function GuardarValorCotizacion(){
+    //Presupuesto
+    function GuardarValorPresupuesto(){
         var idForm = <?php echo $idForm;?>;
         var idPed = <?php echo $idPedTrabajo;?>;
         $.ajax({
-            url:'index.php/Tarea/GuardarValorCotizacion',
+            url:'index.php/Tarea/GuardarValorPresupuesto',
             type:'POST',
             data:{'PETR_ID':idPed,'FORM_ID':idForm},
             success:function(respuesta){
-                WaitingClose();
+                
             },
             error:function(respuesta){
                 alert("Error");
-                WaitingClose();
             }
         });
     }
-    //Fin Cotizacion
+    //Fin Presupuesto
 
 
     // trae valores validos para llenar form asoc.  

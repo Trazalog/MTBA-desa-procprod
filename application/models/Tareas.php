@@ -956,4 +956,11 @@ class Tareas extends CI_Model
 		return $response;
 	}
 
+	function get_lita_id($petr_id,$form_id){
+		$this->db->select('lita_id');
+		$this->db->where('petr_id',$petr_id);
+		$this->db->where('form_id',$form_id);
+		return $this->db->get('frm_formularios_completados')->result_array()[0]['lita_id'];
+	}
+
 }

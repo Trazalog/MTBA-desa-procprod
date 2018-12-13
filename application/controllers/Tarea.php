@@ -562,22 +562,33 @@ class Tarea extends CI_Controller
 				$this->load->view('tareas/view_12',$data);
 				break;
 			case 'Autoriza OCs para compra de repuestos':
+				$data['idForm'] = 8000;
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],$data['idForm']);
 				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
 				$this->load->view('tareas/view_13',$data);
 				break;
 			case 'Revisa OCs para compra de repuestos':
+				$data['idForm'] = 8000;
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],$data['idForm']);
 				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
 				$this->load->view('tareas/view_13',$data);
+				break;
+			case 'Solicitar envio de repuestos al cliente':
+				$this->load->view('tareas/view_14',$data);
 				break;
 			case 'Emite OCs a proveedores de repuestos':
 				$data['Oc_repuesto'] = $this->Tareas->ObtenerOc_repuesto($data['idPedTrabajo']);
 				$this->load->view('tareas/view_15', $data);
 				break;
 			case 'Recepción y control de repuestos del cliente para rectificación':
+				$data['idForm'] = 9500;
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],$data['idForm']);
 				$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
 				$this->load->view('tareas/view_17',$data);
 				break;
 			case 'Recepción y control de repuestos del cliente para armado':
+				$data['idForm'] = 9500;
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],$data['idForm']);
 				$data['repuestocliente'] = $this->Tareas->ObtenerRepuesto1($data['idPedTrabajo']);
 				$this->load->view('tareas/view_17',$data);
 				break;
@@ -586,15 +597,20 @@ class Tarea extends CI_Controller
 				$this->load->view('tareas/view_15',$data);
 				break;
 			case 'Recepción y control de repuestos comprados para rectficación':
+				$data['idForm'] = 9000;
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],$data['idForm']);
 				$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
 				$this->load->view('tareas/view_16',$data);
 				break;
 			case 'Recepción y control de repuestos comprados para armado':
+				$data['idForm'] = 9000;
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],$data['idForm']);
 				$data['repuesto'] = $this->Tareas->ObtenerRepuesto($data['idPedTrabajo']);
 				$this->load->view('tareas/view_16',$data);
 				break;
 			case 'Cotización, confección de presupuesto y envio al ciente de Trabajo Liviano':
 				//$data['list'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($data['idPedTrabajo']);
+				$data['formularios'] = array(2500);
 				$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
 				$this->load->view('tareas/view_18',$data);
 				break;

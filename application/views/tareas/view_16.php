@@ -1,5 +1,6 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <input type="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo;?>">
+<input type="hidden" id="lita_id" value="<?php echo $lita_id;?>">
 <section class="content">
     <?php echo cargarCabecera($idPedTrabajo); ?>
     <div class="row">
@@ -132,9 +133,7 @@
                                             <div class="form-group">
                                                 <div class="col-xs-12">
                                                     <!-- Modal formulario tarea -->
-                                                    <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                                                    data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Repuestos
-                                                    </button>';}?>
+                                                     <button type="button" id="formulario" class="btn btn-primary" onclick="getformulario()">Adjuntar Repuestos</button>
                                                 </div>
                                             </div>
                                                 <br> <br>  
@@ -220,7 +219,7 @@
                                                         foreach ($timeline['listArch'] as $f) {
                                                         
                                                         echo '<li>
-                                                            <div class="timeline-badge danger"><i class="glyphicon glyphicon-check"></i></div>
+                                                            <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
                                                             <div class="timeline-panel">
                                                                 <div class="timeline-heading">
                                                                 <h4 class="timeline-title">'.$f['displayName'].'</h4>
@@ -509,7 +508,7 @@
         // toma  el valor de todos los input file 
         var imgs = $('input.archivo');
         
-        var formData = new FormData($("#genericForm")[0]);
+        var formData = new FormData($('#genericForm'+$('#lita_id').val())[0]);
 
         /** subidad y resubida de imagenes **/
         // Tomo los inputs auxiliares cargados
@@ -700,7 +699,7 @@
 
 	// carga inputs auxiliares con url de imagen desde BD
 	function llenarInputFile(data){
-	    var id_listarea = $('inptut.archivo').val();
+	    var id_listarea = $('#lita_id').val();
 	    $.each(data,function( index ) {
 
 	      var id = data[index]['valoid'];
@@ -771,31 +770,46 @@
     }
 
 
+ function getformulario(){
+    console.log("Get Formularios Tarea...");
+   // form_actual_data = $(this);
+    WaitingOpen();
+    var idListTarea = $('#lita_id').val();
+    var form_id = $('#idform').val();
+    
+   // $('#idformulario').val(form_id);
+    $.ajax({
+      data: {form_id:form_id, id_listarea: idListTarea },
+      dataType: 'json',
+      type: 'POST',
+      url: 'index.php/PedidoTrabajo/Obtener_Formulario',
+      success: function(result){   
+        //form_actual_id = 'genericForm'+idListTarea; 
+        
+        $("#modalBodyRevDiagCoord").html(result.html);
+      
+        //getformularioDiag();
+        $('#modalForm').modal('show');
+        WaitingClose();
+      },
+      error: function(result){
+        WaitingClose();
+        alert("Error: No se pudo obtener el Formulario");
+      },
+    });
+  };
+
 </script>
 
-<div class="modal fade bs-example-modal-lg" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+<!-- Modal forms tareas a revisar -->
+<div class="modal fade" id="modalForm" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
+            <div class="modal-body" id="modalBodyRevDiagCoord">
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="box">
-                        <div class="box-body">
-                            <div class="row">
-                                <div class="col-sm-12 col-md-12">
-                                    <?php
-                                    if($form != ''){
-                                     cargarFormulario($form);
-                                    }                                    
-                                    ?>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
+            </div><!-- /.modal-body -->
+        </div> <!-- /.modal-content -->
+    </div>  <!-- /.modal-dialog modal-lg -->
+</div>  <!-- /.modal fade -->
+<!-- / Modal -->
 
