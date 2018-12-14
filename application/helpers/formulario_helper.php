@@ -83,7 +83,7 @@ if (!function_exists('cargarFormulario')) {
                         case "select":
                             $valor = $a['valDefecto'];
                             $html = "<select class='form-control sel ".($a['obligatorio']?"requerido":"")."' name='".$a['idValor']."' id='".$a['VALO_ID']."' style='width: 80%'><option value='-1' ".(strcmp($valor,'Seleccione...')==0?'selected':'').">Seleccione...</option>";
-                            if(strcmp($valor,'Seleccione...')!=0){
+                            if(strcmp($valor,'Seleccione...')!=0 && strlen($valor)!=0){
                               $html .= "<option value= '".$valor."' selected>".$valor."</option>";
                             }
                             echo $html."</select>";
