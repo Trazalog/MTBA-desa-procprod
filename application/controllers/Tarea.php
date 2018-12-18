@@ -487,11 +487,6 @@ class Tarea extends CI_Controller
 			case 'Análisis financiero y emisión de reportes':
 				$this->load->view('tareas/view_3', $data);
 				break;
-			// case 'Solicita ok al cliente para iniciar diagnostico':					
-			// 	$this->load->model('AceptacionTrabajos');
-			// 	$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
-			// 	$this->load->view('tareas/view_', $data);
-			// 	break;
 			case 'Evalua y envia presupuesto al cliente':
 				$this->load->model('AceptacionTrabajos');
 				$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
@@ -521,6 +516,9 @@ class Tarea extends CI_Controller
 				case 'Revisión Diagnóstico':
 				$this->load->model('Preinformes');
 				$data['formularios'] = $this->Preinformes->ObtenerIdFormulariosCompletados($data['idPedTrabajo']);
+				$data['list']   = $this->Tareas->tareasPorSector($caseId,'jefe');
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],2500);
+				$data['lita_id_infoTec'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],7000);
 				$this->load->view('tareas/view_8', $data);
 				break;
 			case 'Cotización de trabajo Industrial':
