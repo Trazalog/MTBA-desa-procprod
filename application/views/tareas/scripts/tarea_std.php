@@ -21,7 +21,7 @@
         //desahilito btn tomar      
         $("#btontomar").hide();
         $("#formulario").show();
-        $('#crearPDF').show();
+        $('#acciones_view').show();
     }
     function deshabilitar(){
         // habilito btn tomar
@@ -32,7 +32,8 @@
         $("#guardarComentario").hide();
         $("#comentario").hide();
         $("#formulario").hide();
-        $('#crearPDF').hide();
+        $('#acciones_view').hide();
+    
     }    
     // Volver al atras
     $('#cerrar').click(function cargarVista() {

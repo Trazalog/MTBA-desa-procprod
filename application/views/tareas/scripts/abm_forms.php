@@ -218,8 +218,9 @@
         $("#modalBodyRevDiagCoord").html(result.html);
 		if(existFunction("after_get_form"))after_get_form();
 		getImgValor();
+		getformularioDiag();
         $('#modalRevDiagCoord').modal('show');
-		//getformularioDiag();
+		
 		
         WaitingClose();
       },
@@ -229,6 +230,36 @@
       },
     });
   });
+
+  function getformularioDiag() {
+    console.log("Obteniendo Formulario Diagnostico...");
+  
+    // llena form una sola vez al primer click
+    if (click == 0) {
+      var estadoTarea = $('#estadoTarea').val();
+      // toma id de form asociado a listarea en TJS
+      var idForm = $(form_actual_data).attr("data-formid")
+
+      // guarda el id form asoc a tarea std en modal para guardar
+      $('#idformulario').val(idForm);
+
+      // trae valores validos para llenar componentes de form asoc.
+      $.ajax({
+        type: 'POST',
+        data: { idForm: idForm},
+        url: 'index.php/Tarea/getValValido',
+        success: function(data){
+          console.log('valores de componentes: ');
+          console.table(data);
+          llenaComp(data);
+        },
+        error: function(result){
+          console.log(result);
+        },
+        dataType: 'json'
+      });
+    }
+  }
 
   function existFunction(nombre){
 	var fn = window[nombre]; 
