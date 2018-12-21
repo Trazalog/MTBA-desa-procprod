@@ -1,10 +1,4 @@
-<?php 
-    require('scripts/tarea_std.php');
-    require('scripts/abm_forms.php');
-    require('scripts/validacion_forms.php');
-    require('scripts/preinforme.php');
-?>
-<input type="hidden" id="permission" value="<?php echo $permission;?>">
+    <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <input type="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo;?>">
 <input type="hidden" id="form_id" value="<?php echo $idPedTrabajo;?>">
 <input type="hidden" id="case_id" value="<?php echo json_encode($TareaBPM['caseId'])?>">
