@@ -817,13 +817,10 @@ class Tareas extends CI_Model
      *
      * @return   Tareas
      */
-	function tareasPorSector($caseId){
+	function tareasPorSector($caseId,$rol=''){
 		$idOT     = $this->getIdOTPorCaseId($caseId);
 		$userdata = $this->session->userdata('user_data');
 		$usrNick  = $userdata[0]["usrNick"];
-		$rolId    = $userdata[0]["rolId"];
-		// TODO: validar que el usuario sea coordinador
-		//$clave    = array_search(46, $rolId);//rol46=coordinador
 		$this->db->select('
 			tareas.form_asoc, tareas.id_tarea,
 			tbl_listarea.id_listarea, tbl_listarea.id_orden, tbl_listarea.tareadescrip, tbl_listarea.fecha, tbl_listarea.id_usuario, tbl_listarea.id_equipo, tbl_listarea.estado, tbl_listarea.bpm_task_id,
@@ -835,7 +832,7 @@ class Tareas extends CI_Model
 		$this->db->join('tbl_listarea', 'tbl_listarea.id_equipo = tbl_equipos.id_equipo');
 		$this->db->join('tareas', 'tareas.id_tarea = tbl_listarea.id_tarea');
 		$this->db->join('orden_trabajo', 'orden_trabajo.id_orden = tbl_listarea.id_orden');
-		$this->db->where('tbl_subsector.usuario_coordinador', $usrNick);
+		if(strcmp($rol,'jefe')!=0)$this->db->where('tbl_subsector.usuario_coordinador', $usrNick);
 		// TODO: Agrupar por orden de trabajo!!!
 		$this->db->where('orden_trabajo.id_orden', $idOT);
 		$query = $this->db->get();

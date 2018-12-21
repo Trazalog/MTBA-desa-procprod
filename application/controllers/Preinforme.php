@@ -22,7 +22,7 @@ class Preinforme extends CI_Controller {
     }
 
     public function generar() {
-        $idForms = json_decode( $this->input->post('idForms') );
+        $idForms = $this->input->post('idForms') ;
         $petr_id = $this->input->post('petr_id');
 
         $this->load->library('Pdf');
