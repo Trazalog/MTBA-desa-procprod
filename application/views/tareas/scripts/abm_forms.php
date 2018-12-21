@@ -176,7 +176,8 @@
 			success: function (respuesta) {
                 console.log(form_actual_id+"...OK");
                 WaitingClose();
-				ValidarObligatorios(validarOn);
+								if(existFunction("before_save_form"))before_save_form();
+								ValidarObligatorios(validarOn);
 				if (respuesta === "exito") {
 
 				}
@@ -216,9 +217,9 @@
       success: function(result){   
 		
         $("#modalBodyRevDiagCoord").html(result.html);
-		if(existFunction("after_get_form"))after_get_form();
-		getImgValor();
-		getformularioDiag();
+				if(existFunction("after_get_form"))after_get_form();
+				getImgValor();
+				getformularioDiag();
         $('#modalRevDiagCoord').modal('show');
 		
 		
@@ -262,8 +263,8 @@
   }
 
   function existFunction(nombre){
-	var fn = window[nombre]; 
-	return typeof fn === 'function';
+		var fn = window[nombre]; 
+		return typeof fn === 'function';
   }
 
 </script>

@@ -70,7 +70,14 @@
     });
                
     function terminarTarea(){
-        if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+        var ban = true;
+        $('.getFormularioTarea').each(function( index ) {
+        if($( this ).attr('data-open')=="true"){
+            console.log( index + ": " + $( this ).attr('data-validado'));
+            ban = ban && ($( this ).attr('data-validado') == "true");
+        }
+        });
+        if(ban==false){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
         WaitingOpen('Cerrando Tarea');
         var idTarBonita = $('#idTarBonita').val();
         //alert(idTarBonita);

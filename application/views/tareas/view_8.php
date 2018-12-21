@@ -1,6 +1,6 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <input type="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo;?>">
-<input type="hidden" id="form_id" value="<?php echo $idPedTrabajo;?>">
+<input type="hidden" id="form_id" value="">
 <input type="hidden" id="case_id" value="<?php echo json_encode($TareaBPM['caseId'])?>">
 <section class="content">
     <?php echo cargarCabecera($idPedTrabajo); ?>

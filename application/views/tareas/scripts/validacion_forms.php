@@ -37,7 +37,7 @@
 		});
 	}
 
-    var validado=($('#idform').val()==0);     
+    var validado=false;
     function ValidarCampos(){
         WaitingOpen('Validando Formulario');
         GuardarFormulario(true);
