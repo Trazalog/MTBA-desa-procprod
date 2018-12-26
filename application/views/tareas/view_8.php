@@ -1,12 +1,6 @@
-<?php 
-    require('scripts/tarea_std.php');
-    require('scripts/abm_forms.php');
-    require('scripts/validacion_forms.php');
-    require('scripts/preinforme.php');
-?>
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
 <input type="hidden" id="idPedTrabajo" value="<?php echo $idPedTrabajo;?>">
-<input type="hidden" id="form_id" value="<?php echo $idPedTrabajo;?>">
+<input type="hidden" id="form_id" value="">
 <input type="hidden" id="case_id" value="<?php echo json_encode($TareaBPM['caseId'])?>">
 <section class="content">
     <?php echo cargarCabecera($idPedTrabajo); ?>
@@ -128,7 +122,7 @@
                                                         </div></br> </br> </br> </br> </br>
                                                     </div>
 
-                                                    <div class="form-group">
+                                                    <div class="form-group" id="acciones_view">
                                                         <div class="col-sm-12 col-md-12">
                                                             <table id="tbl_diagnosticos" class="table table-striped table-bordered table-hover">
                                                                 <thead>

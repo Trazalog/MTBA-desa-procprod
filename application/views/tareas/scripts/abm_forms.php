@@ -174,18 +174,12 @@
 			processData: false,
 
 			success: function (respuesta) {
-                console.log(form_actual_id+"...OK");
-                WaitingClose();
-				ValidarObligatorios(validarOn);
-				if (respuesta === "exito") {
-
-				}
-				else if (respuesta === "error") {
-					alert("Los datos no se han podido guardar");
-				}
-
-    		}
-        });
+					console.log(form_actual_id+"...OK");
+					WaitingClose();
+					if(existFunction("after_save_form"))after_save_form();
+					ValidarObligatorios(validarOn);
+    	}
+      });
 	}
 
    
@@ -216,10 +210,11 @@
       success: function(result){   
 		
         $("#modalBodyRevDiagCoord").html(result.html);
-		if(existFunction("after_get_form"))after_get_form();
-		getImgValor();
+				if(existFunction("after_get_form"))after_get_form();
+				getImgValor();
+				getformularioDiag();
         $('#modalRevDiagCoord').modal('show');
-		//getformularioDiag();
+		
 		
         WaitingClose();
       },
@@ -230,9 +225,39 @@
     });
   });
 
+  function getformularioDiag() {
+    console.log("Obteniendo Formulario Diagnostico...");
+  
+    // llena form una sola vez al primer click
+    if (click == 0) {
+      var estadoTarea = $('#estadoTarea').val();
+      // toma id de form asociado a listarea en TJS
+      var idForm = $(form_actual_data).attr("data-formid")
+
+      // guarda el id form asoc a tarea std en modal para guardar
+      $('#idformulario').val(idForm);
+
+      // trae valores validos para llenar componentes de form asoc.
+      $.ajax({
+        type: 'POST',
+        data: { idForm: idForm},
+        url: 'index.php/Tarea/getValValido',
+        success: function(data){
+          console.log('valores de componentes: ');
+          console.table(data);
+          llenaComp(data);
+        },
+        error: function(result){
+          console.log(result);
+        },
+        dataType: 'json'
+      });
+    }
+  }
+
   function existFunction(nombre){
-	var fn = window[nombre]; 
-	return typeof fn === 'function';
+		var fn = window[nombre]; 
+		return typeof fn === 'function';
   }
 
 </script>

@@ -519,7 +519,11 @@ class Tarea extends CI_Controller
 				$data['list']   = $this->Tareas->tareasPorSector($caseId,'jefe');
 				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],2500);
 				$data['lita_id_infoTec'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],7000);
-				$this->load->view('tareas/view_8', $data);
+				$this->load->view('tareas/view_8',$data);
+				$this->load->view('tareas/scripts/tarea_std');
+				$this->load->view('tareas/scripts/abm_forms');
+				$this->load->view('tareas/scripts/validacion_forms');
+				$this->load->view('tareas/scripts/preinforme');
 				break;
 			case 'Cotización de trabajo Industrial':
 				$this->load->model('Preinformes');
@@ -610,7 +614,13 @@ class Tarea extends CI_Controller
 				//$data['list'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($data['idPedTrabajo']);
 				$data['formularios'] = array(2500);
 				$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],6000);
+				$data['lita_id_infoTec'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],7000);
 				$this->load->view('tareas/view_18',$data);
+				$this->load->view('tareas/scripts/tarea_std');
+				$this->load->view('tareas/scripts/abm_forms');
+				$this->load->view('tareas/scripts/validacion_forms');
+				$this->load->view('tareas/scripts/preinforme');
 				break;
 			default:
 				$this->load->view('tareas/view_', $data);
