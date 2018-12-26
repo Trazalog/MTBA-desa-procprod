@@ -813,13 +813,11 @@ $(".fa-search").click(function (e) {
             }
         });
     }	
-  function before_save_form(){
+  function after_save_form(){
 	if($('#idform').val()=="7000"){
-		alert('InfoTec');
 		GuardarValorInfoTecnico();
 	}
-	if($('#idform').val()=="6000"){
-		alert('Presupuesto');
+	if($('#idform').val()=="6000"){	
 		GuardarValorPresupuesto();
 	}
   }

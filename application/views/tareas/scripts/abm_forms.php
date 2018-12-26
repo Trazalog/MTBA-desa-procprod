@@ -174,19 +174,12 @@
 			processData: false,
 
 			success: function (respuesta) {
-                console.log(form_actual_id+"...OK");
-                WaitingClose();
-								if(existFunction("before_save_form"))before_save_form();
-								ValidarObligatorios(validarOn);
-				if (respuesta === "exito") {
-
-				}
-				else if (respuesta === "error") {
-					alert("Los datos no se han podido guardar");
-				}
-
-    		}
-        });
+					console.log(form_actual_id+"...OK");
+					WaitingClose();
+					if(existFunction("after_save_form"))after_save_form();
+					ValidarObligatorios(validarOn);
+    	}
+      });
 	}
 
    
