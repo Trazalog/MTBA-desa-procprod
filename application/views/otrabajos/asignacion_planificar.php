@@ -1,4 +1,5 @@
-<input type="hidden" id="permission" style="width: 100%" value="<?php echo $permission;?>">
+<input type="hidden" id="permission" value="<?php echo $permission;?>">
+<input type="hidden" id="orden_actual"  value="<?php echo $infoOT[0]["id_orden"]; ?>">
 <div class="row">
   <div class="col-xs-12">
     <div class="alert alert-danger alert-dismissable" id="error" style="display: none">
@@ -420,6 +421,7 @@
                 var idOT = $(this).attr('id_orden');  
                 // asigna colores en funcion del tipo de orden
                 var Color = '';
+                if($('#orden_actual').val()==idOT)Color = '#ff851b';
                 // switch ($(this).attr('tipo')) {
                 //   case '1':
                 //           Color = '#3c8dbc';    //Orden Trabajo (celeste)
@@ -989,6 +991,7 @@
         },
         success: function (data) {
           //console.log(data);
+          Colorear(data);
           //ELIMINA EVENTOS ACTUALES DEL CALENDARIO
           $("#calendar").fullCalendar('removeEvents');
           //AGREGA NUEVO EVENTOS QUE TRAE EL AJAX AL CALENDARIO
@@ -1042,6 +1045,7 @@
         },
         success: function (data) {
           console.table(data);
+          Colorear(data);
           //ELIMINA EVENTOS ACTUALES DEL CALENDARIO
           $("#calendar").fullCalendar('removeEvents');
           //AGREGA NUEVO EVENTOS QUE TRAE EL AJAX AL CALENDARIO
@@ -1330,6 +1334,12 @@
       $('#id_listarea').val(idtar);
     });
 
+    function Colorear(data){
+      $.each(data,function(index){
+        if(data[index]['id_orden']==$('#orden_actual').val())
+          data[index]['backgroundColor'] = '#ff851b';
+      });
+    }
 </script>
 
 <!-- Modal Asigna usuario -->
