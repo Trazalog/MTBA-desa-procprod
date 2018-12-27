@@ -662,7 +662,7 @@ class Otrabajo extends CI_Controller {
 	}
 	
 	// Trae tareas por mes para calendario (carga inicial de calendario)
-	public function getcalendTareas($FiltrarOT){
+	public function getcalendTareas($FiltrarOT=''){
 		$idOrden = $this->input->post('idOrden');
 		$data = $this->Otrabajos->getcalendTareas($this->input->post(),$FiltrarOT);
 		if($data  == false){
