@@ -44,10 +44,6 @@
     <input type="text" class="decripInsumo form-control" id="decripInsumo" value="" placeholder="Descripción" disabled>
     <input type="hidden" name="" class="id-artOrdIns form-control" id="id-artOrdIns" value="" disabled>
   </div>
-  <div class="col-xs-12 col-sm-6 col-md-4"><label>Proveedor</label> <strong style="color: #dd4b39">*</strong> :
-    <select  id="proveedor" name="" class="form-control" />
-    <input class="hidden" type="text" id="proveedor" name="proveedor" value="1">
-  </div>
   <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group"><label>Cantidad</label> <strong style="color: #dd4b39">*</strong> :
     <input  id="cantidad" name="" class="form-control numerico" placeholder="Ingrese cantidad..."/>
   </div></div>
@@ -57,7 +53,12 @@
   <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group"><label>Medida</label> <strong style="color: #dd4b39">*</strong> :
     <!-- <input  type="text"  placeholder="ingrese medida..."/> -->
     <select id="medida" name="medida" class="form-control" placeholder="Medida..."><option value="km">km</option><option value="m">m</option><option value="cm">cm</option></select>
-  </div></div><br>
+  </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <textarea class="form-control" id="art_comentarios" placeholder="Comentarios..." width="100%" value=""></textarea>
+  </div>
+  <br>
   <div class="clearfix"></div>
   <div class="col-xs-12">
     <button type="button" class="btn btn-success" id="addcompo" onclick="javascript:armarTabla()" style="margin-top: 15px"><i class="fa fa-check">Agregar</i></button>
@@ -79,9 +80,9 @@
             <th width="3%">Ord. Trab.</th>
             <th width="3%">Artículos</th>
             <th width="3%">Cantidad</th>
-            <!-- <th width="5%">Proveedor</th> -->
             <th width="3%">Fecha Entrega</th>
             <th width="2%">Medida</th>
+            <th class="hidden">Comentarios</th>
           </tr>
         </thead>
         <tbody>
@@ -198,29 +199,6 @@ $("#artOrdInsum").autocomplete({
     }
 });
 
-
-
-// Trae Proveedores y llena select
-$.ajax({
-  type: 'POST',
-  url: 'index.php/Notapedido/getProveedor',
-  success: function(data){
-
-    var opcion   = "<option value='-1'>Seleccione...</option>" ;
-    $('#proveedor').append(opcion);
-    for(var i    =0; i < data.length ; i++){
-      //var nombre = data[i]['codigo'];
-      var opcion   = "<option value='"+data[i]['provid']+"'>" +data[i]['provnombre']+ "</option>" ;
-      $('#proveedor').append(opcion);
-    }
-  },
-  error: function(result){
-    console.log(result);
-  },
-  dataType: 'json'
-});
-
-
 // Carga datepicker para fecha
 $( "#fechaEnt" ).datepicker().on('change', function(e) {
        // $('#genericForm').bootstrapValidator('revalidateField',$(this).attr('name'));
@@ -243,11 +221,9 @@ function armarTabla(){   // inserta valores de inputs en la tabla
     var $desCripInsum = $("#decripInsumo").val();
     var $id_Insumo    = $("#id_articulo").val();
     var $cantOrdInsum = $("#cantidad").val();
-    var $proveedor    = $("select#proveedor option:selected").html();
-    var $id_proveedor = $("select#proveedor option:selected").val();
-    //var $id_proveedor = $("input#proveedor").val();
     var $fecha        = $("#fechaEnt").val();
     var $medida       = $('select#medida option:selected').html();
+    var $comentarios  = $("#art_comentarios").val();
 
     //tabla = $('.tabModInsum').DataTable();
     //$( $.fn.dataTable.tables( true ) ).DataTable().columns.adjust();
@@ -264,13 +240,11 @@ function armarTabla(){   // inserta valores de inputs en la tabla
 
        '<td class="cant_insumos" id="cant_insumos"><input type="text" name="cant_insumos'+ '['+ regInsum+']' +'" class="celda cant_insumos" id="cant_insumos" value="'+$cantOrdInsum+'" placeholder=""></td>'+
 
-       '<td class="hidden nom_prov" id="nom_prov"><input type="text" class="celda nom_proveed" id="nom_proveed" value="'+$proveedor+'" placeholder=""></td>'+
-
-       '<td class="hidden id_prov" id="id_prov"><input type="text" name="proveedid'+ '['+ regInsum+']' +'" class="celda proveedid" id="proveedid" value="'+$id_proveedor+'" placeholder=""></td>'+
-
        '<td class=" fecha" id="fecha"><input type="text" name="fechaentrega'+ '['+ regInsum+']' +'" class="celda fechaentrega" id="fechaentrega" value="'+$fecha+'" placeholder=""></td>'+
 
-       '<td class="medida" id=medida"><input type="text" name=medida'+ '['+ regInsum+']' +'" class="celda medida" id="medida" value="'+$medida+'" placeholder=""></td>'+
+       '<td class="medida" id="medida"><input type="text" name="medida'+ '['+ regInsum+']' +'" class="celda medida" id="medida" value="'+$medida+'" placeholder=""></td>'+
+
+       '<td class="comentarios hidden"><input type="text" name="comentarios'+ '['+regInsum+']' +'" class="celda comentarios" id="comentarios" value="'+$comentarios+'" placeholder="Comentarios..."></td>'+
 
     '<tr>');
 
@@ -288,10 +262,6 @@ function validarCampos(){
     error = true;
     console.log('cantidad');
 
-  }
-  if ($("#proveedor").val() == "-1") {
-    error = true;
-    console.log('rpoveedor');
   }
   if ($("#fechaEnt").val() == "") {
     error = true;
@@ -342,36 +312,4 @@ function enviarOrden() {
   });
 }
 
-//cargo datatable
-//$('.tabModInsum').DataTable();
-
-
-
-
-  // Carga tabla con valores ya existentes
-  /*llenarTabla();
-  function llenarTabla(){
-    var idOT = $('#id_ordTrabajo').val();
-    console.log("id ot: "+idOT);
-    $.ajax({
-      data: { idOT:idOT },
-      dataType: 'json',
-      type: 'POST',
-      url: 'index.php/Notapedido/getRepuestos',
-      success: function(data){
-        console.table(data);
-      },
-      error: function(result){
-        console.log(result);
-      },
-    });
-  }*/
-
-  //llena la tabla con todos los valores de pedido de repuestos
-  /*function crearTableBody(data){
-    console.table(data);
-    var regInsum = 0;
-
-  }*/
 </script>
-<!-- / Validacion de campos y Envio form -->
