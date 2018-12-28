@@ -259,7 +259,6 @@
                           <th>Id Pedido</th>
                           <th>Código Artículo</th>
                           <th>Artículo</th>
-                          <th>Proveedor</th>
                           <th>Cantidad</th>
                           <th>Fecha Entrega</th>
                         </tr>
@@ -1033,7 +1032,6 @@ function IniciarValidador(idForm){
             "<td>"+data['lista'][i]['id_notaPedido']+"</td>"+
             "<td>"+data['articulos'][indexA]['label']+"</td>"+
             "<td data-artId='"+data['lista'][i]['artId']+"'>"+data['articulos'][indexA]['descripcion']+"</td>"+
-            "<td data-provid='"+data['lista'][i]['provid']+"'>"+data['proveedores'][indexP]['provnombre']+"</td>"+
             "<td>"+data['lista'][i]['cantidad']+" | "+data['lista'][i]['medida']+"</td>"+
             "<td>"+data['lista'][i]['fechaEntrega']+"</td>"+
             "</tr>";

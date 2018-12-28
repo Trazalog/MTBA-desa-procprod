@@ -160,7 +160,8 @@ class Notapedidos extends CI_Model
         'fechaEntregado' => $newDate,
         'remito'         => 1,
         'medida'         => $medida,
-        'estado'         => 'P' // Estado Pedido
+        'estado'         => 'P', // Estado Pedido
+        'comentarios'    => $data['comentarios'][$i]
         );
       if( !$this->db->insert('tbl_detanotapedido', $nota) ) {
         return false;
@@ -249,21 +250,18 @@ class Notapedidos extends CI_Model
       orden_trabajo.descripcion,
       tbl_detanotapedido.id_notaPedido,
       tbl_detanotapedido.cantidad,
-      tbl_detanotapedido.provid,
       tbl_detanotapedido.fechaEntrega,
       tbl_detanotapedido.fechaEntregado,
       tbl_detanotapedido.remito,
       tbl_detanotapedido.medida,
       tbl_detanotapedido.estado,
-      abmproveedores.provnombre,
+      tbl_detanotapedido.comentarios,
       articles.artDescription, articles.artId, articles.artBarCode'
       );
     $this->db->from('tbl_notapedido');
     $this->db->join('orden_trabajo', 'tbl_notapedido.id_ordTrabajo = orden_trabajo.id_orden');
     $this->db->join('tbl_detanotapedido', 'tbl_detanotapedido.id_notaPedido = tbl_notapedido.id_notaPedido');
-    $this->db->join('abmproveedores', 'abmproveedores.provid = tbl_detanotapedido.provid');
     $this->db->join('articles', 'tbl_detanotapedido.artId = articles.artId');
-    //$this->db->where('tbl_notapedido.id_notaPedido', $id_notaPedido);
     $this->db->where('tbl_detanotapedido.id_detaNota', $id_detaNota);
     $query = $this->db->get();
     $result = $query->result_array();
@@ -283,7 +281,6 @@ class Notapedidos extends CI_Model
     $id_notaPedido = $data["id_notaPedido"];
     $id_articulo   = $data["id_articulo"];
     $cantidad      = $data["cantidad"];
-    $proveedor     = $data['proveedor'];
     $fechaEnt      = date('Y-m-d',strtotime($data['fechaEnt']));
     $medida        = $data['medida'];
 
@@ -292,7 +289,7 @@ class Notapedidos extends CI_Model
       'id_notaPedido' => $id_notaPedido,
       'artId'         => $id_articulo,
       'cantidad'      => $cantidad,
-      'provid'        => $proveedor,
+      'comentarios'    => $data["comentarios"],
       'fechaEntrega'  => $fechaEnt,
       'medida'        => $medida
     );

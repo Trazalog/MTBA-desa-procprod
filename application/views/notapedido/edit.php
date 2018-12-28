@@ -8,16 +8,7 @@
   </div>
 </div>
 
-<!--
-<div class="row" >
-  <div class="col-xs-12 col-sm-4"><label>Orden de Trabajo Nº</label> <strong style="color: #dd4b39">*</strong> :
-    <input id="id_ordTrabajo" name="" class="form-control" value="<?php echo $id_orden ?>" disabled/>
-  </div>
-  <div class="col-xs-12 col-sm-8"><label>Detalle</label> <strong style="color: #dd4b39">*</strong> :
-    <input id="detaorden" name="" class="form-control" value="" disabled/>
-  </div>
-</div><hr>
--->
+
 <form id="form_order">
     <input type="hidden" id="id_notaPedido" name="id_notaPedido" value="<?php echo $list[0]['id_notaPedido'] ?>">
     <input type="hidden" id="id_detaNota" name="id_detaNota" value="<?php echo $list[0]['id_detaNota'] ?>">
@@ -32,11 +23,6 @@
     <input type="hidden" name="" class="id-artOrdIns form-control" id="id-artOrdIns" value="<?php echo $list[0]['medida'] ?>" disabled>
   </div>
 
-  <div class="col-xs-12 col-sm-6 col-md-4"><label>Proveedor</label> <strong style="color: #dd4b39">*</strong> :
-    <select  id="proveedor" name="proveedor" class="form-control" />
-    <!--<input class="hidden" type="text" id="proveedor" name="proveedor" value="1">-->
-  </div>
-
   <div class="col-xs-12 col-sm-6 col-md-4"><div class="form-group"><label>Cantidad</label> <strong style="color: #dd4b39">*</strong> :
     <input id="cantidad" name="cantidad" class="form-control numerico" value="<?php echo $list[0]['cantidad'] ?>"/>
   </div></div>
@@ -49,7 +35,10 @@
   <label>Medida</label> <strong style="color: #dd4b39">*</strong> :
     <!-- <input type="text" id="medida" name="medida" class="form-control numerico" value=""/> -->
   <select class="select form-control"  id="medida" name="medida" placeholder="Medida..."><?php echo '<option selected value="'.$list[0]['medida'].'">'.$list[0]['medida'].'</option>'?><option value="km">km</option><option value="m">m</option><option value="cm">cm</option></select>
-  </div></div><br>
+  </div></div>
+  <div class="col-xs-12 col-sm-12 col-md-12">
+    <textarea class="form-control" name="comentarios" placeholder="Comentarios..." width="100%" ><?php echo $list[0]['comentarios']?></textarea>
+  </div><br>
 
   <div class="clearfix"></div>
   <div class="col-xs-12">
@@ -126,29 +115,6 @@ $("#artOrdInsum").autocomplete({
   },
 });
 
-llenar_proveedor(<?php echo $list[0]['provid'] ?>);
-function llenar_proveedor(id){
-    // Trae Proveedores y llena select
-    console.log(id);
-    $.ajax({
-      type: 'POST',
-      url: 'index.php/Notapedido/getProveedor',
-      success: function(data){
-        $('#proveedor').text("");
-        for(var i=0; i < data.length ; i++){
-            var selectAttr = '';
-            if(data[i]['provid'] == id) { var selectAttr = 'selected'; }
-            var opcion   = "<option value='"+data[i]['provid']+"' "+selectAttr+">" +data[i]['provnombre']+ "</option>" ;
-            $('#proveedor').append(opcion);
-        }
-      },
-      error: function(result){
-        console.log(result);
-      },
-      dataType: 'json'
-    });
-}
-
 // Carga datepicker para fecha
 $("#fechaEnt").datepicker().on('change', function(e) {
   $('form').data('bootstrapValidator').resetField($(this),false);
@@ -164,10 +130,7 @@ function validarCampos(){
     console.log('cantidad');
 
   }
-  if ($("#proveedor").val() == "-1") {
-    error = true;
-    console.log('rpoveedor');
-  }
+
   if ($("#fechaEnt").val() == "") {
     error = true;
     console.log('fecha');
@@ -192,7 +155,7 @@ function validarCampos(){
 function enviarOrden() {
   var datos = $("#form_order").serializeArray();
   console.table(datos);
-  datos[6]['value'] = $('select#medida option:selected').html();
+  datos[5]['value'] = $('select#medida option:selected').html();
   
   //WaitingOpen('Guardando cambios');
   $.ajax({
