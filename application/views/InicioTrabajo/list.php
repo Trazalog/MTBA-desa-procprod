@@ -266,6 +266,7 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
 		if(!$('#form').data('bootstrapValidator').isValid()){
 			alert('Error de Validación.\nCompruebe que los Datos esten cargados Correctamente.');
 		}	
+        WaitingOpen('Espere...');
     });
  
     $('.edit').click(function() {
@@ -444,11 +445,13 @@ Date.prototype.getMillisecondsZeroFilled = function() { return this.getXXXzeroFi
             url: 'index.php/InicioTrabajo/Guardar_Pedido',
             success: function(result) {
                 console.log(result);
+                WaitingClose();
                 alert("Proceso Iniciado!\nCódigo de Interno: "+result);     
                 ActualizarPagina();
             },
             error: function(result) {
                 console.log(result);
+                WaitingClose();
                 alert("No se pudo Inciar el Proceso, por favor cargar datos correctamente.");
             }
         });

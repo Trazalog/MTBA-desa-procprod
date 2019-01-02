@@ -710,7 +710,6 @@
 
 	// trae valores validos para llenar form asoc.  
 	function getformulario(event) {
-
 		// trae valor de imagenes y llena inputs.
 		getImgValor();
 
@@ -732,14 +731,12 @@
 				data: { idForm: idForm },
 				url: 'index.php/Tarea/getValValido',
 				success: function (data) {
-					//console.log('valores de componentes: ');
-					//console.table(data);                   
-
+					WaitingClose();                
 					llenaComp(data);
 				},
 				error: function (result) {
-
 					console.log(result);
+			
 				},
 				dataType: 'json'
 			});
@@ -753,7 +750,7 @@
 		$('#id_listarea').val(id_listarea);
 
 		//console.log(data);
-		
+		if(data)
 		$.each(data, function (index) {
 			//$( "#" + i ).append(  );
 			var idSelect = data[index]['idValor'];
@@ -767,11 +764,7 @@
 			}
 			valor = data[index]['idValor'];
 			valorSig = data[index]['idValor'];
-			// $('#' + idSelect+" option").val(function(idx, val) {
-			// 	//if(!$(this).is(':selected')){
-			// 		$(this).siblings('[value="'+ val +'"]').remove();
-			// 	//}
-			// });
+
 		});
 		
 	}
@@ -809,6 +802,7 @@
 		var id_listarea = $('inptut.archivo').val();
 		var base_url = "http://35.239.41.196/mtba-desa-procprod-desarrollo/";
 		var imagen = "";
+		if(data)
 		$.each(data, function (index) {
 			var id = data[index]['valoid'];
 			var valor = data[index]['valor'];
