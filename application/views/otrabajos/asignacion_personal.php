@@ -1,5 +1,7 @@
 <input type="hidden" id="permission" style="width: 100%" value="<?php echo $permission;?>">
 <input type="hidden" id="orden_actual"  value="<?php echo $infoOT[0]["id_orden"]; ?>">
+<input type="hidden" id="idPedTrabajo"  value="<?php echo $idPedTrabajo; ?>">
+
 <div class="row">
   <div class="col-xs-12">
     <div class="alert alert-danger alert-dismissable" id="error" style="display: none">
@@ -201,8 +203,13 @@
              </style>
              <div class="col-sm-12 col-md-12">
               <br>
-              <div class="col-xs-8">Tarea
-                <select id="tarea" name="tarea" class="form-control " placeholder="" value="" ></select>
+              <div class="col-xs-8"> 
+                <div class="box box-default collapsed-box box-solid">
+                    <div class="box-header with-border">
+                        <h4>Seleccionar Tarea</h4>
+                          <select id="tarea" name="tarea" class="form-control " placeholder="" value=""></select>
+                    </div>
+                </div> 
               </div>                 
               <div class="col-xs-2">
                 <button type="button" class="btn btn-success" id="agregar" style="margin-top: 20px;"><i class="  fa fa-plus"></i>Agregar</button>
@@ -448,8 +455,6 @@ function cerrarAsignacion(){
 
 calendario();
 function calendario(){
-
-  
       //  CALENDARIO
 
      /* initialize the external events
@@ -1410,9 +1415,9 @@ function guardarfecha(){
 
 function recargaAsignaPersPlanif(){
   var idTarea = $('#idTarea').val();
-
+  $('#modalSale').modal('hide'); 
   var numord= $('#numord').val();
-  $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/"+numord+"/"+idTarea+"/");  
+  $("#content").load("<?php echo base_url(); ?>index.php/Otrabajo/cargarAsignacion/<?php echo $permission; ?>/"+numord+"/"+idTarea+"/"+$('#idPedTrabajo').val());  
   WaitingClose();  
   $('#modalSale').modal('hide'); 
 }

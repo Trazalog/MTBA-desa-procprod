@@ -132,8 +132,14 @@
              </style>
                             <div class="col-sm-12 col-md-12">
                               <br>
-                              <div class="col-xs-8">Tarea
-                                <select id="tarea" name="tarea" class="form-control " placeholder="" value=""></select>
+                              
+                              <div class="col-xs-8">
+                                <div class="box box-default collapsed-box box-solid">
+                                    <div class="box-header with-border">
+                                        <h4>Seleccionar Tarea</h4>
+                                          <select id="tarea" name="tarea" class="form-control " placeholder="" value=""></select>
+                                    </div>
+                                </div> 
                               </div>
                               <div class="col-xs-2">
                                 <button type="button" class="btn btn-success" id="agregar" style="margin-top: 20px;"> +
