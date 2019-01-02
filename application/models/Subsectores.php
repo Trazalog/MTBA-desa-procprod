@@ -25,9 +25,10 @@ class Subsectores extends CI_Model
 
     }
 
-    public function Guardar($descripcion)
+    public function Guardar($descripcion,$coordinador)
     {
         $this->db->set('descripcion',$descripcion);
+        $this->db->set('usuario_coordinador',$coordinador);
         $this->db->insert('tbl_subsector');
         $insertId = $this->db->insert_id();
         return  $insertId;

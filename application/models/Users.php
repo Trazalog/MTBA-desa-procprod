@@ -211,5 +211,10 @@ class Users extends CI_Model
 			}
 		}
 	}
+	function Obtener_Coordinadores($parametros){
+		$url = BONITA_URL.'API/identity/user?p=0&c=5&f=role_id=46';
+		$response = file_get_contents($url, false, $parametros);
+		return json_decode($response,true);
+	}
 	
 }
