@@ -423,7 +423,6 @@
 	function guardarComentario() {
 		console.log("Guardar Comentarios...");
         var id = $('#caseID').val();
-        alert(id);
 		var nombUsr = $('#usrName').val();
 		var apellUsr = $('#usrLastName').val();;
 
