@@ -188,68 +188,14 @@
 											</div>
 										</div>
 
-                                            <div role="tabpanel" class="tab-pane" id="messages">
-                                                <div class="panel-body">
-                                                <div class="panel panel-primary" >
-                                                <div class="panel-heading">Línea de Tiempo</div>
-                                                <div  class="panel-body" style="max-height: 500px;overflow-y: scroll;">
-                                                <style type="text/css">
+                                        <div role="tabpanel" class="tab-pane" id="messages">
+											<div class="panel-body">
+												<div class="panel panel-primary">
+													<?php echo $timeline ?>
+												</div>
+											</div>
 
-
-                                                </style>
-
-                                                <div class="container">
-                                                    <ul class="timeline">
-                                                    <?php
-                                                        echo '<h2 style="margin-left:50px;">Actividades Pendientes</h2>';
-                                                        foreach ($timeline['listAct'] as $f) {       
-                                                        echo '<li>
-                                                            <div class="timeline-badge info"><i class="glyphicon glyphicon-time"></i></div>
-                                                            <div class="timeline-panel">
-                                                                <div class="timeline-heading">
-                                                                <h4 class="timeline-title">'.$f['displayName'].'</h4>
-                                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
-                                                                </div>
-                                                                <div class="timeline-body">';
-                                                                if(array_key_exists ( 'assigned_id' , $f ) && $f['assigned_id']!=''){
-                                                                    echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
-                                                                }else{
-                                                                    echo '<p>Usuario: Sin Asignar</p>';
-                                                                }
-                                                        echo   '<p>Descripción: '.$f['displayDescription'].'</p>
-                                                                <p>Case: '.$f['caseId'].'</p>
-                                                                </div>
-                                                            </div>
-                                                            </li>';
-                                                        }
-                                                        echo '<h2 style="margin-left:50px;">Actividades Terminadas</h2>';
-                                                        foreach ($timeline['listArch'] as $f) {
-                                                        
-                                                        echo '<li>
-                                                            <div class="timeline-badge success"><i class="glyphicon glyphicon-check"></i></div>
-                                                            <div class="timeline-panel">
-                                                                <div class="timeline-heading">
-                                                                <h4 class="timeline-title">'.$f['displayName'].'</h4>
-                                                                <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> '.date_format(date_create($f['last_update_date']),'H:i  d/m/Y').'</small></p>
-                                                                </div>
-                                                                <div class="timeline-body">';
-                                                                if(array_key_exists ( 'assigned_id' , $f )){
-                                                                    echo '<p>Usuario: '.$f['assigned_id']['firstname'].' '.$f['assigned_id']['lastname'].'</p>';
-                                                                }else{
-                                                                    echo '<p>Usuario: Sin Asignar</p>';
-                                                                }
-                                                        echo    '<p>Descripción: '.$f['displayDescription'].'</p>           
-                                                                <p>Case: '.$f['caseId'].'</p>
-                                                                </div>
-                                                            </div>
-                                                            </li>';
-                                                        }
-                                                        ?> 
-                                                    </ul>
-                                                </div>                                            
-                                            
-                                           </div>
-                                       </div>
+										</div>
                                                 </div>
 
                                             </div>

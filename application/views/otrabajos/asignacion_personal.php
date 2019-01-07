@@ -1528,7 +1528,7 @@ function Colorear(data){
         </div>
 
         <div class="form-group">
-          <label for="fecha">Duración Estandar (en minutos)</label>
+          <label for="fecha">Duración Estandar (en horas)</label>
           <input type='text' class="form-control input-md" id="duracion" value="" disabled>
         </div>
 

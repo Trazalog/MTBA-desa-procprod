@@ -18,7 +18,7 @@ class PedidoTrabajo extends CI_Controller {
       $data['idPedTrabajo'] = $id;
       $data['caseID'] = $caseID;
       $data['comentarios'] = $this->ObtenerComentariosBPM($caseID);
-		$data['timeline'] = $this->ObtenerLineaTiempo($caseID);
+		$data['timeline'] = $this->load->view('tareas/timeline/view',array('timeline'=>$this->ObtenerLineaTiempo($caseID)),true);
       $this->load->view('PedidosTrabajos/view',$data);
    }
    function ObtenerComentariosBPM($caseId){
