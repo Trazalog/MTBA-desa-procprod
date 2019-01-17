@@ -1,0 +1,893 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<organization:Organization xmlns:organization="http://documentation.bonitasoft.com/organization-xml-schema/1.1">
+  <customUserInfoDefinitions/>
+  <users>
+    <user userName="gabriela.balderramo">
+      <firstName>M. Gabriela </firstName>
+      <lastName>Balderramo</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="javier.arias">
+      <firstName>Javier </firstName>
+      <lastName>Arias</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="florencia.ruiz">
+      <firstName>Florencia </firstName>
+      <lastName>Ruiz</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="gabriela.rojo">
+      <firstName>Gabriela </firstName>
+      <lastName>Rojo</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="liliana.gomez">
+      <firstName>Liliana</firstName>
+      <lastName>Gomez</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="fernando.palacios">
+      <firstName>Fernando </firstName>
+      <lastName>Palacios</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="nadia.postigo">
+      <firstName>Nadia </firstName>
+      <lastName>Postigo</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="luis.pizarro">
+      <firstName>Luis </firstName>
+      <lastName>Pizarro</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="emilio.balderramo">
+      <firstName>Emilio </firstName>
+      <lastName>Balderramo</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="pablo.paez">
+      <firstName>Pablo </firstName>
+      <lastName>Paez</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="miguel.allendez">
+      <firstName>Miguel</firstName>
+      <lastName>Allendez</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="duilio.alcaraz">
+      <firstName>Duilio </firstName>
+      <lastName>Alcaraz</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="eduardo.llanos">
+      <firstName>Eduardo </firstName>
+      <lastName>Llanos</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="ariel.gomez">
+      <firstName>Ariel </firstName>
+      <lastName>Gomez</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="hugo.tejada">
+      <firstName>Hugo </firstName>
+      <lastName>Tejada</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="carlos.zamora">
+      <firstName>Carlos </firstName>
+      <lastName>Zamora</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="leonardo.maffezzini">
+      <firstName>Leonardo </firstName>
+      <lastName>Maffezzini</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="nicolas.delgado">
+      <firstName>Nicolas </firstName>
+      <lastName>Delgado</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="rafael.arias">
+      <firstName>Rafael </firstName>
+      <lastName>Arias</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="jose.aballay">
+      <firstName>Jose </firstName>
+      <lastName>Aballay</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="jose.espin ">
+      <firstName>Jose </firstName>
+      <lastName>Espin </lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="victor.gonzalez">
+      <firstName>Victor </firstName>
+      <lastName>Gonzalez</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="estaban.sierra">
+      <firstName>Estaban </firstName>
+      <lastName>Sierra</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="gustavo.gonzalez">
+      <firstName>Gustavo </firstName>
+      <lastName>Gonzalez</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="mario.vera">
+      <firstName>Mario </firstName>
+      <lastName>Vera</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="german.yanadel">
+      <firstName>German </firstName>
+      <lastName>Yanadel</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="marcelo.quiroga">
+      <firstName>Marcelo</firstName>
+      <lastName>Quiroga</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="carlos.muñoz">
+      <firstName>Carlos </firstName>
+      <lastName>Muñoz</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="daniel.rosa">
+      <firstName>Daniel </firstName>
+      <lastName>Rosa</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="diego.munoz">
+      <firstName>Diego</firstName>
+      <lastName>Muñoz</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="leandro.rodriguez">
+      <firstName>Leandro </firstName>
+      <lastName>Rodriguez</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="paula.azcurra">
+      <firstName>Paula </firstName>
+      <lastName>Azcurra</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="daniel.sanchez">
+      <firstName>Daniel </firstName>
+      <lastName>Sanchez</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="juan.jofre">
+      <firstName>Juan Carlos </firstName>
+      <lastName>Jofre</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="alfredo.martinez">
+      <firstName>Alfredo </firstName>
+      <lastName>Martinez</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="manuel.balderramo">
+      <firstName>J. Manuel </firstName>
+      <lastName>Balderramo</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="ernesto.clavel">
+      <firstName>Ernesto </firstName>
+      <lastName>Clavel</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="pablo.balderramo">
+      <firstName>Pablo </firstName>
+      <lastName>Balderramo</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="martin.balderramo">
+      <firstName>Martín</firstName>
+      <lastName>Balderramo</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+    <user userName="eugenia.balderramo">
+      <firstName>Maria Eugenia</firstName>
+      <lastName>Balderramo</lastName>
+      <manager></manager>
+      <personalData/>
+      <professionalData/>
+      <password encrypted="false">bpm</password>
+      <customUserInfoValues/>
+    </user>
+  </users>
+  <roles>
+    <role name="Coordinador de calidad">
+      <displayName>Coordinador de calidad</displayName>
+    </role>
+    <role name="Jefa de RRHH">
+      <displayName>Jefa de RRHH</displayName>
+    </role>
+    <role name="Analista RRHH">
+      <displayName>Analista RRHH</displayName>
+    </role>
+    <role name="Jefa de adm y finanzas">
+      <displayName>Jefa de adm y finanzas</displayName>
+    </role>
+    <role name="Asistente administrativa">
+      <displayName>Asistente administrativa</displayName>
+    </role>
+    <role name="Analista cuentas por cobrar">
+      <displayName>Analista cuentas por cobrar</displayName>
+    </role>
+    <role name="Analista contable">
+      <displayName>Analista contable</displayName>
+    </role>
+    <role name="Jefe de producción">
+      <displayName>Jefe de producción</displayName>
+    </role>
+    <role name="Jefe técnico">
+      <displayName>Jefe técnico</displayName>
+    </role>
+    <role name="Analista producción">
+      <displayName>Analista producción</displayName>
+    </role>
+    <role name="Coordinador de servicio en terreno">
+      <displayName>Coordinador de servicio en terreno</displayName>
+    </role>
+    <role name="Coordinador armado">
+      <displayName>Coordinador armado</displayName>
+    </role>
+    <role name="Coordinador rectificado">
+      <displayName>Coordinador rectificado</displayName>
+    </role>
+    <role name="Tecnico servicio In Situ">
+      <displayName>Tecnico servicio In Situ</displayName>
+    </role>
+    <role name="Operario limpieza">
+      <displayName>Operario limpieza</displayName>
+    </role>
+    <role name="Operario metalurgico">
+      <displayName>Operario metalurgico</displayName>
+    </role>
+    <role name="Operario turbos">
+      <displayName>Operario turbos</displayName>
+    </role>
+    <role name="Operario bomba inyectora">
+      <displayName>Operario bomba inyectora</displayName>
+    </role>
+    <role name="Operario recepción y desarme">
+      <displayName>Operario recepción y desarme</displayName>
+    </role>
+    <role name="Operario lavado">
+      <displayName>Operario lavado</displayName>
+    </role>
+    <role name="Operario armado">
+      <displayName>Operario armado</displayName>
+    </role>
+    <role name="Operario diagnostico">
+      <displayName>Operario diagnostico</displayName>
+    </role>
+    <role name="Operario tapa de cilindro">
+      <displayName>Operario tapa de cilindro</displayName>
+    </role>
+    <role name="Operario cilindros y bruñido">
+      <displayName>Operario cilindros y bruñido</displayName>
+    </role>
+    <role name="Operario superficies">
+      <displayName>Operario superficies</displayName>
+    </role>
+    <role name="Operario bancada">
+      <displayName>Operario bancada</displayName>
+    </role>
+    <role name="Operario bielas">
+      <displayName>Operario bielas</displayName>
+    </role>
+    <role name="Operario balanceo">
+      <displayName>Operario balanceo</displayName>
+    </role>
+    <role name="Operario cigüeñal">
+      <displayName>Operario cigüeñal</displayName>
+    </role>
+    <role name="Operario control de calidad">
+      <displayName>Operario control de calidad</displayName>
+    </role>
+    <role name="Jefe de abastecimiento">
+      <displayName>Jefe de abastecimiento</displayName>
+    </role>
+    <role name="Analista compras">
+      <displayName>Analista compras</displayName>
+    </role>
+    <role name="Administrativo depósito">
+      <displayName>Administrativo depósito</displayName>
+    </role>
+    <role name="Operario depósito">
+      <displayName>Operario depósito</displayName>
+    </role>
+    <role name="Jefe de comercial">
+      <displayName>Jefe de comercial</displayName>
+    </role>
+    <role name="Asesor comercial">
+      <displayName>Asesor comercial</displayName>
+    </role>
+    <role name="Vendedor comercial">
+      <displayName>Vendedor comercial</displayName>
+    </role>
+    <role name="Responsable de comunicación y proyectos">
+      <displayName>Responsable de comunicación y proyectos</displayName>
+    </role>
+    <role name="Operario compresores">
+      <displayName>Operario compresores</displayName>
+    </role>
+    <role name="Operario torno">
+      <displayName>Operario torno</displayName>
+    </role>
+    <role name="Jefe de Control de Gestión">
+      <displayName>Jefe de Control de Gestión</displayName>
+    </role>
+    <role name="Director">
+      <displayName>Director</displayName>
+    </role>
+    <role name="Gerente General">
+      <displayName>Gerente General</displayName>
+    </role>
+    <role name="Coordinador">
+      <displayName>Coordinador</displayName>
+    </role>
+    <role name="Rol1">
+      <displayName>Rol1</displayName>
+    </role>
+    <role name="Jefe">
+      <displayName>Jefe</displayName>
+    </role>
+  </roles>
+  <groups>
+    <group name="Dirección">
+      <displayName>Dirección</displayName>
+    </group>
+    <group name="Gerencia General" parentPath="/Dirección">
+      <displayName>Gerencia General</displayName>
+    </group>
+    <group name="Calidad" parentPath="/Dirección/Gerencia General">
+      <displayName>Calidad</displayName>
+    </group>
+    <group name="Recursos Humanos" parentPath="/Dirección/Gerencia General">
+      <displayName>Recursos Humanos</displayName>
+    </group>
+    <group name="Administración y Finanzas" parentPath="/Dirección/Gerencia General">
+      <displayName>Administración y Finanzas</displayName>
+    </group>
+    <group name="Producción" parentPath="/Dirección/Gerencia General">
+      <displayName>Producción</displayName>
+    </group>
+    <group name="Abastecimiento" parentPath="/Dirección/Gerencia General">
+      <displayName>Abastecimiento</displayName>
+    </group>
+    <group name="Comercial" parentPath="/Dirección/Gerencia General">
+      <displayName>Comercial</displayName>
+    </group>
+    <group name="Comunicación y Proyectos" parentPath="/Dirección/Gerencia General">
+      <displayName>Comunicación y Proyectos</displayName>
+    </group>
+    <group name="Contabilidad" parentPath="/Dirección/Gerencia General/Administración y Finanzas">
+      <displayName>Contabilidad</displayName>
+    </group>
+    <group name="Cuentas por Cobrar" parentPath="/Dirección/Gerencia General/Administración y Finanzas">
+      <displayName>Cuentas por Cobrar</displayName>
+    </group>
+    <group name="Servicios en Terreno" parentPath="/Dirección/Gerencia General/Producción">
+      <displayName>Servicios en Terreno</displayName>
+    </group>
+    <group name="Jefatura Técnica" parentPath="/Dirección/Gerencia General/Producción">
+      <displayName>Jefatura Técnica</displayName>
+    </group>
+    <group name="Arnado" parentPath="/Dirección/Gerencia General/Producción/Jefatura Técnica">
+      <displayName>Arnado</displayName>
+    </group>
+    <group name="Rectificado" parentPath="/Dirección/Gerencia General/Producción/Jefatura Técnica">
+      <displayName>Rectificado</displayName>
+    </group>
+    <group name="Depósito" parentPath="/Dirección/Gerencia General/Abastecimiento">
+      <displayName>Depósito</displayName>
+    </group>
+    <group name="Compras" parentPath="/Dirección/Gerencia General/Abastecimiento">
+      <displayName>Compras</displayName>
+    </group>
+    <group name="Tapa de Cilindro" parentPath="/Dirección/Gerencia General/Producción/Jefatura Técnica">
+      <displayName>Tapa de Cilindro</displayName>
+    </group>
+    <group name="Bancada" parentPath="/Dirección/Gerencia General/Producción/Jefatura Técnica">
+      <displayName>Bancada</displayName>
+    </group>
+    <group name="Control de Calidad" parentPath="/Dirección/Gerencia General/Producción/Jefatura Técnica">
+      <displayName>Control de Calidad</displayName>
+    </group>
+    <group name="Balanceo" parentPath="/Dirección/Gerencia General/Producción/Jefatura Técnica">
+      <displayName>Balanceo</displayName>
+    </group>
+    <group name="Control de Gestón" parentPath="/Dirección/Gerencia General">
+      <displayName>Control de Gestón</displayName>
+    </group>
+  </groups>
+  <memberships>
+    <membership>
+      <userName>gabriela.balderramo</userName>
+      <roleName>Jefa de RRHH</roleName>
+      <groupName>Recursos Humanos</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>javier.arias</userName>
+      <roleName>Coordinador</roleName>
+      <groupName>Calidad</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>florencia.ruiz</userName>
+      <roleName>Analista RRHH</roleName>
+      <groupName>Recursos Humanos</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>gabriela.rojo</userName>
+      <roleName>Asistente administrativa</roleName>
+      <groupName>Administración y Finanzas</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>liliana.gomez</userName>
+      <roleName>Analista cuentas por cobrar</roleName>
+      <groupName>Cuentas por Cobrar</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Administración y Finanzas</groupParentPath>
+    </membership>
+    <membership>
+      <userName>fernando.palacios</userName>
+      <roleName>Jefe de producción</roleName>
+      <groupName>Producción</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>nadia.postigo</userName>
+      <roleName>Analista contable</roleName>
+      <groupName>Contabilidad</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Administración y Finanzas</groupParentPath>
+    </membership>
+    <membership>
+      <userName>luis.pizarro</userName>
+      <roleName>Jefe técnico</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>emilio.balderramo</userName>
+      <roleName>Analista producción</roleName>
+      <groupName>Producción</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>emilio.balderramo</userName>
+      <roleName>Coordinador</roleName>
+      <groupName>Servicios en Terreno</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>pablo.paez</userName>
+      <roleName>Coordinador</roleName>
+      <groupName>Arnado</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>miguel.allendez</userName>
+      <roleName>Coordinador</roleName>
+      <groupName>Rectificado</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>pablo.paez</userName>
+      <roleName>Tecnico servicio In Situ</roleName>
+      <groupName>Servicios en Terreno</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>duilio.alcaraz</userName>
+      <roleName>Tecnico servicio In Situ</roleName>
+      <groupName>Servicios en Terreno</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>eduardo.llanos</userName>
+      <roleName>Tecnico servicio In Situ</roleName>
+      <groupName>Servicios en Terreno</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>ariel.gomez</userName>
+      <roleName>Tecnico servicio In Situ</roleName>
+      <groupName>Servicios en Terreno</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>hugo.tejada</userName>
+      <roleName>Operario limpieza</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>carlos.zamora</userName>
+      <roleName>Operario metalurgico</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>leonardo.maffezzini</userName>
+      <roleName>Operario turbos</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>nicolas.delgado</userName>
+      <roleName>Operario recepción y desarme</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>leonardo.maffezzini</userName>
+      <roleName>Operario bomba inyectora</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>rafael.arias</userName>
+      <roleName>Operario lavado</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>jose.aballay</userName>
+      <roleName>Operario armado</roleName>
+      <groupName>Arnado</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>jose.espin </userName>
+      <roleName>Operario armado</roleName>
+      <groupName>Arnado</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>victor.gonzalez</userName>
+      <roleName>Operario armado</roleName>
+      <groupName>Arnado</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>estaban.sierra</userName>
+      <roleName>Operario tapa de cilindro</roleName>
+      <groupName>Tapa de Cilindro</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>ariel.gomez</userName>
+      <roleName>Operario armado</roleName>
+      <groupName>Arnado</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>duilio.alcaraz</userName>
+      <roleName>Operario armado</roleName>
+      <groupName>Arnado</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>gustavo.gonzalez</userName>
+      <roleName>Operario tapa de cilindro</roleName>
+      <groupName>Tapa de Cilindro</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>mario.vera</userName>
+      <roleName>Operario cilindros y bruñido</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>mario.vera</userName>
+      <roleName>Operario superficies</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>mario.vera</userName>
+      <roleName>Operario bancada</roleName>
+      <groupName>Bancada</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>german.yanadel</userName>
+      <roleName>Operario bancada</roleName>
+      <groupName>Bancada</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>marcelo.quiroga</userName>
+      <roleName>Operario bielas</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>mario.vera</userName>
+      <roleName>Operario compresores</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>carlos.muñoz</userName>
+      <roleName>Operario torno</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>daniel.rosa</userName>
+      <roleName>Operario balanceo</roleName>
+      <groupName>Balanceo</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>german.yanadel</userName>
+      <roleName>Operario balanceo</roleName>
+      <groupName>Balanceo</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>marcelo.quiroga</userName>
+      <roleName>Operario balanceo</roleName>
+      <groupName>Jefatura Técnica</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción</groupParentPath>
+    </membership>
+    <membership>
+      <userName>daniel.rosa</userName>
+      <roleName>Operario control de calidad</roleName>
+      <groupName>Control de Calidad</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>diego.munoz</userName>
+      <roleName>Operario control de calidad</roleName>
+      <groupName>Control de Calidad</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Producción/Jefatura Técnica</groupParentPath>
+    </membership>
+    <membership>
+      <userName>leandro.rodriguez</userName>
+      <roleName>Jefe de abastecimiento</roleName>
+      <groupName>Abastecimiento</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>leandro.rodriguez</userName>
+      <roleName>Director</roleName>
+      <groupName>Control de Gestón</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>paula.azcurra</userName>
+      <roleName>Analista compras</roleName>
+      <groupName>Compras</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Abastecimiento</groupParentPath>
+    </membership>
+    <membership>
+      <userName>daniel.sanchez</userName>
+      <roleName>Administrativo depósito</roleName>
+      <groupName>Depósito</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Abastecimiento</groupParentPath>
+    </membership>
+    <membership>
+      <userName>juan.jofre</userName>
+      <roleName>Operario depósito</roleName>
+      <groupName>Depósito</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Abastecimiento</groupParentPath>
+    </membership>
+    <membership>
+      <userName>alfredo.martinez</userName>
+      <roleName>Operario depósito</roleName>
+      <groupName>Depósito</groupName>
+      <groupParentPath>/Dirección/Gerencia General/Abastecimiento</groupParentPath>
+    </membership>
+    <membership>
+      <userName>manuel.balderramo</userName>
+      <roleName>Director</roleName>
+      <groupName>Dirección</groupName>
+    </membership>
+    <membership>
+      <userName>manuel.balderramo</userName>
+      <roleName>Jefe de comercial</roleName>
+      <groupName>Comercial</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>ernesto.clavel</userName>
+      <roleName>Asesor comercial</roleName>
+      <groupName>Comercial</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>pablo.balderramo</userName>
+      <roleName>Responsable de comunicación y proyectos</roleName>
+      <groupName>Comunicación y Proyectos</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+    <membership>
+      <userName>martin.balderramo</userName>
+      <roleName>Gerente General</roleName>
+      <groupName>Gerencia General</groupName>
+      <groupParentPath>/Dirección</groupParentPath>
+    </membership>
+    <membership>
+      <userName>eugenia.balderramo</userName>
+      <roleName>Jefe</roleName>
+      <groupName>Administración y Finanzas</groupName>
+      <groupParentPath>/Dirección/Gerencia General</groupParentPath>
+    </membership>
+  </memberships>
+</organization:Organization>
