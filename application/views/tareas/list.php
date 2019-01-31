@@ -59,7 +59,12 @@
                   // td 3
                   echo '<td class="celda tareaDesc" style="text-align: left">'.substr($f['displayDescription'],0,500).'</td>';
                   // td 4
-                  echo '<td class="celda" style="text-align: left">'.$f['assigned_date'].'</td>';
+                  $date='S/A';
+                  if(strlen($f['assigned_date'])!=0){
+                    $date = explode('-',substr($f['assigned_date'],0,10));
+                    $date = $date[2].'-'.$date[1].'-'.$date[0].' '.substr($f['assigned_date'],10,6).' hs';
+                  }
+                  echo '<td class="celda" style="text-align: left">'.$date.'</td>';
                   // td 5
                   echo '<td class="celda" style="text-align: left">'.$f['dueDate'].'</td>';
                   if ( $asig != "")  {

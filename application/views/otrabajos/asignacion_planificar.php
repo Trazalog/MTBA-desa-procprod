@@ -15,44 +15,17 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h2 class="box-title ">Programación de Tareas</h2>
+          <?php 
+            $date='';
+            if(strlen($infoOT[0]["fecha_inicio"])!=0){
+              $date = explode('-',substr($infoOT[0]["fecha_inicio"],0,10));
+              $date = $date[2].'-'.$date[1].'-'.$date[0].' '.substr($infoOT[0]["fecha_inicio"],10,6).' hs';
+            }
+          ?>
+          <h2 class="box-title ">Programación de Tareas / N° OT: <?php echo $infoOT[0]["id_orden"].' / Fecha: '.$date ?></h2>        
         </div><!-- /.box-header -->
         <div class="box-body">  
-          <!-- Info de Ot -->
-          <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-              <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                  <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Ver Info Orden Trabajo
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                  <table id="infoOT" class="table table-bordered table-hover" width="80%">                                
-                    <thead>
-                      <tr>  
-                        <th width="5%">Nro OT</th>   
-                        <th width="10%">Cod Inteno</th>       
-                        <th width="25%">Tarea</th>            
-                        <th width="5%">Fecha</th> 
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td><?php echo $infoOT[0]["id_orden"]; ?></td>
-                        <td><?php echo $infoOT[0]["nro"]; ?></td>
-                        <td><?php echo $infoOT[0]["descripcion"]; ?></td>            
-                        <td><?php echo $infoOT[0]["fecha_inicio"]; ?></td>           
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>  
-          <!-- / Info de Ot -->
+     
           
           <?php
           // if (strpos($permission,'Add') !== false) {
@@ -132,8 +105,14 @@
              </style>
                             <div class="col-sm-12 col-md-12">
                               <br>
-                              <div class="col-xs-8">Tarea
-                                <select id="tarea" name="tarea" class="form-control " placeholder="" value=""></select>
+                              
+                              <div class="col-xs-8">
+                                <div class="box box-default collapsed-box box-solid">
+                                    <div class="box-header with-border">
+                                        <h4>Seleccionar Tarea</h4>
+                                          <select id="tarea" name="tarea" class="form-control " placeholder="" value=""></select>
+                                    </div>
+                                </div> 
                               </div>
                               <div class="col-xs-2">
                                 <button type="button" class="btn btn-success" id="agregar" style="margin-top: 20px;"> +

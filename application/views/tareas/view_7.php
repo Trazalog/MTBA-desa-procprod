@@ -163,9 +163,13 @@
                                </div>
 
                                <div role="tabpanel" class="tab-pane" id="messages">
-                                <div class="panel-body"></div>
+                                    <div class="panel-body">
+                                        <div class="panel panel-primary">
+                                            <?php echo $timeline ?>
+                                        </div>
+                                    </div>
 
-                            </div>
+                                </div>
 
                         </div>
                     </div>
