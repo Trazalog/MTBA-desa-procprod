@@ -30,7 +30,7 @@
                                 echo '<td>'.$o['familia_producto'].'|'.$o['subfamilia'].'</td>';
                                 echo '<td>'.$o['condicion'].'</td>';
                                 echo '<td>'.$o['fec_entrega'].'</td>';
-                                echo '<td>'.$o['fec_entrega_componente'].'</td>';
+                                echo '<td>'.$o['fecha_entrega_componente'].'</td>';
                                 echo '</tr>';
 
                             }

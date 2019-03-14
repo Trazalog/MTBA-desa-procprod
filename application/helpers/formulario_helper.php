@@ -13,7 +13,7 @@ if (!function_exists('cargarFormulario')) {
           </div>';
 
 
-    echo '<div class="modal-footer">
+    echo '<div class="modal-footer botones-form">
               <button class="btn btn-primary" onclick="ValidarCampos()">Validar</button>
               <button class="btn btn-success" type="button" onclick="CerrarModal()">Cerrar</button>
             </div>';

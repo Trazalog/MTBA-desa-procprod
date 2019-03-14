@@ -474,7 +474,7 @@ class Tarea extends CI_Controller
 
 			//FLEIVA COMENTARIOS
 		$data['comentarios'] = $this->ObtenerComentariosBPM($caseId);
-		$data['timeline'] = $this->ObtenerLineaTiempo($caseId);
+		$data['timeline'] = $this->load->view('tareas/timeline/view',array('timeline'=>$this->ObtenerLineaTiempo($caseId)),true);
 		//	$data['TareaBPM']['displayName'] = 'Análisis financiero y emisión de reportes';
 		switch ($data['TareaBPM']['displayName']) {
 
@@ -487,11 +487,6 @@ class Tarea extends CI_Controller
 			case 'Análisis financiero y emisión de reportes':
 				$this->load->view('tareas/view_3', $data);
 				break;
-			// case 'Solicita ok al cliente para iniciar diagnostico':					
-			// 	$this->load->model('AceptacionTrabajos');
-			// 	$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
-			// 	$this->load->view('tareas/view_', $data);
-			// 	break;
 			case 'Evalua y envia presupuesto al cliente':
 				$this->load->model('AceptacionTrabajos');
 				$data['presupuesto'] = $this->AceptacionTrabajos->ObtenerPresupuesto($pedTrab[0]['petr_id']);
@@ -521,7 +516,14 @@ class Tarea extends CI_Controller
 				case 'Revisión Diagnóstico':
 				$this->load->model('Preinformes');
 				$data['formularios'] = $this->Preinformes->ObtenerIdFormulariosCompletados($data['idPedTrabajo']);
-				$this->load->view('tareas/view_8', $data);
+				$data['list']   = $this->Tareas->tareasPorSector($caseId,'jefe');
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],2500);
+				$data['lita_id_infoTec'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],7000);
+				$this->load->view('tareas/view_8',$data);
+				$this->load->view('tareas/scripts/tarea_std');
+				$this->load->view('tareas/scripts/abm_forms');
+				$this->load->view('tareas/scripts/validacion_forms');
+				$this->load->view('tareas/scripts/preinforme');
 				break;
 			case 'Cotización de trabajo Industrial':
 				$this->load->model('Preinformes');
@@ -612,7 +614,13 @@ class Tarea extends CI_Controller
 				//$data['list'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($data['idPedTrabajo']);
 				$data['formularios'] = array(2500);
 				$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
+				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],6000);
+				$data['lita_id_infoTec'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],7000);
 				$this->load->view('tareas/view_18',$data);
+				$this->load->view('tareas/scripts/tarea_std');
+				$this->load->view('tareas/scripts/abm_forms');
+				$this->load->view('tareas/scripts/validacion_forms');
+				$this->load->view('tareas/scripts/preinforme');
 				break;
 			default:
 				$this->load->view('tareas/view_', $data);
