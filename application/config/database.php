@@ -7,9 +7,9 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
+	'hostname' => 'pc-pc',
+	'username' => 'trazalog',
+	'password' => '123traza',
 	'database' => 'mtba-desa-procprod-desarrollo',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',

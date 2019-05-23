@@ -8,7 +8,7 @@ class Test extends CI_Controller {
   
    }
    function index(){
-      $data['data'] = $this->PedidoTrabajos->Informe();
+      $data = $this->PedidoTrabajos->Informe();
       $this->load->view('test',$data);
    }
 }
