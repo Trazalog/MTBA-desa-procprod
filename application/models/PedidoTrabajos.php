@@ -26,5 +26,20 @@ class PedidoTrabajos extends CI_Model
         $this->db->group_by('form_id');
         return $this->db->get('frm_formularios_completados')->result_array();
     }
+
+    public function Informe()
+    {
+        $this->db->select('count(*) as cantidad');
+        $this->db->from('trj_pedido_trabajo');
+        $this->db->where('date(fec_entrega)<date(fec_finalizacion)');
+        $data['buenas'] = $this->db->get()->row()->cantidad;
+
+        $this->db->select('count(*) as cantidad');
+        $this->db->from('trj_pedido_trabajo');
+        $this->db->where('date(fec_entrega)>date(fec_finalizacion)');
+        $data['malas'] = $this->db->get()->row()->cantidad;
+
+        return $data;
+    }
 }
 ?>
