@@ -127,7 +127,7 @@
                                 echo '<tr class="'.$id.'" >';
                              
                                 echo '<td>';
-                                echo '<a href="#" title="Mostrar formulario de tarea" class="'.($f['form_asoc']==''?'no_form':'getFormularioTarea').'" data-formid="'.$f['form_asoc'].'" data-open="false" data-validado="false" data-bpmIdTarea="'.$f['bpm_task_id'].'" data-idListTarea="'.$f['id_listarea'].'" data-idOt="'.$f['id_orden'].'"><i class="fa fa-eye" style="cursor: pointer; margin-left: 15px;"></i></a>';
+                                echo '<a href="#" title="Mostrar formulario de tarea" class="'.($f['form_asoc']==''?'no_form':'getFormularioTarea').'" data-formid="'.$f['form_asoc'].'" data-open="false" data-validado="false" data-bpmIdTarea="'.$f['bpm_task_id'].'" data-idListTarea="'.$f['id_listarea'].'" data-idOt="'.$f['id_orden'].'"><i class="fa fa-eye '.($f['form_asoc']==''?'hidden':'').'" style="cursor: pointer; margin-left: 15px;"></i></a>';
                                       //echo '<a href="#" class="addRepuestos" title="Cargar Pedido de Repuestos" data-ordenDesc="'.$f['orden_descripcion'].'" data-ordenId="'.$f['id_orden'].'"><i class="fa fa-plus" style="cursor: pointer; margin-left: 15px;"></i></a>';
                                       //echo '<a href="#" class="rehacerTarea" title="Rehacer Tarea" data-treaId="'.$f['id_listarea'].'"><i class="fa fa-mail-reply" style="cursor: pointer; margin-left: 15px;"></i></a>';
                                 echo '</td>';
@@ -217,32 +217,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php /*
-                        foreach($pedidoRepuestos as $pedidoRep)
-                        {
-                          $id=$pedidoRep['id_notaPedido'];
-
-                          echo '<tr id="'.$id.'" class="'.$id.'" >';
-                            echo '<td>';
-                            if (strpos($permission,'Edit') !== false) {
-                              echo '<i class="fa fa-fw fa-pencil" style="color: #f39c12; cursor: pointer; margin-left: 15px;" title="Editar" data-toggle="modal" data-target="#modaleditar"></i>';
-                            }
-                            if (strpos($permission,'Del') !== false) {
-                              echo '<i class="fa fa-fw fa-times-circle" style="color: #dd4b39; cursor: pointer; margin-left: 15px;"></i>';
-                            }
-                            if (strpos($permission,'View') !== false) {
-                              echo '<i class="fa fa-fw fa-search" style="color: #3c8dbc; cursor: pointer; margin-left: 15px;" title="Ver Nota Pedido" data-toggle="modal" data-target="#modaltarea"></i>';
-                            }
-                            echo '</td>';
-                            echo '<td style="text-align: center">'.$pedidoRep['id_ordTrabajo'].'</td>';
-                            echo '<td style="text-align: center">'.$pedidoRep['descripcion'].'</td>';
-                            echo '<td style="text-align: center">'.$pedidoRep['fecha'].'</td>';
-                            // echo '<td style="text-align: center">'.$pedidoRep['marcadescrip'].'</td>';
-                            // echo '<td style="text-align: center">'.$pedidoRep['depositodescrip'].'</td>';
-                            // echo '<td style="text-align: center">'.($pedidoRep['equip_estad']  == 'AC' ? '<small class="label pull-left bg-green" >Activa</small>' :'<small class="label pull-left bg-blue">Transito</small>').'</td>';
-                          echo '</tr>';
-                        }*/
-                        ?>
+                   
                       </tbody>
                     </table>
                   </div>
@@ -858,13 +833,13 @@ function IniciarValidador(idForm){
   function terminarTareaRevision(){
    // 
     var ban = true;
-    $('.getFormularioTarea').each(function( index ) {
-      if($( this ).attr('data-open')=="true"){
-        console.log( index + ": " + $( this ).attr('data-validado'));
-        ban = ban && ($( this ).attr('data-validado') == "true");
-      }
-    });
-    ban = ban && ($('#formulario').attr('data-validado') == "true");
+    // $('.getFormularioTarea').each(function( index ) {
+    //   if($( this ).attr('data-open')=="true"){
+    //     console.log( index + ": " + $( this ).attr('data-validado'));
+    //     ban = ban && ($( this ).attr('data-validado') == "true");
+    //   }
+    // });
+    // ban = ban && ($('#formulario').attr('data-validado') == "true");
     if(ban==false){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
     WaitingOpen('Cerrando Tarea');
     var idsTareaTrazajob = [];

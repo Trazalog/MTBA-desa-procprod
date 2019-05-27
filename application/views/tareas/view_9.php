@@ -142,7 +142,7 @@
                                 
                                     
                                 
-                                <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Ver Formulario RE-TAL-010</button>
+                                <button type="button" id="crearPDF" class="btn btn-primary hidden" name="crearPDF">Ver Formulario RE-TAL-010</button>
                                
                             </div>
                             </br>
@@ -506,7 +506,7 @@ function regresa(){
 
     var validado=($('#idform').val()==0);
     function terminarTarea(){
-        if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+        //if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
         WaitingOpen('Cerrando Tarea');
         var idTarBonita = $('#idTarBonita').val();
         //alert(idTarBonita);
