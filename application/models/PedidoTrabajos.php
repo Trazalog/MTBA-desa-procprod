@@ -39,6 +39,10 @@ class PedidoTrabajos extends CI_Model
         $this->db->where('date(fec_entrega)>date(fec_finalizacion)');
         $data['malas'] = $this->db->get()->row()->cantidad;
 
+        $data['total'] =  $data['buenas'] + $data['malas'];
+
+        $data['total'] =  $data['total']==0?1:$data['total'];
+
         return $data;
     }
 }

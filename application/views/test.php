@@ -40,7 +40,7 @@
 
                 <div class="small-box bg-blue">
                     <div class="inner">
-                        <h3><?php echo round(($buenas*100)/($buenas+$malas)) ?>%</h3>
+                        <h3><?php echo round(($buenas*100)/($total)) ?>%</h3>
                         <p>Cumplimiento</p>
                     </div>
                     <div class="icon">
@@ -68,7 +68,7 @@
 
                 <div class="small-box bg-red">
                     <div class="inner">
-                        <h3><?php echo round(($malas*100)/($buenas+$malas)) ?>%</h3>
+                        <h3><?php echo round(($malas*100)/($total)) ?>%</h3>
                         <p>Es la morosidad actualmente.</p>
                     </div>
                     <div class="icon">
