@@ -539,7 +539,7 @@ class Tarea extends CI_Controller
 			case 'Revisión Diagnóstico por el Coordinador':
 				$idForm = 0;//2500;
 				$data['idForm'] = $idForm;
-				if(!$this->Tareas->getEstadoForm($idTarBonita))$this->Tareas->setFormInicial($idTarBonita,$idForm,$data['idPedTrabajo']);
+				//if(!$this->Tareas->getEstadoForm($idTarBonita))$this->Tareas->setFormInicial($idTarBonita,$idForm,$data['idPedTrabajo']);
 				$data['form']   = $this->Tareas->get_form($idTarBonita,$idForm);
 				//dump_exit($data['form']);
 				$data['list']   = $this->Tareas->tareasPorSector($caseId);
