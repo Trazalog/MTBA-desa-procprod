@@ -51,5 +51,10 @@ class PedidoTrabajo extends CI_Controller {
       $response['html'] = $this->load->view('tareas/view-modal-form-revDiagCoord', $data, true);
       echo json_encode($response);
     }
+
+    public function setFinalizacion($case)
+    {
+      echo $this->PedidoTrabajos->set_finalizacion($case);
+    }
 }
 ?>

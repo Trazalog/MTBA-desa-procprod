@@ -622,6 +622,9 @@ class Tarea extends CI_Controller
 				$this->load->view('tareas/scripts/validacion_forms');
 				$this->load->view('tareas/scripts/preinforme');
 				break;
+			case 'Expedición':
+			    $this->load->view('tareas/view_exp', $data);
+				break;
 			default:
 				$this->load->view('tareas/view_', $data);
 			break;

@@ -8,6 +8,13 @@ class PedidoTrabajos extends CI_Model
 		parent::__construct();
     }
 
+    public function set_finalizacion($case)
+    {
+        $this->db->where('petr_id', $case);
+        $this->db->set('fec_finalizacion',date("Y-m-d"));
+        return $this->db->update('trj_pedido_trabajo');
+    }
+
     function Obtener_Todos(){
         $this->db->select('A.*,B.cliRazonSocial as nombre');
         $this->db->from('trj_pedido_trabajo as A');
@@ -17,7 +24,7 @@ class PedidoTrabajos extends CI_Model
 
     function Obterner_Pedido($cod){
         $this->db->where('cod_interno',$cod);
-        return $this->db->get('trj_pedido_trabajo')->result_array()[0];
+        return $this->db->get()->result_array()[0];
     }
 
     function Lista_Formularios_Pedido($id_pedido){
