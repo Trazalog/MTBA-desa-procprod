@@ -1,0 +1,1 @@
+update sismenu set name='Asociar Componentes' where id=9;

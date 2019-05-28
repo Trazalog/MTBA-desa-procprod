@@ -336,7 +336,7 @@
 	var validado=($('#idform').val()==0);
 
 	function terminarTarea() {
-		if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+		//if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
 		WaitingOpen('Cerrando Tarea');
 		var idTarBonita = $('#idTarBonita').val();
 		var id_listarea = $('#id_listarea').val();

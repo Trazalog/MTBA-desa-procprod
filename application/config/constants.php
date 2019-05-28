@@ -102,7 +102,7 @@ define('BONITA_URL', 'http://pc-pc:8080/bonita/');
 | Id de proceso productivo (se usa para lanzar proceso)
 |
 */
-define('BPM_PROCESS_ID', '7078768220703036569');
+define('BPM_PROCESS_ID', '8950668143376892645');
 
 /*
 |--------------------------------------------------------------------------

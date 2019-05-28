@@ -268,7 +268,7 @@
 
     var validado=($('#idform').val()==0);            
     function terminarTarea(){
-        if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
+        //if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
         var idTarBonita = $('#idTarBonita').val();
         alert(idTarBonita);
         $.ajax({
