@@ -1,4 +1,5 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
+<input type="hidden" id="ped" value="<?php echo $idPedTrabajo;?>">
 
 <section class="content">
 	<?php echo cargarCabecera($idPedTrabajo); ?>
@@ -283,7 +284,7 @@
 	});
 	var validado=($('#idform').val()==0);
 	function terminarTarea() {
-		
+		set_finalizacion();
 		//if(!validado){alert("Para concluir esta actividad primero debe Validar el Formulario");return;}
 		WaitingOpen('Cerrando Tarea');
 		var idTarBonita = $('#idTarBonita').val();
@@ -316,6 +317,19 @@
 		});
 	}
 
+	function set_finalizacion() {
+		$.ajax({
+			type: 'POST',
+			url: 'index.php/PedidoTrabajo/setFinalizacion/'+$('#ped').val(),
+			success: function (data) {
+				console.log('Hecho');
+				
+			},
+			error: function (data) {
+				console.log('Error');
+			}
+		});
+	}
 	// Boton Hecho generico
 	function estado() {
 		var idTarBonita = $('#idTarBonita').val();

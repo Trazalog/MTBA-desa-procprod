@@ -1,0 +1,5 @@
+ALTER TABLE `mtba-desa-procprod-desarrollo`.`trj_pedido_trabajo` 
+ADD COLUMN `fec_finalizacion` DATE NULL AFTER `bpm_id`,
+ADD COLUMN `eliminado` TINYINT NULL DEFAULT 0 AFTER `fec_finalizacion`,
+ADD COLUMN `fec_alta` DATETIME NULL DEFAULT CURRENT_TIMESTAMP AFTER `eliminado`,
+ADD COLUMN `usuario` VARCHAR(30) NULL DEFAULT 'CURRENT_USER()' AFTER `fec_alta`;

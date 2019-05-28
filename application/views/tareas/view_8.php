@@ -147,7 +147,7 @@
                                                                     echo '<tr class="'.$id.'" >';
                                                                 
                                                                     echo '<td>';
-                                                                    echo '<a href="#" title="Mostrar formulario de tarea" class="'.($f['form_asoc']==''?'no_form':'getFormularioTarea').'" data-formid="'.$f['form_asoc'].'" data-open="false" data-validado="false" data-bpmIdTarea="'.$f['bpm_task_id'].'" data-idListTarea="'.$f['id_listarea'].'" data-idOt="'.$f['id_orden'].'"><i class="fa fa-eye" style="cursor: pointer; margin-left: 15px;"></i></a>';
+                                                                    echo '<a href="#" title="Mostrar formulario de tarea" class="'.($f['form_asoc']==''?'no_form':'getFormularioTarea').'" data-formid="'.$f['form_asoc'].'" data-open="false" data-validado="false" data-bpmIdTarea="'.$f['bpm_task_id'].'" data-idListTarea="'.$f['id_listarea'].'" data-idOt="'.$f['id_orden'].'"><i class="fa fa-eye hidden" style="cursor: pointer; margin-left: 15px;"></i></a>';
                                                                         //echo '<a href="#" class="addRepuestos" title="Cargar Pedido de Repuestos" data-ordenDesc="'.$f['orden_descripcion'].'" data-ordenId="'.$f['id_orden'].'"><i class="fa fa-plus" style="cursor: pointer; margin-left: 15px;"></i></a>';
                                                                         //echo '<a href="#" class="rehacerTarea" title="Rehacer Tarea" data-treaId="'.$f['id_listarea'].'"><i class="fa fa-mail-reply" style="cursor: pointer; margin-left: 15px;"></i></a>';
                                                                     echo '</td>';
@@ -163,14 +163,14 @@
                                                                 ?>
                                                                 </tbody>
                                                             </table>
-                                                            <button type="button" class="btn btn-primary getFormularioTarea"
+                                                            <button type="button" class="btn btn-primary getFormularioTarea hidden"
                                                                 data-formid="2500" data-open="false" data-validado="false"
                                                                 data-bpmIdTarea="<?php echo $lita_id ?>"
                                                                 data-idListTarea="">Ver Formulario Tareas RE-TAL-010</button>
                                                             <!-- Modal formulario tarea -->
                                                             <?php if($idForm != 0){echo '<button type="button" class="btn btn-primary  getFormularioTarea" data-formid="7000" data-open="false" data-validado="false" data-bpmIdTarea="'.$lita_id_infoTec.'">Adjuntar Informe Técnico
                                                                 </button>';}?>
-                                                            <button class="btn btn-primary" onclick="crearPDF()">Generar PDF - Formularios Diagnóstico</button>
+                                                            <button class="btn btn-primary hidden" onclick="crearPDF()">Generar PDF - Formularios Diagnóstico</button>
                                                             <!-- <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Revisar Formularios de Diagnostico</button> -->
                                                          
 
@@ -195,7 +195,7 @@
                                                 <th>Id Pedido</th>
                                                 <th>Código Artículo</th>
                                                 <th>Artículo</th>
-                                                <th>Proveedor</th>
+                                                <!-- <th>Proveedor</th> -->
                                                 <th>Cantidad</th>
                                                 <th>Fecha Entrega</th>
                                                 </tr>
@@ -378,6 +378,7 @@
         // console.table(data['lista']);
         // console.table(data['proveedores']);
         // console.table(data['articulos']);
+        // return;
 
         $('#pedidoRepuestos tr.celdas').remove();
         for (var i = 0; i < data['lista'].length; i++) {
@@ -406,7 +407,7 @@
             "<td>"+data['lista'][i]['id_notaPedido']+"</td>"+
             "<td>"+data['articulos'][indexA]['label']+"</td>"+
             "<td data-artId='"+data['lista'][i]['artId']+"'>"+data['articulos'][indexA]['descripcion']+"</td>"+
-            "<td data-provid='"+data['lista'][i]['provid']+"'>"+data['proveedores'][indexP]['provnombre']+"</td>"+
+            // "<td data-provid='"+data['lista'][i]['provid']+"'>"+data['proveedores'][indexP]['provnombre']+"</td>"+
             "<td>"+data['lista'][i]['cantidad']+" | "+data['lista'][i]['medida']+"</td>"+
             "<td>"+data['lista'][i]['fechaEntrega']+"</td>"+
             "</tr>";

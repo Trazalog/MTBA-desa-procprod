@@ -6,7 +6,7 @@
 
         <!-- Sidebar Menu -->
         <?php
-        echo $this->multi_menu->inject_item('<li><a href="#" onClick="cargarView(\'Tarea\', \'index\', \'View\')" data-permission="View-"><i class="glyphicon glyphicon-stats"></i><span>Escritorio</span></a></li>', 'first')
+        echo $this->multi_menu->inject_item('<li><a href="#" onClick="cargarView(\'Test\', \'index\', \'View\')" data-permission="View-"><i class="glyphicon glyphicon-stats"></i><span>Escritorio</span></a></li>', 'first')
                               ->render();
         ?>
         <!-- /.sidebar-menu -->
