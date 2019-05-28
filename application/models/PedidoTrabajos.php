@@ -31,12 +31,14 @@ class PedidoTrabajos extends CI_Model
     {
         $this->db->select('count(*) as cantidad');
         $this->db->from('trj_pedido_trabajo');
-        $this->db->where('date(fec_entrega)<date(fec_finalizacion)');
+        $this->db->where('fecha_entrega_componente is not null and fec_finalizacion is not null');
+        $this->db->where('date(fecha_entrega_componente)<date(fec_finalizacion)');
         $data['buenas'] = $this->db->get()->row()->cantidad;
 
         $this->db->select('count(*) as cantidad');
         $this->db->from('trj_pedido_trabajo');
-        $this->db->where('date(fec_entrega)>date(fec_finalizacion)');
+        $this->db->where('fecha_entrega_componente is not null and fec_finalizacion is not null');
+        $this->db->where('date(fecha_entrega_componente)>date(fec_finalizacion)');
         $data['malas'] = $this->db->get()->row()->cantidad;
 
         $data['total'] =  $data['buenas'] + $data['malas'];
