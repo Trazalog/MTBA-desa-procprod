@@ -36,8 +36,8 @@ class PedidoTrabajo extends CI_Controller {
         return $data;
     }
 
-    public function Ver_Formularios($idPedidoTrabajo, $case_id){
-      $data['list'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($idPedidoTrabajo);
+    public function Ver_Formularios($idPedidoTrabajo){
+      $data['list_form'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($idPedidoTrabajo);
       $data['idPedTrabajo'] = $idPedidoTrabajo;
       $this->load->view('PedidosTrabajos/list_formularios',$data);
     }

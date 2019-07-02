@@ -213,4 +213,11 @@ class Forms extends CI_Model
 	    					
 	}
 
+	function obtenerForm($id_pedido,$form=null){
+        $this->db->select('form_nombre,form_id,lita_id');
+        $this->db->where('petr_id',$id_pedido);
+        if($form)$this->db->where('form_id', $form);
+        return $this->db->get('frm_formularios_completados')->result_array();
+    }
+
 }	

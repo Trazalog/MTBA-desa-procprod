@@ -13,6 +13,7 @@
     }      
    
     function habilitar(){       
+     
         // habilito btn y textarea       
         $("#btonsoltr").show();
         $("#hecho").show();       
@@ -24,6 +25,7 @@
         $('#acciones_view').show();
     }
     function deshabilitar(){
+      
         // habilito btn tomar
         $("#btontomar").show();
         // habilito btn y textarea  

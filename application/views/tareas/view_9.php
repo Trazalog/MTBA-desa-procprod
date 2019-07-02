@@ -138,7 +138,12 @@
                                     <!-- Modal formulario tarea -->
                                     <?php if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
                                     data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Cotizacion
-                                    </button>';}?>
+                                    </button>';
+                                    
+                                    echo '<br><br><button type="button" class="btn btn-primary  getFormularioTarea" data-formid="10500" data-open="false" data-validado="false" data-bpmIdTarea="260024">Ajuntos de Repuestos
+                                                                    </button>';
+                                    
+                                    }?>
                                 
                                     
                                 
@@ -328,6 +333,10 @@
 			}
 		});
 	}
+
+    function after_get_form(){
+        $('#modalRevDiagCoord input').remove();
+    }
 </script>
 
 <script>
@@ -924,8 +933,6 @@ function CerrarModal(){
     WaitingOpen('Guardando Cambios');
     GuardarFormulario(false);
     //WaitingClose();
-   
-    
 }
 
 
@@ -960,7 +967,17 @@ function CerrarModal(){
 </div>
 
 
+<!-- Modal forms tareas a revisar -->
+<div class="modal fade" id="modalRevDiagCoord" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="modalBodyRevDiagCoord">
 
+            </div><!-- /.modal-body -->
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog modal-lg -->
+</div> <!-- /.modal fade -->
+<!-- / Modal -->
 
 
 

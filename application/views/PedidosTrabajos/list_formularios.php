@@ -18,7 +18,7 @@
                             </thead>
                             <tbody>
                               <?php //dump_exit($list);
-                              foreach($list as $f)
+                              foreach($list_form as $f)
                               {
                                 $f = object_to_array($f);
                                   //dump($f);
@@ -26,8 +26,6 @@
                                 echo '<tr>';
                                 echo '<td>';
                                 echo '<a href="#" title="Mostrar formulario de tarea" class="getFormularioTarea" data-formid="'.$f['form_id'].'" data-validado="false" data-idListTarea="'.$f['lita_id'].'"><i class="fa fa-eye" style="cursor: pointer; margin-left: 15px;" ></i></a>';
-                                      //echo '<a href="#" class="addRepuestos" title="Cargar Pedido de Repuestos" data-ordenDesc="'.$f['orden_descripcion'].'" data-ordenId="'.$f['id_orden'].'"><i class="fa fa-plus" style="cursor: pointer; margin-left: 15px;"></i></a>';
-                                      //echo '<a href="#" class="rehacerTarea" title="Rehacer Tarea" data-treaId="'.$f['id_listarea'].'"><i class="fa fa-mail-reply" style="cursor: pointer; margin-left: 15px;"></i></a>';
                                 echo '</td>';
                                 echo '<td class="celda">'.$f['form_nombre'].'</td>';
                                 echo '</tr>';

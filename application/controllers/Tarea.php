@@ -518,6 +518,7 @@ class Tarea extends CI_Controller
 				$data['formularios'] = $this->Preinformes->ObtenerIdFormulariosCompletados($data['idPedTrabajo']);
 				$data['list']   = $this->Tareas->tareasPorSector($caseId,'jefe');
 				$data['lita_id'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],2500);
+				$data['lita_id_adjuntos'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],10500);
 				$data['lita_id_infoTec'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],7000);
 				$this->load->view('tareas/view_8',$data);
 				$this->load->view('tareas/scripts/tarea_std');
@@ -528,20 +529,22 @@ class Tarea extends CI_Controller
 			case 'Cotización de trabajo Industrial':
 				$this->load->model('Preinformes');
 				$data['formularios'] = array(2500);
-				//$data['list'] = $this->Notapedidos->notaPedidosxId($datos[0][ 'id_orden']);
+				$data['list_forms'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($data['idPedTrabajo']);
+				$data['lita_id_adjuntos'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],10500);
 				$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
 				$this->load->view('tareas/view_9', $data);
+				$this->load->view('tareas/scripts/abm_forms');
+				$this->load->view('tareas/scripts/abm_forms');
+				$this->load->view('tareas/scripts/validacion_forms');
 				break;
 			case 'Confección de Presupuesto Industrial':
 				$data['cotizacion'] = $this->Tareas->ObtenerCotizacion($data['idPedTrabajo']);
 				$this->load->view('tareas/view_10', $data);
 				break;
 			case 'Revisión Diagnóstico por el Coordinador':
-				$idForm = 0;//2500;
-				$data['idForm'] = $idForm;
-				//if(!$this->Tareas->getEstadoForm($idTarBonita))$this->Tareas->setFormInicial($idTarBonita,$idForm,$data['idPedTrabajo']);
+				$data['idForm'] = 10500;
 				$data['form']   = $this->Tareas->get_form($idTarBonita,$idForm);
-				//dump_exit($data['form']);
+				
 				$data['list']   = $this->Tareas->tareasPorSector($caseId);
 				$this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
 				break;
