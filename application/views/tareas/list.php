@@ -165,8 +165,8 @@
   function verTarea(idTarBonita){
 
     WaitingOpen();
-
-    $(".content").load("<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + idTarBonita+ "/"  );
+    link = "<?php echo base_url(); ?>index.php/Tarea/detaTarea/<?php echo $permission; ?>/" + idTarBonita;
+    $(".content").load(link);
     WaitingClose();
   }
 
