@@ -140,10 +140,12 @@
                                     data-target=".bs-example-modal-lg" onclick="getformulario()">Adjuntar Cotizacion
                                     </button>';
                                     
-                                    echo '<br><br><button type="button" class="btn btn-primary  getFormularioTarea" data-formid="10500" data-open="false" data-validado="false" data-bpmIdTarea="260024">Ajuntos de Repuestos
+                                   
+                                    } 
+                                    echo '<br><br><button type="button" class="btn btn-primary  getFormularioTarea" data-formid="10500" data-open="false" data-validado="false" data-bpmIdTarea="'.$lita_id_adjuntos.'">Ajuntos de Repuestos
                                                                     </button>';
                                     
-                                    }?>
+                                    ?>
                                 
                                     
                                 

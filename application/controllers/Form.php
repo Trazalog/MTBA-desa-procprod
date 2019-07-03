@@ -73,4 +73,6 @@ class Form extends CI_Controller {
 		
 		//echo json_encode(true);	usala para el alburo nomas
 	}
+
+
 }	

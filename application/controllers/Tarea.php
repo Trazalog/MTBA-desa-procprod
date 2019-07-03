@@ -528,9 +528,10 @@ class Tarea extends CI_Controller
 				break;
 			case 'Cotización de trabajo Industrial':
 				$this->load->model('Preinformes');
+				$this->load->model('Forms');
 				$data['formularios'] = array(2500);
 				$data['list_forms'] = $this->PedidoTrabajos->Lista_Formularios_Pedido($data['idPedTrabajo']);
-				$data['lita_id_adjuntos'] = $this->Tareas->get_lita_id($data['idPedTrabajo'],10500);
+				$data['lita_id_adjuntos'] = $this->Forms->obtenerForm($data['idPedTrabajo'],10500)['lita_id'];
 				$data['list'] = $this->Notapedidos->notaPedidosxId($data['codInterno']);
 				$this->load->view('tareas/view_9', $data);
 				$this->load->view('tareas/scripts/abm_forms');
