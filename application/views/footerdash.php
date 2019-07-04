@@ -10,4 +10,10 @@
     <script>
         //Esto dispara un evento para que se cargue el Dash en forma automatica cuando ingreso.
         cargarView('Test', 'index', 'View');
+
+        var link = null;
+
+        function linkTo(url = null){
+          $(".content").load(url==null?link:url);
+        }
     </script>

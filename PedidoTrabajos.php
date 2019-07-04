@@ -8,13 +8,6 @@ class PedidoTrabajos extends CI_Model
 		parent::__construct();
     }
 
-    public function set_finalizacion($case)
-    {
-        $this->db->where('petr_id', $case);
-        $this->db->set('fec_finalizacion',date("Y-m-d"));
-        return $this->db->update('trj_pedido_trabajo');
-    }
-
     function Obtener_Todos(){
         $this->db->select('A.*,B.cliRazonSocial as nombre');
         $this->db->from('trj_pedido_trabajo as A');

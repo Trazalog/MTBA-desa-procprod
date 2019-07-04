@@ -1,5 +1,5 @@
 <input type="hidden" id="permission" value="<?php echo $permission;?>">
-<?php //dump($TareaBPM); ?>
+
 <section class="content">
     <?php echo cargarCabecera($idPedTrabajo); ?>
     <div class="row">
@@ -18,7 +18,7 @@
                                         data-toggle="tab">Comentarios</a></li>
                                 <li role="presentation"><a href="#messages" aria-controls="messages" role="tab"
                                         data-toggle="tab">Vista Global</a></li>
-                                <li role="presentation"><a href="#settings" aria-controls="settings" role="tab"
+                                <li role="presentation" class="hidden"><a href="#settings" aria-controls="settings" role="tab"
                                         data-toggle="tab">Pedido de Repuestos</a></li>
                             </ul>
 
@@ -28,18 +28,15 @@
                                     <!-- <h4 class="panel-heading">Tarea</h4> -->
                                     <div class="panel-body">
                                         <?php
-                    //echo"id de form: ";
-                    //dump_exit($TareaBPM["assigned_id"]);
-                    //$TareaBPM["assigned_id"] = 'asignado';
-                    //echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
-                    //if ($estadoTarea == "noasignado") {´
+                
+            
 
-                    echo "<button class='btn btn-block btn-success' id='btontomar' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
+                    echo "<button class='btn btn-block btn-success' id='btontomar' style='width: 100px; margin-top: 10px ;display: inline-block;".($TareaBPM["assigned_id"]!=null?'display:none;':null)."' onclick='tomarTarea()'>Tomar tarea</button>";
                     //}else{
                     echo "&nbsp";
                     echo "&nbsp";
                     echo "&nbsp";
-                    echo "<button class='btn btn-block btn-danger grupNoasignado' id='btonsoltr' style='width: 100px; margin-top: 10px; display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
+                    echo "<button class='btn btn-block btn-danger grupNoasignado' id='btonsoltr' style='width: 100px; margin-top: 10px; display: inline-block;".($TareaBPM["assigned_id"]==null?'display:none;':null)."' onclick='soltarTarea()'>Soltar tarea</button>";
                     //}
                     echo "</br>";
                     echo "</br>";
@@ -90,8 +87,7 @@
 
                                                             <div class="col-xs-12 col-sm-6 ">
                                                                 <label for="ot ">Orden de Trabajo:</label>
-                                                                <input type="text " class="form-control " id="ot
-                                " placeholder=" " value="<?php echo $list["0"]["id_orden"] ?>" disabled>
+                                                                <input type="text " class="form-control " id="ot" placeholder=" " value="<?php echo $list["0"]["id_orden"] ?>" disabled>
                                                             </div>
 
                                                             <div class="col-xs-12 col-sm-6">
@@ -163,9 +159,9 @@
                                                     <div class="col-xs-12">
                                                         <!-- Modal formulario tarea -->
                                                         <?php
-                            //$idForm = 2500;
-                            if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                              data-target=".bs-example-modal-lg" data-validado="false" onclick="getformulario()">Completar Formulario</button>';}?>
+                         
+                                            if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
+                                            data-target=".bs-example-modal-lg" data-validado="false" onclick="getformulario()">Adjuntar Archivos</button>';}?>
                                                     </div>
                                                 </div>
                                             </div>
@@ -212,7 +208,7 @@
                             </div>
                         </div><!-- ./tab-pane -->
 
-                        <div role="tabpanel" class="tab-pane" id="settings">
+                        <div role="tabpanel" class="tab-pane hidden" id="settings">
                             <div class="panel-body">
                              
                             </div>
@@ -381,22 +377,9 @@ function guardarFormulario(validarOn) {
         success: function(respuesta) {
             console.log(form_actual_id + "...OK");
             WaitingClose();
-            ValidarObligatorios(validarOn);
-            if (respuesta === "exito") {
-
-            } else if (respuesta === "error") {
-                alert("Los datos no se han podido guardar");
-            } else {
-                //$("#msg-error").show();
-                //$(".list-errors").html(respuesta);
-                //alert("Los datos no se han guardado");
-            }
-        } //VF,
-        // error: function(result){
-        //   console.log(result);
-        //   alert('Error al Guardar Formularios');
-
-        // }
+            linkTo();
+           
+        } 
     });
 }
 

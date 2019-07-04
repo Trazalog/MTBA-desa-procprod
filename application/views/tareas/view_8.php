@@ -40,12 +40,12 @@
                                                         //echo "<input type='text' class='hidden' id='estadoTarea' value='$estadoTarea' >";
                                                     //if ($estadoTarea == "noasignado") {´
 
-                                                        echo "<button class='btn btn-block btn-success' id='btontomar' style='width: 100px; margin-top: 10px ;display: inline-block;' onclick='tomarTarea()'>Tomar tarea</button>";
+                                                        echo "<button class='btn btn-block btn-success' id='btontomar' style='width: 100px; margin-top: 10px ;display: inline-block;".($TareaBPM["assigned_id"]!=null?'display:none;':null)."' onclick='tomarTarea()'>Tomar tarea</button>";
                                                     //}else{
                                                         echo "&nbsp"; 
                                                         echo "&nbsp"; 
                                                         echo "&nbsp";
-                                                        echo "<button class='btn btn-block btn-danger grupNoasignado' id='btonsoltr' style='width: 100px; margin-top: 10px; display: inline-block;' onclick='soltarTarea()'>Soltar tarea</button>";
+                                                        echo "<button class='btn btn-block btn-danger grupNoasignado' id='btonsoltr' style='width: 100px; margin-top: 10px; display: inline-block;".($TareaBPM["assigned_id"]==null?'display:none;':null)."' onclick='soltarTarea()'>Soltar tarea</button>";
                                                     //}    
                                                         echo "</br>"; 
                                                         echo "</br>"; 
@@ -169,7 +169,11 @@
                                                                 data-idListTarea="">Ver Formulario Tareas RE-TAL-010</button>
                                                             <!-- Modal formulario tarea -->
                                                             <?php if($idForm != 0){echo '<button type="button" class="btn btn-primary  getFormularioTarea" data-formid="7000" data-open="false" data-validado="false" data-bpmIdTarea="'.$lita_id_infoTec.'">Adjuntar Informe Técnico
-                                                                </button>';}?>
+                                                                </button>';
+                                                                
+                                                                echo '<br><br><button type="button" class="btn btn-primary  getFormularioTarea" data-formid="10500" data-open="false" data-validado="false" data-bpmIdTarea="'.$lita_id_adjuntos.'">Ajuntos de Repuestos
+                                                                    </button>';
+                                                                }?>
                                                             <button class="btn btn-primary hidden" onclick="crearPDF()">Generar PDF - Formularios Diagnóstico</button>
                                                             <!-- <button type="button" id="crearPDF" class="btn btn-primary" name="crearPDF">Revisar Formularios de Diagnostico</button> -->
                                                          
