@@ -200,8 +200,10 @@ class Users extends CI_Model
 				else 
 				{
 					$response2 = json_decode( $response2 );
-					for($i=0; $i<sizeof($response2); $i++)
+#				echo var_dump($response2); die;	
+                          	for($i=0; $i<sizeof($response2); $i++)
 					{
+                                         
 						$user_data[0]['grpId'][$i] = $response2[$i]->group_id;
 						$user_data[0]['rolId'][$i] = $response2[$i]->role_id;
 					}

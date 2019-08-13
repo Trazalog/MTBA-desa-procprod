@@ -219,7 +219,7 @@ class Bonitas extends CI_Model
 
 			$data = array(
 					'username'=>$usrNick,
-					'password'=>'bpm',
+					'password'=>'123traza',
 					'redirect'=>'false'
 					);
 			$url = http_build_query( $data );

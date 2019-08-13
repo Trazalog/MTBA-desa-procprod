@@ -7,10 +7,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'pc-pc',
-	'username' => 'trazalog',
-	'password' => '123traza',
-	'database' => 'mtba-desa-procprod-desarrollo',
+	'hostname' => 'localhost',
+	'username' => 'root',
+	'password' => '!Password00',
+	'database' => 'procprod',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,

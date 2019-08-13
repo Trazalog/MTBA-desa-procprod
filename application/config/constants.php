@@ -92,7 +92,7 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 | Url base to Bonita
 |
 */
-define('BONITA_URL', 'http://pc-pc:8080/bonita/');
+define('BONITA_URL', 'http://192.168.0.136:8080/bonita/');
 
 /*
 |--------------------------------------------------------------------------
@@ -102,7 +102,8 @@ define('BONITA_URL', 'http://pc-pc:8080/bonita/');
 | Id de proceso productivo (se usa para lanzar proceso)
 |
 */
-define('BPM_PROCESS_ID', '8227764743879987447');
+define('BPM_PROCESS_ID', '5355443532469215679');
+//define('BPM_PROCESS_ID', '8547369603216411457');
 
 /*
 |--------------------------------------------------------------------------

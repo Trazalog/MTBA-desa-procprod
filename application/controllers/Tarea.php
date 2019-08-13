@@ -9,6 +9,8 @@ class Tarea extends CI_Controller
 		$this->load->model('Bonitas');
 		$this->load->model('Notapedidos');
 		$this->load->model('Overviews');
+  $this->load->model('Forms');
+
 		$this->load->model('PedidoTrabajos');
 	}
 	// Carga lista de OT
@@ -253,7 +255,7 @@ class Tarea extends CI_Controller
 		$idTarBonita = $this->input->post('idTarBonita');
 		$idOrdenTrabajo = $this->Tareas->getIdOtPorIdBPM($idTarBonita);
 		$tipo_tarea = "ordenTrabajo" . $this->input->post('tipo_tarea');
-
+		log_message('DEBUG','#TRAZA > terminar Planificacion | idTarBonita:'.$idTarBonita.' | tipo_tarea: '.$tipo_tarea.' | ot: '.$idOrdenTrabajo);
 		$idOT = array(
 			$tipo_tarea => $idOrdenTrabajo
 		);
@@ -544,11 +546,20 @@ class Tarea extends CI_Controller
 				break;
 			case 'Revisión Diagnóstico por el Coordinador':
 				$data['idForm'] = 10500;
+				$res = $this->Forms->obtenerForm($data['idPedTrabajo'], 10500);
+				if(!$res){
+					$this->Tareas->setFormInicial($idTarBonita,$data['idForm'],$data['idPedTrabajo']);
+					$res = $this->Forms->obtenerForm($data['idPedTrabajo'], 10500);
+				}
+				$data['lita_id_adjuntos'] = $res['lita_id'];
 				$data['form']   = $this->Tareas->get_form($idTarBonita,$idForm);
 				
 				$data['list']   = $this->Tareas->tareasPorSector($caseId);
 				$this->load->view('tareas/view-revision-diagnostico-coordinador', $data);
-				break;
+	$this->load->view('tareas/scripts/tarea_std');
+				$this->load->view('tareas/scripts/abm_forms');
+				$this->load->view('tareas/scripts/validacion_forms');				
+break;
 			case 'Analiza Vigencia del presupuesto aprobado':
 				$this->load->view('tareas/view_11',$data);
 				break;

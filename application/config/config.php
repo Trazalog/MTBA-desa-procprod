@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://localhost/MTBA-desa-procprod/';
+$config['base_url'] = 'http://192.168.0.136/mtba-desa-procprod/';
 
 /*
 |--------------------------------------------------------------------------
@@ -213,9 +213,9 @@ $config['directory_trigger'] = 'd';
 | configuracion de error log
 | https://stackoverflow.com/questions/30698357/how-to-create-a-log-file-with-codeigniter-web-framework
 */
-$config['log_threshold']        = 4;
-$config['log_path']             = '';
-$config['log_date_format']      = 'Y-m-d H:i:s';
+$config['log_threshold'] = 2;
+#$config['log_path']             = '';
+#$config['log_date_format']      = 'Y-m-d H:i:s';
 
 /*
 |--------------------------------------------------------------------------
@@ -471,7 +471,7 @@ $config['compress_output'] = FALSE;
 |
 */
 $config['time_reference'] = 'local';
-
+date_default_timezone_set('America/Argentina/San_Juan');
 /*
 |--------------------------------------------------------------------------
 | Rewrite PHP Short Tags

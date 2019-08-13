@@ -160,9 +160,10 @@
                                                         <!-- Modal formulario tarea -->
                                                         <?php
                          
-                                            if($idForm != 0){echo '<button type="button" id="formulario" class="btn btn-primary" data-toggle="modal"
-                                            data-target=".bs-example-modal-lg" data-validado="false" onclick="getformulario()">Adjuntar Archivos</button>';}?>
-                                                    </div>
+                                            if($idForm != 0){ 
+                                                                echo '<br><br><button type="button" class="btn btn-primary  getFormularioTarea" data-formid="10500" data-open="false" data-validado="false" data-bpmIdTarea="'.$lita_id_adjuntos.'">Ajuntos de Repuestos
+                                                                    </button>';}?>
+                                      </div>
                                                 </div>
                                             </div>
                                         </form>
@@ -800,7 +801,7 @@ $('.fecha').datepicker({
 var form_actual_id = '';
 var form_actual_data = '';
 //Lama al formulario de cada tarea
-$('.getFormularioTarea').click(function() {
+$('.aaagetFormularioTarea').click(function() {
     console.log("Get Formularios Tarea...");
     form_actual_data = $(this);
     WaitingOpen();
